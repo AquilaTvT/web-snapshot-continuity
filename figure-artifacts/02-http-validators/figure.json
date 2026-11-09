@@ -1,0 +1,18 @@
+{
+  "name": "02-http-validators",
+  "size_inches": [
+    7,
+    2.1
+  ],
+  "caption": "Six controlled framework executions. Four configurations return 304 after the endpoint bytes and validator return. Fresh modification times distinguish the other two. Each full-body endpoint GET precedes the conditional GET; every intermediate single-file state is recorded. These are valid representation comparisons, not continuity guarantees or measured failure rates.",
+  "method": "One row per configuration; raw request/response records and atomic mutation traces determine every plotted value.",
+  "data_sources": {
+    "apache-fresh.json": "2103ba8e6e0d4187c5a333abea22fc9fc4c92a131d352d5d99cb9f1e52fa21c0",
+    "apache-restored.json": "f3801a9a8904212ade9b4ccd841432b47a7503063c734101ef43b79140f1a4e3",
+    "express-strong.json": "b9413884b43295078dc45d4a0ba96ca3e769560e9b8cb4df0b6c5259aba6a271",
+    "express-weak.json": "68d3ae187b0358b4906f78673de4bffa6d9a23dd4bebd8bb1c6a4082053ab398",
+    "python-fresh.json": "7554ffbd094e75c236f26299c56f11938a5791e9e986694e76abf3f270c8305e",
+    "python-restored.json": "9e6360f8ed7d0ac9da4b121edc2e1f7255381e0a6e46afea4b4b697828d62cdb",
+    "source-results.csv": "7b3ef6750df0a3e135e3de24967e0762a87a15ec7232097cbc5cfa55e505cf27"
+  }
+}

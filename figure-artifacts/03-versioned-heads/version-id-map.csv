@@ -1,0 +1,17 @@
+global_alias,native_version_id,first_request_index,first_method,first_status,first_seen_delete_marker,plotted_case_aliases
+v0,c850623e-665f-4347-a85a-0309fd8248d3,2,PUT,200,,delete_current:α
+v1,2f473209-76e1-479f-b7fc-e2a778725828,4,PUT,200,,delete_current:β
+v2,8560d074-d9dd-41da-994d-6dd7aaa0b0ce,8,PUT,200,,copy_restore:α
+v3,5b22a7be-86d7-49e0-b549-ed93d5f8e67f,10,PUT,200,,copy_restore:β
+v4,b38c6e96-ff9b-46e1-ae39-823fd3cb929c,12,PUT,200,,copy_restore:γ
+v5,497b0ce5-0e5f-4315-bbf5-3d9ef97d4f14,14,PUT,200,,reupload_restore:α
+v6,e64803eb-5b06-4182-a5e6-5a5e604b5f29,16,PUT,200,,reupload_restore:β
+v7,f8da23cd-ef9e-442d-8373-c9ffbada1fa3,18,PUT,200,,reupload_restore:γ
+v8,f1c428ad-d9c0-4e84-910f-d213218bc206,20,PUT,200,,delete_marker:α
+v9,dbbe5007-e6e7-4c4e-8229-2e197aac0815,22,DELETE,204,true,
+v10,a908bd77-b557-427a-b8d7-2f6016636511,26,PUT,200,,
+v11,e380d3d4-abd5-470a-beda-7b053ee1407c,28,PUT,200,,
+v12,85007c92-e081-4b16-aa99-3e6bc548cdb9,31,PUT,200,,
+v13,a2e1dcf6-d1ea-4946-87e9-eddaa7fcc001,32,PUT,200,,
+v14,51756ee3-72bc-4275-8d19-d74314cfe7d9,36,PUT,200,,
+v15,2585e457-698e-4acd-84fc-27b6ed1f5096,39,PUT,200,,

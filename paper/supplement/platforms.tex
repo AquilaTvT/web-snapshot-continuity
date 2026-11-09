@@ -1,0 +1,184 @@
+\section{Platforms: documentation and local executions}\label{sec:platforms}
+
+\subsection{S3 version identity}
+An immutable version's identity and the history of which version is current
+at a key are different objects. AWS documents two restorations: copying an old
+version creates a new current version ID, while permanently deleting the
+current version exposes its predecessor under the predecessor's original
+ID~\cite{s3restore}. The current-key history $A/v_1\to B/v_2\to A/v_1$ is
+therefore permitted although no ID was allocated twice. Deleting a delete marker
+likewise restores the object below it, and $A/v_1\to\absent\to A/v_1$ remains a
+counterexample when only successful reads are certifiable; the absent state
+stays in the contract. A read that selects \code{versionId=v1} reads a
+historical version, not the current key. These are documented operations, not
+server faults, and neither the distinction between a version selector and a
+condition on the current target~\cite{opendal} nor the ABA phenomenon is
+claimed as new.
+
+\subsection{Identity probes on nine implementations}
+\code{experiments/reactivation_probes/} ran one fixed probe sequence on eight
+S3-compatible implementations and a GCS emulator (Table~\ref{tab:probe-versions}):
+\nProbeRequests{} loopback requests, every byte recorded, on Linux x86\_64 on
+2026-11-05. Each server used a fresh temporary store and public fixture
+credentials. The MinIO binary matches the release pinned for the earlier macOS
+executions, so it also replicates them across platforms.
+
+\begin{table}[t]
+\caption{Implementations probed, their releases and the requests sent to each.}
+\label{tab:probe-versions}
+\small
+\input{supplement/generated/tab-probe-versions}
+\end{table}
+
+All eight S3 implementations made the displaced version ID current again after
+deleting the newest version by ID, and after inserting and removing a delete
+marker (with a 404 in between). Over a COMPLIANCE-retained version, seven did
+the same and refused direct deletion of the retained version (400 or 403);
+SeaweedFS answered the retained PUT with 500, so that probe did not run. All
+eight kept the identifier (\code{null} or absent) across a write of $A,B,A$
+with versioning suspended. Copying the old version onto the key gave a fresh ID on seven, and the read
+after the copy returned $A$'s first ETag again; LocalStack required replaced
+metadata, and SeaweedFS refused all three request forms. Uploading the old bytes again gave a fresh ID on all eight
+and repeated $A$'s ETag, and a conditional GET with $A$'s first ETag returned
+304. No conditional GET was sent after a copy. The GCS emulator promoted
+nothing when the live generation was deleted (404), and copy and upload
+allocated new generations; this agrees with the GCS documentation but is not a
+GCS measurement. \code{derive.py} reclassifies every cell from the raw records,
+and Table~1 of the paper is generated in \code{table-artifacts/01-identity-probes/}
+from a full copy of the traces.
+
+\subsection{Two MinIO executions}
+\paragraph{Figure~1a.} \code{experiments/versioned_objects/data/trace.json}
+records six cases and 51 signed requests against an unmodified MinIO
+RELEASE.2025-09-07T16-13-09Z (official binary, SHA-256 checked) on macOS; no
+cloud account was used. Delete-current gives $A/\alpha, B/\beta, A/\alpha$;
+copy restoration and re-upload give $A/\alpha, B/\beta, A/\gamma$; inserting and
+removing a delete marker gives $A/\alpha,\absent,A/\alpha$ (Greek letters are
+per-case aliases; the opaque IDs stay in the mapping file). A pinned control
+keeps reading historical $A$ while the current key returns $B$. The sixth case
+changes two keys in the order $A,B,B,A$, reading both stable keys after each
+completed single-key mutation: the target pair (eligible, 10) is absent in all
+five stable phases, yet the captures $A,B,B,A$ return matching IDs within each
+key and induce overlapping bridges. This is the execution of Figure~1a.
+\code{derive.py} verifies request and response hashes, selectors, the five
+phase pairs and the capture order; the dedicated store and single writer are
+execution assumptions that a transcript cannot prove.
+
+\paragraph{Removing deletions.} \code{experiments/publication_profile/} records
+eight cases, \nProfileRequests{} signed requests and five management commands
+against the same server and a pinned management client. A non-owner publisher
+may read current and historical objects, write, and delete without a version
+ID, but is denied \code{DeleteObjectVersion} and every configuration change.
+
+\begin{table*}[t]
+\caption{The second MinIO execution: whether removing deletions removes reactivation.}
+\label{tab:profile}
+\small
+\begin{tabularx}{\textwidth}{@{}lXX@{}}
+\toprule
+Case & Outcome & What it shows \\
+\midrule
+Owner under a bucket deny & DELETE of $B$ returns 204; $A$'s original ID returns & The owner's path is not constrained by that deny \\
+Publisher deletes a data version & 403; $B$ stays current & Data-version deletion is blocked \\
+Publisher deletes a marker & 403; the current read stays 404 & Marker removal is blocked \\
+Publisher copies old $A$ & 200 and a fresh current ID & Restoration remains possible, with a fresh ID \\
+Batch version deletion & 200 with two per-object AccessDenied errors & HTTP success alone does not classify a batch \\
+Publisher changes configuration & 403 for versioning, policy and lifecycle & These changes are blocked \\
+Two keys read in a stable phase & Equal IDs; bridges overlap for 793{,}750\,ns & A positive bundle under the declared contract \\
+Multipart uploads completed in reverse & $B$ then $A$ current, both fresh IDs & One observed order, not AWS's \\
+COMPLIANCE retention & Data deletion refused (400, WORM); marker insertion and removal 204 & Retained data still permits $A/\mathit{ID}\to\absent\to A/\mathit{ID}$ \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+The rows of Table~\ref{tab:profile} are observations within one execution, not
+independent trials. A first attempt stopped because the harness expected 403
+for the retained-object deletion while the server returned 400 with a WORM
+message; that raw attempt is preserved separately, and the reported run is a
+fresh execution after the assertion was corrected. Privileged mutation, other
+writers, lifecycle rules, replication, suspension of versioning and
+restoration of the bucket or its authority are outside the profile, and
+preventing every version deletion also prevents reclaiming noncurrent
+versions.
+
+\subsection{GCS generations}
+For finalized objects at a fixed key in a continuously existing flat-namespace
+bucket, generations are unique across successive data versions, although their
+values need not increase; metadata-only updates keep the data generation and
+change only the metageneration~\cite{gcsmetadata}. Deleting the live version
+leaves no live version rather than promoting an older one, copying a
+noncurrent version back allocates a new generation, and restoring a
+soft-deleted object writes a new copy~\cite{gcsversioning}. Once a generation
+stops being live at the key, these operations cannot make it live again, so
+equal generations at two faithful current-name reads imply continuous stored
+bytes in between, over any horizon in which generations are not reused. The
+claim needs successful full current-name reads without a generation selector,
+with the generation taken from the same response as the bytes; point fidelity
+(no cache between client and origin, and a fixed encoding, since
+\code{Accept-Encoding: gzip} is needed to prevent decompressive transcoding); a
+fixed bucket, project and key; and the exclusion of bucket or project
+restoration, hierarchical-namespace folder renames and appendable objects. It
+says nothing about authorization, availability or response metadata, and no
+GCS service was measured.
+
+The official Python client pins versions silently. In
+\code{experiments/gcs_selector/}, \code{google-cloud-storage} 3.17.1 runs
+against a loopback fixture whose current data change from generation 101 (body
+$A$) to 202 (body $B$). Reusing one \code{Blob} object for two reads sends
+\code{generation=101} on the second and returns the old version; a fresh
+\code{Blob} per read returns 202 and $B$; an explicit selector control behaves
+as specified. This agrees with the client source~\cite{gcssdk}: the client
+stores the response's generation and adds it as a selector to later downloads
+of the same object. Each current-name observation must therefore use a fresh,
+unbound object.
+
+\subsection{Documented identifier semantics}
+\code{research/platform-identifiers-round9.md} and its ledger record
+\nAuditIdentifiers{} identifiers on \nAuditPlatforms{} storage, hosting, wiki,
+package and HTTP-server platforms, with 257 quotations from \nAuditSources{}
+official sources checked verbatim against copies retrieved on 2026-11-05. Each
+entry records what a read or management interface exposes and what specific
+restore, rollback or undelete operations do to it.
+\nAuditReactivating{} identifiers are unique but can be made current again (S3
+version IDs; B2 file IDs; DigitalOcean Spaces; Ceph RGW, from its tests; Swift
+object versioning; SeaweedFS, from source; GCS hierarchical-namespace rename,
+inferred; deploy and version IDs of Netlify, Vercel, Cloudflare Pages and
+Firebase; npm dist-tags; MediaWiki revision IDs under deletion and
+undeletion). \nAuditDerived{} derive from content or file attributes (MD5 and
+SHA-1 ETags, content digests, Git and OCI identifiers, modification-time ETags
+of nginx, Apache and Express), \nAuditNotUnique{} are not unique (S3
+\code{null}, GCS metageneration) and \nAuditOther{} are unclear or
+unversioned. The remaining \nAuditFresh{} receive fresh values on the restore
+paths inspected (GCS flat-namespace generations, Azure Blob version IDs, Azure
+ETags and snapshot promotion, Firebase release IDs, WordPress revision
+restore). A fresh value on one path does not make a field sound for every
+current read, and three corrections bound these entries.
+
+\emph{MediaWiki.} Revision IDs are preserved across deletion and
+undeletion~\cite{mediawikirevision}, so a page deleted and restored in full
+returns as $A/r\to\absent\to A/r$; selective restoration can also make an older
+revision current after another. Only ordinary edits and reverts, which
+allocate new IDs, are inside the positive scope.
+
+\emph{WordPress.} Restoring a revision creates a new one, but the current
+post's \code{predecessor-version} link names the latest \emph{remaining}
+revision row~\cite{wordpressrest}. For authorized edit-context reads and the
+observation (\code{content.raw}, \code{predecessor-version.id}), the sequence
+$A/r_1\to B/r_2\to A/r_3$, followed by deleting $r_3$ and $r_2$, returns to
+$A/r_1$. This is derived from the official core source, not measured, and it
+does not claim that the whole JSON response repeats.
+
+\emph{Azure snapshots.} A snapshot's DateTime names an immutable historical
+snapshot and is supplied later as a \code{snapshot} selector; the base-blob URI
+and a version-selected URI are different reads~\cite{azuresnapshot}. Copying a
+snapshot over the base blob writes a fresh current version and ETag, but the
+snapshot DateTime is not a publication epoch on an unqualified current read.
+Azure Blob version IDs are inside the positive scope only for versioned block
+blobs; page and append blobs, whose updates need not create versions, and
+point-in-time restore are outside it~\cite{azureversioning}.
+
+Several classifications rest on project source or tests where the prose is
+silent (Ceph, Swift, SeaweedFS, WordPress, MediaWiki undeletion, nginx), and
+two on inference (GCS rename, Cloudflare Pages); the paper names only
+explicitly documented cases. Documentation states intended behavior;
+Table~1 of the paper tests implementations.

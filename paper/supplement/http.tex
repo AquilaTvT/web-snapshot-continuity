@@ -1,0 +1,42 @@
+\section{Controlled HTTP executions}\label{sec:http}
+\code{scripts/run_stack_experiments.py} runs six configurations, with the
+versions retained in each trace: Express 5.3.0 (\code{etag} 1.8.1) with weak
+and strong ETags; Python's \code{http.server} validating through
+\code{Last-Modified}, with advancing and restored modification times; and
+Apache with \code{FileETag MTime Size}, with advancing and restored
+modification times. Every server binds only loopback. The two pages move
+through the phases (eligible, 100), (ineligible, 10) and (eligible, 100); the
+target pair (eligible, 10) is read by capturing admission in the first phase
+and fee twice in the middle phase, then admission again. All four reads are
+full GETs whose bodies are compared byte for byte with the targets; only then
+does a fifth request send admission's original \code{If-None-Match}, or
+\code{If-Modified-Since} without an ETag. A bodyless 304 never substitutes for
+reading the endpoint body.
+
+The two files do not update atomically as a pair, so the order of the
+single-file updates matters. The forward phase replaces admission before fee,
+withdrawing eligibility before introducing the lower fee; restoration replaces
+fee before admission. Each update writes a staged file and renames it, and both
+pages are read back after every replacement; the trace asserts from these
+readbacks that the target pair was never served. Restoring admission first
+would briefly serve the target pair, and the run would no longer show
+noncoexistence. Fresh modification times advance by 10\,s per phase; in the
+restored cases the final time equals the original, an explicit mechanism
+condition rather than a claim about deployments.
+
+\begin{table}[t]
+\caption{The six HTTP configurations (macOS) and the Linux re-execution.}
+\label{tab:http}
+\small
+\setlength{\tabcolsep}{4pt}
+\input{supplement/generated/tab-http}
+\end{table}
+
+In four configurations the endpoint validator repeats and the conditional GET
+returns 304 although the target pair never coexisted (Table~\ref{tab:http}).
+These outcomes accuse no server of violating HTTP: a 304 says that a stored
+copy may be reused~\cite{http}. They test the consumer's inference from equal
+validators to continuity, and 4 of 6 is not a failure rate. On 2026-11-05 the
+six configurations were re-executed on Linux x86\_64 (Express 5.3.0, Python
+3.13.18, Ubuntu Apache 2.4.58) with identical outcomes; the runner refuses to
+overwrite traces and aborts on a failed start or a violated state assertion.

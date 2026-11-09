@@ -1,0 +1,315 @@
+\section{Certifying a common instant}\label{sec:instants}
+
+\subsection{Setting}
+Resources $1,\dots,n$, $n\ge2$, have independent finite contracts. Resource $i$
+is captured $k_i\ge1$ times; every capture has a closed window $[s,e]$ with
+$s<e$ on one monotone client clock. The windows of one resource are ordered and
+may touch but not overlap: each ends no later than the next one starts. Its
+captures are sequential, so its true read instants increase strictly, also
+when two windows share an endpoint. In the
+\emph{single-run} model of Theorem~\ref{thm:exact} every capture of $i$ returns
+the same target observation. The first window of $i$ is $[s_i^-,e_i^-]$ and the
+last $[s_i^+,e_i^+]$; for $k_i=1$ they coincide. Each target is \emph{open}: the
+contract lets it become current just before the first capture and be
+withdrawn just after the last. Without openness the contract already proves
+presence outside the captures, which can only help.
+
+The captures \emph{certify a common instant} if every history consistent with
+the contracts and the captures has an instant at which every target is
+present: $\forall H\,\exists t$. A \emph{fixed} common instant is one instant,
+determined by the capture record, at which every target is present in every
+consistent history: $\exists t\,\forall H$.
+
+\begin{example}
+Let $A$ have a sound field and be read in $[1,2]$ and $[5,6]$, and let $B$ be
+read once in $[3,4]$. Every history has a common instant, at $B$'s read; but
+$B$ may be present only near its read instant, which can lie anywhere in
+$[3,4]$, so no instant is fixed. \code{certify()} returns certified and
+\code{fixed_instant()} returns none.
+\end{example}
+
+Certification is Cooper and Marzullo's \emph{definitely}
+modality~\cite{cooper1991} for the conjunctive predicate ``every target is
+present''. With interval timestamps it corresponds to Stoller's Def modality
+over the ``definitely occurred before'' order~\cite{stoller2000}; his Inst
+modality asks instead for one global state whose local states definitely
+overlapped. For conjunctive predicates over observed local states, Garg and
+Waldecker decide \emph{definitely} in polynomial time~\cite{garg1996}, and
+for two distinct processes Stoller's conditions take the pairwise form of
+Theorem~\ref{thm:exact}(i). What differs here is that the local intervals in
+which a target is present are never observed: a resource is seen only at its
+captures, and Theorem~\ref{thm:criterion} decides from the contract whether
+it stayed in between.
+
+\subsection{The exact test}
+\begin{theorem}[Exact test]\label{thm:exact}
+\textup{(i)} If every field is sound, the captures certify a common instant iff
+$e_i^-\le s_j^+$ for all $i\ne j$. \textup{(ii)} If exactly one resource $r$
+has a reusable field and the others are sound, they do iff the others satisfy
+(i) among themselves and some capture window of $r$ lies in $[L,H]$, where
+$L=\max_{i\ne r}e_i^-$ and $H=\min_{i\ne r}s_i^+$. \textup{(iii)} With two or
+more reusable fields they never do.
+\end{theorem}
+\begin{proof}
+\emph{(i), sufficiency.} Let $u_i^-$ and $u_i^+$ be the true first and last
+read instants of $i$. By soundness and fidelity, $i$ is present throughout
+$[u_i^-,u_i^+]$. For $i\ne j$, $u_i^-\le e_i^-\le s_j^+\le u_j^+$, and
+$u_i^-\le u_i^+$; hence $t=\max_iu_i^-\le\min_ju_j^+$ lies in every presence
+interval. \emph{Necessity.} If $e_i^->s_j^+$ for some $i\ne j$, read $i$ first
+at $e_i^-$ and $j$ last at $s_j^+$, other reads anywhere in their windows; let
+$i$ become current within $\delta$ before $e_i^-$ and $j$ be withdrawn within
+$\delta$ after $s_j^+$, with $2\delta<e_i^--s_j^+$ (openness). No instant has
+both.
+
+\emph{(ii).} A reusable resource can leave and return between any two of its
+captures, so its presence can be confined to arbitrarily small neighborhoods
+of its read instants. If a window of $r$ lies in $[L,H]$, the instant read in
+it lies in $[\max u_i^-,\min u_i^+]$ over the sound resources, by (i), and is a
+common instant. Conversely, place the sound resources at the extremes as in
+(i), so that their certain common interval is exactly $[L,H]$; read $r$ at a
+point of each window outside $[L,H]$, which exists because no window lies
+inside it, and confine $r$ to small neighborhoods of those points.
+
+\emph{(iii).} Confine two reusable resources to neighborhoods of their read
+instants, choose all those instants distinct, which positive windows allow,
+and shrink the neighborhoods until they are disjoint.
+\end{proof}
+
+The test needs only the two largest $e_i^-$ and the two smallest $s_j^+$, and a
+reusable resource's windows are checked in one pass, so it takes time linear
+in the number of captures (\code{_violating_pair}). With instantaneous reads
+($s=e$) it is the closed-interval intersection that Spaniol et al.\ use for
+inducible coherence~\cite{spaniol2009}; what is added is the window model,
+completeness in both directions, the lower bounds below and the treatment of
+fields that are not sound. For every refused instance, \code{counterexample()}
+builds read instants and presence intervals without a common instant, and
+\code{verify_counterexample()} checks them independently. Each reusable read
+is chosen among $\sum_ik_i+1$ equally spaced rational points of its window, so
+an unused instant always remains; an earlier version offered five fixed points
+and failed on six reusable resources in one window, which is now a regression
+test, with up to twelve reusable reads checked.
+
+\paragraph{Touching windows.} The proofs use the windows of one resource only
+through $u_k\le e_k\le s_{k+1}\le u_{k+1}$ for consecutive captures $k,k+1$,
+which touching windows satisfy. The refutations place a read at a window
+endpoint; where that endpoint is shared with the neighboring window of the same
+resource, the neighboring read moves into the interior of its own window, which
+has positive length, so the reads stay strictly ordered and the refutation is
+unchanged. \code{counterexample()} does this, and the audit compares the test
+with brute force on sequential schedules whose windows touch and on random
+touching window sets (Table~\ref{tab:audit}). The replay's 1\,s condition, in
+which consecutive windows touch, therefore lies within Theorem~\ref{thm:exact}:
+a closed bridge $[e^-,s^+]$ may be a single instant, and with sound fields that
+instant is common to every history.
+
+\subsection{Schedules and fixed instants}
+\begin{corollary}[Schedules]\label{cor:schedule}
+\textup{(i)} Certifying $n\ge2$ resources needs at least $2n-1$ captures; the
+order $1,\dots,n-1,n,n-1,\dots,1$ attains this, and its singly read resource $n$
+needs no sound field. \textup{(ii)} A fixed common instant needs every resource
+captured at least twice, hence $2n$ captures, and no reusable field; with sound
+fields the fixed instants are exactly $[\max_ie_i^-,\min_is_i^+]$.
+\textup{(iii)} With parallel requests, two rounds of $2n$ captures or three
+rounds of $2n-1$ suffice.
+\end{corollary}
+\begin{proof}
+\emph{(i)} Two singly captured resources $i,j$ would need $e_i\le s_j$ and
+$e_j\le s_i$, so $s_i<e_i\le s_j<e_j\le s_i$, a contradiction; hence at least
+$2(n-1)+1$ captures. In the revisit order no first window ends after another
+resource's last window starts, and resource $n$ is read once, so
+Theorem~\ref{thm:exact}(ii) admits a reusable field there; a singly read
+resource of any class is present at its own read, so the order tolerates a
+general field at the center as well.
+
+\emph{(ii)} Let $i$ be captured once in $[s_i,e_i]$ and let $t$ be any instant.
+Choose $i$'s read instant in the window but different from $t$, and let $i$ be
+present only around it (openness): $t$ is not common. A reusable resource is
+handled alike however often it is captured. Conversely, with every field sound
+and $k_i\ge2$, each $t\in[L,H]$ with $L=\max_ie_i^-$ and $H=\min_is_i^+$
+satisfies $u_i^-\le e_i^-\le L\le t\le H\le s_i^+\le u_i^+$ for every $i$, so $t$
+is common in every history. For $t<L$, the resource with $e_i^-=L$ can be read
+at $e_i^-$ and appear just before it, after $t$; symmetrically for $t>H$. In the
+double collect $1,\dots,n,n,\dots,1$ with sequential windows, $L$ is the end of window $n$ and $H$ the start of window $n+1$, so $L\le H$,
+with equality when the two windows touch; when every resource is
+revisited, Theorem~\ref{thm:exact}(i) is equivalent to $L\le H$, so certifying
+and fixing coincide.
+
+\emph{(iii)} Two rounds (all first captures, then all last captures) use $2n$
+captures; three rounds ($n-1$ first captures, the single capture, $n-1$ last
+captures) use $2n-1$. Two rounds cannot use $2n-1$: the single capture would
+have to lie strictly between them.
+\end{proof}
+
+Spaniol et al.\ introduced the inverted revisit order, with the last visited
+page downloaded once, under instantaneous downloads, and described ETag or
+hash comparison as ``the only 100\% reliable method''~\cite{spaniol2009}. The
+corollary shows that this order is optimal, and Theorem~\ref{thm:exact} that
+it still certifies under request windows whenever the revisited resources have
+sound fields, while the singly read resource needs no continuity guarantee at
+all.
+Part (ii) prices the saved capture: the revisit order places the common
+instant inside the center's window, at an instant that varies between
+histories, whereas a double collect~\cite{afek1993} of sound fields with closed bridges
+($\max e^-\le\min s^+$) names an interval that every history shares. The
+preregistered replay protocol used half-open bridges ($\max e^-<\min s^+$),
+which reject a resource whose consecutive windows touch although one common
+instant suffices; Section~\ref{sec:replay} reports both.
+
+\subsection{Worst cases and hardness}
+In the general model the captures of a resource may return different
+observations, all with the target body. For one consistent history of a
+resource, its \emph{departure pattern} records whether the resource can be
+absent before its first capture, whether its path leaves the target in each
+gap between consecutive captures, and whether it can leave after the last
+capture. A \emph{worst case} is a consistent history whose pattern dominates
+the pattern of every consistent history componentwise. Under openness the
+first and last entries always depart; \code{departure_pattern()} also handles
+contracts that are not open.
+
+\begin{proposition}[Worst cases and hardness]\label{prop:hard}
+Let the captures of a resource return any observations of its target. If every
+resource has a worst-case history, certification is decidable in polynomial
+time; this includes the single-run sound and reusable cases of
+Theorem~\ref{thm:exact} and every contract whose observations identify their
+states. In general, deciding certification is coNP-complete, even when every
+field is sound, contracts are acyclic and windows are arbitrarily short.
+\end{proposition}
+
+\paragraph{The sweep.} Suppose every resource has a worst case. Its
+\emph{runs} are the maximal blocks of captures joined by gaps that the worst
+case does not leave. A run of captures $a,\dots,b$ with $a<b$ is certainly
+present on $[e_a,s_b]$; a run of one capture is present only at its read
+instant, which may lie anywhere in its window.
+
+\begin{lemma}\label{lem:sweep}
+Certification holds iff \textup{(A)} the fixed runs of all resources share a
+point, or \textup{(B)} some resource has a one-capture run whose window lies
+inside the union of fixed runs of every other resource.
+\end{lemma}
+\begin{proof}
+\emph{Sufficiency.} A gap that the worst case does not leave is left by no
+consistent history, since the worst case dominates them all, so in every
+history the resource is present on $[u_a,u_b]\supseteq[e_a,s_b]$. Under (A) a
+shared point is common to every history; under (B) the one-capture run's read
+instant lies in every other resource's fixed runs. \emph{Necessity.} If neither
+holds, let every resource follow its worst case, read each run first at $e_a$
+and last at $s_b$, read every one-capture run at a point of its window outside
+the other resources' common fixed runs and distinct from all other reads, and
+let each departing gap be absent except in small neighborhoods of its two
+reads. Presence is then each resource's fixed runs plus neighborhoods of
+points, and no point lies in all of them: a fixed point fails (A), and a read
+point fails (B) or meets no other read. Finitely many compact sets with empty
+intersection keep it empty after the neighborhoods shrink.
+\end{proof}
+
+\code{worst_case_pattern()} computes, by forward and backward reachability over
+the capture layers, whether some consistent history leaves the target in each
+gap; the componentwise maximum is the only possible worst case, and one more
+layered search decides whether one history realizes it. A two-layer search over
+(state, departed) from every state gives reachability with and without a
+departure, so a resource with $k$ captures takes $O(|V|(|V|+|E|)+k|V|^2)$ time.
+\code{sweep_certainty()} then decides (A) in one sweep over sorted run
+endpoints, $O(M\log M)$ for $M$ captures, and (B) with one binary search per
+one-capture window and other resource, $O(nM\log M)$. Sound and reusable
+single runs have a worst case (no departing gap, respectively all gaps
+departing in one history), and so does every contract whose observations
+identify their states, because its gaps are then independent.
+
+\paragraph{Membership in coNP.} A certificate of non-certification gives, for
+every capture $j$ of resource $i$, a state $q_{ij}$ that emits the recorded
+observation. The verifier checks emission, target membership, reachability of
+$q_{i1}$ from an initial state and of $q_{i,j+1}$ from $q_{ij}$. Restricting the
+consistent histories to those that pass $q_{ij}$ at capture $j$ fixes the
+endpoints of every gap, so paths in different gaps no longer constrain each
+other: a departing path is chosen in each gap where one exists, every finite
+path is permitted and holding times have no lower bound, so these choices
+concatenate. The restricted instance therefore has a worst case, and the
+verifier runs the sweep on it and accepts iff the sweep finds no certain
+common instant. A history without a common instant yields an accepted
+certificate, and an accepted certificate yields such a history by
+Lemma~\ref{lem:sweep}. The certificate has $O(K\log|V_{\max}|)$ bits for $K$
+captures.
+
+\paragraph{Hardness.} Reduce from CNF satisfiability with clauses
+$c_1,\dots,c_q$ over variables $v_1,\dots,v_m$. A clock resource $Z$ has states
+$f_0\to z_1\to f_1\to\dots\to z_q\to f_q$ with bodies alternating off and on, a
+fresh observation per $z_k$ and initial state $f_0$; it is captured at $4k$ and
+$4k+2$ with observation $z_k$, so it is certainly present exactly on
+$[4k,4k+2]$. Each variable resource $X_v$ has two disconnected branches $T$ and
+$F$ with identical observations $r_0,\dots,r_q$, captured at $4k+3$. In branch
+$T$, the segment between $r_{k-1}$ and $r_k$ also has a departing path through
+an off state if $v\in c_k$; in branch $F$, if $\lnot v\in c_k$. If the formula is
+satisfiable, choose branches by a satisfying assignment and in each slot let a
+variable of a true literal depart across the whole slot; $Z$ covers every
+other instant, so no common instant exists. Conversely, a history without a
+common instant fixes one branch per variable, and since $Z$ is present on every
+slot, in every slot some variable departs, which its branch allows only if its
+literal satisfies the clause. All contracts are acyclic, and every window may
+have any width up to $1/2$, down to a point.
+
+Every field in the construction is sound by Theorem~\ref{thm:criterion},
+independently of how often it is captured. Each clock observation $z_k$ occurs
+at one state, which cannot be left and re-entered. Each variable observation
+$r_k$ occurs at most once on each acyclic branch, a path cannot return to it
+after leaving, and the branches are disconnected, so no path reaches the equal
+observation on the other branch; no path between equal observations leaves
+and returns to the target. The variable resources have no worst case: branch
+$T$ can leave in the slots of clauses containing $v$, branch $F$ in those
+containing $\lnot v$, and when both literals occur the two patterns are
+incomparable. Hardness therefore comes from hidden choice behind identical
+observations, not from unsound fields. Conjunctive predicates over observed
+local states are polynomial~\cite{garg1996}, general predicates are hard to
+detect~\cite{chase1998}, and weak conjunctive detection becomes NP-complete
+once local events are only partially ordered~\cite{tarafdar1998}; that result
+asks whether some consistent global state exists, whereas here every history
+consistent with independent contracts must contain a real-time common instant,
+and the uncertainty comes from hidden server states. The sufficient condition
+of Lemma~\ref{lem:sweep} and the general hardness do not form a dichotomy: a
+general field without a worst case can still be certified with more captures.
+Two resources with a contract that permits one return, read $A,B,A,B,A$ in
+disjoint windows, have a common instant in every history, since $A$ absent at
+both $B$ reads would need two departures; the reference semantics certifies
+this instance, while the sweep returns unknown.
+
+\subsection{Verification}
+\code{src/certification.py} implements the pairwise test, the fixed-instant
+test, the counterexample constructor and an independent checker, the
+worst-case pattern and sweep, an exponential reference semantics for small
+explicit contracts, and the reduction. \code{scripts/check_certification.py}
+writes \code{data/derived/certification-audit.json}; Table~\ref{tab:audit} lists
+its checks. They check the implementation and the proofs; they do not
+replace the proofs.
+
+\begin{table}[t]
+\caption{Checks against brute force in the certification audit.}
+\label{tab:audit}
+\small
+\begin{tabularx}{\columnwidth}{@{}Xr@{}}
+\toprule
+Check & Instances \\
+\midrule
+Sequential schedules, $n=2,3$, every sound/reusable assignment, against a
+search over read instants (\sScheduleCertified{} certified) & \sScheduleChecks{} \\
+Random overlapping windows, same oracle & \sWindowChecks{} \\
+Sequential schedules whose windows touch, $n=2,3$, same oracle
+(\sTouchingCertified{} certified) & \sTouchingChecks{} \\
+Random window sets in which a resource's windows may touch, same oracle &
+\sTouchingRandom{} \\
+Sequential schedules, $n=1,2,3$, against a search for a fixed instant
+(\sFixedCertified{} fix one) & \sFixedChecks{} \\
+Explicit fresh-token and content-hash machines against the rule & \sMachineChecks{} \\
+CNF instances of the reduction, with positive and point windows & \sCnfChecks{} \\
+Random explicit contracts, sweep against the reference semantics
+(\sSweepDeterministic{} observation-deterministic) & \sSweepChecks{} \\
+Random contracts, worst-case pattern against enumeration & \sPatternChecks{} \\
+Small contracts, component criterion against all labelings & \sRepairChecks{} \\
+Random finite refinements, Proposition~\ref{prop:repair}(ii) & \sRefinementChecks{} \\
+Bounded epochs on the S3 deletion model & \sEpochChecks{} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The audit also confirms the minimum sequential schedules that certify $n=1,2,3,4$
+resources (\sMinimumCaptures{} captures) and that fix an instant for
+$n=1,2,3$ (\sMinimumFixed{}), counterexamples for 2, 6, 9 and 12 reusable reads
+in one window, and the one-return $A,B,A,B,A$ instance.

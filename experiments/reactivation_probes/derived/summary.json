@@ -1,0 +1,905 @@
+{
+ "schema": 1,
+ "implementations": {
+  "minio": {
+   "implementation": "MinIO",
+   "version": "minio version RELEASE.2025-09-07T16-13-09Z (commit-id=07c3a429bfed433e49018cb0f78a52145d4bedeb)",
+   "distribution": "official release binary",
+   "image": null,
+   "executable_sha256": "7c5bd8512c6e966455b1d198209358b2d191c77a83ab377c4073281065fb855f",
+   "requests": 51,
+   "outcomes": {
+    "delete_current": {
+     "outcome": "returned",
+     "first_id": "6e96ba3a-934c-4ad5-87d1-3dd3e3a39ba9",
+     "last_id": "6e96ba3a-934c-4ad5-87d1-3dd3e3a39ba9",
+     "middle_status": 200,
+     "evidence": [
+      4,
+      6,
+      8,
+      7,
+      9
+     ],
+     "mutation_status": 204,
+     "conditional_status": 304
+    },
+    "delete_marker": {
+     "outcome": "returned",
+     "first_id": "6857c853-f932-4f72-8e9b-22a4c4204d79",
+     "last_id": "6857c853-f932-4f72-8e9b-22a4c4204d79",
+     "middle_status": 404,
+     "evidence": [
+      11,
+      13,
+      15,
+      14
+     ],
+     "mutation_status": 204
+    },
+    "object_lock_marker": {
+     "outcome": "returned",
+     "first_id": "e7720195-59ac-4d97-8a78-6b116860b1f6",
+     "last_id": "e7720195-59ac-4d97-8a78-6b116860b1f6",
+     "middle_status": 404,
+     "evidence": [
+      45,
+      48,
+      50,
+      49,
+      46
+     ],
+     "mutation_status": 204,
+     "retained_delete_status": 400
+    },
+    "suspended_null": {
+     "outcome": "identifier unchanged",
+     "first_id": null,
+     "last_id": null,
+     "middle_status": 200,
+     "evidence": [
+      35,
+      37,
+      39
+     ]
+    },
+    "copy_restore": {
+     "outcome": "fresh",
+     "first_id": "ad99d3cb-415d-44e6-b6c2-b8da78561dfc",
+     "last_id": "809ad411-0d08-40ff-999b-406f0ed5c677",
+     "middle_status": 200,
+     "evidence": [
+      17,
+      19,
+      21,
+      20
+     ],
+     "mutation_status": 200,
+     "attempt_statuses": [
+      200
+     ]
+    },
+    "reupload": {
+     "outcome": "fresh",
+     "first_id": "014830da-ae5f-466d-9ab9-718089b444d1",
+     "last_id": "a6836f72-8542-4326-94be-17d7b9f27c85",
+     "middle_status": 200,
+     "evidence": [
+      23,
+      25,
+      27,
+      28
+     ],
+     "etag_returned": true,
+     "conditional_status": 304
+    }
+   }
+  },
+  "ceph": {
+   "implementation": "Ceph RADOS Gateway (single-node demo cluster)",
+   "version": "ceph version 19.2.0 (16063ff2022298c9300e49a547a16ffda59baf13) squid (stable)",
+   "distribution": "quay.io/ceph/demo:latest-squid",
+   "image": "[\"quay.io/ceph/demo@sha256:522483cf07cfce6386b8e18a3edfa88a1b32c688dee231d0a6962b1513557723\"] sha256:522483cf07cfce6386b8e18a3edfa88a1b32c688dee231d0a6962b1513557723",
+   "executable_sha256": null,
+   "requests": 51,
+   "outcomes": {
+    "delete_current": {
+     "outcome": "returned",
+     "first_id": "a..l.SncVyZJSKMmvEDkzNJG3ee3zJL",
+     "last_id": "a..l.SncVyZJSKMmvEDkzNJG3ee3zJL",
+     "middle_status": 200,
+     "evidence": [
+      4,
+      6,
+      8,
+      7,
+      9
+     ],
+     "mutation_status": 204,
+     "conditional_status": 304
+    },
+    "delete_marker": {
+     "outcome": "returned",
+     "first_id": "x-7J4X.67-cEwN1TQQC9-qm3ZjyhI63",
+     "last_id": "x-7J4X.67-cEwN1TQQC9-qm3ZjyhI63",
+     "middle_status": 404,
+     "evidence": [
+      11,
+      13,
+      15,
+      14
+     ],
+     "mutation_status": 204
+    },
+    "object_lock_marker": {
+     "outcome": "returned",
+     "first_id": "ShFXn4ZxwPOuDaC9JgvtHvMF6znHho8",
+     "last_id": "ShFXn4ZxwPOuDaC9JgvtHvMF6znHho8",
+     "middle_status": 404,
+     "evidence": [
+      45,
+      48,
+      50,
+      49,
+      46
+     ],
+     "mutation_status": 204,
+     "retained_delete_status": 403
+    },
+    "suspended_null": {
+     "outcome": "identifier unchanged",
+     "first_id": null,
+     "last_id": null,
+     "middle_status": 200,
+     "evidence": [
+      35,
+      37,
+      39
+     ]
+    },
+    "copy_restore": {
+     "outcome": "fresh",
+     "first_id": "g6IgLRrG-OFxZag3M7Rpat2Gk8cVoJG",
+     "last_id": "gKkK14Xj3RiooUndlehu8Yj38g1Fhjl",
+     "middle_status": 200,
+     "evidence": [
+      17,
+      19,
+      21,
+      20
+     ],
+     "mutation_status": 200,
+     "attempt_statuses": [
+      200
+     ]
+    },
+    "reupload": {
+     "outcome": "fresh",
+     "first_id": "L9FbA1kT7F-x6B7-EEeR0wYO7rK4q9O",
+     "last_id": "11YCegP4lN5k28eve8rXJWWXrqaQD29",
+     "middle_status": 200,
+     "evidence": [
+      23,
+      25,
+      27,
+      28
+     ],
+     "etag_returned": true,
+     "conditional_status": 304
+    }
+   }
+  },
+  "seaweedfs": {
+   "implementation": "SeaweedFS (S3 gateway on filer)",
+   "version": "version 30GB 3.97 76452ab593995ab52b75e681de5b221de1e3f006 linux amd64",
+   "distribution": "official release linux_amd64.tar.gz 3.97",
+   "image": null,
+   "executable_sha256": "a99945256565dd85f017585dd97776215acb11bb6918e23d7f8343148e5d0452",
+   "requests": 53,
+   "outcomes": {
+    "delete_current": {
+     "outcome": "returned",
+     "first_id": "18e51172bc791823cfd71e08d8d4f02c",
+     "last_id": "18e51172bc791823cfd71e08d8d4f02c",
+     "middle_status": 200,
+     "evidence": [
+      4,
+      6,
+      8,
+      7,
+      9
+     ],
+     "mutation_status": 204,
+     "conditional_status": 304
+    },
+    "delete_marker": {
+     "outcome": "returned",
+     "first_id": "18e51172ca06ed2f7ad026eb8f425bc7",
+     "last_id": "18e51172ca06ed2f7ad026eb8f425bc7",
+     "middle_status": 404,
+     "evidence": [
+      11,
+      13,
+      15,
+      14
+     ],
+     "mutation_status": 204
+    },
+    "object_lock_marker": {
+     "outcome": "unsupported",
+     "evidence": [
+      45,
+      47,
+      50,
+      52
+     ]
+    },
+    "suspended_null": {
+     "outcome": "identifier unchanged",
+     "first_id": "null",
+     "last_id": "null",
+     "middle_status": 200,
+     "evidence": [
+      37,
+      39,
+      41
+     ]
+    },
+    "copy_restore": {
+     "outcome": "not restored",
+     "first_id": "18e51172cb1b008a888859353f5009bc",
+     "last_id": "18e51172cb8581d4dd55fa30fbf74ff4",
+     "middle_status": 200,
+     "evidence": [
+      17,
+      19,
+      23,
+      22
+     ],
+     "mutation_status": 400,
+     "attempt_statuses": [
+      400,
+      400,
+      400
+     ]
+    },
+    "reupload": {
+     "outcome": "fresh",
+     "first_id": "18e51172cc5e9dd92e1de551acedec04",
+     "last_id": "18e51172cd4dcb0542fb094a7f860573",
+     "middle_status": 200,
+     "evidence": [
+      25,
+      27,
+      29,
+      30
+     ],
+     "etag_returned": true,
+     "conditional_status": 304
+    }
+   }
+  },
+  "versitygw": {
+   "implementation": "Versity S3 Gateway (posix backend)",
+   "version": "v1.10.0",
+   "distribution": "go install github.com/versity/versitygw/cmd/versitygw@v1.10.0",
+   "image": null,
+   "executable_sha256": "4e3f8c35751e12537879182dba689093a8409bec5deee524b1a11ef27b86cb87",
+   "requests": 51,
+   "outcomes": {
+    "delete_current": {
+     "outcome": "returned",
+     "first_id": "01M6N5FD9A4AXAHB7WSZARNEX8",
+     "last_id": "01M6N5FD9A4AXAHB7WSZARNEX8",
+     "middle_status": 200,
+     "evidence": [
+      4,
+      6,
+      8,
+      7,
+      9
+     ],
+     "mutation_status": 204,
+     "conditional_status": 304
+    },
+    "delete_marker": {
+     "outcome": "returned",
+     "first_id": "01M6N5FD9QFZ0G1163D3WGZ04E",
+     "last_id": "01M6N5FD9QFZ0G1163D3WGZ04E",
+     "middle_status": 404,
+     "evidence": [
+      11,
+      13,
+      15,
+      14
+     ],
+     "mutation_status": 204
+    },
+    "object_lock_marker": {
+     "outcome": "returned",
+     "first_id": "01M6N5FDB009DG02JPRFKNJK4T",
+     "last_id": "01M6N5FDB009DG02JPRFKNJK4T",
+     "middle_status": 404,
+     "evidence": [
+      45,
+      48,
+      50,
+      49,
+      46
+     ],
+     "mutation_status": 204,
+     "retained_delete_status": 403
+    },
+    "suspended_null": {
+     "outcome": "identifier unchanged",
+     "first_id": "null",
+     "last_id": "null",
+     "middle_status": 200,
+     "evidence": [
+      35,
+      37,
+      39
+     ]
+    },
+    "copy_restore": {
+     "outcome": "fresh",
+     "first_id": "01M6N5FDA0HRDV320PV314EQD4",
+     "last_id": "01M6N5FDA5BFNVX1DNC3M5P7JS",
+     "middle_status": 200,
+     "evidence": [
+      17,
+      19,
+      21,
+      20
+     ],
+     "mutation_status": 200,
+     "attempt_statuses": [
+      200
+     ]
+    },
+    "reupload": {
+     "outcome": "fresh",
+     "first_id": "01M6N5FDA8T0W4YX3D4QCTGAM0",
+     "last_id": "01M6N5FDADK6NFYJM2WX2ATK1N",
+     "middle_status": 200,
+     "evidence": [
+      23,
+      25,
+      27,
+      28
+     ],
+     "etag_returned": true,
+     "conditional_status": 304
+    }
+   }
+  },
+  "rustfs": {
+   "implementation": "RustFS",
+   "version": "rustfs 1.0.4",
+   "distribution": "rustfs/rustfs:latest",
+   "image": "[\"rustfs/rustfs@sha256:ed9210d6411d77ffceb70d94b964a3cb7d225983368bc25bebe01e995293dcc2\"] sha256:ed9210d6411d77ffceb70d94b964a3cb7d225983368bc25bebe01e995293dcc2",
+   "executable_sha256": null,
+   "requests": 51,
+   "outcomes": {
+    "delete_current": {
+     "outcome": "returned",
+     "first_id": "b974dd21-9eb3-4617-83e5-876d07a91e0c",
+     "last_id": "b974dd21-9eb3-4617-83e5-876d07a91e0c",
+     "middle_status": 200,
+     "evidence": [
+      4,
+      6,
+      8,
+      7,
+      9
+     ],
+     "mutation_status": 204,
+     "conditional_status": 304
+    },
+    "delete_marker": {
+     "outcome": "returned",
+     "first_id": "1030b345-3a66-4f7f-b7f3-da0a315634a7",
+     "last_id": "1030b345-3a66-4f7f-b7f3-da0a315634a7",
+     "middle_status": 404,
+     "evidence": [
+      11,
+      13,
+      15,
+      14
+     ],
+     "mutation_status": 204
+    },
+    "object_lock_marker": {
+     "outcome": "returned",
+     "first_id": "285f778b-0b52-438e-b1d0-155c7dff4db3",
+     "last_id": "285f778b-0b52-438e-b1d0-155c7dff4db3",
+     "middle_status": 404,
+     "evidence": [
+      45,
+      48,
+      50,
+      49,
+      46
+     ],
+     "mutation_status": 204,
+     "retained_delete_status": 403
+    },
+    "suspended_null": {
+     "outcome": "identifier unchanged",
+     "first_id": "null",
+     "last_id": "null",
+     "middle_status": 200,
+     "evidence": [
+      35,
+      37,
+      39
+     ]
+    },
+    "copy_restore": {
+     "outcome": "fresh",
+     "first_id": "c4b08618-93b8-4650-956d-7ea4642b0f95",
+     "last_id": "c200c0c4-1385-4992-a376-618278b95715",
+     "middle_status": 200,
+     "evidence": [
+      17,
+      19,
+      21,
+      20
+     ],
+     "mutation_status": 200,
+     "attempt_statuses": [
+      200
+     ]
+    },
+    "reupload": {
+     "outcome": "fresh",
+     "first_id": "aef5b216-3e05-4141-960d-a70e275ae192",
+     "last_id": "b7088352-f26b-4e1d-a09e-deee0eaa5a44",
+     "middle_status": 200,
+     "evidence": [
+      23,
+      25,
+      27,
+      28
+     ],
+     "etag_returned": true,
+     "conditional_status": 304
+    }
+   }
+  },
+  "cloudserver": {
+   "implementation": "Scality CloudServer (mem backend)",
+   "version": "9.0.27",
+   "distribution": "ghcr.io/scality/cloudserver:9.0.27",
+   "image": "[\"ghcr.io/scality/cloudserver@sha256:4fede42df2146568bf75d870bbfefa123ed79bf68239ee3f184933736b5d0879\"] sha256:4fede42df2146568bf75d870bbfefa123ed79bf68239ee3f184933736b5d0879",
+   "executable_sha256": null,
+   "requests": 51,
+   "outcomes": {
+    "delete_current": {
+     "outcome": "returned",
+     "first_id": "3938323036313430373530393039393939393939756e646566696e30",
+     "last_id": "3938323036313430373530393039393939393939756e646566696e30",
+     "middle_status": 200,
+     "evidence": [
+      4,
+      6,
+      8,
+      7,
+      9
+     ],
+     "mutation_status": 204,
+     "conditional_status": 304
+    },
+    "delete_marker": {
+     "outcome": "returned",
+     "first_id": "3938323036313430373530383831393939393939756e646566696e32",
+     "last_id": "3938323036313430373530383831393939393939756e646566696e32",
+     "middle_status": 404,
+     "evidence": [
+      11,
+      13,
+      15,
+      14
+     ],
+     "mutation_status": 204
+    },
+    "object_lock_marker": {
+     "outcome": "returned",
+     "first_id": "3938323036313430373530373935393939393939756e646566696e3133",
+     "last_id": "3938323036313430373530373935393939393939756e646566696e3133",
+     "middle_status": 404,
+     "evidence": [
+      45,
+      48,
+      50,
+      49,
+      46
+     ],
+     "mutation_status": 204,
+     "retained_delete_status": 403
+    },
+    "suspended_null": {
+     "outcome": "identifier unchanged",
+     "first_id": "null",
+     "last_id": "null",
+     "middle_status": 200,
+     "evidence": [
+      35,
+      37,
+      39
+     ]
+    },
+    "copy_restore": {
+     "outcome": "fresh",
+     "first_id": "3938323036313430373530383636393939393939756e646566696e34",
+     "last_id": "3938323036313430373530383534393939393939756e646566696e36",
+     "middle_status": 200,
+     "evidence": [
+      17,
+      19,
+      21,
+      20
+     ],
+     "mutation_status": 200,
+     "attempt_statuses": [
+      200
+     ]
+    },
+    "reupload": {
+     "outcome": "fresh",
+     "first_id": "3938323036313430373530383438393939393939756e646566696e37",
+     "last_id": "3938323036313430373530383334393939393939756e646566696e39",
+     "middle_status": 200,
+     "evidence": [
+      23,
+      25,
+      27,
+      28
+     ],
+     "etag_returned": true,
+     "conditional_status": 304
+    }
+   }
+  },
+  "localstack": {
+   "implementation": "LocalStack (S3 provider)",
+   "version": "4.9.2",
+   "distribution": "localstack/localstack:4.9",
+   "image": "[\"localstack/localstack@sha256:59373b4a27dba3ec15c4db0b7455f0cb68c8a42300e2cbbe362b440f9a131697\"] sha256:59373b4a27dba3ec15c4db0b7455f0cb68c8a42300e2cbbe362b440f9a131697",
+   "executable_sha256": null,
+   "requests": 52,
+   "outcomes": {
+    "delete_current": {
+     "outcome": "returned",
+     "first_id": "AaGqV_vIiFfuD0pIKS4dRTAMP6fOLRPn",
+     "last_id": "AaGqV_vIiFfuD0pIKS4dRTAMP6fOLRPn",
+     "middle_status": 200,
+     "evidence": [
+      4,
+      6,
+      8,
+      7,
+      9
+     ],
+     "mutation_status": 204,
+     "conditional_status": 304
+    },
+    "delete_marker": {
+     "outcome": "returned",
+     "first_id": "AaGqV_vKcA0OCRRKZhu7qUsSQTeat_Cl",
+     "last_id": "AaGqV_vKcA0OCRRKZhu7qUsSQTeat_Cl",
+     "middle_status": 404,
+     "evidence": [
+      11,
+      13,
+      15,
+      14
+     ],
+     "mutation_status": 204
+    },
+    "object_lock_marker": {
+     "outcome": "returned",
+     "first_id": "AaGqV_vSDyAgzHWa8Im.BKzTus2LoyKk",
+     "last_id": "AaGqV_vSDyAgzHWa8Im.BKzTus2LoyKk",
+     "middle_status": 404,
+     "evidence": [
+      46,
+      49,
+      51,
+      50,
+      47
+     ],
+     "mutation_status": 204,
+     "retained_delete_status": 403
+    },
+    "suspended_null": {
+     "outcome": "identifier unchanged",
+     "first_id": "null",
+     "last_id": "null",
+     "middle_status": 200,
+     "evidence": [
+      36,
+      38,
+      40
+     ]
+    },
+    "copy_restore": {
+     "outcome": "fresh",
+     "first_id": "AaGqV_vMSlaJDaUm0Hnog8rrItK.f3BY",
+     "last_id": "AaGqV_vOkHwUOfyGSVWU_jCf7cm6dyyG",
+     "middle_status": 200,
+     "evidence": [
+      17,
+      19,
+      22,
+      21
+     ],
+     "mutation_status": 200,
+     "attempt_statuses": [
+      400,
+      200
+     ]
+    },
+    "reupload": {
+     "outcome": "fresh",
+     "first_id": "AaGqV_vPxLRhHsIgZp8BaMytu4_fnPg0",
+     "last_id": "AaGqV_vRSCu1nORn5mg3KwtA136RuVhh",
+     "middle_status": 200,
+     "evidence": [
+      24,
+      26,
+      28,
+      29
+     ],
+     "etag_returned": true,
+     "conditional_status": 304
+    }
+   }
+  },
+  "moto": {
+   "implementation": "moto (server mode)",
+   "version": "5.1.15",
+   "distribution": "PyPI moto[server]==5.1.15",
+   "image": null,
+   "executable_sha256": null,
+   "requests": 51,
+   "outcomes": {
+    "delete_current": {
+     "outcome": "returned",
+     "first_id": "ecb56d0d-90c6-4dd7-a968-7c582cff714c",
+     "last_id": "ecb56d0d-90c6-4dd7-a968-7c582cff714c",
+     "middle_status": 200,
+     "evidence": [
+      4,
+      6,
+      8,
+      7,
+      9
+     ],
+     "mutation_status": 204,
+     "conditional_status": 304
+    },
+    "delete_marker": {
+     "outcome": "returned",
+     "first_id": "dee0dad4-4e9d-4ccf-8068-6dcc92ef3ca4",
+     "last_id": "dee0dad4-4e9d-4ccf-8068-6dcc92ef3ca4",
+     "middle_status": 404,
+     "evidence": [
+      11,
+      13,
+      15,
+      14
+     ],
+     "mutation_status": 204
+    },
+    "object_lock_marker": {
+     "outcome": "returned",
+     "first_id": "bddc7657-79b7-4ac2-966d-381274d34913",
+     "last_id": "bddc7657-79b7-4ac2-966d-381274d34913",
+     "middle_status": 404,
+     "evidence": [
+      45,
+      48,
+      50,
+      49,
+      46
+     ],
+     "mutation_status": 204,
+     "retained_delete_status": 400
+    },
+    "suspended_null": {
+     "outcome": "identifier unchanged",
+     "first_id": null,
+     "last_id": null,
+     "middle_status": 200,
+     "evidence": [
+      35,
+      37,
+      39
+     ]
+    },
+    "copy_restore": {
+     "outcome": "fresh",
+     "first_id": "f17959bf-72a1-4047-af0b-3135c4cdbb14",
+     "last_id": "ef87fbd5-432d-4cfd-b597-bc319055d9ca",
+     "middle_status": 200,
+     "evidence": [
+      17,
+      19,
+      21,
+      20
+     ],
+     "mutation_status": 200,
+     "attempt_statuses": [
+      200
+     ]
+    },
+    "reupload": {
+     "outcome": "fresh",
+     "first_id": "708bfdb3-ed6a-4f9a-a44f-afbb0b792335",
+     "last_id": "9fc86116-fa5f-41b3-95be-47d8420f34c6",
+     "middle_status": 200,
+     "evidence": [
+      23,
+      25,
+      27,
+      28
+     ],
+     "etag_returned": true,
+     "conditional_status": 304
+    }
+   }
+  },
+  "fake-gcs-server": {
+   "implementation": "fake-gcs-server (GCS JSON API emulator, memory backend)",
+   "version": "v1.56.1",
+   "distribution": "go install github.com/fsouza/fake-gcs-server@v1.56.1",
+   "image": null,
+   "executable_sha256": "9dfde6b7bf6849ed4314397c0515b98d7cc87ad9502b9a798619e8c08b58169d",
+   "requests": 34,
+   "outcomes": {
+    "delete_current": {
+     "outcome": "absent",
+     "first_id": "1793859257391828",
+     "last_id": null,
+     "middle_status": 200,
+     "evidence": [
+      2,
+      5,
+      8,
+      7
+     ],
+     "mutation_status": 200
+    },
+    "copy_restore": {
+     "outcome": "fresh",
+     "first_id": "1793859257406571",
+     "last_id": "1793859257410284",
+     "middle_status": 200,
+     "evidence": [
+      17,
+      20,
+      23,
+      22
+     ],
+     "mutation_status": 200
+    },
+    "reupload": {
+     "outcome": "fresh",
+     "first_id": "1793859257412024",
+     "last_id": "1793859257416616",
+     "middle_status": 200,
+     "evidence": [
+      26,
+      29,
+      32
+     ],
+     "etag_returned": null
+    },
+    "delete_marker": {
+     "outcome": "not applicable",
+     "evidence": []
+    },
+    "object_lock_marker": {
+     "outcome": "not applicable",
+     "evidence": []
+    },
+    "suspended_null": {
+     "outcome": "not applicable",
+     "evidence": []
+    }
+   }
+  }
+ },
+ "inputs": {
+  "minio.json": "9aca80cff43507c660e2fbf384a7260f62c678c3d0dc9263bed59318477c16d4",
+  "ceph.json": "0df0128fde135548ca38400b83b82c312ff7dd5af33f241150a5e62c360af8b4",
+  "seaweedfs.json": "9f1a9ae534cab9df71d6971de62c7edd8d7cdbe96aa6a04b1e78408c5d5978e2",
+  "versitygw.json": "040b82933900ce99d2e3f4995e1a027bcb59bb11a696ab179e6b14fcffed629a",
+  "rustfs.json": "2418479ae1e044b0b5bf027d6c8a287010a22975004b6cdf0d11bb5a812cb512",
+  "cloudserver.json": "7e5cda01cdf55773d0b0cefe6d96255420c4bba8ee326d5a108a6a60acbe378e",
+  "localstack.json": "8a9af7837568dc1d9f65bff32629997b0af4e44abc6728b9defdf4025b16f467",
+  "moto.json": "916d5ce6a7de10f960ed737c1e9d179bb5ee3110c47b2ac957058e8e4560d95f",
+  "fake-gcs-server.json": "24f1d25b909cd4cef64cf14a92cbf4c1efc1da0a51a7e7b90d923a6746da67ea"
+ },
+ "findings": {
+  "s3_implementations": 8,
+  "requests_total": 445,
+  "delete_current_returned": [
+   "minio",
+   "ceph",
+   "seaweedfs",
+   "versitygw",
+   "rustfs",
+   "cloudserver",
+   "localstack",
+   "moto"
+  ],
+  "delete_marker_returned": [
+   "minio",
+   "ceph",
+   "seaweedfs",
+   "versitygw",
+   "rustfs",
+   "cloudserver",
+   "localstack",
+   "moto"
+  ],
+  "object_lock_marker_returned": [
+   "minio",
+   "ceph",
+   "versitygw",
+   "rustfs",
+   "cloudserver",
+   "localstack",
+   "moto"
+  ],
+  "suspended_identifier_unchanged": [
+   "minio",
+   "ceph",
+   "seaweedfs",
+   "versitygw",
+   "rustfs",
+   "cloudserver",
+   "localstack",
+   "moto"
+  ],
+  "copy_restore_fresh": [
+   "minio",
+   "ceph",
+   "versitygw",
+   "rustfs",
+   "cloudserver",
+   "localstack",
+   "moto"
+  ],
+  "copy_restore_not_restored": [
+   "seaweedfs"
+  ],
+  "reupload_fresh_and_etag_returned": [
+   "minio",
+   "ceph",
+   "seaweedfs",
+   "versitygw",
+   "rustfs",
+   "cloudserver",
+   "localstack",
+   "moto"
+  ],
+  "conditional_304_after_return": [
+   "minio",
+   "ceph",
+   "seaweedfs",
+   "versitygw",
+   "rustfs",
+   "cloudserver",
+   "localstack",
+   "moto"
+  ],
+  "gcs_emulator": {
+   "delete_current": "absent",
+   "copy_restore": "fresh",
+   "reupload": "fresh"
+  }
+ }
+}

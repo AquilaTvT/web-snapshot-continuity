@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "api": "https://en.wikipedia.org/w/api.php",
+  "titles": [
+    "World Wide Web",
+    "HTTP",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Web browser"
+  ],
+  "window": [
+    "2024-01-01T00:00:00Z",
+    "2025-01-01T00:00:00Z"
+  ],
+  "selection": "Six purposively selected Web-topic titles. World Wide Web was explored before this set was frozen; this is not preregistered or random.",
+  "scope": "Public revision metadata and selected source-text witnesses, not rendered-page, deployment, or cache histories.",
+  "started_utc": "2026-11-04T11:18:20.671318+00:00",
+  "pages": [
+    {
+      "requested_title": "World Wide Web",
+      "pageid": 33139,
+      "returned_title": "World Wide Web",
+      "batches": [
+        {
+          "file": "page-00-000.json",
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=World+Wide+Web&redirects=1&rvprop=ids%7Ctimestamp%7Csha1%7Csize&rvlimit=500&rvdir=newer&rvstart=2024-01-01T00%3A00%3A00Z&rvend=2025-01-01T00%3A00%3A00Z&formatversion=2&format=json",
+          "sha256": "0836f2503b216b20dc779daf35b12ab4ba3f270663336479a85b2ba8d226433b",
+          "bytes": 7578
+        }
+      ],
+      "revision_count": 53
+    },
+    {
+      "requested_title": "HTTP",
+      "pageid": 13443,
+      "returned_title": "HTTP",
+      "batches": [
+        {
+          "file": "page-01-000.json",
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=HTTP&redirects=1&rvprop=ids%7Ctimestamp%7Csha1%7Csize&rvlimit=500&rvdir=newer&rvstart=2024-01-01T00%3A00%3A00Z&rvend=2025-01-01T00%3A00%3A00Z&formatversion=2&format=json",
+          "sha256": "caa441a0ad9bfffab17eb44b6710f7f88f0209b271859c4469788510fe19d61c",
+          "bytes": 26321
+        }
+      ],
+      "revision_count": 186
+    },
+    {
+      "requested_title": "HTML",
+      "pageid": 13191,
+      "returned_title": "HTML",
+      "batches": [
+        {
+          "file": "page-02-000.json",
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=HTML&redirects=1&rvprop=ids%7Ctimestamp%7Csha1%7Csize&rvlimit=500&rvdir=newer&rvstart=2024-01-01T00%3A00%3A00Z&rvend=2025-01-01T00%3A00%3A00Z&formatversion=2&format=json",
+          "sha256": "bbc6f8d338207d41b50880dc59ea3738c7631ec6ec9f2124d0a5c4e8bd227164",
+          "bytes": 7145
+        }
+      ],
+      "revision_count": 50
+    },
+    {
+      "requested_title": "CSS",
+      "pageid": 23290197,
+      "returned_title": "CSS",
+      "batches": [
+        {
+          "file": "page-03-000.json",
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=CSS&redirects=1&rvprop=ids%7Ctimestamp%7Csha1%7Csize&rvlimit=500&rvdir=newer&rvstart=2024-01-01T00%3A00%3A00Z&rvend=2025-01-01T00%3A00%3A00Z&formatversion=2&format=json",
+          "sha256": "a870dbfe2caedb98a777a3798416d19b44a05cedf6afc6fe2b7d8f142e683722",
+          "bytes": 18004
+        }
+      ],
+      "revision_count": 127
+    },
+    {
+      "requested_title": "JavaScript",
+      "pageid": 9845,
+      "returned_title": "JavaScript",
+      "batches": [
+        {
+          "file": "page-04-000.json",
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=JavaScript&redirects=1&rvprop=ids%7Ctimestamp%7Csha1%7Csize&rvlimit=500&rvdir=newer&rvstart=2024-01-01T00%3A00%3A00Z&rvend=2025-01-01T00%3A00%3A00Z&formatversion=2&format=json",
+          "sha256": "874dac5934f35089b63f9a65a6ac652d37506dc43348d1af8f0d5933cfa0a52f",
+          "bytes": 18853
+        }
+      ],
+      "revision_count": 133
+    },
+    {
+      "requested_title": "Web browser",
+      "pageid": 33173,
+      "returned_title": "Web browser",
+      "batches": [
+        {
+          "file": "page-05-000.json",
+          "url": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Web+browser&redirects=1&rvprop=ids%7Ctimestamp%7Csha1%7Csize&rvlimit=500&rvdir=newer&rvstart=2024-01-01T00%3A00%3A00Z&rvend=2025-01-01T00%3A00%3A00Z&formatversion=2&format=json",
+          "sha256": "0761266a940866fd685ccdd2dcac264411aa2876aa55f3a69000df553b951087",
+          "bytes": 12087
+        }
+      ],
+      "revision_count": 85
+    }
+  ],
+  "finished_utc": "2026-11-04T11:18:39.809849+00:00"
+}

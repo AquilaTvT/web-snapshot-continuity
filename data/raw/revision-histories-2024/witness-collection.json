@@ -1,0 +1,78 @@
+{
+  "file": "witness-content.json",
+  "url": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&revids=1193127706%7C1193372829%7C1193454437%7C1193455563%7C1193799066%7C1193799156%7C1215779516%7C1216639254%7C1216676357%7C1217218341%7C1217379935%7C1217492554%7C1218541683%7C1218582601%7C1218841134%7C1251943974%7C1253149602%7C1253178604&rvprop=ids%7Ctimestamp%7Csha1%7Ccontent&rvslots=main&formatversion=2&format=json",
+  "sha256": "0ce10f66f2f5d54fc0d7a4a16dcbfddca1c759e17e222ceec094745f37e0bee5",
+  "bytes": 1282168,
+  "selection": "First return per fixed page in API order, with consecutive appearances of the repeated hash and the first differing intermediate revision.",
+  "witnesses": [
+    {
+      "title": "World Wide Web",
+      "revision_ids": [
+        1251943974,
+        1253149602,
+        1253178604
+      ]
+    },
+    {
+      "title": "HTTP",
+      "revision_ids": [
+        1193127706,
+        1193454437,
+        1193455563
+      ]
+    },
+    {
+      "title": "HTML",
+      "revision_ids": [
+        1218541683,
+        1218582601,
+        1218841134
+      ]
+    },
+    {
+      "title": "CSS",
+      "revision_ids": [
+        1193372829,
+        1193799066,
+        1193799156
+      ]
+    },
+    {
+      "title": "JavaScript",
+      "revision_ids": [
+        1215779516,
+        1216639254,
+        1216676357
+      ]
+    },
+    {
+      "title": "Web browser",
+      "revision_ids": [
+        1217218341,
+        1217379935,
+        1217492554
+      ]
+    }
+  ],
+  "source_text_license": "CC BY-SA 4.0; unmodified revision source text. Attribution through each source revision and its page history.",
+  "revision_urls": [
+    "https://en.wikipedia.org/w/index.php?oldid=1193127706",
+    "https://en.wikipedia.org/w/index.php?oldid=1193372829",
+    "https://en.wikipedia.org/w/index.php?oldid=1193454437",
+    "https://en.wikipedia.org/w/index.php?oldid=1193455563",
+    "https://en.wikipedia.org/w/index.php?oldid=1193799066",
+    "https://en.wikipedia.org/w/index.php?oldid=1193799156",
+    "https://en.wikipedia.org/w/index.php?oldid=1215779516",
+    "https://en.wikipedia.org/w/index.php?oldid=1216639254",
+    "https://en.wikipedia.org/w/index.php?oldid=1216676357",
+    "https://en.wikipedia.org/w/index.php?oldid=1217218341",
+    "https://en.wikipedia.org/w/index.php?oldid=1217379935",
+    "https://en.wikipedia.org/w/index.php?oldid=1217492554",
+    "https://en.wikipedia.org/w/index.php?oldid=1218541683",
+    "https://en.wikipedia.org/w/index.php?oldid=1218582601",
+    "https://en.wikipedia.org/w/index.php?oldid=1218841134",
+    "https://en.wikipedia.org/w/index.php?oldid=1251943974",
+    "https://en.wikipedia.org/w/index.php?oldid=1253149602",
+    "https://en.wikipedia.org/w/index.php?oldid=1253178604"
+  ]
+}

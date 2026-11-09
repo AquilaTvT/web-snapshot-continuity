@@ -1,0 +1,853 @@
+{
+  "schema": 1,
+  "evidence_kind": "constructed_finite_contract",
+  "models": [
+    {
+      "name": "content_hash_return",
+      "context": "One fixed URL, variant and distinguished authoritative origin",
+      "scope": "Unbounded alternation of two byte representations; hash equality is collision-free in this model.",
+      "explanation": "Returning to exactly the old bytes also returns to the old content hash.",
+      "states": [
+        {
+          "name": "a",
+          "body": "A",
+          "validator": "hash-A",
+          "actual": "A"
+        },
+        {
+          "name": "b",
+          "body": "B",
+          "validator": "hash-B",
+          "actual": "B"
+        }
+      ],
+      "edges": [
+        [
+          "a",
+          "a"
+        ],
+        [
+          "b",
+          "b"
+        ],
+        [
+          "a",
+          "b"
+        ],
+        [
+          "b",
+          "a"
+        ]
+      ],
+      "expected_safe": false
+    },
+    {
+      "name": "modulo_4_counter",
+      "context": "One fixed URL, variant and distinguished authoritative origin",
+      "scope": "Binary content changes increment a counter modulo four; arbitrary finite numbers of changes allowed.",
+      "explanation": "Four changes restore both the content and the counter. A bound below four would remove this path.",
+      "states": [
+        {
+          "name": "a0",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        },
+        {
+          "name": "b0",
+          "body": "B",
+          "validator": "0",
+          "actual": "B"
+        },
+        {
+          "name": "a1",
+          "body": "A",
+          "validator": "1",
+          "actual": "A"
+        },
+        {
+          "name": "b1",
+          "body": "B",
+          "validator": "1",
+          "actual": "B"
+        },
+        {
+          "name": "a2",
+          "body": "A",
+          "validator": "2",
+          "actual": "A"
+        },
+        {
+          "name": "b2",
+          "body": "B",
+          "validator": "2",
+          "actual": "B"
+        },
+        {
+          "name": "a3",
+          "body": "A",
+          "validator": "3",
+          "actual": "A"
+        },
+        {
+          "name": "b3",
+          "body": "B",
+          "validator": "3",
+          "actual": "B"
+        }
+      ],
+      "edges": [
+        [
+          "a0",
+          "a0"
+        ],
+        [
+          "b0",
+          "b0"
+        ],
+        [
+          "a1",
+          "a1"
+        ],
+        [
+          "b1",
+          "b1"
+        ],
+        [
+          "a2",
+          "a2"
+        ],
+        [
+          "b2",
+          "b2"
+        ],
+        [
+          "a3",
+          "a3"
+        ],
+        [
+          "b3",
+          "b3"
+        ],
+        [
+          "a0",
+          "b1"
+        ],
+        [
+          "b0",
+          "a1"
+        ],
+        [
+          "a1",
+          "b2"
+        ],
+        [
+          "b1",
+          "a2"
+        ],
+        [
+          "a2",
+          "b3"
+        ],
+        [
+          "b2",
+          "a3"
+        ],
+        [
+          "a3",
+          "b0"
+        ],
+        [
+          "b3",
+          "a0"
+        ]
+      ],
+      "expected_safe": false
+    },
+    {
+      "name": "epoch_reset_on_restart",
+      "context": "One fixed URL, variant and distinguished authoritative origin",
+      "scope": "One process starts at zero, changes once, then a restart restores A and resets the process-local counter.",
+      "explanation": "Increasing counters within each process do not distinguish two process incarnations.",
+      "states": [
+        {
+          "name": "a0",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        },
+        {
+          "name": "b1",
+          "body": "B",
+          "validator": "1",
+          "actual": "B"
+        },
+        {
+          "name": "restart_a0",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        }
+      ],
+      "edges": [
+        [
+          "a0",
+          "a0"
+        ],
+        [
+          "b1",
+          "b1"
+        ],
+        [
+          "restart_a0",
+          "restart_a0"
+        ],
+        [
+          "a0",
+          "b1"
+        ],
+        [
+          "b1",
+          "restart_a0"
+        ]
+      ],
+      "expected_safe": false
+    },
+    {
+      "name": "boot_nonce_reused",
+      "context": "One fixed URL, variant and distinguished authoritative origin",
+      "scope": "A boot identifier is reused after a restart, with an unchanged resource namespace.",
+      "explanation": "Adding a boot field helps only when the reuse it was intended to distinguish is excluded.",
+      "states": [
+        {
+          "name": "boot_a0",
+          "body": "A",
+          "validator": "boot-x:0",
+          "actual": "A"
+        },
+        {
+          "name": "boot_b1",
+          "body": "B",
+          "validator": "boot-x:1",
+          "actual": "B"
+        },
+        {
+          "name": "reboot_a0",
+          "body": "A",
+          "validator": "boot-x:0",
+          "actual": "A"
+        }
+      ],
+      "edges": [
+        [
+          "boot_a0",
+          "boot_a0"
+        ],
+        [
+          "boot_b1",
+          "boot_b1"
+        ],
+        [
+          "reboot_a0",
+          "reboot_a0"
+        ],
+        [
+          "boot_a0",
+          "boot_b1"
+        ],
+        [
+          "boot_b1",
+          "reboot_a0"
+        ]
+      ],
+      "expected_safe": false
+    },
+    {
+      "name": "unique_boot_nonce",
+      "context": "One fixed URL, variant and distinguished authoritative origin",
+      "scope": "Finite horizon: one update and one restart with distinct boot IDs; no further changes after final state.",
+      "explanation": "The restarted observation differs from the initial observation. The invariant covers exactly this declared graph.",
+      "states": [
+        {
+          "name": "boot_a0",
+          "body": "A",
+          "validator": "boot-x:0",
+          "actual": "A"
+        },
+        {
+          "name": "boot_b1",
+          "body": "B",
+          "validator": "boot-x:1",
+          "actual": "B"
+        },
+        {
+          "name": "reboot_a0",
+          "body": "A",
+          "validator": "boot-y:0",
+          "actual": "A"
+        }
+      ],
+      "edges": [
+        [
+          "boot_a0",
+          "boot_a0"
+        ],
+        [
+          "boot_b1",
+          "boot_b1"
+        ],
+        [
+          "reboot_a0",
+          "reboot_a0"
+        ],
+        [
+          "boot_a0",
+          "boot_b1"
+        ],
+        [
+          "boot_b1",
+          "reboot_a0"
+        ]
+      ],
+      "expected_safe": true
+    },
+    {
+      "name": "durable_epoch",
+      "context": "One fixed URL, variant and distinguished authoritative origin",
+      "scope": "Finite horizon: two updates with persistent distinct epochs; no subsequent updates in this graph.",
+      "explanation": "Return bytes carry a new episode identity. An unbounded production counter needs its own persistence and nonreuse contract.",
+      "states": [
+        {
+          "name": "a0",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        },
+        {
+          "name": "b1",
+          "body": "B",
+          "validator": "1",
+          "actual": "B"
+        },
+        {
+          "name": "a2",
+          "body": "A",
+          "validator": "2",
+          "actual": "A"
+        }
+      ],
+      "edges": [
+        [
+          "a0",
+          "a0"
+        ],
+        [
+          "b1",
+          "b1"
+        ],
+        [
+          "a2",
+          "a2"
+        ],
+        [
+          "a0",
+          "b1"
+        ],
+        [
+          "b1",
+          "a2"
+        ]
+      ],
+      "expected_safe": true
+    },
+    {
+      "name": "hash_with_no_return_policy",
+      "context": "One fixed URL, variant and distinguished authoritative origin",
+      "scope": "Policy permits A to change to B, but never permits B to return to A.",
+      "explanation": "A nonreturning deployment policy can make content hashes sufficient without a separate epoch.",
+      "states": [
+        {
+          "name": "a",
+          "body": "A",
+          "validator": "hash-A",
+          "actual": "A"
+        },
+        {
+          "name": "b",
+          "body": "B",
+          "validator": "hash-B",
+          "actual": "B"
+        }
+      ],
+      "edges": [
+        [
+          "a",
+          "a"
+        ],
+        [
+          "b",
+          "b"
+        ],
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "expected_safe": true
+    },
+    {
+      "name": "cached_old_response",
+      "context": "One fixed URL, variant and distinguished authoritative origin",
+      "scope": "The distinguished state is the origin, not the cache; responses may reuse a formerly valid body and epoch.",
+      "explanation": "A stale response is already incompatible with the origin at its read point. The failure is read fidelity, not token continuity.",
+      "states": [
+        {
+          "name": "fresh_a",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        },
+        {
+          "name": "stale_a",
+          "body": "A",
+          "validator": "0",
+          "actual": "B"
+        },
+        {
+          "name": "fresh_b",
+          "body": "B",
+          "validator": "1",
+          "actual": "B"
+        }
+      ],
+      "edges": [
+        [
+          "fresh_a",
+          "fresh_a"
+        ],
+        [
+          "stale_a",
+          "stale_a"
+        ],
+        [
+          "fresh_b",
+          "fresh_b"
+        ],
+        [
+          "fresh_a",
+          "stale_a"
+        ],
+        [
+          "stale_a",
+          "fresh_b"
+        ]
+      ],
+      "expected_safe": false
+    },
+    {
+      "name": "lagging_replica",
+      "context": "One fixed URL, variant and distinguished authoritative origin",
+      "scope": "The distinguished state is the primary and a GET can read a lagging replica.",
+      "explanation": "Origin-relative history cannot use a replica read as an instantaneous primary read without a stronger consistency contract.",
+      "states": [
+        {
+          "name": "leader_a",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        },
+        {
+          "name": "replica_a",
+          "body": "A",
+          "validator": "0",
+          "actual": "B"
+        },
+        {
+          "name": "replica_b",
+          "body": "B",
+          "validator": "1",
+          "actual": "B"
+        }
+      ],
+      "edges": [
+        [
+          "leader_a",
+          "leader_a"
+        ],
+        [
+          "replica_a",
+          "replica_a"
+        ],
+        [
+          "replica_b",
+          "replica_b"
+        ],
+        [
+          "leader_a",
+          "replica_a"
+        ],
+        [
+          "replica_a",
+          "replica_b"
+        ]
+      ],
+      "expected_safe": false
+    },
+    {
+      "name": "non_atomic_body_token",
+      "context": "One fixed URL, variant and distinguished authoritative origin",
+      "scope": "The body is sampled before an update and token after it; the claimed read point is the latter.",
+      "explanation": "Atomic coupling of body, epoch and the distinguished authoritative state is a separate input obligation.",
+      "states": [
+        {
+          "name": "a0",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        },
+        {
+          "name": "torn",
+          "body": "A",
+          "validator": "1",
+          "actual": "B"
+        },
+        {
+          "name": "b1",
+          "body": "B",
+          "validator": "1",
+          "actual": "B"
+        }
+      ],
+      "edges": [
+        [
+          "a0",
+          "a0"
+        ],
+        [
+          "torn",
+          "torn"
+        ],
+        [
+          "b1",
+          "b1"
+        ],
+        [
+          "a0",
+          "torn"
+        ],
+        [
+          "torn",
+          "b1"
+        ]
+      ],
+      "expected_safe": false
+    },
+    {
+      "name": "irrelevant_internal_transition",
+      "context": "One fixed URL, variant and distinguished authoritative origin",
+      "scope": "Internal server states may change while the selected representation remains A.",
+      "explanation": "A representation-continuity guarantee does not require every internal transition to receive a fresh token.",
+      "states": [
+        {
+          "name": "a_left",
+          "body": "A",
+          "validator": "hash-A",
+          "actual": "A"
+        },
+        {
+          "name": "a_right",
+          "body": "A",
+          "validator": "hash-A",
+          "actual": "A"
+        }
+      ],
+      "edges": [
+        [
+          "a_left",
+          "a_left"
+        ],
+        [
+          "a_right",
+          "a_right"
+        ],
+        [
+          "a_left",
+          "a_right"
+        ],
+        [
+          "a_right",
+          "a_left"
+        ]
+      ],
+      "expected_safe": true
+    },
+    {
+      "name": "modulo_3_binary",
+      "context": "One fixed URL, variant and authoritative origin",
+      "scope": "Every change selects a different body from AB and increments a counter modulo three; no other transitions.",
+      "explanation": "Binary content must change an even number of times to return; the first undetectable return is six updates.",
+      "states": [
+        {
+          "name": "a0",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        },
+        {
+          "name": "b0",
+          "body": "B",
+          "validator": "0",
+          "actual": "B"
+        },
+        {
+          "name": "a1",
+          "body": "A",
+          "validator": "1",
+          "actual": "A"
+        },
+        {
+          "name": "b1",
+          "body": "B",
+          "validator": "1",
+          "actual": "B"
+        },
+        {
+          "name": "a2",
+          "body": "A",
+          "validator": "2",
+          "actual": "A"
+        },
+        {
+          "name": "b2",
+          "body": "B",
+          "validator": "2",
+          "actual": "B"
+        }
+      ],
+      "edges": [
+        [
+          "a0",
+          "a0"
+        ],
+        [
+          "b0",
+          "b0"
+        ],
+        [
+          "a1",
+          "a1"
+        ],
+        [
+          "b1",
+          "b1"
+        ],
+        [
+          "a2",
+          "a2"
+        ],
+        [
+          "b2",
+          "b2"
+        ],
+        [
+          "a0",
+          "b1"
+        ],
+        [
+          "b0",
+          "a1"
+        ],
+        [
+          "a1",
+          "b2"
+        ],
+        [
+          "b1",
+          "a2"
+        ],
+        [
+          "a2",
+          "b0"
+        ],
+        [
+          "b2",
+          "a0"
+        ]
+      ],
+      "expected_safe": false
+    },
+    {
+      "name": "modulo_3_ternary",
+      "context": "One fixed URL, variant and authoritative origin",
+      "scope": "Every change selects a different body from ABC and increments a counter modulo three; no other transitions.",
+      "explanation": "A third body permits A-B-C-A in three updates. A reuse threshold depends on allowed transitions, not just token range.",
+      "states": [
+        {
+          "name": "a0",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        },
+        {
+          "name": "b0",
+          "body": "B",
+          "validator": "0",
+          "actual": "B"
+        },
+        {
+          "name": "c0",
+          "body": "C",
+          "validator": "0",
+          "actual": "C"
+        },
+        {
+          "name": "a1",
+          "body": "A",
+          "validator": "1",
+          "actual": "A"
+        },
+        {
+          "name": "b1",
+          "body": "B",
+          "validator": "1",
+          "actual": "B"
+        },
+        {
+          "name": "c1",
+          "body": "C",
+          "validator": "1",
+          "actual": "C"
+        },
+        {
+          "name": "a2",
+          "body": "A",
+          "validator": "2",
+          "actual": "A"
+        },
+        {
+          "name": "b2",
+          "body": "B",
+          "validator": "2",
+          "actual": "B"
+        },
+        {
+          "name": "c2",
+          "body": "C",
+          "validator": "2",
+          "actual": "C"
+        }
+      ],
+      "edges": [
+        [
+          "a0",
+          "a0"
+        ],
+        [
+          "b0",
+          "b0"
+        ],
+        [
+          "c0",
+          "c0"
+        ],
+        [
+          "a1",
+          "a1"
+        ],
+        [
+          "b1",
+          "b1"
+        ],
+        [
+          "c1",
+          "c1"
+        ],
+        [
+          "a2",
+          "a2"
+        ],
+        [
+          "b2",
+          "b2"
+        ],
+        [
+          "c2",
+          "c2"
+        ],
+        [
+          "a0",
+          "b1"
+        ],
+        [
+          "a0",
+          "c1"
+        ],
+        [
+          "b0",
+          "a1"
+        ],
+        [
+          "b0",
+          "c1"
+        ],
+        [
+          "c0",
+          "a1"
+        ],
+        [
+          "c0",
+          "b1"
+        ],
+        [
+          "a1",
+          "b2"
+        ],
+        [
+          "a1",
+          "c2"
+        ],
+        [
+          "b1",
+          "a2"
+        ],
+        [
+          "b1",
+          "c2"
+        ],
+        [
+          "c1",
+          "a2"
+        ],
+        [
+          "c1",
+          "b2"
+        ],
+        [
+          "a2",
+          "b0"
+        ],
+        [
+          "a2",
+          "c0"
+        ],
+        [
+          "b2",
+          "a0"
+        ],
+        [
+          "b2",
+          "c0"
+        ],
+        [
+          "c2",
+          "a0"
+        ],
+        [
+          "c2",
+          "b0"
+        ]
+      ],
+      "expected_safe": false
+    }
+  ]
+}

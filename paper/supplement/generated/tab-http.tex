@@ -1,0 +1,12 @@
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Configuration & Repeats & Status & Pair served & Linux \\
+\midrule
+Express, weak ETag & yes & 304 & no & same \\
+Express, strong ETag & yes & 304 & no & same \\
+Python, advancing mtime & no & 200 & no & same \\
+Python, restored mtime & yes & 304 & no & same \\
+Apache, advancing mtime & no & 200 & no & same \\
+Apache, restored mtime & yes & 304 & no & same \\
+\bottomrule
+\end{tabular}

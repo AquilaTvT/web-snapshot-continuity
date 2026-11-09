@@ -1,0 +1,1 @@
+Identifiers across a change and its undo on eight S3-compatible implementations (two are AWS emulators) and a GCS emulator, from 445 recorded loopback requests.

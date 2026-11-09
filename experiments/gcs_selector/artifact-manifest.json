@@ -1,0 +1,12 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "run.py": "6144b09c8287f6254cae507a6ac52a50dbfe8aff32868497e1a5e0e6a6833133",
+    "README.md": "a5144c669fd594d1841702cab33a0c6689fdef05a93c7e2e18443c625e90953a",
+    "requirements.lock": "973f586150d0a4364263695bda780db0488c37c8fe7996d78d0b6d1e8245df8e",
+    "source-manifest.json": "329a71720b15ff7ddc6aeb317f5e5c8326b4ef746b5c9f8c8bbeca9dc5ad5bac",
+    "capture.json": "605b899ebee59494d8943e1bde138c079306a6e2884102ecca8cfbb9acc05498",
+    "summary.json": "62114481a1dfdc9ec0c9cb3f2b66cee1da683af005f17a41d2b3a261c782a85f"
+  },
+  "source_transfer_check": "Fetched official blob.py with one transfer-added final newline removed equals installed 3.17.1 source exactly."
+}

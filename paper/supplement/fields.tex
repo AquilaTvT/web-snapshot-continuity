@@ -1,0 +1,190 @@
+\section{What a field can certify}\label{sec:fields}
+
+\subsection{Statement}
+Let $G=(V,E)$ be a contract with certifiable states $R$ and representations
+$a$, and assume read fidelity on $R$. A \emph{field of the state} is any
+function $f$ on $R$; its observation at $q$ is $(b(q),f(q))$, and it is sound if
+for all $q,q'\in R$ with equal observations every path from $q$ to $q'$ stays in
+$P_{a(q)}$.
+
+\begin{definition}[Finite refinement]\label{def:refinement}
+A \emph{finite refinement} of $G$ is a finite contract $G'=(V',E')$ with a
+surjective map $\pi:V'\to V$ that sends every transition of $G'$ to a
+transition of $G$ and lifts every path: for every $v'\in V'$ and every path of
+$G$ that starts at $\pi(v')$, some path of $G'$ starts at $v'$ and maps onto it.
+A state $v'$ inherits the representation, body and certifiability of
+$\pi(v')$; its fields may also expose the added state.
+\end{definition}
+
+A counter, a log of recent operations or any other bounded memory that the
+server keeps without forbidding an operation gives a finite refinement. Because
+captures are passive, a reader cannot constrain which path the refinement
+takes.
+
+\begin{proposition}[What a field can certify]\label{prop:repair}
+Assume read fidelity. \textup{(i)} Some field computed from the state is sound
+iff every strongly connected component of $G$ that contains a state of $R$ has
+one representation. \textup{(ii)} If none is, none is in any finite refinement
+of $G$, whereas an unbounded count of representation changes always is.
+\textup{(iii)} In a store of immutable versions whose current reads return
+$(\beta(v),v)$, equal identities certify continuity for every payload
+assignment $\beta$ iff no path from a state whose current identity is $v$ back
+to such a state passes another current identity or none; a field recoded
+statelessly from the returned fields fails whenever they do.
+\end{proposition}
+
+\subsection{Proof}
+\emph{(i)} Suppose a component $C$ contains $q\in R$ and $z$ with $a(z)\ne a(q)$.
+Paths $q\leadsto z$ and $z\leadsto q$ exist, and together they form a closed
+walk from $q$ to itself through $z$. Any field of the state takes the same
+value at both ends, which are the same state, and the bodies agree, so the two
+observations are equal while the walk leaves $a(q)$: no field of the state is
+sound. Conversely, suppose every component that contains a certifiable state
+has one representation, and let $f(q)$ be the index of $q$'s component. If
+$q,q'\in R$ have equal observations they lie in one component $C$, and a path
+from $q$ to $q'$ cannot leave $C$: a state $w$ on it is reachable from $q$ and
+reaches $q'$, which reaches $q$, so $w\in C$. Every state of the path has
+representation $a(q)$, and $f$ is sound. Components take $O(|V|+|E|)$ time;
+\code{repair()} in \code{src/history_contracts.py} returns either the component
+labels, which the independent checker of Section~\ref{sec:continuity} accepts
+as a sound field, or a closed walk through another representation. It makes
+one pass over the states to record, per component, a representative and one
+state of another representation, and a second pass over the certifiable
+states, so it is linear; it is tested on a chain of 20{,}000 states.
+
+\emph{(ii), impossibility.} Let $W$ be the closed walk of (i) from $q$ through
+$z$. Choose a lift $q_0$ of $q$ ($\pi$ is surjective). Lifting $W$ from $q_0$
+gives a walk of $G'$ that passes a lift of $z$ and ends at a lift $q_1$ of $q$;
+lifting $W$ again from $q_1$ gives $q_2$, and so on. As $V'$ is finite,
+$q_i=q_j$ for some $i<j$, and the lifted walks from $q_i$ to $q_j$ form a closed
+walk of $G'$ through a lift of $z$. The lift $q_i$ is certifiable with
+$a(q_i)=a(q)\ne a(z)$, so its component in $G'$ mixes representations, and by
+(i), whose proof does not use finiteness, no field of $G'$ is sound.
+Conversely, a closed walk of $G'$ maps to a closed walk of $G$, so every
+refinement of a contract that satisfies (i) satisfies it too.
+
+\emph{(ii), unbounded repair.} Refine $G$ by a counter $c\in\mathbb{N}$ that
+increases at every transition that changes the representation and never
+decreases, and let the field be $c$. Equal counts at two reads leave no room
+for a change between them, so the field is sound. The refinement is infinite,
+as (ii) requires; no bound on $c$ is consistent with permitting every path of
+$G$ when $G$ has a closed walk through a change.
+
+\emph{(iii)} If a path from a state with current identity $v$ back to such a
+state passes $w\ne v$, assign $\beta(w)\ne\beta(v)$; a state with no current
+identity is absent, which differs from every payload. Otherwise the current
+identity, and with it the payload, stays $v$ between equal identities. Equal
+fields $h$ give equal recodings $g(h)$, so every violation persists after a
+stateless recoding; a client that keeps state, reads more often or receives
+other trusted information has different inputs and is outside the statement.
+
+The condition of (iii) is not necessary for one fixed payload assignment:
+$A/v\to A/w\to A/v$ changes identity without leaving $A$. It is sufficient in
+a concrete operation model that many stores approximate: immutable data and
+marker records with one time-independent strict total order, a committed set
+$L$ that transitions only enlarge, and a current read that selects the maximum
+of $L$ (absence for a marker or an empty set). For $L\subseteq L'$,
+$\max L\le\max L'$, so a displaced head never returns. The model is not
+complete: two paths $a_1\to b_1$ and $b_2\to a_2$ with identities $a$ and $b$
+never reactivate an identity, yet a global ranking would need $a<b$ and $b<a$.
+
+\subsection{Unbounded state, horizons and finite identifiers}
+Part (ii) leaves two ways out. The first is unbounded state, such as a
+per-key publication epoch that every change of the current representation
+advances, that nothing decreases, and that every current read returns. The
+second is a contract that removes the cycle itself: if the contract bounds the
+number of changes, for instance within a certification horizon, a bounded
+counter suffices, because that contract no longer permits every path of $G$.
+The constructed models of Table~\ref{tab:contracts} show both sides: the
+counters modulo three and four admit hidden returns, while
+\code{durable_epoch} and \code{unique_boot_nonce} are safe only because their
+finite models end after a fixed number of changes.
+
+Production identifiers are finite. The GCS object schema declares
+\code{generation} as a 64-bit integer, and MediaWiki revision IDs are
+integers of a fixed width~\cite{gcsschema,mediawikirevision}. By the argument
+of (ii), a finite identifier can be sound only over a horizon in which it is
+not reused; a deployment contract has to state that horizon, including what
+happens at exhaustion, reset or restoration. This does not suggest that these
+services wrap around in practice; it says what a proof that relies on them
+must assume.
+
+\subsection{Relation to shared memory}
+In shared memory, change can be detected with bounded objects because readers
+take part. Afek et al.\ obtain bounded snapshots by letting each scanner and
+updater exchange handshake bits, ``each written by one and read by the
+other''~\cite{afek1993}, and the lower bounds of Aghazadeh and Woelfel on
+ABA-detecting registers built from bounded objects grow with the number of
+processes~\cite{aghazadeh2015}. Sulimany, Cory and Petrank show that
+linearizable adaptive snapshots, whose \code{Click} takes a snapshot and whose
+\code{Observe} reads a component of it, cannot have invisible reads, that is,
+\code{Read} operations that perform no write or read-modify-write, under
+obstruction freedom, component encapsulation, update-linearization
+independence and an oblivious or $k$-bounded \code{Click}~\cite{sulimany2026}.
+Their object and guarantee differ from ours: we analyze a finite transcript of
+current reads and ask whether a combination existed in every compatible
+history, and our bound counts server states rather than accessed components.
+Their result does not imply (ii), nor (ii) theirs. Both concern reads that
+leave no trace, in different senses: their reads perform no write or
+read-modify-write on shared objects, whereas ours leave the modeled contract
+state unchanged, an assumption about the supplied contract rather than the
+same property of a deployment. And (ii) is narrower than a general price of
+passive reads: it applies when a certifiable state can recur through another
+representation, and it excludes only finite additions of state that preserve
+every permitted path; a finite design that forbids some paths is outside it. Server-driven consistency~\cite{yin2001} keeps per-client leases and
+epoch numbers so that clients detect lost invalidations and revalidate; it
+keeps caches current and needs a server that tracks its clients, whereas we
+ask what a client can prove from fields a server already exposes.
+
+\subsection{Versioned stores}
+The documented S3 operations act on a per-key list of versions and delete
+markers~\cite{s3restore}. PUT appends a version, DELETE with a version ID
+removes that version, and an unqualified DELETE appends a delete marker, which
+DELETE with the marker's ID removes again. After PUT $B$ and the deletion of
+$B$'s version, and after inserting and deleting a marker, the list is what it
+was before. The modeled state is the key's list and its stored representation
+metadata; logs, replication state and billing need not return and are not
+part of the observation, and headers generated per request, such as
+\code{Date} or a request ID, are not fields of this state. The state $[A]$ thus
+lies on closed walks through $[A,B]$ (body $B$) and through $[A,\mathit{marker}]$
+(absence), and by (i) no field computed from it --- version ID, ETag,
+\code{Last-Modified}, size, checksum, or a recoding of them --- certifies
+continuity; by (ii) no bounded addition helps. Two repairs remain: a per-key
+publication epoch that these deletions also advance and every current read
+returns, or a contract in which versioning stays enabled and no principal can
+delete a version or a delete marker, so that the list only grows. The MinIO
+profile of Section~\ref{sec:platforms} shows why the second is fragile:
+denying version deletion blocked both deletions for a restricted publisher,
+but Object Lock alone still allowed $A/\mathit{ID}\to\absent\to A/\mathit{ID}$, and
+the owner bypassed a bucket deny; Object Lock does not protect delete
+markers~\cite{s3lock}.
+
+GCS generations and Azure Blob version IDs satisfy (iii) within their
+documented scopes, since deletion promotes nothing and restoration writes a
+new generation or version~\cite{gcsversioning,azureversioning}. MediaWiki
+edits and reverts allocate new revision IDs, but revision IDs are preserved
+across deletion and undeletion~\cite{mediawikirevision}, so a page restored in
+full returns as $A/r\to\absent\to A/r$; the positive scope excludes every
+administrative deletion path, not only selective undeletion.
+
+\subsection{Checks}
+\code{tests/test_history_contracts.py} and \code{scripts/check_certification.py}
+compare \code{repair()} with an exhaustive search on every contract with two
+or three states, binary representations and every non-empty certifiable
+scope: \sRepairChecks{} contracts, \sRepairSound{} of which admit a sound field.
+For each, every labeling of the certifiable states (up to renaming) is audited
+with the independent checker; a sound labeling exists exactly when the
+component criterion holds, the component labels always pass, and every
+returned closed walk is checked edge by edge.
+
+For (ii), \code{refine()} builds the product of a contract with a finite memory
+whose next value depends on the transition and the current value; every path
+lifts from every memory value, so the product is a finite refinement. The
+check draws \sRefinementChecks{} random contracts with two to five states and
+memories of one to five values (seed 1103) and confirms that the product
+admits a sound field exactly when the contract does; \sRefinementFailing{} of
+the contracts admit none. It also refines the three-state S3 deletion model
+with epochs counted modulo $k$ and saturating at $k-1$, for $k=1,\dots,16$
+(\sEpochChecks{} refinements), none of which admits a sound field, and the unit
+tests show that an epoch the contract stops after six changes is sound and
+passes the independent checker.

@@ -1,0 +1,17 @@
+\begin{tabular}{@{}lrrrrrrrrrr@{}}
+\toprule
+Method & \multicolumn{5}{c}{All conditions, 72{,}000 runs} & \multicolumn{5}{c}{Eight vital pages, 1\,h, 4{,}000 runs} \\ \cmidrule(lr){2-6}\cmidrule(l){7-11}
+ & Certified & Continuity & Claim & G1 & Fictitious & Certified & Continuity & Claim & G1 & Fictitious \\
+\midrule
+content hash, $2n$, half-open$^{\ast}$ & 45,973 & 250 & 56 & 8 & 0 & 2,707 & 168 & 33 & 7 & 0 \\
+revision ID, $2n$, half-open$^{\ast}$ & 45,723 & 0 & 0 & 0 & 0 & 2,539 & 0 & 0 & 0 & 0 \\
+revision ID, exact, $2n{-}1^{\ast}$ & 70,083 & 0 & 0 & 0 & 0 & 2,690 & 0 & 0 & 0 & 0 \\
+content hash, $2n$, closed & 69,970 & 250 & 56 & 8 & 0 & 2,707 & 168 & 33 & 7 & 0 \\
+revision ID, $2n$, closed & 69,720 & 0 & 0 & 0 & 0 & 2,539 & 0 & 0 & 0 & 0 \\
+revision ID, center read once & 69,820 & 0 & 0 & 0 & 0 & 2,568 & 0 & 0 & 0 & 0 \\
+content hash, exact, $2n{-}1$ & 70,282 & 199 & 12 & 12 & 0 & 2,839 & 149 & 10 & 10 & 0 \\
+hash page at the ends, trusted & 70,147 & 64 & 1 & 1 & 0 & 2,726 & 36 & 1 & 1 & 0 \\
+hash page at the ends, Theorem~3 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+hash page at the center, Theorem~3 & 70,032 & 0 & 0 & 0 & 0 & 2,653 & 0 & 0 & 0 & 0 \\
+\bottomrule
+\end{tabular}

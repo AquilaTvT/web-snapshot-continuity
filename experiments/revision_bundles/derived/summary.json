@@ -1,0 +1,28 @@
+{
+ "schema": 1,
+ "collection_sha256": "cdb15d69b32d86e026234359393ee9b6ff47ecd91d37685ae7aa6adeed18abe3",
+ "protocol_sha256": "79c8be55b885da4c513591d0aa284e56500ad38870c44b79a8f52a81f2b61195",
+ "requests": 362,
+ "pages_analyzed": 284,
+ "excluded": 16,
+ "descriptive": [
+  {
+   "stratum": "vital",
+   "pages": 138,
+   "pages_existing_at_window_start": 138,
+   "states": 17709,
+   "pages_with_return": 134,
+   "return_events": 2392,
+   "median_departure_seconds": 618
+  },
+  {
+   "stratum": "random",
+   "pages": 146,
+   "pages_existing_at_window_start": 141,
+   "states": 3774,
+   "pages_with_return": 15,
+   "return_events": 191,
+   "median_departure_seconds": 377
+  }
+ ]
+}

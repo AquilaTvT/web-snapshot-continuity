@@ -1,0 +1,26 @@
+\begin{table}[t]
+\caption{Identifiers across a change and its undo on eight S3-compatible implementations (two are AWS emulators) and a GCS emulator, from 445 recorded loopback requests.}
+\label{tab:probes}
+\small
+\setlength{\tabcolsep}{3.6pt}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+ & \multicolumn{3}{c}{Undo by deletion} & Rewrite & \multicolumn{2}{c}{Restore bytes}\\
+\cmidrule(lr){2-4}\cmidrule(lr){5-5}\cmidrule(l){6-7}
+Server & Delete & Marker & Lock & Susp. & Copy & Upload\\
+\midrule
+MinIO 2025-09-07 & {\large$\bullet$} & {\large$\bullet$} & {\large$\bullet$} & {\large$\bullet$} & {\large$\circ$} & {\large$\circ$} \\
+Ceph RGW 19.2.0 & {\large$\bullet$} & {\large$\bullet$} & {\large$\bullet$} & {\large$\bullet$} & {\large$\circ$} & {\large$\circ$} \\
+SeaweedFS 3.97 & {\large$\bullet$} & {\large$\bullet$} & $\times$ & {\large$\bullet$} & $\times$ & {\large$\circ$} \\
+Versity GW 1.10.0 & {\large$\bullet$} & {\large$\bullet$} & {\large$\bullet$} & {\large$\bullet$} & {\large$\circ$} & {\large$\circ$} \\
+RustFS 1.0.4 & {\large$\bullet$} & {\large$\bullet$} & {\large$\bullet$} & {\large$\bullet$} & {\large$\circ$} & {\large$\circ$} \\
+CloudServer 9.0.27 & {\large$\bullet$} & {\large$\bullet$} & {\large$\bullet$} & {\large$\bullet$} & {\large$\circ$} & {\large$\circ$} \\
+LocalStack 4.9.2 & {\large$\bullet$} & {\large$\bullet$} & {\large$\bullet$} & {\large$\bullet$} & {\large$\circ$} & {\large$\circ$} \\
+moto 5.1.15 & {\large$\bullet$} & {\large$\bullet$} & {\large$\bullet$} & {\large$\bullet$} & {\large$\circ$} & {\large$\circ$} \\
+\midrule
+GCS emulator 1.56.1 & {\large$\circ$} & -- & -- & -- & {\large$\circ$} & {\large$\circ$} \\
+\bottomrule
+\end{tabular}
+
+\smallskip\parbox{\columnwidth}{\footnotesize Delete: delete the newest version by ID. Marker: insert and remove a delete marker. Lock: the same over a COMPLIANCE-retained version. Susp.: write A, B, A with versioning suspended. Copy, Upload: restore A by copying its version or uploading its bytes. $\bullet$ an identifier read before the change is current again after it, so equal identifiers would certify a false continuity; $\circ$ the identifier differs, or no version is current; $\times$ the request failed; -- no such operation. Every S3 upload repeats the first ETag.}
+\end{table}

@@ -1,0 +1,55 @@
+server,version,probe,outcome,first_id,last_id,etag_returned,conditional_status,evidence
+minio,minio version RELEASE.2025-09-07T16-13-09Z (commit-id=07c3a429bfed433e49018cb0f78a52145d4bedeb),delete_current,returned,6e96ba3a-934c-4ad5-87d1-3dd3e3a39ba9,6e96ba3a-934c-4ad5-87d1-3dd3e3a39ba9,,304,4;6;8;7;9
+minio,minio version RELEASE.2025-09-07T16-13-09Z (commit-id=07c3a429bfed433e49018cb0f78a52145d4bedeb),delete_marker,returned,6857c853-f932-4f72-8e9b-22a4c4204d79,6857c853-f932-4f72-8e9b-22a4c4204d79,,,11;13;15;14
+minio,minio version RELEASE.2025-09-07T16-13-09Z (commit-id=07c3a429bfed433e49018cb0f78a52145d4bedeb),object_lock_marker,returned,e7720195-59ac-4d97-8a78-6b116860b1f6,e7720195-59ac-4d97-8a78-6b116860b1f6,,,45;48;50;49;46
+minio,minio version RELEASE.2025-09-07T16-13-09Z (commit-id=07c3a429bfed433e49018cb0f78a52145d4bedeb),suspended_null,identifier unchanged,,,,,35;37;39
+minio,minio version RELEASE.2025-09-07T16-13-09Z (commit-id=07c3a429bfed433e49018cb0f78a52145d4bedeb),copy_restore,fresh,ad99d3cb-415d-44e6-b6c2-b8da78561dfc,809ad411-0d08-40ff-999b-406f0ed5c677,,,17;19;21;20
+minio,minio version RELEASE.2025-09-07T16-13-09Z (commit-id=07c3a429bfed433e49018cb0f78a52145d4bedeb),reupload,fresh,014830da-ae5f-466d-9ab9-718089b444d1,a6836f72-8542-4326-94be-17d7b9f27c85,1,304,23;25;27;28
+ceph,ceph version 19.2.0 (16063ff2022298c9300e49a547a16ffda59baf13) squid (stable),delete_current,returned,a..l.SncVyZJSKMmvEDkzNJG3ee3zJL,a..l.SncVyZJSKMmvEDkzNJG3ee3zJL,,304,4;6;8;7;9
+ceph,ceph version 19.2.0 (16063ff2022298c9300e49a547a16ffda59baf13) squid (stable),delete_marker,returned,x-7J4X.67-cEwN1TQQC9-qm3ZjyhI63,x-7J4X.67-cEwN1TQQC9-qm3ZjyhI63,,,11;13;15;14
+ceph,ceph version 19.2.0 (16063ff2022298c9300e49a547a16ffda59baf13) squid (stable),object_lock_marker,returned,ShFXn4ZxwPOuDaC9JgvtHvMF6znHho8,ShFXn4ZxwPOuDaC9JgvtHvMF6znHho8,,,45;48;50;49;46
+ceph,ceph version 19.2.0 (16063ff2022298c9300e49a547a16ffda59baf13) squid (stable),suspended_null,identifier unchanged,,,,,35;37;39
+ceph,ceph version 19.2.0 (16063ff2022298c9300e49a547a16ffda59baf13) squid (stable),copy_restore,fresh,g6IgLRrG-OFxZag3M7Rpat2Gk8cVoJG,gKkK14Xj3RiooUndlehu8Yj38g1Fhjl,,,17;19;21;20
+ceph,ceph version 19.2.0 (16063ff2022298c9300e49a547a16ffda59baf13) squid (stable),reupload,fresh,L9FbA1kT7F-x6B7-EEeR0wYO7rK4q9O,11YCegP4lN5k28eve8rXJWWXrqaQD29,1,304,23;25;27;28
+seaweedfs,version 30GB 3.97 76452ab593995ab52b75e681de5b221de1e3f006 linux amd64,delete_current,returned,18e51172bc791823cfd71e08d8d4f02c,18e51172bc791823cfd71e08d8d4f02c,,304,4;6;8;7;9
+seaweedfs,version 30GB 3.97 76452ab593995ab52b75e681de5b221de1e3f006 linux amd64,delete_marker,returned,18e51172ca06ed2f7ad026eb8f425bc7,18e51172ca06ed2f7ad026eb8f425bc7,,,11;13;15;14
+seaweedfs,version 30GB 3.97 76452ab593995ab52b75e681de5b221de1e3f006 linux amd64,object_lock_marker,unsupported,,,,,45;47;50;52
+seaweedfs,version 30GB 3.97 76452ab593995ab52b75e681de5b221de1e3f006 linux amd64,suspended_null,identifier unchanged,null,null,,,37;39;41
+seaweedfs,version 30GB 3.97 76452ab593995ab52b75e681de5b221de1e3f006 linux amd64,copy_restore,not restored,18e51172cb1b008a888859353f5009bc,18e51172cb8581d4dd55fa30fbf74ff4,,,17;19;23;22
+seaweedfs,version 30GB 3.97 76452ab593995ab52b75e681de5b221de1e3f006 linux amd64,reupload,fresh,18e51172cc5e9dd92e1de551acedec04,18e51172cd4dcb0542fb094a7f860573,1,304,25;27;29;30
+versitygw,v1.10.0,delete_current,returned,01M6N5FD9A4AXAHB7WSZARNEX8,01M6N5FD9A4AXAHB7WSZARNEX8,,304,4;6;8;7;9
+versitygw,v1.10.0,delete_marker,returned,01M6N5FD9QFZ0G1163D3WGZ04E,01M6N5FD9QFZ0G1163D3WGZ04E,,,11;13;15;14
+versitygw,v1.10.0,object_lock_marker,returned,01M6N5FDB009DG02JPRFKNJK4T,01M6N5FDB009DG02JPRFKNJK4T,,,45;48;50;49;46
+versitygw,v1.10.0,suspended_null,identifier unchanged,null,null,,,35;37;39
+versitygw,v1.10.0,copy_restore,fresh,01M6N5FDA0HRDV320PV314EQD4,01M6N5FDA5BFNVX1DNC3M5P7JS,,,17;19;21;20
+versitygw,v1.10.0,reupload,fresh,01M6N5FDA8T0W4YX3D4QCTGAM0,01M6N5FDADK6NFYJM2WX2ATK1N,1,304,23;25;27;28
+rustfs,rustfs 1.0.4,delete_current,returned,b974dd21-9eb3-4617-83e5-876d07a91e0c,b974dd21-9eb3-4617-83e5-876d07a91e0c,,304,4;6;8;7;9
+rustfs,rustfs 1.0.4,delete_marker,returned,1030b345-3a66-4f7f-b7f3-da0a315634a7,1030b345-3a66-4f7f-b7f3-da0a315634a7,,,11;13;15;14
+rustfs,rustfs 1.0.4,object_lock_marker,returned,285f778b-0b52-438e-b1d0-155c7dff4db3,285f778b-0b52-438e-b1d0-155c7dff4db3,,,45;48;50;49;46
+rustfs,rustfs 1.0.4,suspended_null,identifier unchanged,null,null,,,35;37;39
+rustfs,rustfs 1.0.4,copy_restore,fresh,c4b08618-93b8-4650-956d-7ea4642b0f95,c200c0c4-1385-4992-a376-618278b95715,,,17;19;21;20
+rustfs,rustfs 1.0.4,reupload,fresh,aef5b216-3e05-4141-960d-a70e275ae192,b7088352-f26b-4e1d-a09e-deee0eaa5a44,1,304,23;25;27;28
+cloudserver,9.0.27,delete_current,returned,3938323036313430373530393039393939393939756e646566696e30,3938323036313430373530393039393939393939756e646566696e30,,304,4;6;8;7;9
+cloudserver,9.0.27,delete_marker,returned,3938323036313430373530383831393939393939756e646566696e32,3938323036313430373530383831393939393939756e646566696e32,,,11;13;15;14
+cloudserver,9.0.27,object_lock_marker,returned,3938323036313430373530373935393939393939756e646566696e3133,3938323036313430373530373935393939393939756e646566696e3133,,,45;48;50;49;46
+cloudserver,9.0.27,suspended_null,identifier unchanged,null,null,,,35;37;39
+cloudserver,9.0.27,copy_restore,fresh,3938323036313430373530383636393939393939756e646566696e34,3938323036313430373530383534393939393939756e646566696e36,,,17;19;21;20
+cloudserver,9.0.27,reupload,fresh,3938323036313430373530383438393939393939756e646566696e37,3938323036313430373530383334393939393939756e646566696e39,1,304,23;25;27;28
+localstack,4.9.2,delete_current,returned,AaGqV_vIiFfuD0pIKS4dRTAMP6fOLRPn,AaGqV_vIiFfuD0pIKS4dRTAMP6fOLRPn,,304,4;6;8;7;9
+localstack,4.9.2,delete_marker,returned,AaGqV_vKcA0OCRRKZhu7qUsSQTeat_Cl,AaGqV_vKcA0OCRRKZhu7qUsSQTeat_Cl,,,11;13;15;14
+localstack,4.9.2,object_lock_marker,returned,AaGqV_vSDyAgzHWa8Im.BKzTus2LoyKk,AaGqV_vSDyAgzHWa8Im.BKzTus2LoyKk,,,46;49;51;50;47
+localstack,4.9.2,suspended_null,identifier unchanged,null,null,,,36;38;40
+localstack,4.9.2,copy_restore,fresh,AaGqV_vMSlaJDaUm0Hnog8rrItK.f3BY,AaGqV_vOkHwUOfyGSVWU_jCf7cm6dyyG,,,17;19;22;21
+localstack,4.9.2,reupload,fresh,AaGqV_vPxLRhHsIgZp8BaMytu4_fnPg0,AaGqV_vRSCu1nORn5mg3KwtA136RuVhh,1,304,24;26;28;29
+moto,5.1.15,delete_current,returned,ecb56d0d-90c6-4dd7-a968-7c582cff714c,ecb56d0d-90c6-4dd7-a968-7c582cff714c,,304,4;6;8;7;9
+moto,5.1.15,delete_marker,returned,dee0dad4-4e9d-4ccf-8068-6dcc92ef3ca4,dee0dad4-4e9d-4ccf-8068-6dcc92ef3ca4,,,11;13;15;14
+moto,5.1.15,object_lock_marker,returned,bddc7657-79b7-4ac2-966d-381274d34913,bddc7657-79b7-4ac2-966d-381274d34913,,,45;48;50;49;46
+moto,5.1.15,suspended_null,identifier unchanged,,,,,35;37;39
+moto,5.1.15,copy_restore,fresh,f17959bf-72a1-4047-af0b-3135c4cdbb14,ef87fbd5-432d-4cfd-b597-bc319055d9ca,,,17;19;21;20
+moto,5.1.15,reupload,fresh,708bfdb3-ed6a-4f9a-a44f-afbb0b792335,9fc86116-fa5f-41b3-95be-47d8420f34c6,1,304,23;25;27;28
+fake-gcs-server,v1.56.1,delete_current,absent,1793859257391828,,,,2;5;8;7
+fake-gcs-server,v1.56.1,copy_restore,fresh,1793859257406571,1793859257410284,,,17;20;23;22
+fake-gcs-server,v1.56.1,reupload,fresh,1793859257412024,1793859257416616,,,26;29;32
+fake-gcs-server,v1.56.1,delete_marker,not applicable,,,,,
+fake-gcs-server,v1.56.1,object_lock_marker,not applicable,,,,,
+fake-gcs-server,v1.56.1,suspended_null,not applicable,,,,,

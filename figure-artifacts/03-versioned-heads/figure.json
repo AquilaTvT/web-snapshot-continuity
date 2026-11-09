@@ -1,0 +1,15 @@
+{
+  "name": "03-versioned-heads",
+  "size_inches": [
+    3.35,
+    2.8
+  ],
+  "caption": "Native MinIO current-key histories. Permanently deleting the current version or removing its delete marker reselects the original data version; copying or reuploading A allocates a different version. A and B denote exact payload bytes; Greek symbols alias native opaque version IDs separately within each row. The 404 is authoritative absence and is retained internally but is not a certifiable endpoint. A pinned-version control and the complete request evidence remain in the source trace; no AWS cloud execution or API-wide positive guarantee is implied.",
+  "method": "Independent derivation from raw native-server HTTP request/response bytes, status and native version headers. Four cases, three current GETs per case; expected-result flags are not used.",
+  "status": "derived_from_native_trace",
+  "layout": "four current-key trajectories, three recorded observations per row",
+  "minimum_font_size_points": 8,
+  "data_sources": {
+    "trace.json": "5f3536c69d2b9171986042547126409286535a04bd2d02c05f871d70dc023537"
+  }
+}

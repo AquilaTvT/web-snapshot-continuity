@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "action": "Re-derived frozen trace and the certification audit for the anonymous code profile; only code provenance may differ",
+  "trace_sha256": "5f3536c69d2b9171986042547126409286535a04bd2d02c05f871d70dc023537",
+  "trace_bytes_unchanged": true,
+  "measurement_and_decision_fields_unchanged": true,
+  "server_or_sdk_replayed": false,
+  "changed_sources": [
+    {
+      "path": "src/history_contracts.py",
+      "original_sha256": "ab068d70c731634f0f81e5699cd335b5de1f3be38e2ed392b680b39b3642a863",
+      "packaged_sha256": "0fda9bde21a6c3069aeec5f4d6275fcdcfaf1bc6d8ea6e0987895bbce5410083"
+    },
+    {
+      "path": "experiments/versioned_objects/run_minio.py",
+      "original_sha256": "3c529140aec5ba493c0c1a09be1e1b829e702ef9496c085bc360403e41cc15fd",
+      "packaged_sha256": "80ed6bb8dc03295775baab9cefa8b97bb007647265b162e68040665750ff8d33"
+    }
+  ],
+  "changed_derived_files": [
+    {
+      "path": "experiments/versioned_objects/derived/results.json",
+      "original_sha256": "92a92ffffa51158d5529a1f1c495dd6694c12a462ac7bc8a454c8f8671fc93bc",
+      "packaged_sha256": "6d946f77a9a046de464dfdc5f35531dc37b927247a6cb590ab92a9867cd64d83"
+    },
+    {
+      "path": "data/derived/certification-audit.json",
+      "original_sha256": "99065068e12d10c8bb6834af64211acf60df4300524fdd35e813545977c4200b",
+      "packaged_sha256": "1d6b00995f8d1179fb6c2e49de46065b5d2e52b52ebd1cbfd8522c7b9d52e4f5"
+    }
+  ]
+}

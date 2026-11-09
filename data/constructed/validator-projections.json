@@ -1,0 +1,163 @@
+{
+  "schema": 1,
+  "evidence_kind": "constructed_models",
+  "models": [
+    {
+      "name": "hidden_rollback",
+      "scope": "Constructed forward-only graph whose returned states expose the same fields; no additional memory is assumed.",
+      "bodies": {
+        "a0": "A",
+        "b": "B",
+        "a1": "A"
+      },
+      "edges": [
+        [
+          "a0",
+          "b"
+        ],
+        [
+          "b",
+          "a1"
+        ]
+      ],
+      "observable": {
+        "a0": "A,old",
+        "b": "B,new",
+        "a1": "A,old"
+      }
+    },
+    {
+      "name": "forked_return",
+      "scope": "Constructed branch permits incomparable post-return states to reuse a tag.",
+      "bodies": {
+        "a0": "A",
+        "b": "B",
+        "a1": "A",
+        "a2": "A"
+      },
+      "edges": [
+        [
+          "a0",
+          "b"
+        ],
+        [
+          "b",
+          "a1"
+        ],
+        [
+          "b",
+          "a2"
+        ]
+      ],
+      "observable": {
+        "a0": "initial",
+        "b": "middle",
+        "a1": "returned",
+        "a2": "returned"
+      }
+    },
+    {
+      "name": "same_fields_different_bodies",
+      "scope": "Constructed observation field omits the body; auxiliary and strong tag requirements differ.",
+      "bodies": {
+        "a": "A",
+        "b": "B"
+      },
+      "edges": [],
+      "observable": {
+        "a": "same",
+        "b": "same"
+      }
+    },
+    {
+      "name": "odd_cycle_depth_two",
+      "scope": "Constructed exact-coloring reduction: five disjoint A-B-A paths induce a five-cycle on observable A fields. The original graph has depth two; the projected conflict graph needs three colors although its maximum clique has size two.",
+      "bodies": {
+        "isolated-0": "A",
+        "isolated-1": "A",
+        "isolated-2": "A",
+        "isolated-3": "A",
+        "isolated-4": "A",
+        "edge-0-left": "A",
+        "edge-0-middle": "B",
+        "edge-0-right": "A",
+        "edge-1-left": "A",
+        "edge-1-middle": "B",
+        "edge-1-right": "A",
+        "edge-2-left": "A",
+        "edge-2-middle": "B",
+        "edge-2-right": "A",
+        "edge-3-left": "A",
+        "edge-3-middle": "B",
+        "edge-3-right": "A",
+        "edge-4-left": "A",
+        "edge-4-middle": "B",
+        "edge-4-right": "A"
+      },
+      "edges": [
+        [
+          "edge-0-left",
+          "edge-0-middle"
+        ],
+        [
+          "edge-0-middle",
+          "edge-0-right"
+        ],
+        [
+          "edge-1-left",
+          "edge-1-middle"
+        ],
+        [
+          "edge-1-middle",
+          "edge-1-right"
+        ],
+        [
+          "edge-2-left",
+          "edge-2-middle"
+        ],
+        [
+          "edge-2-middle",
+          "edge-2-right"
+        ],
+        [
+          "edge-3-left",
+          "edge-3-middle"
+        ],
+        [
+          "edge-3-middle",
+          "edge-3-right"
+        ],
+        [
+          "edge-4-left",
+          "edge-4-middle"
+        ],
+        [
+          "edge-4-middle",
+          "edge-4-right"
+        ]
+      ],
+      "observable": {
+        "isolated-0": "vertex-0",
+        "isolated-1": "vertex-1",
+        "isolated-2": "vertex-2",
+        "isolated-3": "vertex-3",
+        "isolated-4": "vertex-4",
+        "edge-0-left": "vertex-0",
+        "edge-0-middle": "separator",
+        "edge-0-right": "vertex-1",
+        "edge-1-left": "vertex-1",
+        "edge-1-middle": "separator",
+        "edge-1-right": "vertex-2",
+        "edge-2-left": "vertex-2",
+        "edge-2-middle": "separator",
+        "edge-2-right": "vertex-3",
+        "edge-3-left": "vertex-3",
+        "edge-3-middle": "separator",
+        "edge-3-right": "vertex-4",
+        "edge-4-left": "vertex-4",
+        "edge-4-middle": "separator",
+        "edge-4-right": "vertex-0"
+      }
+    }
+  ]
+}

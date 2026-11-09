@@ -1,0 +1,95 @@
+{
+  "schema": "gcs-sdk-selector-fixture-v1",
+  "scope": "Official Python SDK request construction against a simulated loopback origin; no GCS service test.",
+  "sdk_version": "3.17.1",
+  "blob_py_sha256": "2681642cdf135f1f709f4a2757dc4f99621de5385a172ada21aa6374a732b9d7",
+  "cases": [
+    {
+      "case": "reuse_blob",
+      "observations": [
+        {
+          "step": 1,
+          "current_generation": "101",
+          "blob_generation_before": null,
+          "blob_generation_after": 101,
+          "request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media",
+          "request_generation_selector": null,
+          "response_generation": "101",
+          "body_utf8": "body A\n",
+          "body_sha256": "d86aaff82b7b2bfe661aba6685019892b8f521d7fe767660cf91bdd75abb4810"
+        },
+        {
+          "step": 2,
+          "current_generation": "202",
+          "blob_generation_before": 101,
+          "blob_generation_after": 101,
+          "request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media&generation=101",
+          "request_generation_selector": [
+            "101"
+          ],
+          "response_generation": "101",
+          "body_utf8": "body A\n",
+          "body_sha256": "d86aaff82b7b2bfe661aba6685019892b8f521d7fe767660cf91bdd75abb4810"
+        }
+      ]
+    },
+    {
+      "case": "fresh_blob",
+      "observations": [
+        {
+          "step": 1,
+          "current_generation": "101",
+          "blob_generation_before": null,
+          "blob_generation_after": 101,
+          "request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media",
+          "request_generation_selector": null,
+          "response_generation": "101",
+          "body_utf8": "body A\n",
+          "body_sha256": "d86aaff82b7b2bfe661aba6685019892b8f521d7fe767660cf91bdd75abb4810"
+        },
+        {
+          "step": 2,
+          "current_generation": "202",
+          "blob_generation_before": null,
+          "blob_generation_after": 202,
+          "request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media",
+          "request_generation_selector": null,
+          "response_generation": "202",
+          "body_utf8": "body B\n",
+          "body_sha256": "fae332b94e4780366418150eb92880a91208581db0922254e8472283b4c74efd"
+        }
+      ]
+    },
+    {
+      "case": "explicit_generation_control",
+      "observations": [
+        {
+          "step": 1,
+          "current_generation": "101",
+          "blob_generation_before": 101,
+          "blob_generation_after": 101,
+          "request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media&generation=101",
+          "request_generation_selector": [
+            "101"
+          ],
+          "response_generation": "101",
+          "body_utf8": "body A\n",
+          "body_sha256": "d86aaff82b7b2bfe661aba6685019892b8f521d7fe767660cf91bdd75abb4810"
+        },
+        {
+          "step": 2,
+          "current_generation": "202",
+          "blob_generation_before": 101,
+          "blob_generation_after": 101,
+          "request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media&generation=101",
+          "request_generation_selector": [
+            "101"
+          ],
+          "response_generation": "101",
+          "body_utf8": "body A\n",
+          "body_sha256": "d86aaff82b7b2bfe661aba6685019892b8f521d7fe767660cf91bdd75abb4810"
+        }
+      ]
+    }
+  ]
+}

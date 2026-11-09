@@ -1,0 +1,19 @@
+{
+ "schema": 1,
+ "title": "Second addendum: what a certificate asserts, and a schedule chosen from the field contract",
+ "status": "Post hoc. Written on 2026-11-07 after the preregistered results and the first addendum were known, following a review that the reported G1 check differs between methods (an existential check over the claimed interval for double collects, the single read's instant for the exact test) and that the off-center content-hash condition leaves open how a collector should schedule a page that offers only a content hash. Written before addendum2.py was run. Nothing here replaces protocol.json or protocol-addendum.json; their results are reproduced first and reported unchanged.",
+ "base_protocols": ["protocol.json", "protocol-addendum.json"],
+ "draws": "Identical to protocol.json M2: random.Random(1000*n + stratum_index) draws bundle membership, read order, start times and the 2n per-slot read-instant offsets in the same order. A request slot j always starts at t0 + j*gap and is read at t0 + j*gap + offset[j].",
+ "methods": {
+  "reproduced": "The nine methods of addendum.py, reproduced count for count.",
+  "mixed_center_theorem": "The first page in the drawn read order offers only its sha1, every other page its revision ID (as in mixed_offcenter_*), but the collector places the sha1 page at the center of the revisit order: the order becomes order[1:] + [order[0]] and is read 1..n-1, n, n-1..1 at the preregistered slots and offsets (2n-1 requests). Certify by Theorem 2(ii): revision IDs equal for every twice-read page, the pairwise test on those pages, and the sha1 page's single window inside their common interval. The pages occupying each slot differ from id_exact, so this method is paired with the others by bundle, start time and slot instants, not by page-to-slot assignment."
+ },
+ "assertions": {
+  "continuity": "G2 of protocol.json: every twice-read page has its observed sha1 throughout [first true read instant, last true read instant]. A violation means the certificate's premise, that equal fields imply no change between the reads, is false.",
+  "claim": "What the certificate's own proof asserts on the true history. Double collects: every page has its observed sha1 at every instant of the closed claimed interval [max first-window end, min last-window start]. Exact-test methods: every page has its observed sha1 at the true read instant of the singly read page.",
+  "preregistered_g1": "G1 of protocol.json and protocol-addendum.json, unchanged: double collects ask for some instant of the claimed interval at which every page has its observed sha1; exact-test methods ask the same at the single read's true instant.",
+  "fictitious": "The certified combination of observed sha1 values held at no instant between the first request's start and the last request's end."
+ },
+ "nesting": "For every method a fictitious certificate violates its claim, and a violated claim implies a continuity violation; for double collects a preregistered-G1 violation lies between the two. addendum2.py asserts these inclusions on every certified run.",
+ "report": "Per stratum, n, request spacing and method: runs, certified runs, continuity violations, claim violations, preregistered-G1 violations, fictitious certificates."
+}

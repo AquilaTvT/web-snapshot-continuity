@@ -1,0 +1,1256 @@
+{
+ "schema": 1,
+ "server": "fake-gcs-server",
+ "implementation": {
+  "implementation": "fake-gcs-server (GCS JSON API emulator, memory backend)",
+  "distribution": "go install github.com/fsouza/fake-gcs-server@v1.56.1",
+  "version": "v1.56.1",
+  "executable_sha256": "9dfde6b7bf6849ed4314397c0515b98d7cc87ad9502b9a798619e8c08b58169d"
+ },
+ "started_utc": "2026-11-05T06:14:17.388037+00:00",
+ "finished_utc": "2026-11-05T06:14:17.501188+00:00",
+ "client": {
+  "python": "3.13.18",
+  "system": "Linux",
+  "machine": "x86_64"
+ },
+ "cases": [
+  {
+   "name": "setup_versioned_bucket",
+   "created": true,
+   "setup": [
+    0
+   ]
+  },
+  {
+   "name": "delete_current",
+   "generations": [
+    "1793859257391828",
+    "1793859257397064"
+   ],
+   "mutation": 7,
+   "captures": [
+    {
+     "index": 2,
+     "metadata_index": 3,
+     "status": 200,
+     "generation_header": "1793859257391828",
+     "generation_metadata": "1793859257391828",
+     "body": "A\n",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+    },
+    {
+     "index": 5,
+     "metadata_index": 6,
+     "status": 200,
+     "generation_header": "1793859257397064",
+     "generation_metadata": "1793859257397064",
+     "body": "B\n",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+    },
+    {
+     "index": 8,
+     "metadata_index": 9,
+     "status": 404,
+     "generation_header": null,
+     "generation_metadata": null,
+     "body": null,
+     "body_sha256": "7515bf959b73b956ceb967351c7e299cbb3668a53d35f9c770eb72e00d93ced6"
+    }
+   ]
+  },
+  {
+   "name": "delete_live",
+   "generations": [
+    "1793859257402447"
+   ],
+   "mutation": 13,
+   "captures": [
+    {
+     "index": 11,
+     "metadata_index": 12,
+     "status": 200,
+     "generation_header": "1793859257402447",
+     "generation_metadata": "1793859257402447",
+     "body": "A\n",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+    },
+    {
+     "index": 14,
+     "metadata_index": 15,
+     "status": 404,
+     "generation_header": null,
+     "generation_metadata": null,
+     "body": null,
+     "body_sha256": "7515bf959b73b956ceb967351c7e299cbb3668a53d35f9c770eb72e00d93ced6"
+    }
+   ]
+  },
+  {
+   "name": "copy_restore",
+   "generations": [
+    "1793859257406571",
+    "1793859257408412"
+   ],
+   "mutation": 22,
+   "captures": [
+    {
+     "index": 17,
+     "metadata_index": 18,
+     "status": 200,
+     "generation_header": "1793859257406571",
+     "generation_metadata": "1793859257406571",
+     "body": "A\n",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+    },
+    {
+     "index": 20,
+     "metadata_index": 21,
+     "status": 200,
+     "generation_header": "1793859257408412",
+     "generation_metadata": "1793859257408412",
+     "body": "B\n",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+    },
+    {
+     "index": 23,
+     "metadata_index": 24,
+     "status": 200,
+     "generation_header": "1793859257410284",
+     "generation_metadata": "1793859257410284",
+     "body": "A\n",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+    }
+   ]
+  },
+  {
+   "name": "reupload",
+   "generations": [
+    "1793859257412024",
+    "1793859257414332",
+    "1793859257416616"
+   ],
+   "captures": [
+    {
+     "index": 26,
+     "metadata_index": 27,
+     "status": 200,
+     "generation_header": "1793859257412024",
+     "generation_metadata": "1793859257412024",
+     "body": "A\n",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+    },
+    {
+     "index": 29,
+     "metadata_index": 30,
+     "status": 200,
+     "generation_header": "1793859257414332",
+     "generation_metadata": "1793859257414332",
+     "body": "B\n",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+    },
+    {
+     "index": 32,
+     "metadata_index": 33,
+     "status": 200,
+     "generation_header": "1793859257416616",
+     "generation_metadata": "1793859257416616",
+     "body": "A\n",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+    }
+   ]
+  }
+ ],
+ "requests": [
+  {
+   "index": 0,
+   "label": "setup: create versioned bucket",
+   "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:46059/storage/v1/b?project=probe",
+    "headers": {
+     "Content-length": "60",
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13",
+     "Content-type": "application/json"
+    },
+    "body_base64": "eyJuYW1lIjogInByb2JlLXZlcnNpb25lZCIsICJ2ZXJzaW9uaW5nIjogeyJlbmFibGVkIjogdHJ1ZX19",
+    "body_sha256": "b8d50091fb379c7e2ef0316a6ee2ac0035d30cf3941d3f4d44d14a755a32d526"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "417",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNidWNrZXQiLCJpZCI6InByb2JlLXZlcnNpb25lZCIsImRlZmF1bHRFdmVudEJhc2VkSG9sZCI6ZmFsc2UsIm5hbWUiOiJwcm9iZS12ZXJzaW9uZWQiLCJ2ZXJzaW9uaW5nIjp7ImVuYWJsZWQiOnRydWV9LCJ0aW1lQ3JlYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuMzg5MjQxWiIsInVwZGF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjM4OTI0MVoiLCJsb2NhdGlvbiI6IlVTLUNFTlRSQUwxIiwic3RvcmFnZUNsYXNzIjoiU1RBTkRBUkQiLCJwcm9qZWN0TnVtYmVyIjoiMCIsIm1ldGFnZW5lcmF0aW9uIjoiMSIsImV0YWciOiJSVlJoWnc9PSIsImxvY2F0aW9uVHlwZSI6InJlZ2lvbiIsInNlbGZMaW5rIjoiaHR0cDovLzEyNy4wLjAuMTo0NjA1OS9zdG9yYWdlL3YxL2IvcHJvYmUtdmVyc2lvbmVkIn0K",
+    "body_sha256": "2bf90e33689f91cebd77bb37ada8853f614d4ef69204b4df7c719ed1dc33de46"
+   },
+   "window_ns": [
+    481471,
+    1968273
+   ]
+  },
+  {
+   "index": 1,
+   "label": "delete_current: upload A",
+   "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:46059/upload/storage/v1/b/probe-versioned/o?uploadType=media&name=delete-current",
+    "headers": {
+     "Content-length": "2",
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13",
+     "Content-type": "text/plain"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "834",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoiZGVsZXRlLWN1cnJlbnQiLCJpZCI6InByb2JlLXZlcnNpb25lZC9kZWxldGUtY3VycmVudCIsImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsInNpemUiOiIyIiwiY29udGVudFR5cGUiOiJ0ZXh0L3BsYWluIiwiY3JjMzJjIjoiZGpZQm1RPT0iLCJhY2wiOlt7ImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsImVudGl0eSI6InByb2plY3RPd25lci10ZXN0LXByb2plY3QiLCJldGFnIjoiUlZSaFp3PT0iLCJraW5kIjoic3RvcmFnZSNvYmplY3RBY2Nlc3NDb250cm9sIiwib2JqZWN0IjoiZGVsZXRlLWN1cnJlbnQiLCJwcm9qZWN0VGVhbSI6e30sInJvbGUiOiJPV05FUiJ9XSwibWQ1SGFzaCI6InZ3Y3VrUmtIZTA1MlEzcVRtR2VIN3c9PSIsImV0YWciOiJ2d2N1a1JrSGUwNTJRM3FUbUdlSDd3PT0iLCJzdG9yYWdlQ2xhc3MiOiJTVEFOREFSRCIsInRpbWVDcmVhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy4zOTE4MDJaIiwidGltZVN0b3JhZ2VDbGFzc1VwZGF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjM5MTgwNloiLCJ1cGRhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy4zOTE4MDZaIiwiZ2VuZXJhdGlvbiI6IjE3OTM4NTkyNTczOTE4MjgiLCJzZWxmTGluayI6Imh0dHA6Ly8xMjcuMC4wLjE6NDYwNTkvc3RvcmFnZS92MS9iL3Byb2JlLXZlcnNpb25lZC9vL2RlbGV0ZS1jdXJyZW50IiwibWVkaWFMaW5rIjoiaHR0cDovLzEyNy4wLjAuMTo0NjA1OS9kb3dubG9hZC9zdG9yYWdlL3YxL2IvcHJvYmUtdmVyc2lvbmVkL28vZGVsZXRlLWN1cnJlbnQ/YWx0PW1lZGlhIiwibWV0YWdlbmVyYXRpb24iOiIxIn0K",
+    "body_sha256": "0f64d68d3f222b0504aff13ffe6d08a029aace3a1a8399911ef76085f9d3edb6"
+   },
+   "window_ns": [
+    2063151,
+    5199960
+   ]
+  },
+  {
+   "index": 2,
+   "label": "delete_current: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/delete-current?alt=media",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Allow-Origin": "*",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Etag": "\"vwcukRkHe052Q3qTmGeH7w==\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "X-Goog-Generation": "1793859257391828",
+     "X-Goog-Hash": "crc32c=djYBmQ==,md5=vwcukRkHe052Q3qTmGeH7w==",
+     "X-Goog-Stored-Content-Encoding": "identity",
+     "X-Goog-Stored-Content-Length": "2",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    5357025,
+    6447329
+   ]
+  },
+  {
+   "index": 3,
+   "label": "delete_current: first capture (metadata)",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/delete-current",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "647",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoiZGVsZXRlLWN1cnJlbnQiLCJpZCI6InByb2JlLXZlcnNpb25lZC9kZWxldGUtY3VycmVudCIsImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsInNpemUiOiIyIiwiY29udGVudFR5cGUiOiJ0ZXh0L3BsYWluIiwiY3JjMzJjIjoiZGpZQm1RPT0iLCJtZDVIYXNoIjoidndjdWtSa0hlMDUyUTNxVG1HZUg3dz09IiwiZXRhZyI6InZ3Y3VrUmtIZTA1MlEzcVRtR2VIN3c9PSIsInN0b3JhZ2VDbGFzcyI6IlNUQU5EQVJEIiwidGltZUNyZWF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjM5MTgwMloiLCJ0aW1lU3RvcmFnZUNsYXNzVXBkYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuMzkxODA2WiIsInVwZGF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjM5MTgwNloiLCJnZW5lcmF0aW9uIjoiMTc5Mzg1OTI1NzM5MTgyOCIsInNlbGZMaW5rIjoiaHR0cDovLzEyNy4wLjAuMTo0NjA1OS9zdG9yYWdlL3YxL2IvcHJvYmUtdmVyc2lvbmVkL28vZGVsZXRlLWN1cnJlbnQiLCJtZWRpYUxpbmsiOiJodHRwOi8vMTI3LjAuMC4xOjQ2MDU5L2Rvd25sb2FkL3N0b3JhZ2UvdjEvYi9wcm9iZS12ZXJzaW9uZWQvby9kZWxldGUtY3VycmVudD9hbHQ9bWVkaWEiLCJtZXRhZ2VuZXJhdGlvbiI6IjEifQo=",
+    "body_sha256": "ec4dc6df1a12b302632640c73c7ea0e180c4daf702b716e4a50e7ea771e44426"
+   },
+   "window_ns": [
+    6493384,
+    7495365
+   ]
+  },
+  {
+   "index": 4,
+   "label": "delete_current: upload B",
+   "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:46059/upload/storage/v1/b/probe-versioned/o?uploadType=media&name=delete-current",
+    "headers": {
+     "Content-length": "2",
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13",
+     "Content-type": "text/plain"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "832",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoiZGVsZXRlLWN1cnJlbnQiLCJpZCI6InByb2JlLXZlcnNpb25lZC9kZWxldGUtY3VycmVudCIsImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsInNpemUiOiIyIiwiY29udGVudFR5cGUiOiJ0ZXh0L3BsYWluIiwiY3JjMzJjIjoiUXRHcEFBPT0iLCJhY2wiOlt7ImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsImVudGl0eSI6InByb2plY3RPd25lci10ZXN0LXByb2plY3QiLCJldGFnIjoiUlZSaFp3PT0iLCJraW5kIjoic3RvcmFnZSNvYmplY3RBY2Nlc3NDb250cm9sIiwib2JqZWN0IjoiZGVsZXRlLWN1cnJlbnQiLCJwcm9qZWN0VGVhbSI6e30sInJvbGUiOiJPV05FUiJ9XSwibWQ1SGFzaCI6Ik1NODlmUk03Q0ZROHRzaVRQQ25mMXc9PSIsImV0YWciOiJNTTg5ZlJNN0NGUTh0c2lUUENuZjF3PT0iLCJzdG9yYWdlQ2xhc3MiOiJTVEFOREFSRCIsInRpbWVDcmVhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy4zOTcwMTZaIiwidGltZVN0b3JhZ2VDbGFzc1VwZGF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjM5NzAyWiIsInVwZGF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjM5NzAyWiIsImdlbmVyYXRpb24iOiIxNzkzODU5MjU3Mzk3MDY0Iiwic2VsZkxpbmsiOiJodHRwOi8vMTI3LjAuMC4xOjQ2MDU5L3N0b3JhZ2UvdjEvYi9wcm9iZS12ZXJzaW9uZWQvby9kZWxldGUtY3VycmVudCIsIm1lZGlhTGluayI6Imh0dHA6Ly8xMjcuMC4wLjE6NDYwNTkvZG93bmxvYWQvc3RvcmFnZS92MS9iL3Byb2JlLXZlcnNpb25lZC9vL2RlbGV0ZS1jdXJyZW50P2FsdD1tZWRpYSIsIm1ldGFnZW5lcmF0aW9uIjoiMSJ9Cg==",
+    "body_sha256": "9eb689a1420accd1a1befdb45f89a3ceb88e7e2f0226965c23731393c667f468"
+   },
+   "window_ns": [
+    7595603,
+    9576542
+   ]
+  },
+  {
+   "index": 5,
+   "label": "delete_current: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/delete-current?alt=media",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Allow-Origin": "*",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Etag": "\"MM89fRM7CFQ8tsiTPCnf1w==\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "X-Goog-Generation": "1793859257397064",
+     "X-Goog-Hash": "crc32c=QtGpAA==,md5=MM89fRM7CFQ8tsiTPCnf1w==",
+     "X-Goog-Stored-Content-Encoding": "identity",
+     "X-Goog-Stored-Content-Length": "2",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    9680756,
+    10633881
+   ]
+  },
+  {
+   "index": 6,
+   "label": "delete_current: intermediate capture (metadata)",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/delete-current",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "645",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoiZGVsZXRlLWN1cnJlbnQiLCJpZCI6InByb2JlLXZlcnNpb25lZC9kZWxldGUtY3VycmVudCIsImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsInNpemUiOiIyIiwiY29udGVudFR5cGUiOiJ0ZXh0L3BsYWluIiwiY3JjMzJjIjoiUXRHcEFBPT0iLCJtZDVIYXNoIjoiTU04OWZSTTdDRlE4dHNpVFBDbmYxdz09IiwiZXRhZyI6Ik1NODlmUk03Q0ZROHRzaVRQQ25mMXc9PSIsInN0b3JhZ2VDbGFzcyI6IlNUQU5EQVJEIiwidGltZUNyZWF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjM5NzAxNloiLCJ0aW1lU3RvcmFnZUNsYXNzVXBkYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuMzk3MDJaIiwidXBkYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuMzk3MDJaIiwiZ2VuZXJhdGlvbiI6IjE3OTM4NTkyNTczOTcwNjQiLCJzZWxmTGluayI6Imh0dHA6Ly8xMjcuMC4wLjE6NDYwNTkvc3RvcmFnZS92MS9iL3Byb2JlLXZlcnNpb25lZC9vL2RlbGV0ZS1jdXJyZW50IiwibWVkaWFMaW5rIjoiaHR0cDovLzEyNy4wLjAuMTo0NjA1OS9kb3dubG9hZC9zdG9yYWdlL3YxL2IvcHJvYmUtdmVyc2lvbmVkL28vZGVsZXRlLWN1cnJlbnQ/YWx0PW1lZGlhIiwibWV0YWdlbmVyYXRpb24iOiIxIn0K",
+    "body_sha256": "8e74d9afc4521f012c463e3fe337e1f37a02e967ef557828708ffe6c50c44d24"
+   },
+   "window_ns": [
+    10678983,
+    11420503
+   ]
+  },
+  {
+   "index": 7,
+   "label": "delete_current: delete live generation B",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/delete-current?generation=1793859257397064",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "5",
+     "Connection": "close"
+    },
+    "body_base64": "bnVsbAo=",
+    "body_sha256": "38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed"
+   },
+   "window_ns": [
+    11497840,
+    12255182
+   ]
+  },
+  {
+   "index": 8,
+   "label": "delete_current: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/delete-current?alt=media",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 404,
+    "headers": {
+     "Content-Type": "text/plain; charset=utf-8",
+     "X-Content-Type-Options": "nosniff",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "10",
+     "Connection": "close"
+    },
+    "body_base64": "Tm90IEZvdW5kCg==",
+    "body_sha256": "7515bf959b73b956ceb967351c7e299cbb3668a53d35f9c770eb72e00d93ced6"
+   },
+   "window_ns": [
+    12295041,
+    13115804
+   ]
+  },
+  {
+   "index": 9,
+   "label": "delete_current: last capture (metadata)",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/delete-current",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 404,
+    "headers": {
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "118",
+     "Connection": "close"
+    },
+    "body_base64": "eyJlcnJvciI6eyJjb2RlIjo0MDQsIm1lc3NhZ2UiOiJOb3QgRm91bmQiLCJlcnJvcnMiOlt7ImRvbWFpbiI6Imdsb2JhbCIsInJlYXNvbiI6Im5vdEZvdW5kIiwibWVzc2FnZSI6Ik5vdCBGb3VuZCJ9XX19Cg==",
+    "body_sha256": "0ae86b8b906c0e166cd78f01289fc2cd4e750ded73b98ac511977d2867d9c1bc"
+   },
+   "window_ns": [
+    13144666,
+    13913816
+   ]
+  },
+  {
+   "index": 10,
+   "label": "delete_live: upload A",
+   "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:46059/upload/storage/v1/b/probe-versioned/o?uploadType=media&name=delete-live",
+    "headers": {
+     "Content-length": "2",
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13",
+     "Content-type": "text/plain"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "817",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoiZGVsZXRlLWxpdmUiLCJpZCI6InByb2JlLXZlcnNpb25lZC9kZWxldGUtbGl2ZSIsImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsInNpemUiOiIyIiwiY29udGVudFR5cGUiOiJ0ZXh0L3BsYWluIiwiY3JjMzJjIjoiZGpZQm1RPT0iLCJhY2wiOlt7ImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsImVudGl0eSI6InByb2plY3RPd25lci10ZXN0LXByb2plY3QiLCJldGFnIjoiUlZSaFp3PT0iLCJraW5kIjoic3RvcmFnZSNvYmplY3RBY2Nlc3NDb250cm9sIiwib2JqZWN0IjoiZGVsZXRlLWxpdmUiLCJwcm9qZWN0VGVhbSI6e30sInJvbGUiOiJPV05FUiJ9XSwibWQ1SGFzaCI6InZ3Y3VrUmtIZTA1MlEzcVRtR2VIN3c9PSIsImV0YWciOiJ2d2N1a1JrSGUwNTJRM3FUbUdlSDd3PT0iLCJzdG9yYWdlQ2xhc3MiOiJTVEFOREFSRCIsInRpbWVDcmVhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MDI0MjdaIiwidGltZVN0b3JhZ2VDbGFzc1VwZGF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjQwMjQzWiIsInVwZGF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjQwMjQzWiIsImdlbmVyYXRpb24iOiIxNzkzODU5MjU3NDAyNDQ3Iiwic2VsZkxpbmsiOiJodHRwOi8vMTI3LjAuMC4xOjQ2MDU5L3N0b3JhZ2UvdjEvYi9wcm9iZS12ZXJzaW9uZWQvby9kZWxldGUtbGl2ZSIsIm1lZGlhTGluayI6Imh0dHA6Ly8xMjcuMC4wLjE6NDYwNTkvZG93bmxvYWQvc3RvcmFnZS92MS9iL3Byb2JlLXZlcnNpb25lZC9vL2RlbGV0ZS1saXZlP2FsdD1tZWRpYSIsIm1ldGFnZW5lcmF0aW9uIjoiMSJ9Cg==",
+    "body_sha256": "9b4af2e919474328efd16ee703a605e27375d611c9135721f5b52ba20c3abea6"
+   },
+   "window_ns": [
+    13976458,
+    14758758
+   ]
+  },
+  {
+   "index": 11,
+   "label": "delete_live: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/delete-live?alt=media",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Allow-Origin": "*",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Etag": "\"vwcukRkHe052Q3qTmGeH7w==\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "X-Goog-Generation": "1793859257402447",
+     "X-Goog-Hash": "crc32c=djYBmQ==,md5=vwcukRkHe052Q3qTmGeH7w==",
+     "X-Goog-Stored-Content-Encoding": "identity",
+     "X-Goog-Stored-Content-Length": "2",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    14840688,
+    15604436
+   ]
+  },
+  {
+   "index": 12,
+   "label": "delete_live: first capture (metadata)",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/delete-live",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "633",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoiZGVsZXRlLWxpdmUiLCJpZCI6InByb2JlLXZlcnNpb25lZC9kZWxldGUtbGl2ZSIsImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsInNpemUiOiIyIiwiY29udGVudFR5cGUiOiJ0ZXh0L3BsYWluIiwiY3JjMzJjIjoiZGpZQm1RPT0iLCJtZDVIYXNoIjoidndjdWtSa0hlMDUyUTNxVG1HZUg3dz09IiwiZXRhZyI6InZ3Y3VrUmtIZTA1MlEzcVRtR2VIN3c9PSIsInN0b3JhZ2VDbGFzcyI6IlNUQU5EQVJEIiwidGltZUNyZWF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjQwMjQyN1oiLCJ0aW1lU3RvcmFnZUNsYXNzVXBkYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuNDAyNDNaIiwidXBkYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuNDAyNDNaIiwiZ2VuZXJhdGlvbiI6IjE3OTM4NTkyNTc0MDI0NDciLCJzZWxmTGluayI6Imh0dHA6Ly8xMjcuMC4wLjE6NDYwNTkvc3RvcmFnZS92MS9iL3Byb2JlLXZlcnNpb25lZC9vL2RlbGV0ZS1saXZlIiwibWVkaWFMaW5rIjoiaHR0cDovLzEyNy4wLjAuMTo0NjA1OS9kb3dubG9hZC9zdG9yYWdlL3YxL2IvcHJvYmUtdmVyc2lvbmVkL28vZGVsZXRlLWxpdmU/YWx0PW1lZGlhIiwibWV0YWdlbmVyYXRpb24iOiIxIn0K",
+    "body_sha256": "793cd93c7345e5fc06347aef5ceaaeb06ba098f48e7e6a508b5267dc6da65b4c"
+   },
+   "window_ns": [
+    15638538,
+    16315957
+   ]
+  },
+  {
+   "index": 13,
+   "label": "delete_live: delete live object",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/delete-live",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "5",
+     "Connection": "close"
+    },
+    "body_base64": "bnVsbAo=",
+    "body_sha256": "38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed"
+   },
+   "window_ns": [
+    16360811,
+    16965877
+   ]
+  },
+  {
+   "index": 14,
+   "label": "delete_live: capture after delete",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/delete-live?alt=media",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 404,
+    "headers": {
+     "Content-Type": "text/plain; charset=utf-8",
+     "X-Content-Type-Options": "nosniff",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "10",
+     "Connection": "close"
+    },
+    "body_base64": "Tm90IEZvdW5kCg==",
+    "body_sha256": "7515bf959b73b956ceb967351c7e299cbb3668a53d35f9c770eb72e00d93ced6"
+   },
+   "window_ns": [
+    17002240,
+    17581126
+   ]
+  },
+  {
+   "index": 15,
+   "label": "delete_live: capture after delete (metadata)",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/delete-live",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 404,
+    "headers": {
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "118",
+     "Connection": "close"
+    },
+    "body_base64": "eyJlcnJvciI6eyJjb2RlIjo0MDQsIm1lc3NhZ2UiOiJOb3QgRm91bmQiLCJlcnJvcnMiOlt7ImRvbWFpbiI6Imdsb2JhbCIsInJlYXNvbiI6Im5vdEZvdW5kIiwibWVzc2FnZSI6Ik5vdCBGb3VuZCJ9XX19Cg==",
+    "body_sha256": "0ae86b8b906c0e166cd78f01289fc2cd4e750ded73b98ac511977d2867d9c1bc"
+   },
+   "window_ns": [
+    17601986,
+    18172490
+   ]
+  },
+  {
+   "index": 16,
+   "label": "copy_restore: upload A",
+   "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:46059/upload/storage/v1/b/probe-versioned/o?uploadType=media&name=copy-restore",
+    "headers": {
+     "Content-length": "2",
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13",
+     "Content-type": "text/plain"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "824",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoiY29weS1yZXN0b3JlIiwiaWQiOiJwcm9iZS12ZXJzaW9uZWQvY29weS1yZXN0b3JlIiwiYnVja2V0IjoicHJvYmUtdmVyc2lvbmVkIiwic2l6ZSI6IjIiLCJjb250ZW50VHlwZSI6InRleHQvcGxhaW4iLCJjcmMzMmMiOiJkallCbVE9PSIsImFjbCI6W3siYnVja2V0IjoicHJvYmUtdmVyc2lvbmVkIiwiZW50aXR5IjoicHJvamVjdE93bmVyLXRlc3QtcHJvamVjdCIsImV0YWciOiJSVlJoWnc9PSIsImtpbmQiOiJzdG9yYWdlI29iamVjdEFjY2Vzc0NvbnRyb2wiLCJvYmplY3QiOiJjb3B5LXJlc3RvcmUiLCJwcm9qZWN0VGVhbSI6e30sInJvbGUiOiJPV05FUiJ9XSwibWQ1SGFzaCI6InZ3Y3VrUmtIZTA1MlEzcVRtR2VIN3c9PSIsImV0YWciOiJ2d2N1a1JrSGUwNTJRM3FUbUdlSDd3PT0iLCJzdG9yYWdlQ2xhc3MiOiJTVEFOREFSRCIsInRpbWVDcmVhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MDY1NTNaIiwidGltZVN0b3JhZ2VDbGFzc1VwZGF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjQwNjU1NVoiLCJ1cGRhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MDY1NTVaIiwiZ2VuZXJhdGlvbiI6IjE3OTM4NTkyNTc0MDY1NzEiLCJzZWxmTGluayI6Imh0dHA6Ly8xMjcuMC4wLjE6NDYwNTkvc3RvcmFnZS92MS9iL3Byb2JlLXZlcnNpb25lZC9vL2NvcHktcmVzdG9yZSIsIm1lZGlhTGluayI6Imh0dHA6Ly8xMjcuMC4wLjE6NDYwNTkvZG93bmxvYWQvc3RvcmFnZS92MS9iL3Byb2JlLXZlcnNpb25lZC9vL2NvcHktcmVzdG9yZT9hbHQ9bWVkaWEiLCJtZXRhZ2VuZXJhdGlvbiI6IjEifQo=",
+    "body_sha256": "43fa885ac243d7b9b28e449db44793bbe4429718a647927e196414d3fbc58772"
+   },
+   "window_ns": [
+    18224284,
+    18891425
+   ]
+  },
+  {
+   "index": 17,
+   "label": "copy_restore: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/copy-restore?alt=media",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Allow-Origin": "*",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Etag": "\"vwcukRkHe052Q3qTmGeH7w==\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "X-Goog-Generation": "1793859257406571",
+     "X-Goog-Hash": "crc32c=djYBmQ==,md5=vwcukRkHe052Q3qTmGeH7w==",
+     "X-Goog-Stored-Content-Encoding": "identity",
+     "X-Goog-Stored-Content-Length": "2",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    18955752,
+    19547982
+   ]
+  },
+  {
+   "index": 18,
+   "label": "copy_restore: first capture (metadata)",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/copy-restore",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "639",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoiY29weS1yZXN0b3JlIiwiaWQiOiJwcm9iZS12ZXJzaW9uZWQvY29weS1yZXN0b3JlIiwiYnVja2V0IjoicHJvYmUtdmVyc2lvbmVkIiwic2l6ZSI6IjIiLCJjb250ZW50VHlwZSI6InRleHQvcGxhaW4iLCJjcmMzMmMiOiJkallCbVE9PSIsIm1kNUhhc2giOiJ2d2N1a1JrSGUwNTJRM3FUbUdlSDd3PT0iLCJldGFnIjoidndjdWtSa0hlMDUyUTNxVG1HZUg3dz09Iiwic3RvcmFnZUNsYXNzIjoiU1RBTkRBUkQiLCJ0aW1lQ3JlYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuNDA2NTUzWiIsInRpbWVTdG9yYWdlQ2xhc3NVcGRhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MDY1NTVaIiwidXBkYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuNDA2NTU1WiIsImdlbmVyYXRpb24iOiIxNzkzODU5MjU3NDA2NTcxIiwic2VsZkxpbmsiOiJodHRwOi8vMTI3LjAuMC4xOjQ2MDU5L3N0b3JhZ2UvdjEvYi9wcm9iZS12ZXJzaW9uZWQvby9jb3B5LXJlc3RvcmUiLCJtZWRpYUxpbmsiOiJodHRwOi8vMTI3LjAuMC4xOjQ2MDU5L2Rvd25sb2FkL3N0b3JhZ2UvdjEvYi9wcm9iZS12ZXJzaW9uZWQvby9jb3B5LXJlc3RvcmU/YWx0PW1lZGlhIiwibWV0YWdlbmVyYXRpb24iOiIxIn0K",
+    "body_sha256": "ea4218e155b3cc1bbe3747a91d2e222cc7536eec6ed986840555578db0e63305"
+   },
+   "window_ns": [
+    19579633,
+    20057460
+   ]
+  },
+  {
+   "index": 19,
+   "label": "copy_restore: upload B",
+   "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:46059/upload/storage/v1/b/probe-versioned/o?uploadType=media&name=copy-restore",
+    "headers": {
+     "Content-length": "2",
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13",
+     "Content-type": "text/plain"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "824",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoiY29weS1yZXN0b3JlIiwiaWQiOiJwcm9iZS12ZXJzaW9uZWQvY29weS1yZXN0b3JlIiwiYnVja2V0IjoicHJvYmUtdmVyc2lvbmVkIiwic2l6ZSI6IjIiLCJjb250ZW50VHlwZSI6InRleHQvcGxhaW4iLCJjcmMzMmMiOiJRdEdwQUE9PSIsImFjbCI6W3siYnVja2V0IjoicHJvYmUtdmVyc2lvbmVkIiwiZW50aXR5IjoicHJvamVjdE93bmVyLXRlc3QtcHJvamVjdCIsImV0YWciOiJSVlJoWnc9PSIsImtpbmQiOiJzdG9yYWdlI29iamVjdEFjY2Vzc0NvbnRyb2wiLCJvYmplY3QiOiJjb3B5LXJlc3RvcmUiLCJwcm9qZWN0VGVhbSI6e30sInJvbGUiOiJPV05FUiJ9XSwibWQ1SGFzaCI6Ik1NODlmUk03Q0ZROHRzaVRQQ25mMXc9PSIsImV0YWciOiJNTTg5ZlJNN0NGUTh0c2lUUENuZjF3PT0iLCJzdG9yYWdlQ2xhc3MiOiJTVEFOREFSRCIsInRpbWVDcmVhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MDgzOTFaIiwidGltZVN0b3JhZ2VDbGFzc1VwZGF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjQwODM5MloiLCJ1cGRhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MDgzOTJaIiwiZ2VuZXJhdGlvbiI6IjE3OTM4NTkyNTc0MDg0MTIiLCJzZWxmTGluayI6Imh0dHA6Ly8xMjcuMC4wLjE6NDYwNTkvc3RvcmFnZS92MS9iL3Byb2JlLXZlcnNpb25lZC9vL2NvcHktcmVzdG9yZSIsIm1lZGlhTGluayI6Imh0dHA6Ly8xMjcuMC4wLjE6NDYwNTkvZG93bmxvYWQvc3RvcmFnZS92MS9iL3Byb2JlLXZlcnNpb25lZC9vL2NvcHktcmVzdG9yZT9hbHQ9bWVkaWEiLCJtZXRhZ2VuZXJhdGlvbiI6IjEifQo=",
+    "body_sha256": "9df31056b9ea09ea570dc42659ddc0329f60249e3cfb014e745e82a01a3d1534"
+   },
+   "window_ns": [
+    20114923,
+    20672474
+   ]
+  },
+  {
+   "index": 20,
+   "label": "copy_restore: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/copy-restore?alt=media",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Allow-Origin": "*",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Etag": "\"MM89fRM7CFQ8tsiTPCnf1w==\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "X-Goog-Generation": "1793859257408412",
+     "X-Goog-Hash": "crc32c=QtGpAA==,md5=MM89fRM7CFQ8tsiTPCnf1w==",
+     "X-Goog-Stored-Content-Encoding": "identity",
+     "X-Goog-Stored-Content-Length": "2",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    20727122,
+    21240177
+   ]
+  },
+  {
+   "index": 21,
+   "label": "copy_restore: intermediate capture (metadata)",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/copy-restore",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "639",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoiY29weS1yZXN0b3JlIiwiaWQiOiJwcm9iZS12ZXJzaW9uZWQvY29weS1yZXN0b3JlIiwiYnVja2V0IjoicHJvYmUtdmVyc2lvbmVkIiwic2l6ZSI6IjIiLCJjb250ZW50VHlwZSI6InRleHQvcGxhaW4iLCJjcmMzMmMiOiJRdEdwQUE9PSIsIm1kNUhhc2giOiJNTTg5ZlJNN0NGUTh0c2lUUENuZjF3PT0iLCJldGFnIjoiTU04OWZSTTdDRlE4dHNpVFBDbmYxdz09Iiwic3RvcmFnZUNsYXNzIjoiU1RBTkRBUkQiLCJ0aW1lQ3JlYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuNDA4MzkxWiIsInRpbWVTdG9yYWdlQ2xhc3NVcGRhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MDgzOTJaIiwidXBkYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuNDA4MzkyWiIsImdlbmVyYXRpb24iOiIxNzkzODU5MjU3NDA4NDEyIiwic2VsZkxpbmsiOiJodHRwOi8vMTI3LjAuMC4xOjQ2MDU5L3N0b3JhZ2UvdjEvYi9wcm9iZS12ZXJzaW9uZWQvby9jb3B5LXJlc3RvcmUiLCJtZWRpYUxpbmsiOiJodHRwOi8vMTI3LjAuMC4xOjQ2MDU5L2Rvd25sb2FkL3N0b3JhZ2UvdjEvYi9wcm9iZS12ZXJzaW9uZWQvby9jb3B5LXJlc3RvcmU/YWx0PW1lZGlhIiwibWV0YWdlbmVyYXRpb24iOiIxIn0K",
+    "body_sha256": "0b655b03c3a2728d849fbe17854014696b4ad2e9c9115c7beed0b23a55f2b939"
+   },
+   "window_ns": [
+    21263884,
+    21794505
+   ]
+  },
+  {
+   "index": 22,
+   "label": "copy_restore: copy generation A to the live name",
+   "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/copy-restore/copyTo/b/probe-versioned/o/copy-restore?sourceGeneration=1793859257406571",
+    "headers": {
+     "Content-length": "2",
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13",
+     "Content-type": "application/json"
+    },
+    "body_base64": "e30=",
+    "body_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "824",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoiY29weS1yZXN0b3JlIiwiaWQiOiJwcm9iZS12ZXJzaW9uZWQvY29weS1yZXN0b3JlIiwiYnVja2V0IjoicHJvYmUtdmVyc2lvbmVkIiwic2l6ZSI6IjIiLCJjb250ZW50VHlwZSI6InRleHQvcGxhaW4iLCJjcmMzMmMiOiJkallCbVE9PSIsImFjbCI6W3siYnVja2V0IjoicHJvYmUtdmVyc2lvbmVkIiwiZW50aXR5IjoicHJvamVjdE93bmVyLXRlc3QtcHJvamVjdCIsImV0YWciOiJSVlJoWnc9PSIsImtpbmQiOiJzdG9yYWdlI29iamVjdEFjY2Vzc0NvbnRyb2wiLCJvYmplY3QiOiJjb3B5LXJlc3RvcmUiLCJwcm9qZWN0VGVhbSI6e30sInJvbGUiOiJPV05FUiJ9XSwibWQ1SGFzaCI6InZ3Y3VrUmtIZTA1MlEzcVRtR2VIN3c9PSIsImV0YWciOiJ2d2N1a1JrSGUwNTJRM3FUbUdlSDd3PT0iLCJzdG9yYWdlQ2xhc3MiOiJTVEFOREFSRCIsInRpbWVDcmVhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MTAyNzRaIiwidGltZVN0b3JhZ2VDbGFzc1VwZGF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjQxMDI3N1oiLCJ1cGRhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MTAyNzdaIiwiZ2VuZXJhdGlvbiI6IjE3OTM4NTkyNTc0MTAyODQiLCJzZWxmTGluayI6Imh0dHA6Ly8xMjcuMC4wLjE6NDYwNTkvc3RvcmFnZS92MS9iL3Byb2JlLXZlcnNpb25lZC9vL2NvcHktcmVzdG9yZSIsIm1lZGlhTGluayI6Imh0dHA6Ly8xMjcuMC4wLjE6NDYwNTkvZG93bmxvYWQvc3RvcmFnZS92MS9iL3Byb2JlLXZlcnNpb25lZC9vL2NvcHktcmVzdG9yZT9hbHQ9bWVkaWEiLCJtZXRhZ2VuZXJhdGlvbiI6IjEifQo=",
+    "body_sha256": "b78103c1df8fc8951dffc473e07a44866b0d73046a3ad551406d15b2732b8a29"
+   },
+   "window_ns": [
+    21856492,
+    22449058
+   ]
+  },
+  {
+   "index": 23,
+   "label": "copy_restore: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/copy-restore?alt=media",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Allow-Origin": "*",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Etag": "\"vwcukRkHe052Q3qTmGeH7w==\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "X-Goog-Generation": "1793859257410284",
+     "X-Goog-Hash": "crc32c=djYBmQ==,md5=vwcukRkHe052Q3qTmGeH7w==",
+     "X-Goog-Stored-Content-Encoding": "identity",
+     "X-Goog-Stored-Content-Length": "2",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    22471315,
+    22964919
+   ]
+  },
+  {
+   "index": 24,
+   "label": "copy_restore: last capture (metadata)",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/copy-restore",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "639",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoiY29weS1yZXN0b3JlIiwiaWQiOiJwcm9iZS12ZXJzaW9uZWQvY29weS1yZXN0b3JlIiwiYnVja2V0IjoicHJvYmUtdmVyc2lvbmVkIiwic2l6ZSI6IjIiLCJjb250ZW50VHlwZSI6InRleHQvcGxhaW4iLCJjcmMzMmMiOiJkallCbVE9PSIsIm1kNUhhc2giOiJ2d2N1a1JrSGUwNTJRM3FUbUdlSDd3PT0iLCJldGFnIjoidndjdWtSa0hlMDUyUTNxVG1HZUg3dz09Iiwic3RvcmFnZUNsYXNzIjoiU1RBTkRBUkQiLCJ0aW1lQ3JlYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuNDEwMjc0WiIsInRpbWVTdG9yYWdlQ2xhc3NVcGRhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MTAyNzdaIiwidXBkYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuNDEwMjc3WiIsImdlbmVyYXRpb24iOiIxNzkzODU5MjU3NDEwMjg0Iiwic2VsZkxpbmsiOiJodHRwOi8vMTI3LjAuMC4xOjQ2MDU5L3N0b3JhZ2UvdjEvYi9wcm9iZS12ZXJzaW9uZWQvby9jb3B5LXJlc3RvcmUiLCJtZWRpYUxpbmsiOiJodHRwOi8vMTI3LjAuMC4xOjQ2MDU5L2Rvd25sb2FkL3N0b3JhZ2UvdjEvYi9wcm9iZS12ZXJzaW9uZWQvby9jb3B5LXJlc3RvcmU/YWx0PW1lZGlhIiwibWV0YWdlbmVyYXRpb24iOiIxIn0K",
+    "body_sha256": "540706897486cc3a99b88037a318362091cf16b298e85be89dd8ef84e2f4a02d"
+   },
+   "window_ns": [
+    22998600,
+    23605793
+   ]
+  },
+  {
+   "index": 25,
+   "label": "reupload: upload A",
+   "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:46059/upload/storage/v1/b/probe-versioned/o?uploadType=media&name=reupload",
+    "headers": {
+     "Content-length": "2",
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13",
+     "Content-type": "text/plain"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "804",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoicmV1cGxvYWQiLCJpZCI6InByb2JlLXZlcnNpb25lZC9yZXVwbG9hZCIsImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsInNpemUiOiIyIiwiY29udGVudFR5cGUiOiJ0ZXh0L3BsYWluIiwiY3JjMzJjIjoiZGpZQm1RPT0iLCJhY2wiOlt7ImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsImVudGl0eSI6InByb2plY3RPd25lci10ZXN0LXByb2plY3QiLCJldGFnIjoiUlZSaFp3PT0iLCJraW5kIjoic3RvcmFnZSNvYmplY3RBY2Nlc3NDb250cm9sIiwib2JqZWN0IjoicmV1cGxvYWQiLCJwcm9qZWN0VGVhbSI6e30sInJvbGUiOiJPV05FUiJ9XSwibWQ1SGFzaCI6InZ3Y3VrUmtIZTA1MlEzcVRtR2VIN3c9PSIsImV0YWciOiJ2d2N1a1JrSGUwNTJRM3FUbUdlSDd3PT0iLCJzdG9yYWdlQ2xhc3MiOiJTVEFOREFSRCIsInRpbWVDcmVhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MTIwMDFaIiwidGltZVN0b3JhZ2VDbGFzc1VwZGF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjQxMjAwMloiLCJ1cGRhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MTIwMDJaIiwiZ2VuZXJhdGlvbiI6IjE3OTM4NTkyNTc0MTIwMjQiLCJzZWxmTGluayI6Imh0dHA6Ly8xMjcuMC4wLjE6NDYwNTkvc3RvcmFnZS92MS9iL3Byb2JlLXZlcnNpb25lZC9vL3JldXBsb2FkIiwibWVkaWFMaW5rIjoiaHR0cDovLzEyNy4wLjAuMTo0NjA1OS9kb3dubG9hZC9zdG9yYWdlL3YxL2IvcHJvYmUtdmVyc2lvbmVkL28vcmV1cGxvYWQ/YWx0PW1lZGlhIiwibWV0YWdlbmVyYXRpb24iOiIxIn0K",
+    "body_sha256": "5b2f036d79f56b7e179571bdac455b62a300d613a461211f49f432646479eabc"
+   },
+   "window_ns": [
+    23676962,
+    24253564
+   ]
+  },
+  {
+   "index": 26,
+   "label": "reupload: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/reupload?alt=media",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Allow-Origin": "*",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Etag": "\"vwcukRkHe052Q3qTmGeH7w==\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "X-Goog-Generation": "1793859257412024",
+     "X-Goog-Hash": "crc32c=djYBmQ==,md5=vwcukRkHe052Q3qTmGeH7w==",
+     "X-Goog-Stored-Content-Encoding": "identity",
+     "X-Goog-Stored-Content-Length": "2",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    24317955,
+    24917773
+   ]
+  },
+  {
+   "index": 27,
+   "label": "reupload: first capture (metadata)",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/reupload",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "623",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoicmV1cGxvYWQiLCJpZCI6InByb2JlLXZlcnNpb25lZC9yZXVwbG9hZCIsImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsInNpemUiOiIyIiwiY29udGVudFR5cGUiOiJ0ZXh0L3BsYWluIiwiY3JjMzJjIjoiZGpZQm1RPT0iLCJtZDVIYXNoIjoidndjdWtSa0hlMDUyUTNxVG1HZUg3dz09IiwiZXRhZyI6InZ3Y3VrUmtIZTA1MlEzcVRtR2VIN3c9PSIsInN0b3JhZ2VDbGFzcyI6IlNUQU5EQVJEIiwidGltZUNyZWF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjQxMjAwMVoiLCJ0aW1lU3RvcmFnZUNsYXNzVXBkYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuNDEyMDAyWiIsInVwZGF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjQxMjAwMloiLCJnZW5lcmF0aW9uIjoiMTc5Mzg1OTI1NzQxMjAyNCIsInNlbGZMaW5rIjoiaHR0cDovLzEyNy4wLjAuMTo0NjA1OS9zdG9yYWdlL3YxL2IvcHJvYmUtdmVyc2lvbmVkL28vcmV1cGxvYWQiLCJtZWRpYUxpbmsiOiJodHRwOi8vMTI3LjAuMC4xOjQ2MDU5L2Rvd25sb2FkL3N0b3JhZ2UvdjEvYi9wcm9iZS12ZXJzaW9uZWQvby9yZXVwbG9hZD9hbHQ9bWVkaWEiLCJtZXRhZ2VuZXJhdGlvbiI6IjEifQo=",
+    "body_sha256": "512d8cb1cc45818b5b64f010a79594184e484fb3af289cbf4d993c93696548ea"
+   },
+   "window_ns": [
+    24972081,
+    25787827
+   ]
+  },
+  {
+   "index": 28,
+   "label": "reupload: upload B",
+   "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:46059/upload/storage/v1/b/probe-versioned/o?uploadType=media&name=reupload",
+    "headers": {
+     "Content-length": "2",
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13",
+     "Content-type": "text/plain"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "804",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoicmV1cGxvYWQiLCJpZCI6InByb2JlLXZlcnNpb25lZC9yZXVwbG9hZCIsImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsInNpemUiOiIyIiwiY29udGVudFR5cGUiOiJ0ZXh0L3BsYWluIiwiY3JjMzJjIjoiUXRHcEFBPT0iLCJhY2wiOlt7ImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsImVudGl0eSI6InByb2plY3RPd25lci10ZXN0LXByb2plY3QiLCJldGFnIjoiUlZSaFp3PT0iLCJraW5kIjoic3RvcmFnZSNvYmplY3RBY2Nlc3NDb250cm9sIiwib2JqZWN0IjoicmV1cGxvYWQiLCJwcm9qZWN0VGVhbSI6e30sInJvbGUiOiJPV05FUiJ9XSwibWQ1SGFzaCI6Ik1NODlmUk03Q0ZROHRzaVRQQ25mMXc9PSIsImV0YWciOiJNTTg5ZlJNN0NGUTh0c2lUUENuZjF3PT0iLCJzdG9yYWdlQ2xhc3MiOiJTVEFOREFSRCIsInRpbWVDcmVhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MTQzMDFaIiwidGltZVN0b3JhZ2VDbGFzc1VwZGF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjQxNDMwNloiLCJ1cGRhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MTQzMDZaIiwiZ2VuZXJhdGlvbiI6IjE3OTM4NTkyNTc0MTQzMzIiLCJzZWxmTGluayI6Imh0dHA6Ly8xMjcuMC4wLjE6NDYwNTkvc3RvcmFnZS92MS9iL3Byb2JlLXZlcnNpb25lZC9vL3JldXBsb2FkIiwibWVkaWFMaW5rIjoiaHR0cDovLzEyNy4wLjAuMTo0NjA1OS9kb3dubG9hZC9zdG9yYWdlL3YxL2IvcHJvYmUtdmVyc2lvbmVkL28vcmV1cGxvYWQ/YWx0PW1lZGlhIiwibWV0YWdlbmVyYXRpb24iOiIxIn0K",
+    "body_sha256": "f8964c543a03194d3b1827f458c66338d6942187ab0743cb337665f46644b725"
+   },
+   "window_ns": [
+    25858413,
+    26710386
+   ]
+  },
+  {
+   "index": 29,
+   "label": "reupload: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/reupload?alt=media",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Allow-Origin": "*",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Etag": "\"MM89fRM7CFQ8tsiTPCnf1w==\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "X-Goog-Generation": "1793859257414332",
+     "X-Goog-Hash": "crc32c=QtGpAA==,md5=MM89fRM7CFQ8tsiTPCnf1w==",
+     "X-Goog-Stored-Content-Encoding": "identity",
+     "X-Goog-Stored-Content-Length": "2",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    26783334,
+    27495343
+   ]
+  },
+  {
+   "index": 30,
+   "label": "reupload: intermediate capture (metadata)",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/reupload",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "623",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoicmV1cGxvYWQiLCJpZCI6InByb2JlLXZlcnNpb25lZC9yZXVwbG9hZCIsImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsInNpemUiOiIyIiwiY29udGVudFR5cGUiOiJ0ZXh0L3BsYWluIiwiY3JjMzJjIjoiUXRHcEFBPT0iLCJtZDVIYXNoIjoiTU04OWZSTTdDRlE4dHNpVFBDbmYxdz09IiwiZXRhZyI6Ik1NODlmUk03Q0ZROHRzaVRQQ25mMXc9PSIsInN0b3JhZ2VDbGFzcyI6IlNUQU5EQVJEIiwidGltZUNyZWF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjQxNDMwMVoiLCJ0aW1lU3RvcmFnZUNsYXNzVXBkYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuNDE0MzA2WiIsInVwZGF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjQxNDMwNloiLCJnZW5lcmF0aW9uIjoiMTc5Mzg1OTI1NzQxNDMzMiIsInNlbGZMaW5rIjoiaHR0cDovLzEyNy4wLjAuMTo0NjA1OS9zdG9yYWdlL3YxL2IvcHJvYmUtdmVyc2lvbmVkL28vcmV1cGxvYWQiLCJtZWRpYUxpbmsiOiJodHRwOi8vMTI3LjAuMC4xOjQ2MDU5L2Rvd25sb2FkL3N0b3JhZ2UvdjEvYi9wcm9iZS12ZXJzaW9uZWQvby9yZXVwbG9hZD9hbHQ9bWVkaWEiLCJtZXRhZ2VuZXJhdGlvbiI6IjEifQo=",
+    "body_sha256": "ca4ee3f64d6aba8458edaa5c3572bade59397073dbdad5b9e88c8ff4b08bb9f2"
+   },
+   "window_ns": [
+    27529655,
+    28155854
+   ]
+  },
+  {
+   "index": 31,
+   "label": "reupload: upload A again",
+   "request": {
+    "method": "POST",
+    "url": "http://127.0.0.1:46059/upload/storage/v1/b/probe-versioned/o?uploadType=media&name=reupload",
+    "headers": {
+     "Content-length": "2",
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13",
+     "Content-type": "text/plain"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "803",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoicmV1cGxvYWQiLCJpZCI6InByb2JlLXZlcnNpb25lZC9yZXVwbG9hZCIsImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsInNpemUiOiIyIiwiY29udGVudFR5cGUiOiJ0ZXh0L3BsYWluIiwiY3JjMzJjIjoiZGpZQm1RPT0iLCJhY2wiOlt7ImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsImVudGl0eSI6InByb2plY3RPd25lci10ZXN0LXByb2plY3QiLCJldGFnIjoiUlZSaFp3PT0iLCJraW5kIjoic3RvcmFnZSNvYmplY3RBY2Nlc3NDb250cm9sIiwib2JqZWN0IjoicmV1cGxvYWQiLCJwcm9qZWN0VGVhbSI6e30sInJvbGUiOiJPV05FUiJ9XSwibWQ1SGFzaCI6InZ3Y3VrUmtIZTA1MlEzcVRtR2VIN3c9PSIsImV0YWciOiJ2d2N1a1JrSGUwNTJRM3FUbUdlSDd3PT0iLCJzdG9yYWdlQ2xhc3MiOiJTVEFOREFSRCIsInRpbWVDcmVhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MTY1NVoiLCJ0aW1lU3RvcmFnZUNsYXNzVXBkYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuNDE2NTUyWiIsInVwZGF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjQxNjU1MloiLCJnZW5lcmF0aW9uIjoiMTc5Mzg1OTI1NzQxNjYxNiIsInNlbGZMaW5rIjoiaHR0cDovLzEyNy4wLjAuMTo0NjA1OS9zdG9yYWdlL3YxL2IvcHJvYmUtdmVyc2lvbmVkL28vcmV1cGxvYWQiLCJtZWRpYUxpbmsiOiJodHRwOi8vMTI3LjAuMC4xOjQ2MDU5L2Rvd25sb2FkL3N0b3JhZ2UvdjEvYi9wcm9iZS12ZXJzaW9uZWQvby9yZXVwbG9hZD9hbHQ9bWVkaWEiLCJtZXRhZ2VuZXJhdGlvbiI6IjEifQo=",
+    "body_sha256": "24b2b5d25116c6a375e9de68997059d9bee31e5f5cea5e2018366e89f8fb2408"
+   },
+   "window_ns": [
+    28219669,
+    28864090
+   ]
+  },
+  {
+   "index": 32,
+   "label": "reupload: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/reupload?alt=media",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Allow-Origin": "*",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Etag": "\"vwcukRkHe052Q3qTmGeH7w==\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "X-Goog-Generation": "1793859257416616",
+     "X-Goog-Hash": "crc32c=djYBmQ==,md5=vwcukRkHe052Q3qTmGeH7w==",
+     "X-Goog-Stored-Content-Encoding": "identity",
+     "X-Goog-Stored-Content-Length": "2",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    28917108,
+    29616207
+   ]
+  },
+  {
+   "index": 33,
+   "label": "reupload: last capture (metadata)",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:46059/storage/v1/b/probe-versioned/o/reupload",
+    "headers": {
+     "Host": "127.0.0.1:46059",
+     "User-agent": "Python-urllib/3.13"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Type": "application/json",
+     "Date": "Thu, 05 Nov 2026 06:14:17 GMT",
+     "Content-Length": "622",
+     "Connection": "close"
+    },
+    "body_base64": "eyJraW5kIjoic3RvcmFnZSNvYmplY3QiLCJuYW1lIjoicmV1cGxvYWQiLCJpZCI6InByb2JlLXZlcnNpb25lZC9yZXVwbG9hZCIsImJ1Y2tldCI6InByb2JlLXZlcnNpb25lZCIsInNpemUiOiIyIiwiY29udGVudFR5cGUiOiJ0ZXh0L3BsYWluIiwiY3JjMzJjIjoiZGpZQm1RPT0iLCJtZDVIYXNoIjoidndjdWtSa0hlMDUyUTNxVG1HZUg3dz09IiwiZXRhZyI6InZ3Y3VrUmtIZTA1MlEzcVRtR2VIN3c9PSIsInN0b3JhZ2VDbGFzcyI6IlNUQU5EQVJEIiwidGltZUNyZWF0ZWQiOiIyMDI2LTExLTA1VDA2OjE0OjE3LjQxNjU1WiIsInRpbWVTdG9yYWdlQ2xhc3NVcGRhdGVkIjoiMjAyNi0xMS0wNVQwNjoxNDoxNy40MTY1NTJaIiwidXBkYXRlZCI6IjIwMjYtMTEtMDVUMDY6MTQ6MTcuNDE2NTUyWiIsImdlbmVyYXRpb24iOiIxNzkzODU5MjU3NDE2NjE2Iiwic2VsZkxpbmsiOiJodHRwOi8vMTI3LjAuMC4xOjQ2MDU5L3N0b3JhZ2UvdjEvYi9wcm9iZS12ZXJzaW9uZWQvby9yZXVwbG9hZCIsIm1lZGlhTGluayI6Imh0dHA6Ly8xMjcuMC4wLjE6NDYwNTkvZG93bmxvYWQvc3RvcmFnZS92MS9iL3Byb2JlLXZlcnNpb25lZC9vL3JldXBsb2FkP2FsdD1tZWRpYSIsIm1ldGFnZW5lcmF0aW9uIjoiMSJ9Cg==",
+    "body_sha256": "dd97eb53a5780ade8d09528061516127f61f15d8dd701bc74a3dbe1c5d04ef85"
+   },
+   "window_ns": [
+    29639954,
+    30211031
+   ]
+  }
+ ],
+ "server_log_tail": "e HTTP/1.1\\\" 200 817\\n\"\ntime=2026-11-05T06:14:17.403Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/delete-live?alt=media HTTP/1.1\\\" 200 0\\n\"\ntime=2026-11-05T06:14:17.404Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/delete-live HTTP/1.1\\\" 200 633\\n\"\ntime=2026-11-05T06:14:17.404Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"DELETE /storage/v1/b/probe-versioned/o/delete-live HTTP/1.1\\\" 200 5\\n\"\ntime=2026-11-05T06:14:17.405Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/delete-live?alt=media HTTP/1.1\\\" 404 10\\n\"\ntime=2026-11-05T06:14:17.405Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/delete-live HTTP/1.1\\\" 404 118\\n\"\ntime=2026-11-05T06:14:17.406Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"POST /upload/storage/v1/b/probe-versioned/o?uploadType=media&name=copy-restore HTTP/1.1\\\" 200 824\\n\"\ntime=2026-11-05T06:14:17.407Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/copy-restore?alt=media HTTP/1.1\\\" 200 0\\n\"\ntime=2026-11-05T06:14:17.407Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/copy-restore HTTP/1.1\\\" 200 639\\n\"\ntime=2026-11-05T06:14:17.408Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"POST /upload/storage/v1/b/probe-versioned/o?uploadType=media&name=copy-restore HTTP/1.1\\\" 200 824\\n\"\ntime=2026-11-05T06:14:17.409Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/copy-restore?alt=media HTTP/1.1\\\" 200 0\\n\"\ntime=2026-11-05T06:14:17.409Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/copy-restore HTTP/1.1\\\" 200 639\\n\"\ntime=2026-11-05T06:14:17.410Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"POST /storage/v1/b/probe-versioned/o/copy-restore/copyTo/b/probe-versioned/o/copy-restore?sourceGeneration=1793859257406571 HTTP/1.1\\\" 200 824\\n\"\ntime=2026-11-05T06:14:17.410Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/copy-restore?alt=media HTTP/1.1\\\" 200 0\\n\"\ntime=2026-11-05T06:14:17.411Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/copy-restore HTTP/1.1\\\" 200 639\\n\"\ntime=2026-11-05T06:14:17.412Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"POST /upload/storage/v1/b/probe-versioned/o?uploadType=media&name=reupload HTTP/1.1\\\" 200 804\\n\"\ntime=2026-11-05T06:14:17.412Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/reupload?alt=media HTTP/1.1\\\" 200 0\\n\"\ntime=2026-11-05T06:14:17.413Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/reupload HTTP/1.1\\\" 200 623\\n\"\ntime=2026-11-05T06:14:17.414Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"POST /upload/storage/v1/b/probe-versioned/o?uploadType=media&name=reupload HTTP/1.1\\\" 200 804\\n\"\ntime=2026-11-05T06:14:17.415Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/reupload?alt=media HTTP/1.1\\\" 200 0\\n\"\ntime=2026-11-05T06:14:17.415Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/reupload HTTP/1.1\\\" 200 623\\n\"\ntime=2026-11-05T06:14:17.416Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"POST /upload/storage/v1/b/probe-versioned/o?uploadType=media&name=reupload HTTP/1.1\\\" 200 803\\n\"\ntime=2026-11-05T06:14:17.417Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/reupload?alt=media HTTP/1.1\\\" 200 0\\n\"\ntime=2026-11-05T06:14:17.418Z level=INFO msg=\"127.0.0.1 - - [05/Nov/2026:06:14:17 +0000] \\\"GET /storage/v1/b/probe-versioned/o/reupload HTTP/1.1\\\" 200 622\\n\"\n"
+}

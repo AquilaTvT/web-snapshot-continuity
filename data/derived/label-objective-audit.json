@@ -1,0 +1,534 @@
+{
+  "all_paths": [
+    [
+      "s"
+    ],
+    [
+      "s",
+      "u"
+    ],
+    [
+      "s",
+      "u",
+      "v"
+    ],
+    [
+      "s",
+      "z"
+    ],
+    [
+      "s",
+      "z",
+      "v"
+    ],
+    [
+      "u"
+    ],
+    [
+      "u",
+      "v"
+    ],
+    [
+      "v"
+    ],
+    [
+      "z"
+    ],
+    [
+      "z",
+      "v"
+    ]
+  ],
+  "all_reachable_equal_body_pairs": [
+    {
+      "pair": [
+        "s",
+        "s"
+      ],
+      "safe": true
+    },
+    {
+      "pair": [
+        "s",
+        "u"
+      ],
+      "safe": true
+    },
+    {
+      "pair": [
+        "s",
+        "v"
+      ],
+      "safe": false
+    },
+    {
+      "pair": [
+        "u",
+        "u"
+      ],
+      "safe": true
+    },
+    {
+      "pair": [
+        "u",
+        "v"
+      ],
+      "safe": true
+    },
+    {
+      "pair": [
+        "v",
+        "v"
+      ],
+      "safe": true
+    },
+    {
+      "pair": [
+        "z",
+        "z"
+      ],
+      "safe": true
+    }
+  ],
+  "alternative_minimum_assignment": {
+    "s": 1,
+    "u": 2,
+    "v": 2,
+    "z": 1
+  },
+  "auxiliary_optimum": 2,
+  "canonical_partition_count": 15,
+  "checks": {
+    "all_15_partitions_match_independent_assignment_checker": true,
+    "all_16_ordered_pairs_match_reachability_relation": true,
+    "all_assertions_passed": true,
+    "full_and_projected_upper_lower_certificates_pass": true,
+    "no_equality_partition_accepts_both_safe_pairs": true
+  },
+  "evidence_kind": "exhaustive_fixed_four_state_DAG_not_a_benchmark",
+  "field_restricted_identity_projection": {
+    "auxiliary": {
+      "conflicts": [
+        [
+          "s",
+          "v"
+        ]
+      ],
+      "feasible": true,
+      "lower_bound_colors": 1,
+      "lower_bound_proof": [
+        [
+          [
+            0
+          ]
+        ]
+      ],
+      "observable_tags": {
+        "s": 1,
+        "u": 1,
+        "v": 2,
+        "z": 1
+      },
+      "state_tags": {
+        "s": 1,
+        "u": 1,
+        "v": 2,
+        "z": 1
+      },
+      "strong": false,
+      "tag_count": 2,
+      "witnesses": [
+        {
+          "left": "s",
+          "path": [
+            "s",
+            "z",
+            "v"
+          ],
+          "reason": "body_return",
+          "right": "v"
+        }
+      ]
+    },
+    "strong": {
+      "conflicts": [
+        [
+          "s",
+          "v"
+        ],
+        [
+          "s",
+          "z"
+        ],
+        [
+          "u",
+          "z"
+        ],
+        [
+          "v",
+          "z"
+        ]
+      ],
+      "feasible": true,
+      "lower_bound_colors": 2,
+      "lower_bound_proof": [
+        [
+          [
+            0,
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            0,
+            [
+              0,
+              1
+            ]
+          ]
+        ]
+      ],
+      "observable_tags": {
+        "s": 2,
+        "u": 2,
+        "v": 3,
+        "z": 1
+      },
+      "state_tags": {
+        "s": 2,
+        "u": 2,
+        "v": 3,
+        "z": 1
+      },
+      "strong": true,
+      "tag_count": 3,
+      "witnesses": [
+        {
+          "left": "s",
+          "path": [
+            "s",
+            "z",
+            "v"
+          ],
+          "reason": "body_return",
+          "right": "v"
+        },
+        {
+          "left": "s",
+          "path": [
+            "s",
+            "z"
+          ],
+          "reason": "representation_binding",
+          "right": "z"
+        },
+        {
+          "left": "u",
+          "path": [
+            "u",
+            "z"
+          ],
+          "reason": "representation_binding",
+          "right": "z"
+        },
+        {
+          "left": "v",
+          "path": [
+            "v",
+            "z"
+          ],
+          "reason": "representation_binding",
+          "right": "z"
+        }
+      ]
+    }
+  },
+  "full_synthesis": {
+    "auxiliary_tag_count": 2,
+    "auxiliary_tags": {
+      "s": 1,
+      "u": 1,
+      "v": 2,
+      "z": 1
+    },
+    "body_heights": {
+      "A": 2,
+      "B": 1
+    },
+    "chains": {
+      "A": [
+        "s",
+        "v"
+      ],
+      "B": [
+        "z"
+      ]
+    },
+    "feasible": true,
+    "impossible_cycle": [],
+    "separating_paths": {
+      "A": [
+        [
+          "s",
+          "z",
+          "v"
+        ]
+      ],
+      "B": []
+    },
+    "strong_tag_count": 3,
+    "strong_tags": {
+      "s": 1,
+      "u": 1,
+      "v": 2,
+      "z": 3
+    }
+  },
+  "graph": {
+    "bodies": {
+      "s": "A",
+      "u": "A",
+      "v": "A",
+      "z": "B"
+    },
+    "edges": [
+      [
+        "s",
+        "u"
+      ],
+      [
+        "u",
+        "v"
+      ],
+      [
+        "s",
+        "z"
+      ],
+      [
+        "z",
+        "v"
+      ]
+    ],
+    "nodes": [
+      "s",
+      "u",
+      "v",
+      "z"
+    ]
+  },
+  "implementation_sha256": {
+    "src/validator_synthesis.py": "92db6833ba020337b12d8f556905739ab032bfe95488c399b0a34be7940810a2"
+  },
+  "max_of_two_safe_distinct_queries_accepted_by_any_equality_label": 1,
+  "pair_checks": [
+    {
+      "pair": [
+        "s",
+        "u"
+      ],
+      "paths": [
+        [
+          "s",
+          "u"
+        ]
+      ],
+      "safe": true
+    },
+    {
+      "pair": [
+        "u",
+        "v"
+      ],
+      "paths": [
+        [
+          "u",
+          "v"
+        ]
+      ],
+      "safe": true
+    },
+    {
+      "pair": [
+        "s",
+        "v"
+      ],
+      "paths": [
+        [
+          "s",
+          "u",
+          "v"
+        ],
+        [
+          "s",
+          "z",
+          "v"
+        ]
+      ],
+      "safe": false
+    }
+  ],
+  "safe_auxiliary_partition_count": 10,
+  "safe_auxiliary_partitions": [
+    {
+      "accepted_queries": [
+        [
+          "s",
+          "u"
+        ]
+      ],
+      "label_count": 2,
+      "tags": {
+        "s": 1,
+        "u": 1,
+        "v": 2,
+        "z": 1
+      }
+    },
+    {
+      "accepted_queries": [
+        [
+          "s",
+          "u"
+        ]
+      ],
+      "label_count": 2,
+      "tags": {
+        "s": 1,
+        "u": 1,
+        "v": 2,
+        "z": 2
+      }
+    },
+    {
+      "accepted_queries": [
+        [
+          "s",
+          "u"
+        ]
+      ],
+      "label_count": 3,
+      "tags": {
+        "s": 1,
+        "u": 1,
+        "v": 2,
+        "z": 3
+      }
+    },
+    {
+      "accepted_queries": [
+        [
+          "u",
+          "v"
+        ]
+      ],
+      "label_count": 2,
+      "tags": {
+        "s": 1,
+        "u": 2,
+        "v": 2,
+        "z": 1
+      }
+    },
+    {
+      "accepted_queries": [
+        [
+          "u",
+          "v"
+        ]
+      ],
+      "label_count": 2,
+      "tags": {
+        "s": 1,
+        "u": 2,
+        "v": 2,
+        "z": 2
+      }
+    },
+    {
+      "accepted_queries": [
+        [
+          "u",
+          "v"
+        ]
+      ],
+      "label_count": 3,
+      "tags": {
+        "s": 1,
+        "u": 2,
+        "v": 2,
+        "z": 3
+      }
+    },
+    {
+      "accepted_queries": [],
+      "label_count": 3,
+      "tags": {
+        "s": 1,
+        "u": 2,
+        "v": 3,
+        "z": 1
+      }
+    },
+    {
+      "accepted_queries": [],
+      "label_count": 3,
+      "tags": {
+        "s": 1,
+        "u": 2,
+        "v": 3,
+        "z": 2
+      }
+    },
+    {
+      "accepted_queries": [],
+      "label_count": 3,
+      "tags": {
+        "s": 1,
+        "u": 2,
+        "v": 3,
+        "z": 3
+      }
+    },
+    {
+      "accepted_queries": [],
+      "label_count": 4,
+      "tags": {
+        "s": 1,
+        "u": 2,
+        "v": 3,
+        "z": 4
+      }
+    }
+  ],
+  "safe_auxiliary_partitions_by_alphabet": {
+    "2": 4,
+    "3": 5,
+    "4": 1
+  },
+  "safe_strong_partition_count": 3,
+  "schema": 1,
+  "strong_optimum": 3,
+  "synthetic_weighted_example": {
+    "alternative_assignment_score": 100,
+    "not_empirical_workload": true,
+    "query_weights": [
+      {
+        "pair": [
+          "s",
+          "u"
+        ],
+        "weight": 1
+      },
+      {
+        "pair": [
+          "u",
+          "v"
+        ],
+        "weight": 100
+      }
+    ],
+    "rank_assignment_score": 1
+  },
+  "verifier_sha256": "3729e9322413c7c9edec6089a885036238a9bd0ac06c1632930091011d926d95"
+}

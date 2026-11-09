@@ -1,0 +1,14 @@
+name,states,edges,safe_in_model,failure,shortest_counterexample_edges,certificate_labels,verified
+content_hash_return,2,4,False,return,2,0,True
+modulo_4_counter,8,16,False,return,4,0,True
+epoch_reset_on_restart,3,5,False,return,2,0,True
+boot_nonce_reused,3,5,False,return,2,0,True
+unique_boot_nonce,3,5,True,none,,3,True
+durable_epoch,3,5,True,none,,3,True
+hash_with_no_return_policy,2,3,True,none,,2,True
+cached_old_response,3,5,False,read_fidelity,0,0,True
+lagging_replica,3,5,False,read_fidelity,0,0,True
+non_atomic_body_token,3,5,False,read_fidelity,0,0,True
+irrelevant_internal_transition,2,4,True,none,,1,True
+modulo_3_binary,6,12,False,return,6,0,True
+modulo_3_ternary,9,27,False,return,3,0,True

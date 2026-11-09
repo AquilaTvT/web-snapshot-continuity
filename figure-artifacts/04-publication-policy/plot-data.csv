@@ -1,0 +1,13 @@
+case,row_title,step,request_index,current_key,principal,status,body_symbol,body_sha256,version_alias,version_id,read_start_ns,read_end_ns
+owner_deny,Owner + bucket deny,0,3,/root-policy-control/page,continuity-local-fixture,200,A,06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0,α,5974b9ff-c938-44a4-8610-e469f271563f,4231917,4727875
+owner_deny,Owner + bucket deny,1,5,/root-policy-control/page,continuity-local-fixture,200,B,c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6,β,24f632a0-0082-4d79-b415-e039964a6a59,5515833,5934125
+owner_deny,Owner + bucket deny,2,8,/root-policy-control/page,continuity-local-fixture,200,A,06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0,α,5974b9ff-c938-44a4-8610-e469f271563f,13703125,14120625
+object_lock,Owner + Object Lock,0,54,/object-lock-control/page,continuity-local-fixture,200,A,06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0,α,2a8405eb-75b7-4f7d-922d-60a28c4518d2,228654583,229034292
+object_lock,Owner + Object Lock,1,57,/object-lock-control/page,continuity-local-fixture,404,ABSENT,60afac816e3ce3b8348039173b4d54389623df01de17711a6e803ec448b8ae30,β,2e9d2b95-88c6-4582-8837-357d6d4d7f74,230164292,230499208
+object_lock,Owner + Object Lock,2,59,/object-lock-control/page,continuity-local-fixture,200,A,06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0,α,2a8405eb-75b7-4f7d-922d-60a28c4518d2,231057750,231417417
+restricted_delete,Publisher: remove B,0,12,/restricted-publication/page,continuity-publisher,200,A,06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0,α,eb23714c-e4a9-4f04-a80f-36eb5844e79e,205025792,205488875
+restricted_delete,Publisher: remove B,1,14,/restricted-publication/page,continuity-publisher,200,B,c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6,β,91222af4-4af0-49fd-a6be-6f58a96d0f8f,206342000,206773500
+restricted_delete,Publisher: remove B,2,16,/restricted-publication/page,continuity-publisher,200,B,c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6,β,91222af4-4af0-49fd-a6be-6f58a96d0f8f,207099750,207409500
+restricted_copy,Publisher: copy A,0,12,/restricted-publication/page,continuity-publisher,200,A,06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0,α,eb23714c-e4a9-4f04-a80f-36eb5844e79e,205025792,205488875
+restricted_copy,Publisher: copy A,1,14,/restricted-publication/page,continuity-publisher,200,B,c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6,β,91222af4-4af0-49fd-a6be-6f58a96d0f8f,206342000,206773500
+restricted_copy,Publisher: copy A,2,18,/restricted-publication/page,continuity-publisher,200,A,06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0,γ,b2456071-9589-4310-8a4f-988f87c9ce9d,208295000,208680833

@@ -1,0 +1,47 @@
+{
+  "tag": "RELEASE.2025-08-13T08-35-41Z",
+  "html_url": "https://github.com/minio/mc/releases/tag/RELEASE.2025-08-13T08-35-41Z",
+  "published_at": "2025-09-07T04:51:50Z",
+  "assets": [
+    {
+      "system": "Darwin",
+      "machine": "x86_64",
+      "name": "mc.darwin-amd64.RELEASE.2025-08-13T08-35-41Z",
+      "bytes": 31376080,
+      "sha256": "2862c79cce11b09be9a8911a279b2e9465bebf74b9f01abca9c348a0d795f0cb",
+      "digest": "sha256:2862c79cce11b09be9a8911a279b2e9465bebf74b9f01abca9c348a0d795f0cb",
+      "api_url": "https://api.github.com/repos/minio/mc/releases/assets/401741317",
+      "browser_download_url": "https://github.com/minio/mc/releases/download/RELEASE.2025-08-13T08-35-41Z/mc.darwin-amd64.RELEASE.2025-08-13T08-35-41Z"
+    },
+    {
+      "system": "Darwin",
+      "machine": "arm64",
+      "name": "mc.darwin-arm64.RELEASE.2025-08-13T08-35-41Z",
+      "bytes": 29692306,
+      "sha256": "a877fd0c183409da9f20f9d6e1811987298bbbca1aa03428eebdffba79fb9445",
+      "digest": "sha256:a877fd0c183409da9f20f9d6e1811987298bbbca1aa03428eebdffba79fb9445",
+      "api_url": "https://api.github.com/repos/minio/mc/releases/assets/401741324",
+      "browser_download_url": "https://github.com/minio/mc/releases/download/RELEASE.2025-08-13T08-35-41Z/mc.darwin-arm64.RELEASE.2025-08-13T08-35-41Z"
+    },
+    {
+      "system": "Linux",
+      "machine": "x86_64",
+      "name": "mc.linux-amd64.RELEASE.2025-08-13T08-35-41Z",
+      "bytes": 30535864,
+      "sha256": "01f866e9c5f9b87c2b09116fa5d7c06695b106242d829a8bb32990c00312e891",
+      "digest": "sha256:01f866e9c5f9b87c2b09116fa5d7c06695b106242d829a8bb32990c00312e891",
+      "api_url": "https://api.github.com/repos/minio/mc/releases/assets/401741332",
+      "browser_download_url": "https://github.com/minio/mc/releases/download/RELEASE.2025-08-13T08-35-41Z/mc.linux-amd64.RELEASE.2025-08-13T08-35-41Z"
+    },
+    {
+      "system": "Linux",
+      "machine": "aarch64",
+      "name": "mc.linux-arm64.RELEASE.2025-08-13T08-35-41Z",
+      "bytes": 28704952,
+      "sha256": "14c8c9616cfce4636add161304353244e8de383b2e2752c0e9dad01d4c27c12c",
+      "digest": "sha256:14c8c9616cfce4636add161304353244e8de383b2e2752c0e9dad01d4c27c12c",
+      "api_url": "https://api.github.com/repos/minio/mc/releases/assets/401741340",
+      "browser_download_url": "https://github.com/minio/mc/releases/download/RELEASE.2025-08-13T08-35-41Z/mc.linux-arm64.RELEASE.2025-08-13T08-35-41Z"
+    }
+  ]
+}

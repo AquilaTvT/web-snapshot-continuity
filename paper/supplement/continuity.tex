@@ -1,0 +1,161 @@
+\section{Continuity of one resource}\label{sec:continuity}
+
+\subsection{Contracts, reads and captures}
+\begin{definition}[Contract]\label{def:contract}
+Fix a resource, its request context (including content negotiation) and the
+authority whose state a read is meant to describe. A \emph{contract} is a
+finite directed graph $G=(V,E)$ of every server state and transition permitted
+in that scope, including those of every writer and background process, with a
+set $R\subseteq V$ of \emph{certifiable} states. Each state $q$ has an
+authoritative representation $a(q)$, possibly absence $\absent$; a state
+$q\in R$ answers a read with a body $b(q)$ and fields $h(q)$, its
+\emph{observation} $o(q)=(b(q),h(q))$. Every finite path of $G$ is a
+permitted history, and every state may persist for any positive time.
+\end{definition}
+
+States outside $R$ stay in $G$. With $R$ the successful current-object reads,
+the path $A/g\to\absent\to A/g$ still breaks continuity although its 404 state
+supplies no certified observation; conversely $\absent\to A/g\to\absent$
+imposes nothing on its endpoints, which are not certifiable. $R=\emptyset$
+certifies nothing, and $R=V$ is the all-state special case.
+
+\emph{Read fidelity} requires $b(q)=a(q)$ for every $q\in R$. A cache can
+replay an earlier origin response without describing the origin's current
+state; such a read fails fidelity whatever its fields, which is a different
+failure from an intervening return. If the claim concerns the cache itself,
+$a$ must describe the cache.
+
+A \emph{capture} is an atomic read whose instant lies in a known window
+$[s,e]$, $s<e$, of one monotone client clock. Captures are \emph{passive}:
+they do not change the contract state, so the permitted paths do not depend on
+when or whether anyone reads. This is the model of a Web client reading
+through public interfaces; it does not claim that a real server keeps no
+per-request state, only that no such state constrains the publication paths
+the contract permits.
+
+For an observation $\ell$ with body $x$ let $S_\ell=\{q\in R : o(q)=\ell\}$ and
+$P_x=\{q\in V : a(q)=x\}$. $\Reach$ and $\CoReach$ are taken in the complete
+graph $G$, not in the subgraph induced by $R$, and include paths of length
+zero.
+
+\subsection{The continuity criterion}
+\begin{theorem}[Continuity criterion]\label{thm:criterion}
+Captures returning $\ell$ and later $\ell'$ prove, for every permitted history,
+that the representation is $x$ from the first read instant to the second iff
+\[\Reach(S_\ell)\cap\CoReach(S_{\ell'})\subseteq P_x\quad\text{in } G.\]
+\end{theorem}
+\begin{proof}
+\emph{Sufficiency.} A permitted history is in some state of $S_\ell$ at the
+first read and in some state of $S_{\ell'}$ at the second; every state it
+passes in between lies on a path from $S_\ell$ to $S_{\ell'}$, so it is
+reachable from $S_\ell$ and co-reachable to $S_{\ell'}$, hence in $P_x$ by the
+inclusion. \emph{Necessity.} Let $z$ lie in the intersection with $a(z)\ne x$.
+A path from $S_\ell$ to $z$ followed by a path from $z$ to $S_{\ell'}$ is a
+finite path, and since every finite path fits into any positive interval with
+positive holding times, some permitted history follows it between two read
+instants and has representation $a(z)\ne x$ in between. If $z$ is itself an
+endpoint, that endpoint read is unfaithful.
+\end{proof}
+
+A field is \emph{sound} for a target if the criterion holds for every pair of
+equal observations of that target, \emph{reusable} if after every capture the
+resource can leave the target and return to the same observation, and
+\emph{general} otherwise. Content hashes are reusable under ordinary writes,
+and so are S3 version IDs under the documented deletions
+(Section~\ref{sec:platforms}).
+
+\subsection{Certificates}
+\paragraph{Counterexamples.} For each observation $\ell$ with body $x$, the
+product graph has states $(q,d)$ with a sticky departure bit $d$: from
+$(q,d)$ an edge $q\to u$ leads to $(u, d\lor a(u)\ne x)$. The initial states
+are $(q,\mathit{false})$ for $q\in S_\ell$ and the accepting states
+$(q,\mathit{true})$ for $q\in S_{\ell}$. An accepting product path is exactly
+a path of $G$ that starts and ends with observation $\ell$ and visits another
+representation, so a multi-source breadth-first search returns a shortest
+violation for $\ell$, and the minimum over observations is the shortest
+overall. With $2|V|$ product states and $2|E|$ product edges per observation,
+$k$ observations take $O((k+1)(|V|+|E|))$ time including validation;
+fidelity failures, violations of length zero, are checked first. A separate
+checker verifies a returned path edge by edge: both endpoints in $R$, equal
+endpoint observations, faithful endpoints, and an intermediate state with
+another representation. It establishes validity; shortestness follows from
+the search and is cross-checked against an independent all-pairs oracle.
+
+\paragraph{Invariants.} When no violation exists, the solver returns for each
+observation $\ell=(x,z)$ two sets $B_\ell$ and $D_\ell$ of states reachable
+before and after a departure (they may overlap). The checker verifies, without
+search: one certificate per observation occurring on $R$; $S_\ell\subseteq
+B_\ell$; $a(q)=x$ on $B_\ell$; every edge $q\to u$ with $q\in B_\ell$ leads into
+$B_\ell$ if $a(u)=x$ and into $D_\ell$ otherwise; $D_\ell$ is closed under
+edges; $D_\ell\cap S_\ell=\emptyset$; and fidelity on $R$. By induction on
+path length every path from $S_\ell$ is represented with its correct
+departure bit, so no path returns to $S_\ell$ after a departure, self loops
+and arbitrary repetitions included. The reachable product states always form
+such a certificate, so the format is complete for the finite model.
+
+\paragraph{Bounded transitions.} Let $d$ be the length of a shortest
+violation, or $\infty$ if none exists. If a separately justified bound allows
+at most $K$ transitions between two reads, continuity holds for every
+observation exactly when $K<d$: no violation fits, and the shortest one
+witnesses the converse. The bound counts transitions, not elapsed time or
+captures. A binary body with a counter modulo~3 needs $d=6$ changes for a
+hidden return (equal bodies need an even number, equal counters a multiple
+of~3); three bodies that always change give $d=3$; a counter modulo~4 with a
+binary body gives $d=4$. A bound derived from counter width alone need
+therefore not be tight.
+
+\subsection{Request windows and bridges}
+Let two equal certifiable observations of a sound field be read at instants
+$u\in[s_1,e_1]$ and $v\in[s_2,e_2]$ with $e_1\le s_2$. Then $u\le e_1\le s_2\le v$, so the resource
+keeps its representation on the closed \emph{bridge} $[e_1,s_2]$, the largest
+interval guaranteed for every placement of the reads, since $u=e_1$ and $v=s_2$
+are possible and the representation may change immediately outside them; for
+touching windows it is the single instant $e_1=s_2$. The helper
+\code{certified_read_bridge} returns the half-open bridge $[e_1,s_2)$, the
+convention of the preregistered replay, and nothing when that is empty, which
+means only that no bridge of positive length exists, not that a common instant
+is impossible.
+The windows must enclose the atomic reads on one monotone client clock;
+independently clocked observations need certified error bounds first, and the
+HTTP \code{Date} and \code{Last-Modified} headers are not effective times. The
+helper \code{common_times} intersects bridges of several resources; an empty
+intersection is unresolved rather than negative, because bridges can be
+shorter than the true presence intervals.
+
+\subsection{What a certificate does not prove}
+A positive certificate proves a property of the supplied graph. It does not
+prove that the graph contains every deployment transition, that a cache read
+is linearizable to the origin, or that a restart identifier is globally
+fresh. If the graph is a conservative abstraction that contains every concrete
+trace and preserves observations and representations, a positive result
+transfers to the system; a negative abstract path must be concretized before
+it shows a real failure. Observing few transitions never justifies removing
+permitted ones.
+
+\subsection{Exhaustive checks}
+\code{data/constructed/contracts.json} holds 13 constructed contracts that
+each exercise one assumption (Table~\ref{tab:contracts}).
+\code{scripts/run_contracts.py} computes each verdict, checks every returned
+certificate with the separate checker and rejects any disagreement with the
+declared verdict. Their mix of safe and unsafe models has no frequency
+interpretation; the three fidelity failures are not hidden returns.
+
+\begin{table*}[t]
+\caption{The constructed contracts: verdicts and shortest violations, in transitions.}
+\label{tab:contracts}
+\small
+\input{supplement/generated/tab-contracts}
+\end{table*}
+
+The unit tests compare the implementation with an independent oracle on every
+directed graph on three named states with optional self loops ($2^9=512$
+graphs), each with every binary body and validator assignment ($8\times8$):
+32{,}768 contracts with $R=V$. The oracle computes all-pairs shortest
+distances by Floyd--Warshall and searches endpoint pairs with equal
+observations and an intermediate state with another body; verdicts and
+shortest lengths agree everywhere, and every certificate passes the checker.
+A further 5{,}120 contracts enumerate certifiable scopes: every two-state
+digraph with binary representations and fields and every $R$ (1{,}024), and
+every ordered three-state acyclic graph likewise (4{,}096), with response
+bytes outside $R$ deliberately different from the representation. These are
+correctness checks of finite instances, not benchmarks.

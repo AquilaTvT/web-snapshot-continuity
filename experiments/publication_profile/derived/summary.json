@@ -1,0 +1,375 @@
+{
+  "format_version": 1,
+  "status": "passed_independent_transcript_audit",
+  "provenance": {
+    "trace_sha256": "2e17a32b92fd394c7f27d72fe1717a647cc73c28472241e9fa67f4ddd57fae69",
+    "derive_source_sha256": "cb7a5c0541dd35af2cee3de1067b0c3aec309caca4ed89de1f521eafd404bbd5",
+    "runner_imported": false,
+    "network_used": false
+  },
+  "server": {
+    "release": "RELEASE.2025-09-07T16-13-09Z",
+    "recorded_binary_sha256": "7c3b3039b76e55a1b80935848ed83998d5e8d317374f87851f46a019ff5c0aa4",
+    "management_release": "RELEASE.2025-08-13T08-35-41Z",
+    "recorded_management_binary_sha256": "a877fd0c183409da9f20f9d6e1811987298bbbca1aa03428eebdffba79fb9445",
+    "binary_evidence_scope": "Recorded hashes agree with pinned official asset identities; offline derivation does not re-execute or independently identify the serving process."
+  },
+  "counts": {
+    "s3_requests": 60,
+    "cases": 8,
+    "object_get_observations": 21,
+    "successful_object_gets": 18,
+    "absence_object_gets": 3,
+    "publisher_requests": 40,
+    "root_requests": 20,
+    "allocated_native_ids": 17,
+    "sigv4_requests_verified": 60
+  },
+  "administration": {
+    "principal": "continuity-publisher",
+    "recorded_policy_attachment": "publication",
+    "enabled_readback": true,
+    "policy_sha256": "8574e35cb50ecc8ed232cf1354089d652cf1e5c87dae75e5b17eb20d4d7cea1f",
+    "policy_file_content_independently_fetched": false
+  },
+  "cases": [
+    {
+      "name": "root_bucket_policy_control",
+      "principal": "continuity-local-fixture",
+      "observed_path": [
+        "A",
+        "B",
+        "A"
+      ],
+      "capture_versions": [
+        "5974b9ff-c938-44a4-8610-e469f271563f",
+        "24f632a0-0082-4d79-b415-e039964a6a59",
+        "5974b9ff-c938-44a4-8610-e469f271563f"
+      ],
+      "counterexample_records": [
+        3,
+        5,
+        8
+      ],
+      "naive_bridge": {
+        "captures": [
+          3,
+          8
+        ],
+        "interval_ns": [
+          4727875,
+          13703125
+        ],
+        "interval_convention": "[start,end)",
+        "duration_ns": 8975250,
+        "native_version_id": "5974b9ff-c938-44a4-8610-e469f271563f",
+        "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+      },
+      "continuity_decision": "reject_observed_return",
+      "finding": "The recorded root request deleted B despite the installed bucket deny; a policy document alone did not constrain this actor."
+    },
+    {
+      "name": "restricted_data_delete_and_copy",
+      "principal": "continuity-publisher",
+      "observed_path": [
+        "A",
+        "B",
+        "B",
+        "A"
+      ],
+      "capture_versions": [
+        "eb23714c-e4a9-4f04-a80f-36eb5844e79e",
+        "91222af4-4af0-49fd-a6be-6f58a96d0f8f",
+        "b2456071-9589-4310-8a4f-988f87c9ce9d"
+      ],
+      "denial_records": [
+        15
+      ],
+      "denial_codes": [
+        "AccessDenied"
+      ],
+      "same_bytes_restored_with_fresh_id": true,
+      "continuity_decision": "no_equal_endpoint_bridge",
+      "finding": "Version-specific deletion was refused; readback stayed B; a copy of historical A allocated a fresh current version."
+    },
+    {
+      "name": "restricted_marker_delete_and_copy",
+      "principal": "continuity-publisher",
+      "observed_path": [
+        "A",
+        "ABSENT",
+        "ABSENT",
+        "A"
+      ],
+      "capture_versions": [
+        "c9b4818b-9746-4c41-a90c-2507b6c5588d",
+        "91f3cb1a-66cd-4dea-a81b-db1d37ded428",
+        "992b5d47-a393-40ec-afed-1ca5e3ce5bd7"
+      ],
+      "denial_records": [
+        23
+      ],
+      "denial_codes": [
+        "AccessDenied"
+      ],
+      "same_bytes_restored_with_fresh_id": true,
+      "continuity_decision": "no_equal_endpoint_bridge",
+      "finding": "Ordinary deletion created a marker; removing that version was refused; copying old A produced a fresh ID."
+    },
+    {
+      "name": "restricted_batch_version_delete",
+      "principal": "continuity-publisher",
+      "http_status": 200,
+      "per_object_results": [
+        {
+          "key": "batch",
+          "version_id": "16638180-abaf-4f50-b0a3-56e7cafbae14",
+          "code": "AccessDenied"
+        },
+        {
+          "key": "batch",
+          "version_id": "19806ed2-f6f1-4d78-a701-73ed98c3c17e",
+          "code": "AccessDenied"
+        }
+      ],
+      "current_version_after": "19806ed2-f6f1-4d78-a701-73ed98c3c17e",
+      "finding": "HTTP 200 contains two AccessDenied item results; B remains current."
+    },
+    {
+      "name": "restricted_configuration",
+      "principal": "continuity-publisher",
+      "denial_records": [
+        32,
+        33,
+        34
+      ],
+      "denial_codes": [
+        "AccessDenied",
+        "AccessDenied",
+        "AccessDenied"
+      ],
+      "versioning_readback": [
+        "Enabled",
+        "Enabled"
+      ],
+      "finding": "Suspension, bucket-policy replacement and expiration-configuration requests were denied; only versioning has explicit post-attempt readback."
+    },
+    {
+      "name": "restricted_stable_bundle",
+      "principal": "continuity-publisher",
+      "target": [
+        "eligible\n",
+        "10\n"
+      ],
+      "captures": [
+        38,
+        39,
+        41,
+        42
+      ],
+      "bridges": [
+        {
+          "captures": [
+            38,
+            42
+          ],
+          "interval_ns": [
+            218728375,
+            220352167
+          ],
+          "interval_convention": "[start,end)",
+          "duration_ns": 1623792,
+          "native_version_id": "d594f72c-d747-4b69-8443-b1a3ab2731f8",
+          "body_sha256": "7181c3366a91c1ac4687de2aed825851ff16cd0a40f9c37b20818e1a2a8a7f45"
+        },
+        {
+          "captures": [
+            39,
+            41
+          ],
+          "interval_ns": [
+            219131333,
+            219925083
+          ],
+          "interval_convention": "[start,end)",
+          "duration_ns": 793750,
+          "native_version_id": "e6fc0c74-8a81-434c-a566-ae3573923c34",
+          "body_sha256": "917df3320d778ddbaa5c5c7742bc4046bf803c36ed2b050f30844ed206783469"
+        }
+      ],
+      "intersection_ns": [
+        219131333,
+        219925083
+      ],
+      "intersection_duration_ns": 793750,
+      "interval_convention": "[start,end)",
+      "unrelated_mutation_record": 40,
+      "recorded_target_mutations_inside_capture_window": [],
+      "continuity_decision": "conditional_bridge_if_declared_operation_contract_holds",
+      "observed_schedule_supports_target_pair": true,
+      "api_wide_continuity_proved": false,
+      "finding": "Equal current-name captures yield overlapping candidate supports under a separate no-return contract; the controlled recorded schedule includes only an unrelated-key write inside the intersection."
+    },
+    {
+      "name": "restricted_multipart",
+      "principal": "continuity-publisher",
+      "initiation_order": [
+        "A",
+        "B"
+      ],
+      "completion_order": [
+        "B",
+        "A"
+      ],
+      "capture_records": [
+        48,
+        50
+      ],
+      "capture_versions": [
+        "d35a772a-bc9f-40c8-a906-8b3a073ae1b9",
+        "cfe4e9f8-a516-4a3a-a3f8-c389f5693384"
+      ],
+      "distinct_completion_ids": true,
+      "finding": "The publisher could complete multipart uploads; the older initiation completed later and returned a distinct observed version ID. No universal multipart ordering or ID-allocation-time claim follows."
+    },
+    {
+      "name": "object_lock_marker_control",
+      "principal": "continuity-local-fixture",
+      "observed_path": [
+        "A",
+        "ABSENT",
+        "A"
+      ],
+      "capture_versions": [
+        "2a8405eb-75b7-4f7d-922d-60a28c4518d2",
+        "2e9d2b95-88c6-4582-8837-357d6d4d7f74",
+        "2a8405eb-75b7-4f7d-922d-60a28c4518d2"
+      ],
+      "retained_delete_status": 400,
+      "retained_delete_code": "InvalidRequest",
+      "retained_delete_message_contains": "WORM protected",
+      "counterexample_records": [
+        54,
+        57,
+        59
+      ],
+      "naive_bridge": {
+        "captures": [
+          54,
+          59
+        ],
+        "interval_ns": [
+          229034292,
+          231057750
+        ],
+        "interval_convention": "[start,end)",
+        "duration_ns": 2023458,
+        "native_version_id": "2a8405eb-75b7-4f7d-922d-60a28c4518d2",
+        "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+      },
+      "continuity_decision": "reject_observed_return",
+      "finding": "Retained data survived attempted version deletion, but deleting the unprotected marker reactivated its old current ID."
+    }
+  ],
+  "version_id_map": [
+    {
+      "alias": "v0",
+      "native_version_id": "5974b9ff-c938-44a4-8610-e469f271563f",
+      "allocation_record": 2
+    },
+    {
+      "alias": "v1",
+      "native_version_id": "24f632a0-0082-4d79-b415-e039964a6a59",
+      "allocation_record": 4
+    },
+    {
+      "alias": "v2",
+      "native_version_id": "eb23714c-e4a9-4f04-a80f-36eb5844e79e",
+      "allocation_record": 11
+    },
+    {
+      "alias": "v3",
+      "native_version_id": "91222af4-4af0-49fd-a6be-6f58a96d0f8f",
+      "allocation_record": 13
+    },
+    {
+      "alias": "v4",
+      "native_version_id": "b2456071-9589-4310-8a4f-988f87c9ce9d",
+      "allocation_record": 17
+    },
+    {
+      "alias": "v5",
+      "native_version_id": "c9b4818b-9746-4c41-a90c-2507b6c5588d",
+      "allocation_record": 19
+    },
+    {
+      "alias": "v6",
+      "native_version_id": "91f3cb1a-66cd-4dea-a81b-db1d37ded428",
+      "allocation_record": 21
+    },
+    {
+      "alias": "v7",
+      "native_version_id": "992b5d47-a393-40ec-afed-1ca5e3ce5bd7",
+      "allocation_record": 25
+    },
+    {
+      "alias": "v8",
+      "native_version_id": "16638180-abaf-4f50-b0a3-56e7cafbae14",
+      "allocation_record": 27
+    },
+    {
+      "alias": "v9",
+      "native_version_id": "19806ed2-f6f1-4d78-a701-73ed98c3c17e",
+      "allocation_record": 28
+    },
+    {
+      "alias": "v10",
+      "native_version_id": "d594f72c-d747-4b69-8443-b1a3ab2731f8",
+      "allocation_record": 36
+    },
+    {
+      "alias": "v11",
+      "native_version_id": "e6fc0c74-8a81-434c-a566-ae3573923c34",
+      "allocation_record": 37
+    },
+    {
+      "alias": "v12",
+      "native_version_id": "c80fe74f-b687-4096-92be-aa0997e80ceb",
+      "allocation_record": 40
+    },
+    {
+      "alias": "v13",
+      "native_version_id": "d35a772a-bc9f-40c8-a906-8b3a073ae1b9",
+      "allocation_record": 47
+    },
+    {
+      "alias": "v14",
+      "native_version_id": "cfe4e9f8-a516-4a3a-a3f8-c389f5693384",
+      "allocation_record": 49
+    },
+    {
+      "alias": "v15",
+      "native_version_id": "2a8405eb-75b7-4f7d-922d-60a28c4518d2",
+      "allocation_record": 53
+    },
+    {
+      "alias": "v16",
+      "native_version_id": "2e9d2b95-88c6-4582-8837-357d6d4d7f74",
+      "allocation_record": 56
+    }
+  ],
+  "api_wide_continuity_proved": false,
+  "scope_limits": [
+    "Actual loopback native MinIO execution; no AWS S3 or GCS service measured.",
+    "Finite recorded schedule only; not an exhaustive API or IAM verification.",
+    "The restricted profile assumes continuously enabled versioning, a fixed bucket/key authority, and only the declared publisher mutations.",
+    "Root/admin and other identities remain possible outside the profile; policy attachment does not constrain them.",
+    "No unrecorded external writer, lifecycle/replication job, admin change, server restore, or storage rollback is established absent by this transcript.",
+    "Bridge promotion needs a separately justified all-operation no-return contract, faithful atomic current-name reads, and the declared time windows.",
+    "The stable bundle is observed under the controlled single-writer schedule; no global API-safe certificate is issued.",
+    "Multipart evidence covers two single-part uploads completed in reverse initiation order, not all multipart schedules.",
+    "Object Lock protects retained data in this test but does not prevent deleting its unprotected delete marker.",
+    "Signatures use public fixture secrets. Their verification binds submitted request fields to a named fixture principal, not nonrepudiation or server-response authenticity.",
+    "Administration evidence is recorded mc command output. The policy file bytes are declared in trace.policy but are not returned by policy-create stdout."
+  ]
+}

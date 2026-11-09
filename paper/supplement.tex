@@ -1,0 +1,67 @@
+\documentclass[sigconf,anonymous,review]{acmart}
+% The supplement uses the paper's class, options, typefaces and theorem style.
+% Results keep the paper's numbers: Theorem 1, Proposition 2, Theorem 3,
+% Corollary 4 and Proposition 5 share one counter, as in the paper; lemmas and
+% definitions are numbered by section.
+\setcopyright{none}
+\emergencystretch=1.5em
+% Columns end where their text ends instead of stretching the space between
+% paragraphs to the page bottom; tables and long proofs make that stretch visible.
+\raggedbottom
+\acmConference[ACM Web '27]{The ACM Web Conference 2027}{May 10--14, 2027}{Dublin, Ireland}
+\acmYear{2027}
+\acmDOI{}\acmISBN{}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\theoremstyle{acmplain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{acmdefinition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newcommand{\Reach}{\operatorname{Reach}}
+\newcommand{\CoReach}{\operatorname{CoReach}}
+\newcommand{\code}[1]{\path{#1}}
+\newcommand{\absent}{\bot}
+\setlist{leftmargin=*,topsep=2pt,itemsep=1pt}
+% File names and identifiers may break inside in narrow columns.
+\usepackage{xurl}
+\input{numbers.tex}
+\input{supplement/generated/supp-numbers.tex}
+% Fixed metadata dates and XMP identifiers, so that a rebuild is byte-identical.
+\hypersetup{pdfcreationdate={D:20261108000000Z}, pdfmoddate={D:20261108000000Z},
+  pdfdate={2026-11-08}, pdfmetadate={2026-11-08},
+  pdfdocumentid={uuid:0f6c7d0e-6a1b-4c8e-9b0e-2d5a3f7c1e01},
+  pdfinstanceid={uuid:0f6c7d0e-6a1b-4c8e-9b0e-2d5a3f7c1e02}}
+\begin{document}
+\title{Uniqueness Is Not Continuity: Supplementary Material}
+\subtitle{Complete proofs, protocols and reproduction}
+\begin{abstract}
+This document holds the complete statements and proofs behind the four-page
+paper \emph{Uniqueness Is Not Continuity: When Server Metadata Certifies a Web
+Snapshot}, the protocols and full results of its executions and replay, and
+the commands that reproduce every number. Results keep the paper's numbering.
+Section~\ref{sec:map} maps each claim of the paper to its proof, data and code.
+Every table of counts is generated from the derived evidence by
+\code{scripts/supplement_tables.py}, and every number shared with the paper
+comes from the same generated macros. The paper does not depend on this
+document.
+\end{abstract}
+\ccsdesc[500]{Information systems~Digital libraries and archives}
+\ccsdesc[300]{Information systems~World Wide Web}
+\ccsdesc[300]{Theory of computation~Problems, reductions and completeness}
+\keywords{Web archiving, Web data provenance, temporal coherence, HTTP validators, versioned storage}
+\maketitle
+\appendix
+\input{supplement/overview}
+\input{supplement/continuity}
+\input{supplement/fields}
+\input{supplement/instants}
+\input{supplement/platforms}
+\input{supplement/replay}
+\input{supplement/http}
+\input{supplement/reproduction}
+\input{supplement/references}
+\end{document}

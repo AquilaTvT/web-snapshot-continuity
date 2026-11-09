@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "title": "Trace-driven certification on complete public revision histories",
+  "status": "Frozen before any revision metadata for this study was requested. Later changes require a new protocol version; the analysis must follow this file.",
+  "question": "How often does equality of a content hash hide an intervening change, and what do certification rules that rely on content hashes, on revision identifiers, or on the exact pairwise rule certify on real histories?",
+  "source": {
+    "api": "https://en.wikipedia.org/w/api.php",
+    "revision_fields": ["revid", "parentid", "timestamp", "sha1", "size"],
+    "not_requested": ["user", "comment", "content"],
+    "client": "Serial requests, at least 2 s apart, maxlag=5, descriptive User-Agent without personal contact data, raw responses frozen with SHA-256."
+  },
+  "window": ["2024-01-01T00:00:00Z", "2025-01-01T00:00:00Z"],
+  "strata": {
+    "vital": {
+      "frame": "Namespace-0 links on the page 'Wikipedia:Vital articles/Level 3', taken from the link table at collection time; the page revision ID reported with the links is recorded.",
+      "selection": "Sort the distinct linked titles; draw 150 with random.Random(20261105).sample. Titles are resolved through redirects when histories are requested.",
+      "sample_size": 150
+    },
+    "random": {
+      "frame": "MediaWiki list=random, namespace 0, non-redirect pages.",
+      "selection": "The first 150 distinct page IDs returned by successive list=random requests (rnlimit=50). MediaWiki's page_random ordering supplies the randomness; the returned list is frozen.",
+      "sample_size": 150
+    }
+  },
+  "history_model": {
+    "state": "The current revision of a page at second t is the latest revision whose timestamp is at most t; ties within one second are ordered by revid and a revision superseded within the same second has no positive duration.",
+    "window_start": "The parent of the first in-window revision, fetched by revision ID, is current from window start until the first in-window revision. A page without such a parent is absent until its first revision.",
+    "body_identity": "sha1 as reported by the API. A page with any hidden or missing sha1 in the window is excluded from all measurements and listed.",
+    "sound_identity": "revid of the current revision. Revisions are only appended in the frozen list, so a displaced revid never becomes current again within the reconstructed history; this is a property of the frozen log, not a claim about every administrative operation."
+  },
+  "measurements": {
+    "M0_descriptive": "Pages, revisions in window, pages with at least one content-hash return, number of return events (consecutive appearances of one sha1 separated by at least one different current state), and the duration of each departure (first different state to return).",
+    "M1_hidden_change": {
+      "capture_times": "t_k = window_start + 3600k seconds, k = 0, 1, ..., for every k with t_k + gap < window_end.",
+      "gaps_seconds": [60, 3600, 86400, 604800],
+      "pairs": "Only pairs where the page exists at both instants.",
+      "events": "E_hash: equal sha1 at t_k and t_k+gap. H: some state current for positive duration in (t_k, t_k+gap] has a different sha1 or is absent. E_id: equal revid.",
+      "report": "Per stratum and gap: counts of pairs, E_hash, E_hash and H, E_id and H; the ratio P(H | E_hash) with a page-clustered percentile bootstrap 95% interval (2000 resamples of pages, random.Random(7))."
+    },
+    "M2_bundles": {
+      "pages_eligible": "Pages that exist throughout the window.",
+      "bundle_sizes": [2, 4, 8],
+      "bundles_per_size": 400,
+      "starts_per_bundle": 10,
+      "gaps_seconds": [1, 60, 3600],
+      "request_window_seconds": 1,
+      "randomness": "random.Random(seed) with seed = 1000*n + stratum_index, stratum_index vital=1, random=2; bundle membership, read order, start times and read instants are drawn from this generator in that order.",
+      "schedule": "Request j starts at t0 + j*gap and its read window is [t0 + j*gap, t0 + j*gap + 1]; the true read instant is uniform in the window. Double-collect methods read the permuted bundle 1..n then n..1 (2n requests); the exact rule reads 1..n-1, n, n-1..1 (2n-1 requests).",
+      "methods": {
+        "hash_bridge": "Certify if each page's two reads return equal sha1 and max first-read window end < min last-read window start.",
+        "id_bridge": "As hash_bridge, using revid.",
+        "id_exact": "Certify if each page read twice returns equal revid and first-window end <= last-window start holds for every ordered pair of distinct pages (the singly read page uses its one window for both)."
+      },
+      "ground_truth": {
+        "claimed_interval": "Bridge methods: [max first-window end, min last-window start). Exact rule: [max over twice-read pages of first-window end, min over twice-read pages of last-window start], which contains the single read's window.",
+        "G1_existential": "Some instant in the claimed interval (or, for the exact rule, the true instant of the single read) at which every page has its observed sha1.",
+        "G2_continuity": "Every twice-read page has its observed sha1 throughout [first true read instant, last true read instant].",
+        "report": "Per stratum, n, gap and method: runs, certified runs, certified runs violating G1, certified runs violating G2."
+      }
+    }
+  },
+  "interpretation_limits": [
+    "Revision metadata describe source text at the raw-source resource, not rendered HTML, templates, caches or deployment.",
+    "Timestamps have one-second resolution.",
+    "The vital stratum is a curated frame and the random stratum follows MediaWiki's random ordering; neither is a sample of the Web.",
+    "Simulated captures use the frozen histories as ground truth; no request is sent to Wikipedia at the simulated times."
+  ]
+}

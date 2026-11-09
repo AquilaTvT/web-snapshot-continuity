@@ -1,0 +1,19 @@
+\begin{tabular}{@{}lrrlr@{}}
+\toprule
+Model & States & Edges & Verdict & Shortest violation \\
+\midrule
+\texttt{content\_hash\_return} & 2 & 4 & hidden return & 2 \\
+\texttt{modulo\_4\_counter} & 8 & 16 & hidden return & 4 \\
+\texttt{epoch\_reset\_on\_restart} & 3 & 5 & hidden return & 2 \\
+\texttt{boot\_nonce\_reused} & 3 & 5 & hidden return & 2 \\
+\texttt{unique\_boot\_nonce} & 3 & 5 & safe & -- \\
+\texttt{durable\_epoch} & 3 & 5 & safe & -- \\
+\texttt{hash\_with\_no\_return\_policy} & 2 & 3 & safe & -- \\
+\texttt{cached\_old\_response} & 3 & 5 & unfaithful read & 0 \\
+\texttt{lagging\_replica} & 3 & 5 & unfaithful read & 0 \\
+\texttt{non\_atomic\_body\_token} & 3 & 5 & unfaithful read & 0 \\
+\texttt{irrelevant\_internal\_transition} & 2 & 4 & safe & -- \\
+\texttt{modulo\_3\_binary} & 6 & 12 & hidden return & 6 \\
+\texttt{modulo\_3\_ternary} & 9 & 27 & hidden return & 3 \\
+\bottomrule
+\end{tabular}

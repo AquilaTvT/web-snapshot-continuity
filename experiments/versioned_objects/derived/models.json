@@ -1,0 +1,918 @@
+{
+  "trace_sha256": "5f3536c69d2b9171986042547126409286535a04bd2d02c05f871d70dc023537",
+  "models": [
+    {
+      "name": "delete_current:recorded",
+      "evidence_class": "finite_recorded_path",
+      "source_records": [
+        3,
+        5,
+        7
+      ],
+      "resource": {
+        "url": "http://127.0.0.1:50198/continuity-history/delete_current",
+        "query": [],
+        "request_fields": {
+          "accept": null,
+          "accept-encoding": null,
+          "range": null
+        },
+        "principal_scope": "one run_minio fixture principal"
+      },
+      "scope": "Only this ordered, controlled observation path with stuttering; a positive verdict is not an API-wide contract or an inference that point observations alone exclude missing changes.",
+      "contract": {
+        "name": "delete_current:recorded",
+        "states": [
+          {
+            "name": "request_3",
+            "body": "object-bytes-base64:QQo=",
+            "validator": "c850623e-665f-4347-a85a-0309fd8248d3",
+            "actual": "object-bytes-base64:QQo="
+          },
+          {
+            "name": "request_5",
+            "body": "object-bytes-base64:Qgo=",
+            "validator": "2f473209-76e1-479f-b7fc-e2a778725828",
+            "actual": "object-bytes-base64:Qgo="
+          },
+          {
+            "name": "request_7",
+            "body": "object-bytes-base64:QQo=",
+            "validator": "c850623e-665f-4347-a85a-0309fd8248d3",
+            "actual": "object-bytes-base64:QQo="
+          }
+        ],
+        "edges": [
+          [
+            "request_3",
+            "request_5"
+          ],
+          [
+            "request_5",
+            "request_7"
+          ],
+          [
+            "request_3",
+            "request_3"
+          ],
+          [
+            "request_5",
+            "request_5"
+          ],
+          [
+            "request_7",
+            "request_7"
+          ]
+        ],
+        "context": "{\"principal_scope\": \"one run_minio fixture principal\", \"query\": [], \"request_fields\": {\"accept\": null, \"accept-encoding\": null, \"range\": null}, \"url\": \"http://127.0.0.1:50198/continuity-history/delete_current\"}",
+        "certifiable_endpoints": [
+          "request_3",
+          "request_5",
+          "request_7"
+        ]
+      }
+    },
+    {
+      "name": "copy_restore:recorded",
+      "evidence_class": "finite_recorded_path",
+      "source_records": [
+        9,
+        11,
+        13
+      ],
+      "resource": {
+        "url": "http://127.0.0.1:50198/continuity-history/copy_restore",
+        "query": [],
+        "request_fields": {
+          "accept": null,
+          "accept-encoding": null,
+          "range": null
+        },
+        "principal_scope": "one run_minio fixture principal"
+      },
+      "scope": "Only this ordered, controlled observation path with stuttering; a positive verdict is not an API-wide contract or an inference that point observations alone exclude missing changes.",
+      "contract": {
+        "name": "copy_restore:recorded",
+        "states": [
+          {
+            "name": "request_9",
+            "body": "object-bytes-base64:QQo=",
+            "validator": "8560d074-d9dd-41da-994d-6dd7aaa0b0ce",
+            "actual": "object-bytes-base64:QQo="
+          },
+          {
+            "name": "request_11",
+            "body": "object-bytes-base64:Qgo=",
+            "validator": "5b22a7be-86d7-49e0-b549-ed93d5f8e67f",
+            "actual": "object-bytes-base64:Qgo="
+          },
+          {
+            "name": "request_13",
+            "body": "object-bytes-base64:QQo=",
+            "validator": "b38c6e96-ff9b-46e1-ae39-823fd3cb929c",
+            "actual": "object-bytes-base64:QQo="
+          }
+        ],
+        "edges": [
+          [
+            "request_9",
+            "request_11"
+          ],
+          [
+            "request_11",
+            "request_13"
+          ],
+          [
+            "request_9",
+            "request_9"
+          ],
+          [
+            "request_11",
+            "request_11"
+          ],
+          [
+            "request_13",
+            "request_13"
+          ]
+        ],
+        "context": "{\"principal_scope\": \"one run_minio fixture principal\", \"query\": [], \"request_fields\": {\"accept\": null, \"accept-encoding\": null, \"range\": null}, \"url\": \"http://127.0.0.1:50198/continuity-history/copy_restore\"}",
+        "certifiable_endpoints": [
+          "request_9",
+          "request_11",
+          "request_13"
+        ]
+      }
+    },
+    {
+      "name": "reupload_restore:recorded",
+      "evidence_class": "finite_recorded_path",
+      "source_records": [
+        15,
+        17,
+        19
+      ],
+      "resource": {
+        "url": "http://127.0.0.1:50198/continuity-history/reupload_restore",
+        "query": [],
+        "request_fields": {
+          "accept": null,
+          "accept-encoding": null,
+          "range": null
+        },
+        "principal_scope": "one run_minio fixture principal"
+      },
+      "scope": "Only this ordered, controlled observation path with stuttering; a positive verdict is not an API-wide contract or an inference that point observations alone exclude missing changes.",
+      "contract": {
+        "name": "reupload_restore:recorded",
+        "states": [
+          {
+            "name": "request_15",
+            "body": "object-bytes-base64:QQo=",
+            "validator": "497b0ce5-0e5f-4315-bbf5-3d9ef97d4f14",
+            "actual": "object-bytes-base64:QQo="
+          },
+          {
+            "name": "request_17",
+            "body": "object-bytes-base64:Qgo=",
+            "validator": "e64803eb-5b06-4182-a5e6-5a5e604b5f29",
+            "actual": "object-bytes-base64:Qgo="
+          },
+          {
+            "name": "request_19",
+            "body": "object-bytes-base64:QQo=",
+            "validator": "f8da23cd-ef9e-442d-8373-c9ffbada1fa3",
+            "actual": "object-bytes-base64:QQo="
+          }
+        ],
+        "edges": [
+          [
+            "request_15",
+            "request_17"
+          ],
+          [
+            "request_17",
+            "request_19"
+          ],
+          [
+            "request_15",
+            "request_15"
+          ],
+          [
+            "request_17",
+            "request_17"
+          ],
+          [
+            "request_19",
+            "request_19"
+          ]
+        ],
+        "context": "{\"principal_scope\": \"one run_minio fixture principal\", \"query\": [], \"request_fields\": {\"accept\": null, \"accept-encoding\": null, \"range\": null}, \"url\": \"http://127.0.0.1:50198/continuity-history/reupload_restore\"}",
+        "certifiable_endpoints": [
+          "request_15",
+          "request_17",
+          "request_19"
+        ]
+      }
+    },
+    {
+      "name": "delete_marker:recorded",
+      "evidence_class": "finite_recorded_path",
+      "source_records": [
+        21,
+        23,
+        25
+      ],
+      "resource": {
+        "url": "http://127.0.0.1:50198/continuity-history/delete_marker",
+        "query": [],
+        "request_fields": {
+          "accept": null,
+          "accept-encoding": null,
+          "range": null
+        },
+        "principal_scope": "one run_minio fixture principal"
+      },
+      "scope": "Only this ordered, controlled observation path with stuttering; a positive verdict is not an API-wide contract or an inference that point observations alone exclude missing changes.",
+      "contract": {
+        "name": "delete_marker:recorded",
+        "states": [
+          {
+            "name": "request_21",
+            "body": "object-bytes-base64:QQo=",
+            "validator": "f1c428ad-d9c0-4e84-910f-d213218bc206",
+            "actual": "object-bytes-base64:QQo="
+          },
+          {
+            "name": "request_23",
+            "body": "model-meaning: no current representation (HTTP 404 delete marker)",
+            "validator": "dbbe5007-e6e7-4c4e-8229-2e197aac0815",
+            "actual": "model-meaning: no current representation (HTTP 404 delete marker)"
+          },
+          {
+            "name": "request_25",
+            "body": "object-bytes-base64:QQo=",
+            "validator": "f1c428ad-d9c0-4e84-910f-d213218bc206",
+            "actual": "object-bytes-base64:QQo="
+          }
+        ],
+        "edges": [
+          [
+            "request_21",
+            "request_23"
+          ],
+          [
+            "request_23",
+            "request_25"
+          ],
+          [
+            "request_21",
+            "request_21"
+          ],
+          [
+            "request_23",
+            "request_23"
+          ],
+          [
+            "request_25",
+            "request_25"
+          ]
+        ],
+        "context": "{\"principal_scope\": \"one run_minio fixture principal\", \"query\": [], \"request_fields\": {\"accept\": null, \"accept-encoding\": null, \"range\": null}, \"url\": \"http://127.0.0.1:50198/continuity-history/delete_marker\"}",
+        "certifiable_endpoints": [
+          "request_21",
+          "request_25"
+        ]
+      }
+    },
+    {
+      "name": "pinned_selector:recorded",
+      "evidence_class": "finite_recorded_path",
+      "source_records": [
+        27,
+        30
+      ],
+      "resource": {
+        "url": "http://127.0.0.1:50198/continuity-history/pinned_selector?versionId=a908bd77-b557-427a-b8d7-2f6016636511",
+        "query": [
+          [
+            "versionId",
+            "a908bd77-b557-427a-b8d7-2f6016636511"
+          ]
+        ],
+        "request_fields": {
+          "accept": null,
+          "accept-encoding": null,
+          "range": null
+        },
+        "principal_scope": "one run_minio fixture principal"
+      },
+      "scope": "Only this ordered, controlled observation path with stuttering; a positive verdict is not an API-wide contract or an inference that point observations alone exclude missing changes.",
+      "contract": {
+        "name": "pinned_selector:recorded",
+        "states": [
+          {
+            "name": "request_27",
+            "body": "object-bytes-base64:QQo=",
+            "validator": "a908bd77-b557-427a-b8d7-2f6016636511",
+            "actual": "object-bytes-base64:QQo="
+          },
+          {
+            "name": "request_30",
+            "body": "object-bytes-base64:QQo=",
+            "validator": "a908bd77-b557-427a-b8d7-2f6016636511",
+            "actual": "object-bytes-base64:QQo="
+          }
+        ],
+        "edges": [
+          [
+            "request_27",
+            "request_30"
+          ],
+          [
+            "request_27",
+            "request_27"
+          ],
+          [
+            "request_30",
+            "request_30"
+          ]
+        ],
+        "context": "{\"principal_scope\": \"one run_minio fixture principal\", \"query\": [[\"versionId\", \"a908bd77-b557-427a-b8d7-2f6016636511\"]], \"request_fields\": {\"accept\": null, \"accept-encoding\": null, \"range\": null}, \"url\": \"http://127.0.0.1:50198/continuity-history/pinned_selector?versionId=a908bd77-b557-427a-b8d7-2f6016636511\"}",
+        "certifiable_endpoints": [
+          "request_27",
+          "request_30"
+        ]
+      }
+    },
+    {
+      "name": "bundle:admission:recorded",
+      "evidence_class": "finite_recorded_path",
+      "source_records": [
+        33,
+        35,
+        37,
+        40,
+        45,
+        48,
+        50
+      ],
+      "resource": {
+        "url": "http://127.0.0.1:50198/continuity-history/bundle-admission",
+        "query": [],
+        "request_fields": {
+          "accept": null,
+          "accept-encoding": null,
+          "range": null
+        },
+        "principal_scope": "one run_minio fixture principal"
+      },
+      "scope": "Only this ordered, controlled observation path with stuttering; a positive verdict is not an API-wide contract or an inference that point observations alone exclude missing changes.",
+      "contract": {
+        "name": "bundle:admission:recorded",
+        "states": [
+          {
+            "name": "request_33",
+            "body": "object-bytes-base64:ZWxpZ2libGUK",
+            "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+            "actual": "object-bytes-base64:ZWxpZ2libGUK"
+          },
+          {
+            "name": "request_35",
+            "body": "object-bytes-base64:ZWxpZ2libGUK",
+            "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+            "actual": "object-bytes-base64:ZWxpZ2libGUK"
+          },
+          {
+            "name": "request_37",
+            "body": "object-bytes-base64:aW5lbGlnaWJsZQo=",
+            "validator": "51756ee3-72bc-4275-8d19-d74314cfe7d9",
+            "actual": "object-bytes-base64:aW5lbGlnaWJsZQo="
+          },
+          {
+            "name": "request_40",
+            "body": "object-bytes-base64:aW5lbGlnaWJsZQo=",
+            "validator": "51756ee3-72bc-4275-8d19-d74314cfe7d9",
+            "actual": "object-bytes-base64:aW5lbGlnaWJsZQo="
+          },
+          {
+            "name": "request_45",
+            "body": "object-bytes-base64:aW5lbGlnaWJsZQo=",
+            "validator": "51756ee3-72bc-4275-8d19-d74314cfe7d9",
+            "actual": "object-bytes-base64:aW5lbGlnaWJsZQo="
+          },
+          {
+            "name": "request_48",
+            "body": "object-bytes-base64:ZWxpZ2libGUK",
+            "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+            "actual": "object-bytes-base64:ZWxpZ2libGUK"
+          },
+          {
+            "name": "request_50",
+            "body": "object-bytes-base64:ZWxpZ2libGUK",
+            "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+            "actual": "object-bytes-base64:ZWxpZ2libGUK"
+          }
+        ],
+        "edges": [
+          [
+            "request_33",
+            "request_35"
+          ],
+          [
+            "request_35",
+            "request_37"
+          ],
+          [
+            "request_37",
+            "request_40"
+          ],
+          [
+            "request_40",
+            "request_45"
+          ],
+          [
+            "request_45",
+            "request_48"
+          ],
+          [
+            "request_48",
+            "request_50"
+          ],
+          [
+            "request_33",
+            "request_33"
+          ],
+          [
+            "request_35",
+            "request_35"
+          ],
+          [
+            "request_37",
+            "request_37"
+          ],
+          [
+            "request_40",
+            "request_40"
+          ],
+          [
+            "request_45",
+            "request_45"
+          ],
+          [
+            "request_48",
+            "request_48"
+          ],
+          [
+            "request_50",
+            "request_50"
+          ]
+        ],
+        "context": "{\"principal_scope\": \"one run_minio fixture principal\", \"query\": [], \"request_fields\": {\"accept\": null, \"accept-encoding\": null, \"range\": null}, \"url\": \"http://127.0.0.1:50198/continuity-history/bundle-admission\"}",
+        "certifiable_endpoints": [
+          "request_33",
+          "request_35",
+          "request_37",
+          "request_40",
+          "request_45",
+          "request_48",
+          "request_50"
+        ]
+      }
+    },
+    {
+      "name": "bundle:admission:capture_window",
+      "evidence_class": "finite_recorded_path",
+      "source_records": [
+        35,
+        37,
+        40,
+        45,
+        48,
+        50
+      ],
+      "resource": {
+        "url": "http://127.0.0.1:50198/continuity-history/bundle-admission",
+        "query": [],
+        "request_fields": {
+          "accept": null,
+          "accept-encoding": null,
+          "range": null
+        },
+        "principal_scope": "one run_minio fixture principal"
+      },
+      "scope": "Only this ordered, controlled observation path with stuttering; a positive verdict is not an API-wide contract or an inference that point observations alone exclude missing changes.",
+      "contract": {
+        "name": "bundle:admission:capture_window",
+        "states": [
+          {
+            "name": "request_35",
+            "body": "object-bytes-base64:ZWxpZ2libGUK",
+            "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+            "actual": "object-bytes-base64:ZWxpZ2libGUK"
+          },
+          {
+            "name": "request_37",
+            "body": "object-bytes-base64:aW5lbGlnaWJsZQo=",
+            "validator": "51756ee3-72bc-4275-8d19-d74314cfe7d9",
+            "actual": "object-bytes-base64:aW5lbGlnaWJsZQo="
+          },
+          {
+            "name": "request_40",
+            "body": "object-bytes-base64:aW5lbGlnaWJsZQo=",
+            "validator": "51756ee3-72bc-4275-8d19-d74314cfe7d9",
+            "actual": "object-bytes-base64:aW5lbGlnaWJsZQo="
+          },
+          {
+            "name": "request_45",
+            "body": "object-bytes-base64:aW5lbGlnaWJsZQo=",
+            "validator": "51756ee3-72bc-4275-8d19-d74314cfe7d9",
+            "actual": "object-bytes-base64:aW5lbGlnaWJsZQo="
+          },
+          {
+            "name": "request_48",
+            "body": "object-bytes-base64:ZWxpZ2libGUK",
+            "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+            "actual": "object-bytes-base64:ZWxpZ2libGUK"
+          },
+          {
+            "name": "request_50",
+            "body": "object-bytes-base64:ZWxpZ2libGUK",
+            "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+            "actual": "object-bytes-base64:ZWxpZ2libGUK"
+          }
+        ],
+        "edges": [
+          [
+            "request_35",
+            "request_37"
+          ],
+          [
+            "request_37",
+            "request_40"
+          ],
+          [
+            "request_40",
+            "request_45"
+          ],
+          [
+            "request_45",
+            "request_48"
+          ],
+          [
+            "request_48",
+            "request_50"
+          ],
+          [
+            "request_35",
+            "request_35"
+          ],
+          [
+            "request_37",
+            "request_37"
+          ],
+          [
+            "request_40",
+            "request_40"
+          ],
+          [
+            "request_45",
+            "request_45"
+          ],
+          [
+            "request_48",
+            "request_48"
+          ],
+          [
+            "request_50",
+            "request_50"
+          ]
+        ],
+        "context": "{\"principal_scope\": \"one run_minio fixture principal\", \"query\": [], \"request_fields\": {\"accept\": null, \"accept-encoding\": null, \"range\": null}, \"url\": \"http://127.0.0.1:50198/continuity-history/bundle-admission\"}",
+        "certifiable_endpoints": [
+          "request_35",
+          "request_37",
+          "request_40",
+          "request_45",
+          "request_48",
+          "request_50"
+        ]
+      }
+    },
+    {
+      "name": "bundle:admission:api_obstruction",
+      "evidence_class": "declared_api_reactivation_obstruction",
+      "resource": {
+        "url": "http://127.0.0.1:50198/continuity-history/bundle-admission",
+        "query": [],
+        "request_fields": {
+          "accept": null,
+          "accept-encoding": null,
+          "range": null
+        },
+        "principal_scope": "one run_minio fixture principal"
+      },
+      "endpoint_record": 35,
+      "supporting_executed_operation_records": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "scope": "A counterexample pattern allowed by an unrestricted current-key mutation contract: select this retained version, create a different current version, then delete that new version. This submodel refutes the universal equality rule; it does not enumerate the API or assert that this sequence occurred between these captures.",
+      "internal_token": "No intermediate native ID is invented. This unread, non-certifiable state's placeholder is model notation only.",
+      "operation_source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/RestoringPreviousVersions.html",
+      "contract": {
+        "name": "bundle:admission:api_obstruction",
+        "states": [
+          {
+            "name": "selected_before",
+            "body": "object-bytes-base64:ZWxpZ2libGUK",
+            "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+            "actual": "object-bytes-base64:ZWxpZ2libGUK"
+          },
+          {
+            "name": "different_current",
+            "body": "object-bytes-base64:aW5lbGlnaWJsZQo=",
+            "validator": "model-only: internal state has no observed/used version token",
+            "actual": "object-bytes-base64:aW5lbGlnaWJsZQo="
+          },
+          {
+            "name": "selected_again",
+            "body": "object-bytes-base64:ZWxpZ2libGUK",
+            "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+            "actual": "object-bytes-base64:ZWxpZ2libGUK"
+          }
+        ],
+        "edges": [
+          [
+            "selected_before",
+            "different_current"
+          ],
+          [
+            "different_current",
+            "selected_again"
+          ]
+        ],
+        "context": "{\"principal_scope\": \"one run_minio fixture principal\", \"query\": [], \"request_fields\": {\"accept\": null, \"accept-encoding\": null, \"range\": null}, \"url\": \"http://127.0.0.1:50198/continuity-history/bundle-admission\"}",
+        "certifiable_endpoints": [
+          "selected_before",
+          "selected_again"
+        ]
+      }
+    },
+    {
+      "name": "bundle:fee:recorded",
+      "evidence_class": "finite_recorded_path",
+      "source_records": [
+        34,
+        38,
+        41,
+        42,
+        43,
+        46,
+        49
+      ],
+      "resource": {
+        "url": "http://127.0.0.1:50198/continuity-history/bundle-fee",
+        "query": [],
+        "request_fields": {
+          "accept": null,
+          "accept-encoding": null,
+          "range": null
+        },
+        "principal_scope": "one run_minio fixture principal"
+      },
+      "scope": "Only this ordered, controlled observation path with stuttering; a positive verdict is not an API-wide contract or an inference that point observations alone exclude missing changes.",
+      "contract": {
+        "name": "bundle:fee:recorded",
+        "states": [
+          {
+            "name": "request_34",
+            "body": "object-bytes-base64:MTAwCg==",
+            "validator": "a2e1dcf6-d1ea-4946-87e9-eddaa7fcc001",
+            "actual": "object-bytes-base64:MTAwCg=="
+          },
+          {
+            "name": "request_38",
+            "body": "object-bytes-base64:MTAwCg==",
+            "validator": "a2e1dcf6-d1ea-4946-87e9-eddaa7fcc001",
+            "actual": "object-bytes-base64:MTAwCg=="
+          },
+          {
+            "name": "request_41",
+            "body": "object-bytes-base64:MTAK",
+            "validator": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+            "actual": "object-bytes-base64:MTAK"
+          },
+          {
+            "name": "request_42",
+            "body": "object-bytes-base64:MTAK",
+            "validator": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+            "actual": "object-bytes-base64:MTAK"
+          },
+          {
+            "name": "request_43",
+            "body": "object-bytes-base64:MTAK",
+            "validator": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+            "actual": "object-bytes-base64:MTAK"
+          },
+          {
+            "name": "request_46",
+            "body": "object-bytes-base64:MTAwCg==",
+            "validator": "a2e1dcf6-d1ea-4946-87e9-eddaa7fcc001",
+            "actual": "object-bytes-base64:MTAwCg=="
+          },
+          {
+            "name": "request_49",
+            "body": "object-bytes-base64:MTAwCg==",
+            "validator": "a2e1dcf6-d1ea-4946-87e9-eddaa7fcc001",
+            "actual": "object-bytes-base64:MTAwCg=="
+          }
+        ],
+        "edges": [
+          [
+            "request_34",
+            "request_38"
+          ],
+          [
+            "request_38",
+            "request_41"
+          ],
+          [
+            "request_41",
+            "request_42"
+          ],
+          [
+            "request_42",
+            "request_43"
+          ],
+          [
+            "request_43",
+            "request_46"
+          ],
+          [
+            "request_46",
+            "request_49"
+          ],
+          [
+            "request_34",
+            "request_34"
+          ],
+          [
+            "request_38",
+            "request_38"
+          ],
+          [
+            "request_41",
+            "request_41"
+          ],
+          [
+            "request_42",
+            "request_42"
+          ],
+          [
+            "request_43",
+            "request_43"
+          ],
+          [
+            "request_46",
+            "request_46"
+          ],
+          [
+            "request_49",
+            "request_49"
+          ]
+        ],
+        "context": "{\"principal_scope\": \"one run_minio fixture principal\", \"query\": [], \"request_fields\": {\"accept\": null, \"accept-encoding\": null, \"range\": null}, \"url\": \"http://127.0.0.1:50198/continuity-history/bundle-fee\"}",
+        "certifiable_endpoints": [
+          "request_34",
+          "request_38",
+          "request_41",
+          "request_42",
+          "request_43",
+          "request_46",
+          "request_49"
+        ]
+      }
+    },
+    {
+      "name": "bundle:fee:capture_window",
+      "evidence_class": "finite_recorded_path",
+      "source_records": [
+        42,
+        43
+      ],
+      "resource": {
+        "url": "http://127.0.0.1:50198/continuity-history/bundle-fee",
+        "query": [],
+        "request_fields": {
+          "accept": null,
+          "accept-encoding": null,
+          "range": null
+        },
+        "principal_scope": "one run_minio fixture principal"
+      },
+      "scope": "Only this ordered, controlled observation path with stuttering; a positive verdict is not an API-wide contract or an inference that point observations alone exclude missing changes.",
+      "contract": {
+        "name": "bundle:fee:capture_window",
+        "states": [
+          {
+            "name": "request_42",
+            "body": "object-bytes-base64:MTAK",
+            "validator": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+            "actual": "object-bytes-base64:MTAK"
+          },
+          {
+            "name": "request_43",
+            "body": "object-bytes-base64:MTAK",
+            "validator": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+            "actual": "object-bytes-base64:MTAK"
+          }
+        ],
+        "edges": [
+          [
+            "request_42",
+            "request_43"
+          ],
+          [
+            "request_42",
+            "request_42"
+          ],
+          [
+            "request_43",
+            "request_43"
+          ]
+        ],
+        "context": "{\"principal_scope\": \"one run_minio fixture principal\", \"query\": [], \"request_fields\": {\"accept\": null, \"accept-encoding\": null, \"range\": null}, \"url\": \"http://127.0.0.1:50198/continuity-history/bundle-fee\"}",
+        "certifiable_endpoints": [
+          "request_42",
+          "request_43"
+        ]
+      }
+    },
+    {
+      "name": "bundle:fee:api_obstruction",
+      "evidence_class": "declared_api_reactivation_obstruction",
+      "resource": {
+        "url": "http://127.0.0.1:50198/continuity-history/bundle-fee",
+        "query": [],
+        "request_fields": {
+          "accept": null,
+          "accept-encoding": null,
+          "range": null
+        },
+        "principal_scope": "one run_minio fixture principal"
+      },
+      "endpoint_record": 42,
+      "supporting_executed_operation_records": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "scope": "A counterexample pattern allowed by an unrestricted current-key mutation contract: select this retained version, create a different current version, then delete that new version. This submodel refutes the universal equality rule; it does not enumerate the API or assert that this sequence occurred between these captures.",
+      "internal_token": "No intermediate native ID is invented. This unread, non-certifiable state's placeholder is model notation only.",
+      "operation_source": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/RestoringPreviousVersions.html",
+      "contract": {
+        "name": "bundle:fee:api_obstruction",
+        "states": [
+          {
+            "name": "selected_before",
+            "body": "object-bytes-base64:MTAK",
+            "validator": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+            "actual": "object-bytes-base64:MTAK"
+          },
+          {
+            "name": "different_current",
+            "body": "object-bytes-base64:MTAwCg==",
+            "validator": "model-only: internal state has no observed/used version token",
+            "actual": "object-bytes-base64:MTAwCg=="
+          },
+          {
+            "name": "selected_again",
+            "body": "object-bytes-base64:MTAK",
+            "validator": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+            "actual": "object-bytes-base64:MTAK"
+          }
+        ],
+        "edges": [
+          [
+            "selected_before",
+            "different_current"
+          ],
+          [
+            "different_current",
+            "selected_again"
+          ]
+        ],
+        "context": "{\"principal_scope\": \"one run_minio fixture principal\", \"query\": [], \"request_fields\": {\"accept\": null, \"accept-encoding\": null, \"range\": null}, \"url\": \"http://127.0.0.1:50198/continuity-history/bundle-fee\"}",
+        "certifiable_endpoints": [
+          "selected_before",
+          "selected_again"
+        ]
+      }
+    }
+  ]
+}

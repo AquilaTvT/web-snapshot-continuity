@@ -1,0 +1,17 @@
+{
+  "trace_sha256": "2e17a32b92fd394c7f27d72fe1717a647cc73c28472241e9fa67f4ddd57fae69",
+  "rows": 12,
+  "unique_request_indices": [
+    3,
+    5,
+    8,
+    12,
+    14,
+    16,
+    18,
+    54,
+    57,
+    59
+  ],
+  "scope": "Four recorded contrasts; no frequency estimate or universal API proof."
+}

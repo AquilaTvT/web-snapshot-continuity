@@ -1,0 +1,2643 @@
+{
+  "format_version": 1,
+  "server": "minio version RELEASE.2025-09-07T16-13-09Z (commit-id=07c3a429bfed433e49018cb0f78a52145d4bedeb)\nRuntime: go1.24.6 darwin/arm64\nLicense: GNU AGPLv3 - https://www.gnu.org/licenses/agpl-3.0.html\nCopyright: 2015-2025 MinIO, Inc.",
+  "server_sha256": "7c3b3039b76e55a1b80935848ed83998d5e8d317374f87851f46a019ff5c0aa4",
+  "management_client": "mc version RELEASE.2025-08-13T08-35-41Z (commit-id=7394ce0dd2a80935aded936b09fa12cbb3cb8096)\nRuntime: go1.24.6 darwin/arm64\nCopyright (c) 2015-2025 MinIO, Inc.\nLicense GNU AGPLv3 <https://www.gnu.org/licenses/agpl-3.0.html>",
+  "management_client_sha256": "a877fd0c183409da9f20f9d6e1811987298bbbca1aa03428eebdffba79fb9445",
+  "platform": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "python": "3.12.10"
+  },
+  "transport": "actual loopback HTTP; native MinIO; no cloud service measured",
+  "policy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetObject",
+          "s3:GetObjectVersion",
+          "s3:PutObject",
+          "s3:DeleteObject"
+        ],
+        "Resource": [
+          "arn:aws:s3:::restricted-publication/*"
+        ]
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "s3:GetBucketVersioning"
+        ],
+        "Resource": [
+          "arn:aws:s3:::restricted-publication"
+        ]
+      },
+      {
+        "Effect": "Deny",
+        "Action": [
+          "s3:DeleteObjectVersion"
+        ],
+        "Resource": [
+          "arn:aws:s3:::restricted-publication/*"
+        ]
+      }
+    ]
+  },
+  "requests": [
+    {
+      "index": 0,
+      "label": "setup: create root-policy-control",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/root-policy-control",
+        "headers": {
+          "Content-type": "application/x-www-form-urlencoded",
+          "Content-length": "0",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=d696a9fbd2806ea320d6bc585f74fd7c61b3d213f6c815737bc1c8eafd7c5c37"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "Location": "/root-policy-control",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E10493FCE010",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        310834,
+        1744584
+      ]
+    },
+    {
+      "index": 1,
+      "label": "setup: enable versioning",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/root-policy-control?versioning=",
+        "headers": {
+          "Content-length": "123",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7",
+          "Content-type": "application/xml",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=8687e562c35dad29507a39b04615574dfe99065e3a3b89858da1e799e9577e6e"
+        },
+        "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+        "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E10494103930",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        1795000,
+        3231459
+      ]
+    },
+    {
+      "index": 2,
+      "label": "root control: publish A",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/root-policy-control/page",
+        "headers": {
+          "Content-length": "2",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+          "Content-type": "text/plain",
+          "Cache-control": "no-store",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=cache-control;content-type;host;x-amz-content-sha256;x-amz-date, Signature=1f6c254509e874fd6de4efddb70c702e379f0c94caf03f090ff9d5d11be64b30"
+        },
+        "body_base64": "QQo=",
+        "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E10494265558",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "84fc9da4-9656-4b85-b5cc-a53940c8c212",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        3267084,
+        4152167
+      ]
+    },
+    {
+      "index": 3,
+      "label": "root control: first capture",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/root-policy-control/page",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=9964c4aa1f3e1a0820e085ce47984956c8041db720dd1a31266aa99e44c5bbee"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Cache-Control": "no-store",
+          "Content-Length": "2",
+          "Content-Type": "text/plain",
+          "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104943472A0",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "84fc9da4-9656-4b85-b5cc-a53940c8c212",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "QQo=",
+        "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+      },
+      "read_window_ns": [
+        4178834,
+        4747917
+      ]
+    },
+    {
+      "index": 4,
+      "label": "root control: publish B",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/root-policy-control/page",
+        "headers": {
+          "Content-length": "2",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+          "Content-type": "text/plain",
+          "Cache-control": "no-store",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=cache-control;content-type;host;x-amz-content-sha256;x-amz-date, Signature=7e5a0f533e3a560fa5e459f61da304c284770d5e57e0212a6b71c6dcadbddbeb"
+        },
+        "body_base64": "Qgo=",
+        "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104943D82F0",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "acd97c58-1243-43b1-b71d-5a80024a3d13",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        4770542,
+        5541500
+      ]
+    },
+    {
+      "index": 5,
+      "label": "root control: B is current",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/root-policy-control/page",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=9964c4aa1f3e1a0820e085ce47984956c8041db720dd1a31266aa99e44c5bbee"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Cache-Control": "no-store",
+          "Content-Length": "2",
+          "Content-Type": "text/plain",
+          "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E1049449CB78",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "acd97c58-1243-43b1-b71d-5a80024a3d13",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "Qgo=",
+        "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+      },
+      "read_window_ns": [
+        5565584,
+        6083625
+      ]
+    },
+    {
+      "index": 6,
+      "label": "root control: install bucket deny",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/root-policy-control?policy=",
+        "headers": {
+          "Content-length": "168",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "d766db2b9bedef0264c2e86e1b8c1406a350c062340455baf0ea27b9c62ec436",
+          "Content-type": "application/json",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=b4e9d8ecbaa26819c3f5bd92a160fe5193d739c2837ea2aa63167b2f0e96e50f"
+        },
+        "body_base64": "eyJWZXJzaW9uIjogIjIwMTItMTAtMTciLCAiU3RhdGVtZW50IjogW3siRWZmZWN0IjogIkRlbnkiLCAiUHJpbmNpcGFsIjogIioiLCAiQWN0aW9uIjogWyJzMzpEZWxldGVPYmplY3RWZXJzaW9uIl0sICJSZXNvdXJjZSI6IFsiYXJuOmF3czpzMzo6OnJvb3QtcG9saWN5LWNvbnRyb2wvKiJdfV19",
+        "body_sha256": "d766db2b9bedef0264c2e86e1b8c1406a350c062340455baf0ea27b9c62ec436"
+      },
+      "response": {
+        "status": 204,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E1049451E1C8",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        6133625,
+        10677917
+      ]
+    },
+    {
+      "index": 7,
+      "label": "root control: delete B",
+      "request": {
+        "method": "DELETE",
+        "url": "http://127.0.0.1:53243/root-policy-control/page?versionId=acd97c58-1243-43b1-b71d-5a80024a3d13",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=529dcabdde9bf9e891bfc17153ddec97413e32234893555dbf89d3492438c578"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 204,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104949FCB18",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "acd97c58-1243-43b1-b71d-5a80024a3d13",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        10817875,
+        12499167
+      ]
+    },
+    {
+      "index": 8,
+      "label": "root control: A becomes current again",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/root-policy-control/page",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=9964c4aa1f3e1a0820e085ce47984956c8041db720dd1a31266aa99e44c5bbee"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Cache-Control": "no-store",
+          "Content-Length": "2",
+          "Content-Type": "text/plain",
+          "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E10494B7DB40",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "84fc9da4-9656-4b85-b5cc-a53940c8c212",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "QQo=",
+        "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+      },
+      "read_window_ns": [
+        12552709,
+        13386459
+      ]
+    },
+    {
+      "index": 9,
+      "label": "setup: create restricted-publication",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication",
+        "headers": {
+          "Content-type": "application/x-www-form-urlencoded",
+          "Content-length": "0",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=1ea533caf625c75752404a8a187b13b37fd3c311edc47c18a986b1ff23197e19"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "Location": "/restricted-publication",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E10494C158F0",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        13418917,
+        14266042
+      ]
+    },
+    {
+      "index": 10,
+      "label": "setup: enable versioning",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication?versioning=",
+        "headers": {
+          "Content-length": "123",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7",
+          "Content-type": "application/xml",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=4c05cb89e3bf962d2fa13a3d2bc4cb4633f8f713a0b85139638100fb43fe9407"
+        },
+        "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+        "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E10494CF5EC8",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        14303000,
+        15865584
+      ]
+    },
+    {
+      "index": 11,
+      "label": "publisher: publish A",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication/page",
+        "headers": {
+          "Content-length": "2",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+          "Content-type": "text/plain",
+          "Cache-control": "no-store",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=cache-control;content-type;host;x-amz-content-sha256;x-amz-date, Signature=0fbb561049b197e4a91496f2354766b09b6a16dd7afa1dc2854245bb00648df7"
+        },
+        "body_base64": "QQo=",
+        "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E1049FA3B588",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "0d02be3e-bbb4-4631-aaa9-8bd314cdd40f",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        195978667,
+        197050917
+      ]
+    },
+    {
+      "index": 12,
+      "label": "publisher: first current A",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication/page",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=3d9bc2a14e28c48f925d7823d69c6ba835251efd8fe111c4fa6e8fc8252a3cce"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Cache-Control": "no-store",
+          "Content-Length": "2",
+          "Content-Type": "text/plain",
+          "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E1049FB443D0",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "0d02be3e-bbb4-4631-aaa9-8bd314cdd40f",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "QQo=",
+        "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+      },
+      "read_window_ns": [
+        197097375,
+        197627417
+      ]
+    },
+    {
+      "index": 13,
+      "label": "publisher: publish B",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication/page",
+        "headers": {
+          "Content-length": "2",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+          "Content-type": "text/plain",
+          "Cache-control": "no-store",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=cache-control;content-type;host;x-amz-content-sha256;x-amz-date, Signature=ab3ef9bb9ae87255e9a2a3e38966996d8b0bd8103c414e6e3175a1c2ab66ac2f"
+        },
+        "body_base64": "Qgo=",
+        "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E1049FBC94B8",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "e0e4a572-c9fd-43fd-ad3a-c0f52fd98cee",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        197657542,
+        198543292
+      ]
+    },
+    {
+      "index": 14,
+      "label": "publisher: current B",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication/page",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=3d9bc2a14e28c48f925d7823d69c6ba835251efd8fe111c4fa6e8fc8252a3cce"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Cache-Control": "no-store",
+          "Content-Length": "2",
+          "Content-Type": "text/plain",
+          "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E1049FCA92C0",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "e0e4a572-c9fd-43fd-ad3a-c0f52fd98cee",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "Qgo=",
+        "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+      },
+      "read_window_ns": [
+        198570667,
+        198974417
+      ]
+    },
+    {
+      "index": 15,
+      "label": "publisher: forbidden deletion of B version",
+      "request": {
+        "method": "DELETE",
+        "url": "http://127.0.0.1:53243/restricted-publication/page?versionId=e0e4a572-c9fd-43fd-ad3a-c0f52fd98cee",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=a10cb3074e8c54183236a59b6354484e552acb8915bfcaa052234710dacbf6d1"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 403,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "343",
+          "Content-Type": "application/xml",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E1049FD10718",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPkFjY2Vzc0RlbmllZDwvQ29kZT48TWVzc2FnZT5BY2Nlc3MgRGVuaWVkLjwvTWVzc2FnZT48S2V5PnBhZ2U8L0tleT48QnVja2V0TmFtZT5yZXN0cmljdGVkLXB1YmxpY2F0aW9uPC9CdWNrZXROYW1lPjxSZXNvdXJjZT4vcmVzdHJpY3RlZC1wdWJsaWNhdGlvbi9wYWdlPC9SZXNvdXJjZT48UmVxdWVzdElkPjE4RTRFMTA0OUZEMTA3MTg8L1JlcXVlc3RJZD48SG9zdElkPmJjYmY2OTk1NjQzYTg5ZDY5M2FmNGJkMTU0MWY1MzFiY2ZiYWQ0YTU2ZjNiYWRjMGY0ZWI1MzlmZTc3ZWI2YmM8L0hvc3RJZD48L0Vycm9yPg==",
+        "body_sha256": "a407135ae78cac2470394ca4026b4dfca6add94fa4ab0249d85f30c636dfed2d"
+      },
+      "read_window_ns": [
+        199004542,
+        199362834
+      ]
+    },
+    {
+      "index": 16,
+      "label": "publisher: B after rejected deletion",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication/page",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=3d9bc2a14e28c48f925d7823d69c6ba835251efd8fe111c4fa6e8fc8252a3cce"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Cache-Control": "no-store",
+          "Content-Length": "2",
+          "Content-Type": "text/plain",
+          "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E1049FD6A498",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "e0e4a572-c9fd-43fd-ad3a-c0f52fd98cee",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "Qgo=",
+        "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+      },
+      "read_window_ns": [
+        199386375,
+        199783209
+      ]
+    },
+    {
+      "index": 17,
+      "label": "publisher: copy old A into new current version",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication/page",
+        "headers": {
+          "Content-type": "application/x-www-form-urlencoded",
+          "Content-length": "0",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "X-amz-copy-source": "/restricted-publication/page?versionId=0d02be3e-bbb4-4631-aaa9-8bd314cdd40f",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-copy-source;x-amz-date, Signature=b8d4407376a844f6f0fa5267af4f9c14516ac4ac0d41a0057d9c2a672b33d00c"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "232",
+          "Content-Type": "application/xml",
+          "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Checksum-Crc64nvme": "leRaAtzKNgc=",
+          "X-Amz-Checksum-Type": "FULL_OBJECT",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E1049FDD24A8",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-copy-source-version-id": "0d02be3e-bbb4-4631-aaa9-8bd314cdd40f",
+          "x-amz-version-id": "63b548a9-70bb-402e-9fef-c62e2b1a16e3",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPENvcHlPYmplY3RSZXN1bHQgeG1sbnM9Imh0dHA6Ly9zMy5hbWF6b25hd3MuY29tL2RvYy8yMDA2LTAzLTAxLyI+PExhc3RNb2RpZmllZD4yMDI2LTExLTA0VDE1OjI2OjAxLjU3OFo8L0xhc3RNb2RpZmllZD48RVRhZz4mIzM0O2JmMDcyZTkxMTkwNzdiNGU3NjQzN2E5Mzk4Njc4N2VmJiMzNDs8L0VUYWc+PC9Db3B5T2JqZWN0UmVzdWx0Pg==",
+        "body_sha256": "3e01e55c28e904d605c364a7babbc48549172e9aebfc23a1aec087abc9ea8355"
+      },
+      "read_window_ns": [
+        199808750,
+        200635375
+      ]
+    },
+    {
+      "index": 18,
+      "label": "publisher: A after copy restore",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication/page",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=3d9bc2a14e28c48f925d7823d69c6ba835251efd8fe111c4fa6e8fc8252a3cce"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Cache-Control": "no-store",
+          "Content-Length": "2",
+          "Content-Type": "text/plain",
+          "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E1049FE99828",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "63b548a9-70bb-402e-9fef-c62e2b1a16e3",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "QQo=",
+        "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+      },
+      "read_window_ns": [
+        200657000,
+        200997709
+      ]
+    },
+    {
+      "index": 19,
+      "label": "publisher marker: publish A",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication/marker",
+        "headers": {
+          "Content-length": "2",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+          "Content-type": "text/plain",
+          "Cache-control": "no-store",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=cache-control;content-type;host;x-amz-content-sha256;x-amz-date, Signature=b25a28ba41f8ceb88a71cf7018fc7c21700d4dd799a3a507db89a813335434aa"
+        },
+        "body_base64": "QQo=",
+        "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E1049FEFC630",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "757eb4df-6f65-4178-943a-f9663a0db164",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        201036750,
+        201723292
+      ]
+    },
+    {
+      "index": 20,
+      "label": "publisher marker: first capture",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication/marker",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=b47974081769c7a81577214f748cb4586c039f699ddc5329315bba66d30e2908"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Cache-Control": "no-store",
+          "Content-Length": "2",
+          "Content-Type": "text/plain",
+          "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E1049FFADE08",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "757eb4df-6f65-4178-943a-f9663a0db164",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "QQo=",
+        "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+      },
+      "read_window_ns": [
+        201744750,
+        202145959
+      ]
+    },
+    {
+      "index": 21,
+      "label": "publisher marker: unqualified delete",
+      "request": {
+        "method": "DELETE",
+        "url": "http://127.0.0.1:53243/restricted-publication/marker",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=c2143f59b0967015686667c3557cfe891678777b075a10891707114f62895834"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 204,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A00113E0",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-delete-marker": "true",
+          "x-amz-version-id": "86967168-a24b-4f3a-a1c8-33c0ee34f4b3",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        202167750,
+        202789084
+      ]
+    },
+    {
+      "index": 22,
+      "label": "publisher marker: current absence",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication/marker",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=b47974081769c7a81577214f748cb4586c039f699ddc5329315bba66d30e2908"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "363",
+          "Content-Type": "application/xml",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A00A7E08",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-delete-marker": "true",
+          "x-amz-version-id": "86967168-a24b-4f3a-a1c8-33c0ee34f4b3",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPk5vU3VjaEtleTwvQ29kZT48TWVzc2FnZT5UaGUgc3BlY2lmaWVkIGtleSBkb2VzIG5vdCBleGlzdC48L01lc3NhZ2U+PEtleT5tYXJrZXI8L0tleT48QnVja2V0TmFtZT5yZXN0cmljdGVkLXB1YmxpY2F0aW9uPC9CdWNrZXROYW1lPjxSZXNvdXJjZT4vcmVzdHJpY3RlZC1wdWJsaWNhdGlvbi9tYXJrZXI8L1Jlc291cmNlPjxSZXF1ZXN0SWQ+MThFNEUxMDRBMDBBN0UwODwvUmVxdWVzdElkPjxIb3N0SWQ+YmNiZjY5OTU2NDNhODlkNjkzYWY0YmQxNTQxZjUzMWJjZmJhZDRhNTZmM2JhZGMwZjRlYjUzOWZlNzdlYjZiYzwvSG9zdElkPjwvRXJyb3I+",
+        "body_sha256": "86a0cb86deb350ad04c944f0487357e2f51a3b1da9ff795a7e716e4cebb9b0bc"
+      },
+      "read_window_ns": [
+        202808709,
+        203119292
+      ]
+    },
+    {
+      "index": 23,
+      "label": "publisher marker: forbidden marker removal",
+      "request": {
+        "method": "DELETE",
+        "url": "http://127.0.0.1:53243/restricted-publication/marker?versionId=86967168-a24b-4f3a-a1c8-33c0ee34f4b3",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=0bd4d10661b801b52aae22578309593cd5a6b3b674a5be8c30537a9d4507cfe0"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 403,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "347",
+          "Content-Type": "application/xml",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A00F96B8",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPkFjY2Vzc0RlbmllZDwvQ29kZT48TWVzc2FnZT5BY2Nlc3MgRGVuaWVkLjwvTWVzc2FnZT48S2V5Pm1hcmtlcjwvS2V5PjxCdWNrZXROYW1lPnJlc3RyaWN0ZWQtcHVibGljYXRpb248L0J1Y2tldE5hbWU+PFJlc291cmNlPi9yZXN0cmljdGVkLXB1YmxpY2F0aW9uL21hcmtlcjwvUmVzb3VyY2U+PFJlcXVlc3RJZD4xOEU0RTEwNEEwMEY5NkI4PC9SZXF1ZXN0SWQ+PEhvc3RJZD5iY2JmNjk5NTY0M2E4OWQ2OTNhZjRiZDE1NDFmNTMxYmNmYmFkNGE1NmYzYmFkYzBmNGViNTM5ZmU3N2ViNmJjPC9Ib3N0SWQ+PC9FcnJvcj4=",
+        "body_sha256": "08820adc7e54b80c244b1cd63a3bdea1c3f8fb991da9a01b0a9655c52183d87b"
+      },
+      "read_window_ns": [
+        203144584,
+        203423167
+      ]
+    },
+    {
+      "index": 24,
+      "label": "publisher marker: absence after rejection",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication/marker",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=b47974081769c7a81577214f748cb4586c039f699ddc5329315bba66d30e2908"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "363",
+          "Content-Type": "application/xml",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A014B738",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-delete-marker": "true",
+          "x-amz-version-id": "86967168-a24b-4f3a-a1c8-33c0ee34f4b3",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPk5vU3VjaEtleTwvQ29kZT48TWVzc2FnZT5UaGUgc3BlY2lmaWVkIGtleSBkb2VzIG5vdCBleGlzdC48L01lc3NhZ2U+PEtleT5tYXJrZXI8L0tleT48QnVja2V0TmFtZT5yZXN0cmljdGVkLXB1YmxpY2F0aW9uPC9CdWNrZXROYW1lPjxSZXNvdXJjZT4vcmVzdHJpY3RlZC1wdWJsaWNhdGlvbi9tYXJrZXI8L1Jlc291cmNlPjxSZXF1ZXN0SWQ+MThFNEUxMDRBMDE0QjczODwvUmVxdWVzdElkPjxIb3N0SWQ+YmNiZjY5OTU2NDNhODlkNjkzYWY0YmQxNTQxZjUzMWJjZmJhZDRhNTZmM2JhZGMwZjRlYjUzOWZlNzdlYjZiYzwvSG9zdElkPjwvRXJyb3I+",
+        "body_sha256": "4442b895825af65aee6eab90f3eb3adf43b996ad532b95378c068d969b4446b1"
+      },
+      "read_window_ns": [
+        203453417,
+        203807584
+      ]
+    },
+    {
+      "index": 25,
+      "label": "publisher marker: restore by fresh copy",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication/marker",
+        "headers": {
+          "Content-type": "application/x-www-form-urlencoded",
+          "Content-length": "0",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "X-amz-copy-source": "/restricted-publication/marker?versionId=757eb4df-6f65-4178-943a-f9663a0db164",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-copy-source;x-amz-date, Signature=9ad214b8914639d4a1b6575460a3fca0394995e26eb5293c3b4481f90e4612fc"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "232",
+          "Content-Type": "application/xml",
+          "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Checksum-Crc64nvme": "leRaAtzKNgc=",
+          "X-Amz-Checksum-Type": "FULL_OBJECT",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A01A77E0",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-copy-source-version-id": "757eb4df-6f65-4178-943a-f9663a0db164",
+          "x-amz-version-id": "a7e79ef2-2e8a-4157-afd7-be82186995f9",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPENvcHlPYmplY3RSZXN1bHQgeG1sbnM9Imh0dHA6Ly9zMy5hbWF6b25hd3MuY29tL2RvYy8yMDA2LTAzLTAxLyI+PExhc3RNb2RpZmllZD4yMDI2LTExLTA0VDE1OjI2OjAxLjU4Mlo8L0xhc3RNb2RpZmllZD48RVRhZz4mIzM0O2JmMDcyZTkxMTkwNzdiNGU3NjQzN2E5Mzk4Njc4N2VmJiMzNDs8L0VUYWc+PC9Db3B5T2JqZWN0UmVzdWx0Pg==",
+        "body_sha256": "fd6d7df052252ca9fecfb400425e856dc06e32a7d0de39a4c2052bb103331a26"
+      },
+      "read_window_ns": [
+        203834750,
+        204609834
+      ]
+    },
+    {
+      "index": 26,
+      "label": "publisher marker: new A capture",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication/marker",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=b47974081769c7a81577214f748cb4586c039f699ddc5329315bba66d30e2908"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Cache-Control": "no-store",
+          "Content-Length": "2",
+          "Content-Type": "text/plain",
+          "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0265308",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "a7e79ef2-2e8a-4157-afd7-be82186995f9",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "QQo=",
+        "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+      },
+      "read_window_ns": [
+        204638667,
+        205129625
+      ]
+    },
+    {
+      "index": 27,
+      "label": "batch: initial A",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication/batch",
+        "headers": {
+          "Content-length": "2",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+          "Content-type": "text/plain",
+          "Cache-control": "no-store",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=cache-control;content-type;host;x-amz-content-sha256;x-amz-date, Signature=d44b0fa3ba4b70518c6b520b87ce955b159be06015b52d99e1b4506c863096ed"
+        },
+        "body_base64": "QQo=",
+        "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A02EF9E0",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "5613f80f-ee6b-47bb-8a36-f59431c34991",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        205165334,
+        205869542
+      ]
+    },
+    {
+      "index": 28,
+      "label": "batch: current B",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication/batch",
+        "headers": {
+          "Content-length": "2",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+          "Content-type": "text/plain",
+          "Cache-control": "no-store",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=cache-control;content-type;host;x-amz-content-sha256;x-amz-date, Signature=d87b7c788d2e2f96fe626638c501a20174669e047902d25d6431daee37a13c5b"
+        },
+        "body_base64": "Qgo=",
+        "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A03A0600",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "d9575f6b-1495-47f5-882f-65e901c2facc",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        205894042,
+        206570792
+      ]
+    },
+    {
+      "index": 29,
+      "label": "batch: forbidden version deletions",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:53243/restricted-publication?delete=",
+        "headers": {
+          "Content-length": "201",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "257ea53d13b48e19f3a3d8c7184cee97608ceb439b67eff2ac184f9c9ceee3e6",
+          "Content-md5": "IewHuYidDCzBjHD4twC5DA==",
+          "Content-type": "application/xml",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=content-md5;content-type;host;x-amz-content-sha256;x-amz-date, Signature=1e9f997b5bef90274d297e110c52476c792210c09ac9284e7800275adca94aab"
+        },
+        "body_base64": "PERlbGV0ZT48T2JqZWN0PjxLZXk+YmF0Y2g8L0tleT48VmVyc2lvbklkPjU2MTNmODBmLWVlNmItNDdiYi04YTM2LWY1OTQzMWMzNDk5MTwvVmVyc2lvbklkPjwvT2JqZWN0PjxPYmplY3Q+PEtleT5iYXRjaDwvS2V5PjxWZXJzaW9uSWQ+ZDk1NzVmNmItMTQ5NS00N2Y1LTg4MmYtNjVlOTAxYzJmYWNjPC9WZXJzaW9uSWQ+PC9PYmplY3Q+PC9EZWxldGU+",
+        "body_sha256": "257ea53d13b48e19f3a3d8c7184cee97608ceb439b67eff2ac184f9c9ceee3e6"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "412",
+          "Content-Type": "application/xml",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A044E728",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPERlbGV0ZVJlc3VsdCB4bWxucz0iaHR0cDovL3MzLmFtYXpvbmF3cy5jb20vZG9jLzIwMDYtMDMtMDEvIj48RXJyb3I+PENvZGU+QWNjZXNzRGVuaWVkPC9Db2RlPjxNZXNzYWdlPkFjY2VzcyBEZW5pZWQuPC9NZXNzYWdlPjxLZXk+YmF0Y2g8L0tleT48VmVyc2lvbklkPjU2MTNmODBmLWVlNmItNDdiYi04YTM2LWY1OTQzMWMzNDk5MTwvVmVyc2lvbklkPjwvRXJyb3I+PEVycm9yPjxDb2RlPkFjY2Vzc0RlbmllZDwvQ29kZT48TWVzc2FnZT5BY2Nlc3MgRGVuaWVkLjwvTWVzc2FnZT48S2V5PmJhdGNoPC9LZXk+PFZlcnNpb25JZD5kOTU3NWY2Yi0xNDk1LTQ3ZjUtODgyZi02NWU5MDFjMmZhY2M8L1ZlcnNpb25JZD48L0Vycm9yPjwvRGVsZXRlUmVzdWx0Pg==",
+        "body_sha256": "098c3f32b5cea7053f95f2d27819bf721dd6d113dff7ea6039b7937ade0ea51b"
+      },
+      "read_window_ns": [
+        206606792,
+        206987000
+      ]
+    },
+    {
+      "index": 30,
+      "label": "batch: B remains current",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication/batch",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=d9e314aa51042d734d033a43b5ff1148a3a79f38485dc0f1b6b508869094a70f"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Cache-Control": "no-store",
+          "Content-Length": "2",
+          "Content-Type": "text/plain",
+          "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A05273E8",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "d9575f6b-1495-47f5-882f-65e901c2facc",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "Qgo=",
+        "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+      },
+      "read_window_ns": [
+        207496959,
+        207901167
+      ]
+    },
+    {
+      "index": 31,
+      "label": "publisher config: versioning before",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication?versioning=",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=3a4bf08548933e3dfdb407f2f686ce58ad3943cbf10e661a1a38ff89c7cb3b9e"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "123",
+          "Content-Type": "application/xml",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A058F010",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+        "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+      },
+      "read_window_ns": [
+        207924459,
+        208219209
+      ]
+    },
+    {
+      "index": 32,
+      "label": "publisher config: forbidden versioning",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication?versioning=",
+        "headers": {
+          "Content-length": "125",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "d7f1d7ed35d188f6a89d394cc2055f5910c14a3abccf41e808e7f7327d21e129",
+          "Content-md5": "orZUUp7E9srl53Od8p1glA==",
+          "Content-type": "application/xml",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=content-md5;content-type;host;x-amz-content-sha256;x-amz-date, Signature=e4ed082a9a3b655e12c33e1e33fd6db944613297b00dc63ca3aa6fef2c8b326a"
+        },
+        "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+U3VzcGVuZGVkPC9TdGF0dXM+PC9WZXJzaW9uaW5nQ29uZmlndXJhdGlvbj4=",
+        "body_sha256": "d7f1d7ed35d188f6a89d394cc2055f5910c14a3abccf41e808e7f7327d21e129"
+      },
+      "response": {
+        "status": 403,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "323",
+          "Content-Type": "application/xml",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A05E3B88",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPkFjY2Vzc0RlbmllZDwvQ29kZT48TWVzc2FnZT5BY2Nlc3MgRGVuaWVkLjwvTWVzc2FnZT48QnVja2V0TmFtZT5yZXN0cmljdGVkLXB1YmxpY2F0aW9uPC9CdWNrZXROYW1lPjxSZXNvdXJjZT4vcmVzdHJpY3RlZC1wdWJsaWNhdGlvbjwvUmVzb3VyY2U+PFJlcXVlc3RJZD4xOEU0RTEwNEEwNUUzQjg4PC9SZXF1ZXN0SWQ+PEhvc3RJZD5iY2JmNjk5NTY0M2E4OWQ2OTNhZjRiZDE1NDFmNTMxYmNmYmFkNGE1NmYzYmFkYzBmNGViNTM5ZmU3N2ViNmJjPC9Ib3N0SWQ+PC9FcnJvcj4=",
+        "body_sha256": "a6b2f60955d9cb2ff6072792d43b75d7b39e72cfc750f3ab96f2e9b4da5a73da"
+      },
+      "read_window_ns": [
+        208254584,
+        208552459
+      ]
+    },
+    {
+      "index": 33,
+      "label": "publisher config: forbidden policy",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication?policy=",
+        "headers": {
+          "Content-length": "42",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "b1e232899c478ac7b20c9f2721d9e977efb040f71640a618f1f98d02672c7ef5",
+          "Content-md5": "kmJqpNO7WPpzyK7/ppUAjg==",
+          "Content-type": "application/json",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=content-md5;content-type;host;x-amz-content-sha256;x-amz-date, Signature=54c911eca9692801266f5b44d38d594c6d16a4461ae262678a690f2dfda03e7f"
+        },
+        "body_base64": "eyJWZXJzaW9uIjogIjIwMTItMTAtMTciLCAiU3RhdGVtZW50IjogW119",
+        "body_sha256": "b1e232899c478ac7b20c9f2721d9e977efb040f71640a618f1f98d02672c7ef5"
+      },
+      "response": {
+        "status": 403,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "323",
+          "Content-Type": "application/xml",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0635FF0",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPkFjY2Vzc0RlbmllZDwvQ29kZT48TWVzc2FnZT5BY2Nlc3MgRGVuaWVkLjwvTWVzc2FnZT48QnVja2V0TmFtZT5yZXN0cmljdGVkLXB1YmxpY2F0aW9uPC9CdWNrZXROYW1lPjxSZXNvdXJjZT4vcmVzdHJpY3RlZC1wdWJsaWNhdGlvbjwvUmVzb3VyY2U+PFJlcXVlc3RJZD4xOEU0RTEwNEEwNjM1RkYwPC9SZXF1ZXN0SWQ+PEhvc3RJZD5iY2JmNjk5NTY0M2E4OWQ2OTNhZjRiZDE1NDFmNTMxYmNmYmFkNGE1NmYzYmFkYzBmNGViNTM5ZmU3N2ViNmJjPC9Ib3N0SWQ+PC9FcnJvcj4=",
+        "body_sha256": "2372f572f046f746da2f549eddc623e1271404de44c75fbab43e92c5521eec2a"
+      },
+      "read_window_ns": [
+        208577584,
+        208883209
+      ]
+    },
+    {
+      "index": 34,
+      "label": "publisher config: forbidden lifecycle",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication?lifecycle=",
+        "headers": {
+          "Content-length": "174",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "96002711438d52d49e95ff55c7ca37a18c178f293d52400dc51b58e97ff4533f",
+          "Content-md5": "XWZIg5DvQzWO/kkvrKD9NQ==",
+          "Content-type": "application/xml",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=content-md5;content-type;host;x-amz-content-sha256;x-amz-date, Signature=fcf37245a6a84012657c23239863d930c068ae58c4a2ede442b0fdb3b0694071"
+        },
+        "body_base64": "PExpZmVjeWNsZUNvbmZpZ3VyYXRpb24+PFJ1bGU+PElEPmV4cGlyZTwvSUQ+PFN0YXR1cz5FbmFibGVkPC9TdGF0dXM+PEZpbHRlcj48UHJlZml4PjwvUHJlZml4PjwvRmlsdGVyPjxFeHBpcmF0aW9uPjxEYXlzPjE8L0RheXM+PC9FeHBpcmF0aW9uPjwvUnVsZT48L0xpZmVjeWNsZUNvbmZpZ3VyYXRpb24+",
+        "body_sha256": "96002711438d52d49e95ff55c7ca37a18c178f293d52400dc51b58e97ff4533f"
+      },
+      "response": {
+        "status": 403,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "323",
+          "Content-Type": "application/xml",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0685D48",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPkFjY2Vzc0RlbmllZDwvQ29kZT48TWVzc2FnZT5BY2Nlc3MgRGVuaWVkLjwvTWVzc2FnZT48QnVja2V0TmFtZT5yZXN0cmljdGVkLXB1YmxpY2F0aW9uPC9CdWNrZXROYW1lPjxSZXNvdXJjZT4vcmVzdHJpY3RlZC1wdWJsaWNhdGlvbjwvUmVzb3VyY2U+PFJlcXVlc3RJZD4xOEU0RTEwNEEwNjg1RDQ4PC9SZXF1ZXN0SWQ+PEhvc3RJZD5iY2JmNjk5NTY0M2E4OWQ2OTNhZjRiZDE1NDFmNTMxYmNmYmFkNGE1NmYzYmFkYzBmNGViNTM5ZmU3N2ViNmJjPC9Ib3N0SWQ+PC9FcnJvcj4=",
+        "body_sha256": "62e263b179a618cccc0b9890b784d3506c08f18a155cbb1a9ac5b8a46570dda4"
+      },
+      "read_window_ns": [
+        208909084,
+        209226042
+      ]
+    },
+    {
+      "index": 35,
+      "label": "publisher config: versioning after",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication?versioning=",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=3a4bf08548933e3dfdb407f2f686ce58ad3943cbf10e661a1a38ff89c7cb3b9e"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "123",
+          "Content-Type": "application/xml",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A06D1C20",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+        "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+      },
+      "read_window_ns": [
+        209245667,
+        209536292
+      ]
+    },
+    {
+      "index": 36,
+      "label": "stable bundle: publish admission",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication/admission",
+        "headers": {
+          "Content-length": "9",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "7181c3366a91c1ac4687de2aed825851ff16cd0a40f9c37b20818e1a2a8a7f45",
+          "Content-type": "text/plain",
+          "Cache-control": "no-store",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=cache-control;content-type;host;x-amz-content-sha256;x-amz-date, Signature=33ea94d2803387278087da1c47caef6ab6ac2973adc8fc334ffaee27f241e1aa"
+        },
+        "body_base64": "ZWxpZ2libGUK",
+        "body_sha256": "7181c3366a91c1ac4687de2aed825851ff16cd0a40f9c37b20818e1a2a8a7f45"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "ETag": "\"3a191ec9920adbbc61028c05cf63f95e\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0726798",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "7b70180f-a48e-4662-8370-29f95db6dd56",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        209583292,
+        210247042
+      ]
+    },
+    {
+      "index": 37,
+      "label": "stable bundle: publish fee",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication/fee",
+        "headers": {
+          "Content-length": "3",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "917df3320d778ddbaa5c5c7742bc4046bf803c36ed2b050f30844ed206783469",
+          "Content-type": "text/plain",
+          "Cache-control": "no-store",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=cache-control;content-type;host;x-amz-content-sha256;x-amz-date, Signature=777d37168c499dc53cfdf9f54b1eb767c853f9e810a5cec15942b3a970a3508a"
+        },
+        "body_base64": "MTAK",
+        "body_sha256": "917df3320d778ddbaa5c5c7742bc4046bf803c36ed2b050f30844ed206783469"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "ETag": "\"31d30eea8d0968d6458e0ad0027c9f80\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A07C9128",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "e58f09bd-36be-4dae-b35a-e014a453892f",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        210271125,
+        210885834
+      ]
+    },
+    {
+      "index": 38,
+      "label": "stable bundle: A1",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication/admission",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=869a3b085e3ad2bc17df8b2d7d5732c13e366f58f1c268e9d28d91c37212ca71"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Cache-Control": "no-store",
+          "Content-Length": "9",
+          "Content-Type": "text/plain",
+          "ETag": "\"3a191ec9920adbbc61028c05cf63f95e\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0867468",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "7b70180f-a48e-4662-8370-29f95db6dd56",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "ZWxpZ2libGUK",
+        "body_sha256": "7181c3366a91c1ac4687de2aed825851ff16cd0a40f9c37b20818e1a2a8a7f45"
+      },
+      "read_window_ns": [
+        210908792,
+        211338750
+      ]
+    },
+    {
+      "index": 39,
+      "label": "stable bundle: B1",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication/fee",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=aeaa47a4f93070c3cd50449e28dd0dc70472e087f1c77e47af9419c743c5660c"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Cache-Control": "no-store",
+          "Content-Length": "3",
+          "Content-Type": "text/plain",
+          "ETag": "\"31d30eea8d0968d6458e0ad0027c9f80\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A08D2F10",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "e58f09bd-36be-4dae-b35a-e014a453892f",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "MTAK",
+        "body_sha256": "917df3320d778ddbaa5c5c7742bc4046bf803c36ed2b050f30844ed206783469"
+      },
+      "read_window_ns": [
+        211358000,
+        211731125
+      ]
+    },
+    {
+      "index": 40,
+      "label": "stable bundle: unrelated write",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication/unrelated",
+        "headers": {
+          "Content-length": "8",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "7f8b1dfc466b6249f06cbe55c9174df2578e7754da793fded244ef5cba2a38f1",
+          "Content-type": "text/plain",
+          "Cache-control": "no-store",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=cache-control;content-type;host;x-amz-content-sha256;x-amz-date, Signature=0d869647e77502465cc4ff4fa04b83d2432548fbf1c530da4d24b7874fe290b2"
+        },
+        "body_base64": "Y2hhbmdlZAo=",
+        "body_sha256": "7f8b1dfc466b6249f06cbe55c9174df2578e7754da793fded244ef5cba2a38f1"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "ETag": "\"ec1bebaea2c042beb68f7679ddd106a4\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0938040",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "b84e41c4-db12-403b-b4d4-acf9db72966a",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        211755750,
+        212407084
+      ]
+    },
+    {
+      "index": 41,
+      "label": "stable bundle: B2",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication/fee",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=aeaa47a4f93070c3cd50449e28dd0dc70472e087f1c77e47af9419c743c5660c"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Cache-Control": "no-store",
+          "Content-Length": "3",
+          "Content-Type": "text/plain",
+          "ETag": "\"31d30eea8d0968d6458e0ad0027c9f80\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A09D7AF0",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "e58f09bd-36be-4dae-b35a-e014a453892f",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "MTAK",
+        "body_sha256": "917df3320d778ddbaa5c5c7742bc4046bf803c36ed2b050f30844ed206783469"
+      },
+      "read_window_ns": [
+        212427125,
+        212802375
+      ]
+    },
+    {
+      "index": 42,
+      "label": "stable bundle: A2",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication/admission",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=869a3b085e3ad2bc17df8b2d7d5732c13e366f58f1c268e9d28d91c37212ca71"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Cache-Control": "no-store",
+          "Content-Length": "9",
+          "Content-Type": "text/plain",
+          "ETag": "\"3a191ec9920adbbc61028c05cf63f95e\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0A37248",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "7b70180f-a48e-4662-8370-29f95db6dd56",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "ZWxpZ2libGUK",
+        "body_sha256": "7181c3366a91c1ac4687de2aed825851ff16cd0a40f9c37b20818e1a2a8a7f45"
+      },
+      "read_window_ns": [
+        212820834,
+        213202834
+      ]
+    },
+    {
+      "index": 43,
+      "label": "multipart: initiate",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:53243/restricted-publication/multipart?uploads=",
+        "headers": {
+          "Content-type": "application/x-www-form-urlencoded",
+          "Content-length": "0",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=a75f60829b5d5c83e5a516181cea443497cb01ff02a82f6cfbac02da53124c48"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "354",
+          "Content-Type": "application/xml",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0A98CC8",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEluaXRpYXRlTXVsdGlwYXJ0VXBsb2FkUmVzdWx0IHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxCdWNrZXQ+cmVzdHJpY3RlZC1wdWJsaWNhdGlvbjwvQnVja2V0PjxLZXk+bXVsdGlwYXJ0PC9LZXk+PFVwbG9hZElkPllXRXhaalk0TmpJdE1USmxPUzAwTjJWakxXSTNaVGd0Tnpjd05tRTBZelkzWmpVeExqWTJaVE5sTnpZeExURTJOalF0TkRobVpDMDRNbU5sTFRGbE1tSXlPVEkwTWpkbU4zZ3hOemt6T0RBMU9UWXhOVGt4T1RjeE1EQXc8L1VwbG9hZElkPjwvSW5pdGlhdGVNdWx0aXBhcnRVcGxvYWRSZXN1bHQ+",
+        "body_sha256": "b34a31ce1b8cc3d15e2aa961b0f7c0e3c8b9d38cda6e9cb8145d483b87bb3fae"
+      },
+      "read_window_ns": [
+        213228292,
+        213717500
+      ]
+    },
+    {
+      "index": 44,
+      "label": "multipart: upload only part",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication/multipart?partNumber=1&uploadId=YWExZjY4NjItMTJlOS00N2VjLWI3ZTgtNzcwNmE0YzY3ZjUxLjY2ZTNlNzYxLTE2NjQtNDhmZC04MmNlLTFlMmIyOTI0MjdmN3gxNzkzODA1OTYxNTkxOTcxMDAw",
+        "headers": {
+          "Content-type": "application/x-www-form-urlencoded",
+          "Content-length": "12",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "ef3b086eb2123e80f58635eb31b839c5b7fef47597af1ef40ae254caf4eab0f5",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=47e541ed957762dfd0ffbfc5cd04500bbdee388755ec6afb007380fe35ae4c0f"
+        },
+        "body_base64": "bXVsdGlwYXJ0IEEK",
+        "body_sha256": "ef3b086eb2123e80f58635eb31b839c5b7fef47597af1ef40ae254caf4eab0f5"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "ETag": "\"7a2b926f6750dd67545eb219ed09a310\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0B22FB8",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        213770959,
+        214594542
+      ]
+    },
+    {
+      "index": 45,
+      "label": "multipart: initiate",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:53243/restricted-publication/multipart?uploads=",
+        "headers": {
+          "Content-type": "application/x-www-form-urlencoded",
+          "Content-length": "0",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=a75f60829b5d5c83e5a516181cea443497cb01ff02a82f6cfbac02da53124c48"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "354",
+          "Content-Type": "application/xml",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0BEF158",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEluaXRpYXRlTXVsdGlwYXJ0VXBsb2FkUmVzdWx0IHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxCdWNrZXQ+cmVzdHJpY3RlZC1wdWJsaWNhdGlvbjwvQnVja2V0PjxLZXk+bXVsdGlwYXJ0PC9LZXk+PFVwbG9hZElkPllXRXhaalk0TmpJdE1USmxPUzAwTjJWakxXSTNaVGd0Tnpjd05tRTBZelkzWmpVeExtTmpPVFV6TUdZMUxURTROamt0TkdRM1l5MWhNbU5oTFRWbU1HUXdNMkk1TnpSbFpuZ3hOemt6T0RBMU9UWXhOVGt6TXpJM01EQXc8L1VwbG9hZElkPjwvSW5pdGlhdGVNdWx0aXBhcnRVcGxvYWRSZXN1bHQ+",
+        "body_sha256": "e3e0bedb6b0feefadb0883d2f84afd50ae894c523b756e8cbc381b522927a5b5"
+      },
+      "read_window_ns": [
+        214616084,
+        215029459
+      ]
+    },
+    {
+      "index": 46,
+      "label": "multipart: upload only part",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/restricted-publication/multipart?partNumber=1&uploadId=YWExZjY4NjItMTJlOS00N2VjLWI3ZTgtNzcwNmE0YzY3ZjUxLmNjOTUzMGY1LTE4NjktNGQ3Yy1hMmNhLTVmMGQwM2I5NzRlZngxNzkzODA1OTYxNTkzMzI3MDAw",
+        "headers": {
+          "Content-type": "application/x-www-form-urlencoded",
+          "Content-length": "12",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "1bba955f437bef47e09edde1a7972bbbe7bd13142b4c05471c5feb7c447c2369",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=667d6a4bb21c223904b388fc3b603a5bef271ef2387bd3dd875e16423d19b6f4"
+        },
+        "body_base64": "bXVsdGlwYXJ0IEIK",
+        "body_sha256": "1bba955f437bef47e09edde1a7972bbbe7bd13142b4c05471c5feb7c447c2369"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "ETag": "\"d17581f220d9fa2d87556032e2b38385\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0C5EE68",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        215067542,
+        215883875
+      ]
+    },
+    {
+      "index": 47,
+      "label": "multipart: complete B",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:53243/restricted-publication/multipart?uploadId=YWExZjY4NjItMTJlOS00N2VjLWI3ZTgtNzcwNmE0YzY3ZjUxLmNjOTUzMGY1LTE4NjktNGQ3Yy1hMmNhLTVmMGQwM2I5NzRlZngxNzkzODA1OTYxNTkzMzI3MDAw",
+        "headers": {
+          "Content-length": "137",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "c51b9b307763e250ac875545915f2d348821bad39f83552282c62b9783b1b381",
+          "Content-type": "application/xml",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=523a1e8d2c47bc75cafd8b69bd73f002605d7399d4e405537c84c6b1d66aa3b6"
+        },
+        "body_base64": "PENvbXBsZXRlTXVsdGlwYXJ0VXBsb2FkPjxQYXJ0PjxQYXJ0TnVtYmVyPjE8L1BhcnROdW1iZXI+PEVUYWc+ImQxNzU4MWYyMjBkOWZhMmQ4NzU1NjAzMmUyYjM4Mzg1IjwvRVRhZz48L1BhcnQ+PC9Db21wbGV0ZU11bHRpcGFydFVwbG9hZD4=",
+        "body_sha256": "c51b9b307763e250ac875545915f2d348821bad39f83552282c62b9783b1b381"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "342",
+          "Content-Type": "application/xml",
+          "ETag": "\"372430c3fad4da039edbd891d367a06d-1\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0D2D330",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "898fa551-df7c-43fe-85a2-0dec96ec951c",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPENvbXBsZXRlTXVsdGlwYXJ0VXBsb2FkUmVzdWx0IHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxMb2NhdGlvbj5odHRwOi8vMTI3LjAuMC4xOjUzMjQzL3Jlc3RyaWN0ZWQtcHVibGljYXRpb24vbXVsdGlwYXJ0PC9Mb2NhdGlvbj48QnVja2V0PnJlc3RyaWN0ZWQtcHVibGljYXRpb248L0J1Y2tldD48S2V5Pm11bHRpcGFydDwvS2V5PjxFVGFnPiYjMzQ7MzcyNDMwYzNmYWQ0ZGEwMzllZGJkODkxZDM2N2EwNmQtMSYjMzQ7PC9FVGFnPjwvQ29tcGxldGVNdWx0aXBhcnRVcGxvYWRSZXN1bHQ+",
+        "body_sha256": "21fac3bf51b02e91b51c07e4bc3704a0f96255587790b9e41cdace30671d87db"
+      },
+      "read_window_ns": [
+        215913917,
+        216857375
+      ]
+    },
+    {
+      "index": 48,
+      "label": "multipart: current after completion",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication/multipart",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=50baabd417e8ca6aa7d5a72d32e343703072f0ff7e49a77224bc3716a36a3391"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "12",
+          "Content-Type": "application/x-www-form-urlencoded",
+          "ETag": "\"372430c3fad4da039edbd891d367a06d-1\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0E26778",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "898fa551-df7c-43fe-85a2-0dec96ec951c",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "bXVsdGlwYXJ0IEIK",
+        "body_sha256": "1bba955f437bef47e09edde1a7972bbbe7bd13142b4c05471c5feb7c447c2369"
+      },
+      "read_window_ns": [
+        216878667,
+        217358334
+      ]
+    },
+    {
+      "index": 49,
+      "label": "multipart: complete A",
+      "request": {
+        "method": "POST",
+        "url": "http://127.0.0.1:53243/restricted-publication/multipart?uploadId=YWExZjY4NjItMTJlOS00N2VjLWI3ZTgtNzcwNmE0YzY3ZjUxLjY2ZTNlNzYxLTE2NjQtNDhmZC04MmNlLTFlMmIyOTI0MjdmN3gxNzkzODA1OTYxNTkxOTcxMDAw",
+        "headers": {
+          "Content-length": "137",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "550a4998d08d808e0b0763c449ce62279d681070cb9b80601eba6d6839e7eb03",
+          "Content-type": "application/xml",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=f91b512a07a08b538482073ea9428cb971e94c57e223601fa172e4288511faeb"
+        },
+        "body_base64": "PENvbXBsZXRlTXVsdGlwYXJ0VXBsb2FkPjxQYXJ0PjxQYXJ0TnVtYmVyPjE8L1BhcnROdW1iZXI+PEVUYWc+IjdhMmI5MjZmNjc1MGRkNjc1NDVlYjIxOWVkMDlhMzEwIjwvRVRhZz48L1BhcnQ+PC9Db21wbGV0ZU11bHRpcGFydFVwbG9hZD4=",
+        "body_sha256": "550a4998d08d808e0b0763c449ce62279d681070cb9b80601eba6d6839e7eb03"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "342",
+          "Content-Type": "application/xml",
+          "ETag": "\"67ed842456ab7cab1c7fb30226af6a55-1\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0E92220",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "140a04e3-d405-4fce-967e-82eeaf5bbb6c",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPENvbXBsZXRlTXVsdGlwYXJ0VXBsb2FkUmVzdWx0IHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxMb2NhdGlvbj5odHRwOi8vMTI3LjAuMC4xOjUzMjQzL3Jlc3RyaWN0ZWQtcHVibGljYXRpb24vbXVsdGlwYXJ0PC9Mb2NhdGlvbj48QnVja2V0PnJlc3RyaWN0ZWQtcHVibGljYXRpb248L0J1Y2tldD48S2V5Pm11bHRpcGFydDwvS2V5PjxFVGFnPiYjMzQ7NjdlZDg0MjQ1NmFiN2NhYjFjN2ZiMzAyMjZhZjZhNTUtMSYjMzQ7PC9FVGFnPjwvQ29tcGxldGVNdWx0aXBhcnRVcGxvYWRSZXN1bHQ+",
+        "body_sha256": "4a4c0607f7993eb0cb1c43b48c1961620c305310517d62a3187722708b4718ff"
+      },
+      "read_window_ns": [
+        217382000,
+        218364500
+      ]
+    },
+    {
+      "index": 50,
+      "label": "multipart: current after completion",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/restricted-publication/multipart",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-publisher/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=50baabd417e8ca6aa7d5a72d32e343703072f0ff7e49a77224bc3716a36a3391"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "12",
+          "Content-Type": "application/x-www-form-urlencoded",
+          "ETag": "\"67ed842456ab7cab1c7fb30226af6a55-1\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0F89728",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "140a04e3-d405-4fce-967e-82eeaf5bbb6c",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "bXVsdGlwYXJ0IEEK",
+        "body_sha256": "ef3b086eb2123e80f58635eb31b839c5b7fef47597af1ef40ae254caf4eab0f5"
+      },
+      "read_window_ns": [
+        218382792,
+        218803417
+      ]
+    },
+    {
+      "index": 51,
+      "label": "setup: create object-lock-control",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/object-lock-control",
+        "headers": {
+          "Content-type": "application/x-www-form-urlencoded",
+          "Content-length": "0",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "X-amz-bucket-object-lock-enabled": "true",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-bucket-object-lock-enabled;x-amz-content-sha256;x-amz-date, Signature=13bfa59fa1af1f45ee237457192517130851019b720b7952a016b351040652e2"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "Location": "/object-lock-control",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A0FFD6A0",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        218830875,
+        219589834
+      ]
+    },
+    {
+      "index": 52,
+      "label": "setup: enable versioning",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/object-lock-control?versioning=",
+        "headers": {
+          "Content-length": "123",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7",
+          "Content-type": "application/xml",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=89a00575c904bbc15c15d76ff952e5de4db5fc22d6f67cdcf5d65c29dafa476c"
+        },
+        "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+        "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A10BC168",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        219614250,
+        220645959
+      ]
+    },
+    {
+      "index": 53,
+      "label": "object lock: publish retained A",
+      "request": {
+        "method": "PUT",
+        "url": "http://127.0.0.1:53243/object-lock-control/page",
+        "headers": {
+          "Content-type": "application/x-www-form-urlencoded",
+          "Content-length": "2",
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+          "X-amz-object-lock-mode": "COMPLIANCE",
+          "X-amz-object-lock-retain-until-date": "2026-11-05T15:26:01Z",
+          "Content-md5": "vwcukRkHe052Q3qTmGeH7w==",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=content-md5;host;x-amz-content-sha256;x-amz-date;x-amz-object-lock-mode;x-amz-object-lock-retain-until-date, Signature=919153768b8471522f349d02dbc0ddd29ee39b7743de5ab9b651c63af3829410"
+        },
+        "body_base64": "QQo=",
+        "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "0",
+          "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A11B8490",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "40c88486-15d6-4198-aa05-5db412a6c82d",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "read_window_ns": [
+        220676292,
+        221407292
+      ]
+    },
+    {
+      "index": 54,
+      "label": "object lock: first A capture",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:53243/object-lock-control/page",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=c9c24418f911aa30990191edc89328cf3b6d4cebc50bb000c3b1a62802ddf543"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "2",
+          "Content-Type": "application/x-www-form-urlencoded",
+          "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+          "Last-Modified": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Object-Lock-Mode": "COMPLIANCE",
+          "X-Amz-Object-Lock-Retain-Until-Date": "2026-11-05T15:26:01.000Z",
+          "X-Amz-Request-Id": "18E4E104A1278E98",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "x-amz-version-id": "40c88486-15d6-4198-aa05-5db412a6c82d",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "QQo=",
+        "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+      },
+      "read_window_ns": [
+        221427209,
+        221851959
+      ]
+    },
+    {
+      "index": 55,
+      "label": "object lock: retained data deletion rejected",
+      "request": {
+        "method": "DELETE",
+        "url": "http://127.0.0.1:53243/object-lock-control/page?versionId=40c88486-15d6-4198-aa05-5db412a6c82d",
+        "headers": {
+          "User-agent": "Python-urllib/3.12",
+          "Host": "127.0.0.1:53243",
+          "X-amz-date": "20261104T152601Z",
+          "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=continuity-local-fixture/20261104/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=682cb5a4a0d5614cdb482b13edb263dfa75fa77077af53d3295338d1bbd177a8"
+        },
+        "body_base64": "",
+        "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "response": {
+        "status": 400,
+        "headers": {
+          "Accept-Ranges": "bytes",
+          "Content-Length": "375",
+          "Content-Type": "application/xml",
+          "Server": "MinIO",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Vary": "Accept-Encoding",
+          "X-Amz-Id-2": "bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc",
+          "X-Amz-Request-Id": "18E4E104A12D9978",
+          "X-Content-Type-Options": "nosniff",
+          "X-Ratelimit-Limit": "695",
+          "X-Ratelimit-Remaining": "695",
+          "X-Xss-Protection": "1; mode=block",
+          "Date": "Wed, 04 Nov 2026 15:26:01 GMT",
+          "Connection": "close"
+        },
+        "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPkludmFsaWRSZXF1ZXN0PC9Db2RlPjxNZXNzYWdlPk9iamVjdCBpcyBXT1JNIHByb3RlY3RlZCBhbmQgY2Fubm90IGJlIG92ZXJ3cml0dGVuPC9NZXNzYWdlPjxLZXk+cGFnZTwvS2V5PjxCdWNrZXROYW1lPm9iamVjdC1sb2NrLWNvbnRyb2w8L0J1Y2tldE5hbWU+PFJlc291cmNlPi9vYmplY3QtbG9jay1jb250cm9sL3BhZ2U8L1Jlc291cmNlPjxSZXF1ZXN0SWQ+MThFNEUxMDRBMTJEOTk3ODwvUmVxdWVzdElkPjxIb3N0SWQ+YmNiZjY5OTU2NDNhODlkNjkzYWY0YmQxNTQxZjUzMWJjZmJhZDRhNTZmM2JhZGMwZjRlYjUzOWZlNzdlYjZiYzwvSG9zdElkPjwvRXJyb3I+",
+        "body_sha256": "78e10c5fdbf4a4237d4dda8d66e181886c7e15feb2b363466ba451f0d094c7e4"
+      },
+      "read_window_ns": [
+        221874250,
+        222261542
+      ]
+    }
+  ],
+  "administration": [
+    {
+      "arguments": [
+        "alias",
+        "set",
+        "fixture",
+        "http://127.0.0.1:53243",
+        "continuity-local-fixture",
+        "continuity-local-fixture-secret-not-a-cloud-key",
+        "--api",
+        "S3v4"
+      ],
+      "returncode": 0,
+      "stdout": "{\"status\":\"success\",\"alias\":\"fixture\",\"URL\":\"http://127.0.0.1:53243\",\"accessKey\":\"continuity-local-fixture\",\"secretKey\":\"continuity-local-fixture-secret-not-a-cloud-key\",\"api\":\"S3v4\",\"path\":\"auto\"}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "admin",
+        "user",
+        "add",
+        "fixture",
+        "continuity-publisher",
+        "continuity-publisher-public-fixture-secret"
+      ],
+      "returncode": 0,
+      "stdout": "{\"status\":\"success\",\"accessKey\":\"continuity-publisher\",\"secretKey\":\"continuity-publisher-public-fixture-secret\",\"userStatus\":\"enabled\"}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "admin",
+        "policy",
+        "create",
+        "fixture",
+        "publication",
+        "/var/folders/t5/pll8y78x515cxz__swq2bgrh0000gn/T/publication-profile-px44lgho/publisher-policy.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\"status\":\"success\",\"policy\":\"publication\",\"policyInfo\":{\"PolicyName\":\"\",\"Policy\":null},\"isGroup\":false}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "admin",
+        "policy",
+        "attach",
+        "fixture",
+        "publication",
+        "--user",
+        "continuity-publisher"
+      ],
+      "returncode": 0,
+      "stdout": "{\"status\":\"success\",\"policiesAttached\":[\"publication\"],\"user\":\"continuity-publisher\"}\n",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "admin",
+        "user",
+        "info",
+        "fixture",
+        "continuity-publisher"
+      ],
+      "returncode": 0,
+      "stdout": "{\"status\":\"success\",\"accessKey\":\"continuity-publisher\",\"policyName\":\"publication\",\"userStatus\":\"enabled\"}\n",
+      "stderr": ""
+    }
+  ],
+  "status": "incomplete",
+  "failure": "AssertionError(('object lock: retained data deletion rejected', 403, {'status': 400, 'headers': {'Accept-Ranges': 'bytes', 'Content-Length': '375', 'Content-Type': 'application/xml', 'Server': 'MinIO', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains', 'Vary': 'Accept-Encoding', 'X-Amz-Id-2': 'bcbf6995643a89d693af4bd1541f531bcfbad4a56f3badc0f4eb539fe77eb6bc', 'X-Amz-Request-Id': '18E4E104A12D9978', 'X-Content-Type-Options': 'nosniff', 'X-Ratelimit-Limit': '695', 'X-Ratelimit-Remaining': '695', 'X-Xss-Protection': '1; mode=block', 'Date': 'Wed, 04 Nov 2026 15:26:01 GMT', 'Connection': 'close'}, 'body_base64': 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPkludmFsaWRSZXF1ZXN0PC9Db2RlPjxNZXNzYWdlPk9iamVjdCBpcyBXT1JNIHByb3RlY3RlZCBhbmQgY2Fubm90IGJlIG92ZXJ3cml0dGVuPC9NZXNzYWdlPjxLZXk+cGFnZTwvS2V5PjxCdWNrZXROYW1lPm9iamVjdC1sb2NrLWNvbnRyb2w8L0J1Y2tldE5hbWU+PFJlc291cmNlPi9vYmplY3QtbG9jay1jb250cm9sL3BhZ2U8L1Jlc291cmNlPjxSZXF1ZXN0SWQ+MThFNEUxMDRBMTJEOTk3ODwvUmVxdWVzdElkPjxIb3N0SWQ+YmNiZjY5OTU2NDNhODlkNjkzYWY0YmQxNTQxZjUzMWJjZmJhZDRhNTZmM2JhZGMwZjRlYjUzOWZlNzdlYjZiYzwvSG9zdElkPjwvRXJyb3I+', 'body_sha256': '78e10c5fdbf4a4237d4dda8d66e181886c7e15feb2b363466ba451f0d094c7e4'}))"
+}

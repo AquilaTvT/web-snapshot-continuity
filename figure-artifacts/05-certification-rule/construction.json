@@ -1,0 +1,76 @@
+{
+  "kind": "constructed",
+  "note": "Panel b only: explicit finite construction on abstract time units; intervals half-open. Panel a is derived from trace.json (native MinIO execution).",
+  "panels": {
+    "b": {
+      "title": "Reads in the revisit order 1, 2, 3, 2, 1",
+      "resources": {
+        "R1": {
+          "target": "r1",
+          "segments": [
+            [
+              0,
+              10,
+              "r1",
+              "α"
+            ]
+          ]
+        },
+        "R2": {
+          "target": "r2",
+          "segments": [
+            [
+              0,
+              10,
+              "r2",
+              "β"
+            ]
+          ]
+        },
+        "R3": {
+          "target": "r3",
+          "segments": [
+            [
+              0,
+              10,
+              "r3",
+              "γ"
+            ]
+          ]
+        }
+      },
+      "captures": [
+        [
+          "R1",
+          0.6,
+          1.4
+        ],
+        [
+          "R2",
+          2.3,
+          3.1
+        ],
+        [
+          "R3",
+          4.6,
+          5.4
+        ],
+        [
+          "R2",
+          6.9,
+          7.7
+        ],
+        [
+          "R1",
+          8.6,
+          9.4
+        ]
+      ],
+      "schematic_read": {
+        "resource": "R3",
+        "instant": 4.85,
+        "note": "Schematic only: R3 is read once, at an unknown instant of its window. The figure marks one such instant to show that every consistent history has a common instant at R3's read; it is not a measured time and no instant is common to all histories."
+      }
+    }
+  }
+}

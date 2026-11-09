@@ -1,0 +1,2176 @@
+{
+ "schema": 1,
+ "server": "ceph",
+ "implementation": {
+  "version": "ceph version 19.2.0 (16063ff2022298c9300e49a547a16ffda59baf13) squid (stable)",
+  "implementation": "Ceph RADOS Gateway (single-node demo cluster)",
+  "distribution": "quay.io/ceph/demo:latest-squid",
+  "image": "[\"quay.io/ceph/demo@sha256:522483cf07cfce6386b8e18a3edfa88a1b32c688dee231d0a6962b1513557723\"] sha256:522483cf07cfce6386b8e18a3edfa88a1b32c688dee231d0a6962b1513557723"
+ },
+ "started_utc": "2026-11-05T06:12:31.635401+00:00",
+ "finished_utc": "2026-11-05T06:13:06.508552+00:00",
+ "client": {
+  "python": "3.13.18",
+  "system": "Linux",
+  "machine": "x86_64",
+  "transport": "loopback HTTP, SigV4 path-style"
+ },
+ "cases": [
+  {
+   "name": "setup_versioned_bucket",
+   "created": true,
+   "versioning": true,
+   "setup": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "name": "delete_current",
+   "writes": [
+    3,
+    5
+   ],
+   "mutation": 7,
+   "captures": [
+    {
+     "index": 4,
+     "status": 200,
+     "version_id": "a..l.SncVyZJSKMmvEDkzNJG3ee3zJL",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 6,
+     "status": 200,
+     "version_id": "0p1lo1c3PKkOydoNwZk9no3rBoarkFg",
+     "etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "body": "B\n"
+    },
+    {
+     "index": 8,
+     "status": 200,
+     "version_id": "a..l.SncVyZJSKMmvEDkzNJG3ee3zJL",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ],
+   "conditional": {
+    "index": 9,
+    "status": 304,
+    "version_id": null,
+    "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+    "last_modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "body": null
+   }
+  },
+  {
+   "name": "delete_marker",
+   "writes": [
+    10
+   ],
+   "marker": 12,
+   "mutation": 14,
+   "captures": [
+    {
+     "index": 11,
+     "status": 200,
+     "version_id": "x-7J4X.67-cEwN1TQQC9-qm3ZjyhI63",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 13,
+     "status": 404,
+     "version_id": null,
+     "etag": null,
+     "last_modified": null,
+     "body_sha256": "11b1715b1acc993dbcda05762b243e9acb3d3089a0cc42a8f153f532d37c089a",
+     "body": null
+    },
+    {
+     "index": 15,
+     "status": 200,
+     "version_id": "x-7J4X.67-cEwN1TQQC9-qm3ZjyhI63",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ]
+  },
+  {
+   "name": "copy_restore",
+   "writes": [
+    16,
+    18
+   ],
+   "mutation": 20,
+   "attempts": [
+    20
+   ],
+   "captures": [
+    {
+     "index": 17,
+     "status": 200,
+     "version_id": "g6IgLRrG-OFxZag3M7Rpat2Gk8cVoJG",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 19,
+     "status": 200,
+     "version_id": "JIR17hUCvYaVIeBsYMUdW9Oog-OYQVt",
+     "etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "body": "B\n"
+    },
+    {
+     "index": 21,
+     "status": 200,
+     "version_id": "gKkK14Xj3RiooUndlehu8Yj38g1Fhjl",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ]
+  },
+  {
+   "name": "reupload",
+   "writes": [
+    22,
+    24,
+    26
+   ],
+   "captures": [
+    {
+     "index": 23,
+     "status": 200,
+     "version_id": "L9FbA1kT7F-x6B7-EEeR0wYO7rK4q9O",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 25,
+     "status": 200,
+     "version_id": "HRhQSXNfkrVDMvMTCIsTWmBhbr0PZnI",
+     "etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "body": "B\n"
+    },
+    {
+     "index": 27,
+     "status": 200,
+     "version_id": "11YCegP4lN5k28eve8rXJWWXrqaQD29",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ],
+   "conditional": {
+    "index": 28,
+    "status": 304,
+    "version_id": null,
+    "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+    "last_modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "body": null
+   }
+  },
+  {
+   "name": "suspended_null",
+   "created": true,
+   "versioning": true,
+   "setup": [
+    29,
+    30,
+    31
+   ],
+   "suspend": 32,
+   "suspended": true,
+   "writes": [
+    34,
+    36,
+    38
+   ],
+   "captures": [
+    {
+     "index": 35,
+     "status": 200,
+     "version_id": null,
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 37,
+     "status": 200,
+     "version_id": null,
+     "etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "body": "B\n"
+    },
+    {
+     "index": 39,
+     "status": 200,
+     "version_id": null,
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ]
+  },
+  {
+   "name": "object_lock_marker",
+   "created": true,
+   "versioning": true,
+   "setup": [
+    40,
+    41,
+    42
+   ],
+   "writes": [
+    43
+   ],
+   "retention": 44,
+   "protected_delete": 46,
+   "marker": 47,
+   "mutation": 49,
+   "captures": [
+    {
+     "index": 45,
+     "status": 200,
+     "version_id": "ShFXn4ZxwPOuDaC9JgvtHvMF6znHho8",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 48,
+     "status": 404,
+     "version_id": null,
+     "etag": null,
+     "last_modified": null,
+     "body_sha256": "f7f19897b95d05d79dfc32380b9b0486b27093be8446fa1c9efc8e670989f090",
+     "body": null
+    },
+    {
+     "index": 50,
+     "status": 200,
+     "version_id": "ShFXn4ZxwPOuDaC9JgvtHvMF6znHho8",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ]
+  }
+ ],
+ "requests": [
+  {
+   "index": 0,
+   "label": "setup: create probe-versioned",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-versioned",
+    "headers": {
+     "Content-type": "application/x-www-form-urlencoded",
+     "Content-length": "0",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061300Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=747da22799a0492574b3a44d7abc0cfafbce75192ad5f5d0eaf615dd68b44dcf"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-amz-request-id": "tx00000460cf52ae134ec3b-006aec1e6c-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Content-Length": "0",
+     "Date": "Thu, 05 Nov 2026 06:13:02 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    337398,
+    2762522429
+   ]
+  },
+  {
+   "index": 1,
+   "label": "setup: enable versioning",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-versioned?versioning=",
+    "headers": {
+     "Content-length": "123",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061302Z",
+     "X-amz-content-sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7",
+     "Content-type": "application/xml",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=e4e7de1c9ff5cb519cb9b9a1ccf552fd97759cfb9ac8e5919caf66a3949f67f7"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-amz-request-id": "tx00000f53d06d01e2435cf-006aec1e6e-4125-default",
+     "Content-Type": "application/xml",
+     "Server": "Ceph Object Gateway (squid)",
+     "Content-Length": "0",
+     "Date": "Thu, 05 Nov 2026 06:13:02 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    2762709138,
+    2767656238
+   ]
+  },
+  {
+   "index": 2,
+   "label": "setup: read versioning",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-versioned?versioning=",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061302Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=8a17785a0195d3dae18f5fef9ec42a584226cbb5fa1b5e3138ccaba836cb89e5"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-amz-request-id": "tx000000ee307a9fa8c860f-006aec1e6e-4125-default",
+     "Content-Type": "application/xml",
+     "Server": "Ceph Object Gateway (squid)",
+     "Content-Length": "192",
+     "Date": "Thu, 05 Nov 2026 06:13:02 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48VmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24geG1sbnM9Imh0dHA6Ly9zMy5hbWF6b25hd3MuY29tL2RvYy8yMDA2LTAzLTAxLyI+PFN0YXR1cz5FbmFibGVkPC9TdGF0dXM+PE1mYURlbGV0ZT5EaXNhYmxlZDwvTWZhRGVsZXRlPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "c95369f0ac07894519e407dcf2cae05ee6b02305af8d2b8e57188db670679352"
+   },
+   "window_ns": [
+    2767795456,
+    2769068219
+   ]
+  },
+  {
+   "index": 3,
+   "label": "delete_current: put A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-versioned/delete-current",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061302Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=c6ee2caf18db5ef80e72713876ae3c99346850e670fc0983395107a5db441805"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Accept-Ranges": "bytes",
+     "x-amz-version-id": "a..l.SncVyZJSKMmvEDkzNJG3ee3zJL",
+     "x-amz-request-id": "tx000005e3797912ea2abcc-006aec1e6e-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    2769197320,
+    5777444104
+   ]
+  },
+  {
+   "index": 4,
+   "label": "delete_current: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-versioned/delete-current",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=01ffef3b5807e0775cad7f1499a871e40995d12d565cb0868aa25ac9049c6839"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "x-amz-version-id": "a..l.SncVyZJSKMmvEDkzNJG3ee3zJL",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-request-id": "tx00000d5f27e976ee38a3c-006aec1e71-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    5777596613,
+    5781154886
+   ]
+  },
+  {
+   "index": 5,
+   "label": "delete_current: put B",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-versioned/delete-current",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=947de2f1cdc400e5d97286cc644c1997b499b7efc06cda0dbed6101ff0ac48b4"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "0",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Accept-Ranges": "bytes",
+     "x-amz-version-id": "0p1lo1c3PKkOydoNwZk9no3rBoarkFg",
+     "x-amz-request-id": "tx00000c10605a6e0a52c1b-006aec1e71-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5781288942,
+    5798007835
+   ]
+  },
+  {
+   "index": 6,
+   "label": "delete_current: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-versioned/delete-current",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=01ffef3b5807e0775cad7f1499a871e40995d12d565cb0868aa25ac9049c6839"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "x-amz-version-id": "0p1lo1c3PKkOydoNwZk9no3rBoarkFg",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "x-amz-request-id": "tx0000096ec5e071473295f-006aec1e71-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    5798147556,
+    5801796705
+   ]
+  },
+  {
+   "index": 7,
+   "label": "delete_current: delete B by version ID",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:58601/probe-versioned/delete-current?versionId=0p1lo1c3PKkOydoNwZk9no3rBoarkFg",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=02062e60af58abbdfd6e9261d89f376f2fb6bd827f2e62303f27ee071f224bf1"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "x-amz-version-id": "0p1lo1c3PKkOydoNwZk9no3rBoarkFg",
+     "x-amz-request-id": "tx0000001df78c9e5684a50-006aec1e71-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5801963595,
+    5817709015
+   ]
+  },
+  {
+   "index": 8,
+   "label": "delete_current: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-versioned/delete-current",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=01ffef3b5807e0775cad7f1499a871e40995d12d565cb0868aa25ac9049c6839"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "x-amz-version-id": "a..l.SncVyZJSKMmvEDkzNJG3ee3zJL",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-request-id": "tx00000d1a485adc9fa15d3-006aec1e71-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    5817817981,
+    5820842722
+   ]
+  },
+  {
+   "index": 9,
+   "label": "delete_current: conditional GET with first ETag",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-versioned/delete-current",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "If-none-match": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;if-none-match;x-amz-content-sha256;x-amz-date, Signature=6bb55ecc60b43c1e33895836b8e79f3bf2c104e1d445ea2b2c1f27a3b4646ab1"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 304,
+    "headers": {
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-request-id": "tx00000a83d4f988176c557-006aec1e71-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5820958361,
+    5823035898
+   ]
+  },
+  {
+   "index": 10,
+   "label": "delete_marker: put A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-versioned/delete-marker",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=a0820ce20614f1fe8d48ad089f166f368ca8178ea34133f47392e5bb4579116f"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Accept-Ranges": "bytes",
+     "x-amz-version-id": "x-7J4X.67-cEwN1TQQC9-qm3ZjyhI63",
+     "x-amz-request-id": "tx000006d32d4bf1390f476-006aec1e71-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5823184904,
+    5837889969
+   ]
+  },
+  {
+   "index": 11,
+   "label": "delete_marker: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-versioned/delete-marker",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=9adc36822170251925bf4132a3e5981eda395f87414037a3af1d21d9d77c63a0"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "x-amz-version-id": "x-7J4X.67-cEwN1TQQC9-qm3ZjyhI63",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-request-id": "tx00000be1d86e61093c254-006aec1e71-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    5838007445,
+    5840891371
+   ]
+  },
+  {
+   "index": 12,
+   "label": "delete_marker: create delete marker",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:58601/probe-versioned/delete-marker",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=f5bbe4b1c58d702d2677278320819197930e864a80efc9ff929a997f142863cc"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "x-amz-version-id": "9rZSFcKkwTbsjcme0xxaCJVw0QQ8mMH",
+     "x-amz-delete-marker": "true",
+     "x-amz-request-id": "tx000009a0134c1a25aef97-006aec1e71-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5840994092,
+    5850602696
+   ]
+  },
+  {
+   "index": 13,
+   "label": "delete_marker: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-versioned/delete-marker",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=9adc36822170251925bf4132a3e5981eda395f87414037a3af1d21d9d77c63a0"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 404,
+    "headers": {
+     "Content-Length": "241",
+     "x-amz-request-id": "tx00000ce2d8f75e9983e15-006aec1e71-4125-default",
+     "Accept-Ranges": "bytes",
+     "Content-Type": "application/xml",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48RXJyb3I+PENvZGU+Tm9TdWNoS2V5PC9Db2RlPjxNZXNzYWdlPjwvTWVzc2FnZT48QnVja2V0TmFtZT5wcm9iZS12ZXJzaW9uZWQ8L0J1Y2tldE5hbWU+PFJlcXVlc3RJZD50eDAwMDAwY2UyZDhmNzVlOTk4M2UxNS0wMDZhZWMxZTcxLTQxMjUtZGVmYXVsdDwvUmVxdWVzdElkPjxIb3N0SWQ+NDEyNS1kZWZhdWx0LWRlZmF1bHQ8L0hvc3RJZD48L0Vycm9yPg==",
+    "body_sha256": "11b1715b1acc993dbcda05762b243e9acb3d3089a0cc42a8f153f532d37c089a"
+   },
+   "window_ns": [
+    5850707925,
+    5852603278
+   ]
+  },
+  {
+   "index": 14,
+   "label": "delete_marker: remove marker by version ID",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:58601/probe-versioned/delete-marker?versionId=9rZSFcKkwTbsjcme0xxaCJVw0QQ8mMH",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=b425cf1f085c3f67c4f862ed1b6b296b72f9877193840bd7eaeb99b3837642ac"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "x-amz-version-id": "9rZSFcKkwTbsjcme0xxaCJVw0QQ8mMH",
+     "x-amz-delete-marker": "true",
+     "x-amz-request-id": "tx00000d6ebe48f5628ecec-006aec1e71-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5852735604,
+    5864344166
+   ]
+  },
+  {
+   "index": 15,
+   "label": "delete_marker: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-versioned/delete-marker",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=9adc36822170251925bf4132a3e5981eda395f87414037a3af1d21d9d77c63a0"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "x-amz-version-id": "x-7J4X.67-cEwN1TQQC9-qm3ZjyhI63",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-request-id": "tx00000c5bad78bc4520c21-006aec1e71-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    5864498490,
+    5867737017
+   ]
+  },
+  {
+   "index": 16,
+   "label": "copy_restore: put A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-versioned/copy-restore",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=8f66e9f6ba18b5a5dd8002e20f2f3410a2f48bbf76233b16c795117a992271c3"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Accept-Ranges": "bytes",
+     "x-amz-version-id": "g6IgLRrG-OFxZag3M7Rpat2Gk8cVoJG",
+     "x-amz-request-id": "tx0000020b1844bca038527-006aec1e71-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5867897090,
+    5882607924
+   ]
+  },
+  {
+   "index": 17,
+   "label": "copy_restore: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-versioned/copy-restore",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=140347e5735f821fdadcc7c2295536721179c638301dadcb26977ca36754105c"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "x-amz-version-id": "g6IgLRrG-OFxZag3M7Rpat2Gk8cVoJG",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-request-id": "tx000007b68426b8621fc66-006aec1e71-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    5882706498,
+    5885649560
+   ]
+  },
+  {
+   "index": 18,
+   "label": "copy_restore: put B",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-versioned/copy-restore",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=7e333688dff0e3fbc9aee5f8f8b2822617a6afc82492395933a343e7c6aae102"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "0",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Accept-Ranges": "bytes",
+     "x-amz-version-id": "JIR17hUCvYaVIeBsYMUdW9Oog-OYQVt",
+     "x-amz-request-id": "tx00000cfe9e167c7f6c5d1-006aec1e71-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5885762825,
+    5899426504
+   ]
+  },
+  {
+   "index": 19,
+   "label": "copy_restore: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-versioned/copy-restore",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=140347e5735f821fdadcc7c2295536721179c638301dadcb26977ca36754105c"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "x-amz-version-id": "JIR17hUCvYaVIeBsYMUdW9Oog-OYQVt",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "x-amz-request-id": "tx00000007143369622935b-006aec1e71-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    5899540107,
+    5901821327
+   ]
+  },
+  {
+   "index": 20,
+   "label": "copy_restore: copy old A to current",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-versioned/copy-restore",
+    "headers": {
+     "Content-type": "application/x-www-form-urlencoded",
+     "Content-length": "0",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "X-amz-copy-source": "/probe-versioned/copy-restore?versionId=g6IgLRrG-OFxZag3M7Rpat2Gk8cVoJG",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-copy-source;x-amz-date, Signature=a95d493032d63aa74ab6904726980a6001e09c5eb61ff43235d92d2d79b2a156"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Transfer-Encoding": "chunked",
+     "x-amz-request-id": "tx0000072ca1bc81aa51dcc-006aec1e71-4125-default",
+     "Content-Type": "application/xml",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48Q29weU9iamVjdFJlc3VsdCB4bWxucz0iaHR0cDovL3MzLmFtYXpvbmF3cy5jb20vZG9jLzIwMDYtMDMtMDEvIj48TGFzdE1vZGlmaWVkPjIwMjYtMTEtMDVUMDY6MTM6MDUuOTM3WjwvTGFzdE1vZGlmaWVkPjxFVGFnPiZxdW90O2JmMDcyZTkxMTkwNzdiNGU3NjQzN2E5Mzk4Njc4N2VmJnF1b3Q7PC9FVGFnPjwvQ29weU9iamVjdFJlc3VsdD4=",
+    "body_sha256": "38cf2d3059c1ad6322f6a8e8dbad65f162bbeeef0d9db2d9193fc0b9674c034e"
+   },
+   "window_ns": [
+    5901929588,
+    5917280547
+   ]
+  },
+  {
+   "index": 21,
+   "label": "copy_restore: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-versioned/copy-restore",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=140347e5735f821fdadcc7c2295536721179c638301dadcb26977ca36754105c"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "x-amz-version-id": "gKkK14Xj3RiooUndlehu8Yj38g1Fhjl",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-request-id": "tx000007777786d2b2a9af0-006aec1e71-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    5917424623,
+    5920117859
+   ]
+  },
+  {
+   "index": 22,
+   "label": "reupload: put A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-versioned/reupload",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=7eaf6c9a9abbacc2c54150c74ef6634405a5eaeb171f361c967b8f39b00924b5"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Accept-Ranges": "bytes",
+     "x-amz-version-id": "L9FbA1kT7F-x6B7-EEeR0wYO7rK4q9O",
+     "x-amz-request-id": "tx0000008d20a1887e1bf47-006aec1e71-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5920259981,
+    5933988486
+   ]
+  },
+  {
+   "index": 23,
+   "label": "reupload: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-versioned/reupload",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=82e539396b22d47c7221428b92cc9b4ac694aec4ef2ebe1cb9c56e8d00bc4851"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "x-amz-version-id": "L9FbA1kT7F-x6B7-EEeR0wYO7rK4q9O",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-request-id": "tx00000b5f2e4bc63455bcf-006aec1e71-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    5934095028,
+    5936652708
+   ]
+  },
+  {
+   "index": 24,
+   "label": "reupload: put B",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-versioned/reupload",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=154a1d1a9cb0e031d8a98d1cfd82e2e2f8219a44e0dbb74b37bc80f907ed3a5a"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "0",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Accept-Ranges": "bytes",
+     "x-amz-version-id": "HRhQSXNfkrVDMvMTCIsTWmBhbr0PZnI",
+     "x-amz-request-id": "tx00000d0c3fa1f21a79096-006aec1e71-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5936758616,
+    5951526586
+   ]
+  },
+  {
+   "index": 25,
+   "label": "reupload: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-versioned/reupload",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=82e539396b22d47c7221428b92cc9b4ac694aec4ef2ebe1cb9c56e8d00bc4851"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "x-amz-version-id": "HRhQSXNfkrVDMvMTCIsTWmBhbr0PZnI",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "x-amz-request-id": "tx0000097962476261194c9-006aec1e71-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    5951643642,
+    5954599095
+   ]
+  },
+  {
+   "index": 26,
+   "label": "reupload: put A again",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-versioned/reupload",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061305Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=7eaf6c9a9abbacc2c54150c74ef6634405a5eaeb171f361c967b8f39b00924b5"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Accept-Ranges": "bytes",
+     "x-amz-version-id": "11YCegP4lN5k28eve8rXJWWXrqaQD29",
+     "x-amz-request-id": "tx00000fc428354747208d0-006aec1e71-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5954701602,
+    5967267237
+   ]
+  },
+  {
+   "index": 27,
+   "label": "reupload: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-versioned/reupload",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=358dff53ab8466bd7bc68dd18a75cab1897a011889bb8befef5626b1831ed78d"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "x-amz-version-id": "11YCegP4lN5k28eve8rXJWWXrqaQD29",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-request-id": "tx000003bd0d2b6a6314e8d-006aec1e71-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    5967398977,
+    5971497515
+   ]
+  },
+  {
+   "index": 28,
+   "label": "reupload: conditional GET with first ETag",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-versioned/reupload",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "If-none-match": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;if-none-match;x-amz-content-sha256;x-amz-date, Signature=cf037c393ed2482bf3a61ad3984e68f0b704532aab3496d1e97be7ac94e2023d"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 304,
+    "headers": {
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:05 GMT",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-request-id": "tx00000c224915e54f876cc-006aec1e72-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5971600521,
+    5975017315
+   ]
+  },
+  {
+   "index": 29,
+   "label": "setup: create probe-suspended",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-suspended",
+    "headers": {
+     "Content-type": "application/x-www-form-urlencoded",
+     "Content-length": "0",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=f5d396a4fe858835c13e52b12db4793515b99e4fc8fc73890872fcd80dbacd2a"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-amz-request-id": "tx0000073eea557a19950f3-006aec1e72-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Content-Length": "0",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5975165921,
+    5987418235
+   ]
+  },
+  {
+   "index": 30,
+   "label": "setup: enable versioning",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-suspended?versioning=",
+    "headers": {
+     "Content-length": "123",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7",
+     "Content-type": "application/xml",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=fff74d4b12a4a96ba5398f1551717f37b0514821974c4044363b0401be8e1b5b"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-amz-request-id": "tx00000c9d80b506640d64c-006aec1e72-4125-default",
+     "Content-Type": "application/xml",
+     "Server": "Ceph Object Gateway (squid)",
+     "Content-Length": "0",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5987547592,
+    5990685445
+   ]
+  },
+  {
+   "index": 31,
+   "label": "setup: read versioning",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-suspended?versioning=",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=fedb7deb6a19d2470ee5bfbc0481b408e666076321858834de6111f01be8b965"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-amz-request-id": "tx000004f0a77f5b46aa522-006aec1e72-4125-default",
+     "Content-Type": "application/xml",
+     "Server": "Ceph Object Gateway (squid)",
+     "Content-Length": "192",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48VmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24geG1sbnM9Imh0dHA6Ly9zMy5hbWF6b25hd3MuY29tL2RvYy8yMDA2LTAzLTAxLyI+PFN0YXR1cz5FbmFibGVkPC9TdGF0dXM+PE1mYURlbGV0ZT5EaXNhYmxlZDwvTWZhRGVsZXRlPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "c95369f0ac07894519e407dcf2cae05ee6b02305af8d2b8e57188db670679352"
+   },
+   "window_ns": [
+    5990769997,
+    5991725477
+   ]
+  },
+  {
+   "index": 32,
+   "label": "suspended_null: suspend versioning",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-suspended?versioning=",
+    "headers": {
+     "Content-length": "125",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "d7f1d7ed35d188f6a89d394cc2055f5910c14a3abccf41e808e7f7327d21e129",
+     "Content-type": "application/xml",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=819c70e3236dacfa0d6403ffacb04f452a77a78b487ba7882394e8d5cff21166"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+U3VzcGVuZGVkPC9TdGF0dXM+PC9WZXJzaW9uaW5nQ29uZmlndXJhdGlvbj4=",
+    "body_sha256": "d7f1d7ed35d188f6a89d394cc2055f5910c14a3abccf41e808e7f7327d21e129"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-amz-request-id": "tx00000ebcb17e115f0ce09-006aec1e72-4125-default",
+     "Content-Type": "application/xml",
+     "Server": "Ceph Object Gateway (squid)",
+     "Content-Length": "0",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5991840632,
+    5995507999
+   ]
+  },
+  {
+   "index": 33,
+   "label": "suspended_null: read versioning",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-suspended?versioning=",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=fedb7deb6a19d2470ee5bfbc0481b408e666076321858834de6111f01be8b965"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-amz-request-id": "tx00000c95d725d868c4690-006aec1e72-4125-default",
+     "Content-Type": "application/xml",
+     "Server": "Ceph Object Gateway (squid)",
+     "Content-Length": "194",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48VmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24geG1sbnM9Imh0dHA6Ly9zMy5hbWF6b25hd3MuY29tL2RvYy8yMDA2LTAzLTAxLyI+PFN0YXR1cz5TdXNwZW5kZWQ8L1N0YXR1cz48TWZhRGVsZXRlPkRpc2FibGVkPC9NZmFEZWxldGU+PC9WZXJzaW9uaW5nQ29uZmlndXJhdGlvbj4=",
+    "body_sha256": "0e2b7735243217a474a6f9a5c7fac07dde3cef40a3bd9b55b70f9dfc2192cf3a"
+   },
+   "window_ns": [
+    5995596242,
+    5996790764
+   ]
+  },
+  {
+   "index": 34,
+   "label": "suspended_null: put A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-suspended/suspended",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=e20ed978e61d9be90f51ac4bc8e36db94364b273999ebeac7157efa4a1577bfa"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Accept-Ranges": "bytes",
+     "x-amz-request-id": "tx00000a44300fc44e1f285-006aec1e72-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5996910517,
+    6003063231
+   ]
+  },
+  {
+   "index": 35,
+   "label": "suspended_null: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-suspended/suspended",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=a36f6ab8be70d9775a68ff37d58ffc17d26403ba930404eda273097d249893a9"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-request-id": "tx000009fd2d49115ba560a-006aec1e72-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    6003157561,
+    6005161618
+   ]
+  },
+  {
+   "index": 36,
+   "label": "suspended_null: put B",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-suspended/suspended",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=311ddd1d8ac03a0ddd867828f19d2c43d20d0defda9942b87071af3bb3a9a8a5"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "0",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Accept-Ranges": "bytes",
+     "x-amz-request-id": "tx0000011036f8f2d14bf6f-006aec1e72-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    6005258030,
+    6012487105
+   ]
+  },
+  {
+   "index": 37,
+   "label": "suspended_null: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-suspended/suspended",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=a36f6ab8be70d9775a68ff37d58ffc17d26403ba930404eda273097d249893a9"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "x-amz-request-id": "tx00000ff38bde74f983358-006aec1e72-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    6012582197,
+    6014464963
+   ]
+  },
+  {
+   "index": 38,
+   "label": "suspended_null: put A again",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-suspended/suspended",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=e20ed978e61d9be90f51ac4bc8e36db94364b273999ebeac7157efa4a1577bfa"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Accept-Ranges": "bytes",
+     "x-amz-request-id": "tx000002df3cca28a3100e7-006aec1e72-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    6014567184,
+    6020929901
+   ]
+  },
+  {
+   "index": 39,
+   "label": "suspended_null: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-suspended/suspended",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=a36f6ab8be70d9775a68ff37d58ffc17d26403ba930404eda273097d249893a9"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-request-id": "tx0000050db4c7d17896caa-006aec1e72-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    6021022002,
+    6022727586
+   ]
+  },
+  {
+   "index": 40,
+   "label": "setup: create probe-locked",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-locked",
+    "headers": {
+     "Content-type": "application/x-www-form-urlencoded",
+     "Content-length": "0",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "X-amz-bucket-object-lock-enabled": "true",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-bucket-object-lock-enabled;x-amz-content-sha256;x-amz-date, Signature=d3c0deea7df5b0a558ede993b65f6ba9e135674b15abe0be298f1c9fa501cfc9"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-amz-request-id": "tx000006592e2cd86866855-006aec1e72-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Content-Length": "0",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    6022848829,
+    6036071702
+   ]
+  },
+  {
+   "index": 41,
+   "label": "setup: enable versioning",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-locked?versioning=",
+    "headers": {
+     "Content-length": "123",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7",
+     "Content-type": "application/xml",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=0f96c58035ad1b8f005b06100b1a725b1f16b16940966d012de90d6c4308984d"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-amz-request-id": "tx000005fef0e0d8f4ca30c-006aec1e72-4125-default",
+     "Content-Type": "application/xml",
+     "Server": "Ceph Object Gateway (squid)",
+     "Content-Length": "0",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    6036188455,
+    6040583546
+   ]
+  },
+  {
+   "index": 42,
+   "label": "setup: read versioning",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-locked?versioning=",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=76b67d7918de013c69749ffe69264bc8b212b1a77d5472bf1bcf9f63564eb605"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-amz-request-id": "tx0000098c37556ad8dd863-006aec1e72-4125-default",
+     "Content-Type": "application/xml",
+     "Server": "Ceph Object Gateway (squid)",
+     "Content-Length": "192",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48VmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24geG1sbnM9Imh0dHA6Ly9zMy5hbWF6b25hd3MuY29tL2RvYy8yMDA2LTAzLTAxLyI+PFN0YXR1cz5FbmFibGVkPC9TdGF0dXM+PE1mYURlbGV0ZT5EaXNhYmxlZDwvTWZhRGVsZXRlPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "c95369f0ac07894519e407dcf2cae05ee6b02305af8d2b8e57188db670679352"
+   },
+   "window_ns": [
+    6040676769,
+    6041612159
+   ]
+  },
+  {
+   "index": 43,
+   "label": "object_lock: put retained A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:58601/probe-locked/locked",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "X-amz-object-lock-mode": "COMPLIANCE",
+     "X-amz-object-lock-retain-until-date": "2026-11-06T06:13:06Z",
+     "Content-md5": "vwcukRkHe052Q3qTmGeH7w==",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-md5;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-object-lock-mode;x-amz-object-lock-retain-until-date, Signature=1428f687b4609106e4c698ad027ff418fae41824bcf060383861984db63b47e2"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Accept-Ranges": "bytes",
+     "x-amz-version-id": "ShFXn4ZxwPOuDaC9JgvtHvMF6znHho8",
+     "x-amz-request-id": "tx00000010275de8d073080-006aec1e72-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    6041740367,
+    6054521488
+   ]
+  },
+  {
+   "index": 44,
+   "label": "object_lock: read retention",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-locked/locked?retention=",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=96dbbc2c311bbed714a9af82164fb02912cedb9170dbfb238a831c5d4b101eeb"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "x-amz-request-id": "tx00000e89c2c1827b8c7ab-006aec1e72-4125-default",
+     "Content-Type": "application/xml",
+     "Server": "Ceph Object Gateway (squid)",
+     "Content-Length": "149",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48UmV0ZW50aW9uPjxNb2RlPkNPTVBMSUFOQ0U8L01vZGU+PFJldGFpblVudGlsRGF0ZT4yMDI2LTExLTA2VDA2OjEzOjA2LjAwMDAwMDAwMFo8L1JldGFpblVudGlsRGF0ZT48L1JldGVudGlvbj4=",
+    "body_sha256": "a94e7b9b5c6751b1df4204c25b026a95c45fa138b5d3fbb2bdb1d6c1931d3895"
+   },
+   "window_ns": [
+    6054622287,
+    6056824259
+   ]
+  },
+  {
+   "index": 45,
+   "label": "object_lock: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-locked/locked",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=5dbbf675f2940f15da10ed528d2d0f91ece632fa1764a2373ec8fdebef70f330"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "x-amz-version-id": "ShFXn4ZxwPOuDaC9JgvtHvMF6znHho8",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-object-lock-mode": "COMPLIANCE",
+     "x-amz-object-lock-retain-until-date": "2026-11-06T06:13:06.000000000Z",
+     "x-amz-request-id": "tx00000fccd8e04431b303f-006aec1e72-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    6056904452,
+    6059318819
+   ]
+  },
+  {
+   "index": 46,
+   "label": "object_lock: delete retained data version",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:58601/probe-locked/locked?versionId=ShFXn4ZxwPOuDaC9JgvtHvMF6znHho8",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=c700c6d9d1b3ed3708b28eb10eadb2fcd6d5c453a64ff6bde84b54e059fad6cf"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 403,
+    "headers": {
+     "Content-Length": "265",
+     "x-amz-request-id": "tx00000cac148c8842103eb-006aec1e72-4125-default",
+     "Accept-Ranges": "bytes",
+     "Content-Type": "application/xml",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48RXJyb3I+PENvZGU+QWNjZXNzRGVuaWVkPC9Db2RlPjxNZXNzYWdlPmZvcmJpZGRlbiBieSBvYmplY3QgbG9jazwvTWVzc2FnZT48QnVja2V0TmFtZT5wcm9iZS1sb2NrZWQ8L0J1Y2tldE5hbWU+PFJlcXVlc3RJZD50eDAwMDAwY2FjMTQ4Yzg4NDIxMDNlYi0wMDZhZWMxZTcyLTQxMjUtZGVmYXVsdDwvUmVxdWVzdElkPjxIb3N0SWQ+NDEyNS1kZWZhdWx0LWRlZmF1bHQ8L0hvc3RJZD48L0Vycm9yPg==",
+    "body_sha256": "93e8aea3456022fd26132b179311f48c97e463e092e73ccad84909a3ae9322b3"
+   },
+   "window_ns": [
+    6059455751,
+    6061011501
+   ]
+  },
+  {
+   "index": 47,
+   "label": "object_lock: create delete marker",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:58601/probe-locked/locked",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=b7f9eeceb5959184d6a92774041b417546332e17e58e90709472f1d6a756ab04"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "x-amz-version-id": "Wn80SDAg-lWJIRDK3xd1aQjPEK-ZaiA",
+     "x-amz-delete-marker": "true",
+     "x-amz-request-id": "tx00000827cd48e18dc6c6f-006aec1e72-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    6061099316,
+    6076520158
+   ]
+  },
+  {
+   "index": 48,
+   "label": "object_lock: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-locked/locked",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=5dbbf675f2940f15da10ed528d2d0f91ece632fa1764a2373ec8fdebef70f330"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 404,
+    "headers": {
+     "Content-Length": "238",
+     "x-amz-request-id": "tx00000f840d24f6e5f4a42-006aec1e72-4125-default",
+     "Accept-Ranges": "bytes",
+     "Content-Type": "application/xml",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48RXJyb3I+PENvZGU+Tm9TdWNoS2V5PC9Db2RlPjxNZXNzYWdlPjwvTWVzc2FnZT48QnVja2V0TmFtZT5wcm9iZS1sb2NrZWQ8L0J1Y2tldE5hbWU+PFJlcXVlc3RJZD50eDAwMDAwZjg0MGQyNGY2ZTVmNGE0Mi0wMDZhZWMxZTcyLTQxMjUtZGVmYXVsdDwvUmVxdWVzdElkPjxIb3N0SWQ+NDEyNS1kZWZhdWx0LWRlZmF1bHQ8L0hvc3RJZD48L0Vycm9yPg==",
+    "body_sha256": "f7f19897b95d05d79dfc32380b9b0486b27093be8446fa1c9efc8e670989f090"
+   },
+   "window_ns": [
+    6076612984,
+    6078486920
+   ]
+  },
+  {
+   "index": 49,
+   "label": "object_lock: remove delete marker",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:58601/probe-locked/locked?versionId=Wn80SDAg-lWJIRDK3xd1aQjPEK-ZaiA",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=0e8fd0e64ae96c95cbc9c75289678dcda637fa13416169c48e0b6fc810a3b55d"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "x-amz-version-id": "Wn80SDAg-lWJIRDK3xd1aQjPEK-ZaiA",
+     "x-amz-delete-marker": "true",
+     "x-amz-request-id": "tx0000042a3df2f9e951d2e-006aec1e72-4125-default",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    6078587801,
+    6088820919
+   ]
+  },
+  {
+   "index": 50,
+   "label": "object_lock: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:58601/probe-locked/locked",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:58601",
+     "X-amz-date": "20261105T061306Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=5dbbf675f2940f15da10ed528d2d0f91ece632fa1764a2373ec8fdebef70f330"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Content-Length": "2",
+     "Accept-Ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "x-amz-version-id": "ShFXn4ZxwPOuDaC9JgvtHvMF6znHho8",
+     "x-rgw-object-type": "Normal",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-object-lock-mode": "COMPLIANCE",
+     "x-amz-object-lock-retain-until-date": "2026-11-06T06:13:06.000000000Z",
+     "x-amz-request-id": "tx0000015f8b1209c872d14-006aec1e72-4125-default",
+     "Content-Type": "text/plain",
+     "Server": "Ceph Object Gateway (squid)",
+     "Date": "Thu, 05 Nov 2026 06:13:06 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    6088912391,
+    6092688566
+   ]
+  }
+ ],
+ "server_log_tail": "\",\n    \"display_name\": \"Ceph demo user\",\n    \"email\": \"\",\n    \"suspended\": 0,\n    \"max_buckets\": 1000,\n    \"subusers\": [],\n    \"keys\": [\n        {\n            \"user\": \"probe\",\n            \"access_key\": \"continuityprobefixture\",\n            \"secret_key\": \"continuity-probe-public-fixture-secret-0000\",\n            \"active\": true,\n            \"create_date\": \"2026-11-05T06:12:48.688172Z\"\n        }\n    ],\n    \"swift_keys\": [],\n    \"caps\": [],\n    \"op_mask\": \"read, write, delete\",\n    \"default_placement\": \"\",\n    \"default_storage_class\": \"\",\n    \"placement_tags\": [],\n    \"bucket_quota\": {\n        \"enabled\": false,\n        \"check_on_raw\": false,\n        \"max_size\": -1,\n        \"max_size_kb\": 0,\n        \"max_objects\": -1\n    },\n    \"user_quota\": {\n        \"enabled\": false,\n        \"check_on_raw\": false,\n        \"max_size\": -1,\n        \"max_size_kb\": 0,\n        \"max_objects\": -1\n    },\n    \"temp_url_keys\": [],\n    \"type\": \"rgw\",\n    \"mfa_ids\": [],\n    \"account_id\": \"\",\n    \"path\": \"/\",\n    \"create_date\": \"2026-11-05T06:12:48.688143Z\",\n    \"tags\": [],\n    \"group_ids\": []\n}\n\n{\n    \"user_id\": \"probe\",\n    \"display_name\": \"Ceph demo user\",\n    \"email\": \"\",\n    \"suspended\": 0,\n    \"max_buckets\": 1000,\n    \"subusers\": [],\n    \"keys\": [\n        {\n            \"user\": \"probe\",\n            \"access_key\": \"continuityprobefixture\",\n            \"secret_key\": \"continuity-probe-public-fixture-secret-0000\",\n            \"active\": true,\n            \"create_date\": \"2026-11-05T06:12:48.688172Z\"\n        }\n    ],\n    \"swift_keys\": [],\n    \"caps\": [\n        {\n            \"type\": \"buckets\",\n            \"perm\": \"*\"\n        },\n        {\n            \"type\": \"metadata\",\n            \"perm\": \"*\"\n        },\n        {\n            \"type\": \"usage\",\n            \"perm\": \"*\"\n        },\n        {\n            \"type\": \"users\",\n            \"perm\": \"*\"\n        }\n    ],\n    \"op_mask\": \"read, write, delete\",\n    \"default_placement\": \"\",\n    \"default_storage_class\": \"\",\n    \"placement_tags\": [],\n    \"bucket_quota\": {\n        \"enabled\": false,\n        \"check_on_raw\": false,\n        \"max_size\": -1,\n        \"max_size_kb\": 0,\n        \"max_objects\": -1\n    },\n    \"user_quota\": {\n        \"enabled\": false,\n        \"check_on_raw\": false,\n        \"max_size\": -1,\n        \"max_size_kb\": 0,\n        \"max_objects\": -1\n    },\n    \"temp_url_keys\": [],\n    \"type\": \"rgw\",\n    \"mfa_ids\": [],\n    \"account_id\": \"\",\n    \"path\": \"/\",\n    \"create_date\": \"2026-11-05T06:12:48.688143Z\",\n    \"tags\": [],\n    \"group_ids\": []\n}\n\n2026-11-05 06:12:49  /opt/ceph-container/bin/demo: SUCCESS\n  cluster:\n    id:     cddee03e-1155-4ae8-a0f8-f7916c9d9a06\n    health: HEALTH_WARN\n            mon vm is low on available space\n            Degraded data redundancy: 16/32 objects degraded (50.000%), 3 pgs degraded\n            1 pool(s) do not have an application enabled\n            OSD count 1 < osd_pool_default_size 2\n \n  services:\n    mon: 1 daemons, quorum vm (age 17s)\n    mgr: vm(active, since 11s)\n    osd: 1 osds: 1 up (since 8s), 1 in (since 11s)\n \n  data:\n    pools:   4 pools, 4 pgs\n    objects: 16 objects, 1.8 KiB\n    usage:   26 MiB used, 100 GiB / 100 GiB avail\n    pgs:     25.000% pgs unknown\n             16/32 objects degraded (50.000%)\n             3 active+undersized+degraded\n             1 unknown\n \n\n2026-11-05T06:12:47.650981+0000 mon.vm [WRN] Health check failed: Degraded data redundancy: 16/32 objects degraded (50.000%), 3 pgs degraded (PG_DEGRADED)\n2026-11-05T06:12:49.685657+0000 mon.vm [INF] Health check cleared: POOL_APP_NOT_ENABLED (was: 1 pool(s) do not have an application enabled)\n2026-11-05T06:12:53.693138+0000 mon.vm [WRN] Health check update: Degraded data redundancy: 196/392 objects degraded (50.000%), 4 pgs degraded (PG_DEGRADED)\n2026-11-05T06:13:01.768752+0000 mon.vm [WRN] Health check failed: 1 pool(s) do not have an application enabled (POOL_APP_NOT_ENABLED)\n2026-11-05T06:13:03.783367+0000 mon.vm [INF] Health check cleared: POOL_APP_NOT_ENABLED (was: 1 pool(s) do not have an application enabled)\n"
+}

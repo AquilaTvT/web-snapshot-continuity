@@ -1,0 +1,181 @@
+{
+  "case": "apache-fresh",
+  "scope": "controlled framework execution, not natural deployment incidence",
+  "software": {
+    "server": "Server version: Apache/2.4.67 (Unix)",
+    "binary_sha256": "25da5fcd2901a49bf99cb50114aa53c80b5996be0a25f40f1c4f501e0dd51a32",
+    "validator": "FileETag MTime Size",
+    "preserve_mtime": false
+  },
+  "states": [
+    {
+      "a": "Admission: eligible.\n",
+      "b": "Fee: 100 dollars.\n"
+    },
+    {
+      "a": "Admission: ineligible.\n",
+      "b": "Fee: 10 dollars.\n"
+    },
+    {
+      "a": "Admission: eligible.\n",
+      "b": "Fee: 100 dollars.\n"
+    }
+  ],
+  "observations": [
+    {
+      "request_method": "GET",
+      "request_headers": {
+        "Host": "127.0.0.1:59893",
+        "User-agent": "Python-urllib/3.12"
+      },
+      "status": 200,
+      "body": "Admission: eligible.\n",
+      "etag": "\"15-5af3107a40000\"",
+      "last_modified": "Sun, 13 Sep 2020 12:26:40 GMT",
+      "content_type": null,
+      "body_sha256": "a9bccc00b47dc478820368610e2833a33c4ceb2c8257a50b48570ccaad7436d4",
+      "resource": "a",
+      "tick": 0
+    },
+    {
+      "request_method": "GET",
+      "request_headers": {
+        "Host": "127.0.0.1:59893",
+        "User-agent": "Python-urllib/3.12"
+      },
+      "status": 200,
+      "body": "Fee: 10 dollars.\n",
+      "etag": "\"11-5af31083c9680\"",
+      "last_modified": "Sun, 13 Sep 2020 12:26:50 GMT",
+      "content_type": null,
+      "body_sha256": "92eba129c0031d012b8a04535cd1e683a2e9d87969f7cbfa05479ada6ce68182",
+      "resource": "b",
+      "tick": 1
+    },
+    {
+      "request_method": "GET",
+      "request_headers": {
+        "Host": "127.0.0.1:59893",
+        "User-agent": "Python-urllib/3.12"
+      },
+      "status": 200,
+      "body": "Fee: 10 dollars.\n",
+      "etag": "\"11-5af31083c9680\"",
+      "last_modified": "Sun, 13 Sep 2020 12:26:50 GMT",
+      "content_type": null,
+      "body_sha256": "92eba129c0031d012b8a04535cd1e683a2e9d87969f7cbfa05479ada6ce68182",
+      "resource": "b",
+      "tick": 2
+    },
+    {
+      "request_method": "GET",
+      "request_headers": {
+        "Host": "127.0.0.1:59893",
+        "User-agent": "Python-urllib/3.12"
+      },
+      "status": 200,
+      "body": "Admission: eligible.\n",
+      "etag": "\"15-5af3108d52d00\"",
+      "last_modified": "Sun, 13 Sep 2020 12:27:00 GMT",
+      "content_type": null,
+      "body_sha256": "a9bccc00b47dc478820368610e2833a33c4ceb2c8257a50b48570ccaad7436d4",
+      "resource": "a",
+      "tick": 3
+    },
+    {
+      "request_method": "GET",
+      "request_headers": {
+        "Host": "127.0.0.1:59893",
+        "User-agent": "Python-urllib/3.12",
+        "If-none-match": "\"15-5af3107a40000\""
+      },
+      "status": 200,
+      "body": "Admission: eligible.\n",
+      "etag": "\"15-5af3108d52d00\"",
+      "last_modified": "Sun, 13 Sep 2020 12:27:00 GMT",
+      "content_type": null,
+      "body_sha256": "a9bccc00b47dc478820368610e2833a33c4ceb2c8257a50b48570ccaad7436d4",
+      "resource": "a",
+      "tick": 3
+    }
+  ],
+  "validator": "etag",
+  "endpoint_validator_equal": false,
+  "conditional_status": 200,
+  "target_bundle_ever_present": false,
+  "mutation_trace": [
+    {
+      "phase": 0,
+      "replaced": "a",
+      "state": {
+        "a": "Admission: eligible.\n",
+        "b": null
+      }
+    },
+    {
+      "phase": 0,
+      "replaced": "b",
+      "state": {
+        "a": "Admission: eligible.\n",
+        "b": "Fee: 100 dollars.\n"
+      }
+    },
+    {
+      "phase": 1,
+      "replaced": "a",
+      "state": {
+        "a": "Admission: ineligible.\n",
+        "b": "Fee: 100 dollars.\n"
+      }
+    },
+    {
+      "phase": 1,
+      "replaced": "b",
+      "state": {
+        "a": "Admission: ineligible.\n",
+        "b": "Fee: 10 dollars.\n"
+      }
+    },
+    {
+      "phase": 2,
+      "replaced": "b",
+      "state": {
+        "a": "Admission: ineligible.\n",
+        "b": "Fee: 100 dollars.\n"
+      }
+    },
+    {
+      "phase": 2,
+      "replaced": "a",
+      "state": {
+        "a": "Admission: eligible.\n",
+        "b": "Fee: 100 dollars.\n"
+      }
+    }
+  ],
+  "transition_semantics": "atomic single-file replacement; withdraw b before restoring a; Express changes its shared phase in one event-loop assignment",
+  "history_evidence": "mutation_trace records the ordered serving states after each controlled mutation; logical phases are not measured wall-clock validity intervals",
+  "target": {
+    "a": "Admission: eligible.\n",
+    "b": "Fee: 10 dollars.\n"
+  },
+  "illustrative_phase_intervals": {
+    "a": [
+      [
+        0,
+        1
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "b": [
+      [
+        1,
+        3
+      ]
+    ]
+  },
+  "consumer_endpoint_rule_would_accept": false
+}

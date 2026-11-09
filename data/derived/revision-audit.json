@@ -1,0 +1,2043 @@
+{
+  "scope": "Public revision metadata and selected source-text witnesses, not rendered-page, deployment, or cache histories.",
+  "selection": "Six purposively selected Web-topic titles. World Wide Web was explored before this set was frozen; this is not preregistered or random.",
+  "window": [
+    "2024-01-01T00:00:00Z",
+    "2025-01-01T00:00:00Z"
+  ],
+  "page_count": 6,
+  "revision_count": 634,
+  "hash_return_count": 131,
+  "byte_verified_witnesses": 6,
+  "limits": [
+    "Purposive six-page sample; no population prevalence estimate.",
+    "Hash-return counts are distinct from the selected byte-verified witnesses.",
+    "Revision source text does not include templates, rendered HTML, caches, or deployment times.",
+    "Parent-link continuity is not proof of all historical deletions or suppressed content.",
+    "Label minima apply to the supplied path, not every permitted future history."
+  ],
+  "selected_witnesses": [
+    {
+      "title": "World Wide Web",
+      "indices": [
+        39,
+        40,
+        41
+      ],
+      "revision_ids": [
+        1251943974,
+        1253149602,
+        1253178604
+      ],
+      "timestamp_gap_seconds": 9706,
+      "sha1": "a1536f19fd2749076be16298c0fe86b0008505b0",
+      "byte_verified": true
+    },
+    {
+      "title": "HTTP",
+      "indices": [
+        3,
+        4,
+        5
+      ],
+      "revision_ids": [
+        1193127706,
+        1193454437,
+        1193455563
+      ],
+      "timestamp_gap_seconds": 429,
+      "sha1": "7de829b0093270fffaef59ca719c86f9064cc50a",
+      "byte_verified": true
+    },
+    {
+      "title": "HTML",
+      "indices": [
+        12,
+        13,
+        14
+      ],
+      "revision_ids": [
+        1218541683,
+        1218582601,
+        1218841134
+      ],
+      "timestamp_gap_seconds": 133316,
+      "sha1": "88437db220dbd8800ea3f8033acd58a55ef52fbd",
+      "byte_verified": true
+    },
+    {
+      "title": "CSS",
+      "indices": [
+        1,
+        2,
+        3
+      ],
+      "revision_ids": [
+        1193372829,
+        1193799066,
+        1193799156
+      ],
+      "timestamp_gap_seconds": 32,
+      "sha1": "1625ef5f0239ec06a7cc680628e5bde20b259323",
+      "byte_verified": true
+    },
+    {
+      "title": "JavaScript",
+      "indices": [
+        85,
+        86,
+        87
+      ],
+      "revision_ids": [
+        1215779516,
+        1216639254,
+        1216676357
+      ],
+      "timestamp_gap_seconds": 20811,
+      "sha1": "0e4454f6ccc39b1f490260c4feb78fa90510c6e1",
+      "byte_verified": true
+    },
+    {
+      "title": "Web browser",
+      "indices": [
+        33,
+        34,
+        35
+      ],
+      "revision_ids": [
+        1217218341,
+        1217379935,
+        1217492554
+      ],
+      "timestamp_gap_seconds": 49610,
+      "sha1": "117cfec9444da602bb3905e8550a0c7b873c0132",
+      "byte_verified": true
+    }
+  ],
+  "pages": [
+    {
+      "title": "World Wide Web",
+      "pageid": 33139,
+      "revisions": 53,
+      "distinct_content_hashes": 52,
+      "content_runs": 53,
+      "hash_return_count": 1,
+      "consecutive_parent_links": true,
+      "equal_timestamp_pairs": 0,
+      "declared_path_minimum_auxiliary_labels": 2,
+      "declared_path_minimum_strong_labels": 53,
+      "revision_ids_distinct": true,
+      "returns": [
+        {
+          "indices": [
+            39,
+            40,
+            41
+          ],
+          "revision_ids": [
+            1251943974,
+            1253149602,
+            1253178604
+          ],
+          "timestamp_gap_seconds": 9706,
+          "sha1": "a1536f19fd2749076be16298c0fe86b0008505b0"
+        }
+      ]
+    },
+    {
+      "title": "HTTP",
+      "pageid": 13443,
+      "revisions": 186,
+      "distinct_content_hashes": 115,
+      "content_runs": 185,
+      "hash_return_count": 70,
+      "consecutive_parent_links": true,
+      "equal_timestamp_pairs": 0,
+      "declared_path_minimum_auxiliary_labels": 15,
+      "declared_path_minimum_strong_labels": 185,
+      "revision_ids_distinct": true,
+      "returns": [
+        {
+          "indices": [
+            3,
+            4,
+            5
+          ],
+          "revision_ids": [
+            1193127706,
+            1193454437,
+            1193455563
+          ],
+          "timestamp_gap_seconds": 429,
+          "sha1": "7de829b0093270fffaef59ca719c86f9064cc50a"
+        },
+        {
+          "indices": [
+            6,
+            7,
+            8
+          ],
+          "revision_ids": [
+            1193751580,
+            1193783927,
+            1193783978
+          ],
+          "timestamp_gap_seconds": 22,
+          "sha1": "dc53218425403f1644df720e4b60e7c04751b0f6"
+        },
+        {
+          "indices": [
+            8,
+            9,
+            10
+          ],
+          "revision_ids": [
+            1193783978,
+            1193784841,
+            1193784884
+          ],
+          "timestamp_gap_seconds": 14,
+          "sha1": "dc53218425403f1644df720e4b60e7c04751b0f6"
+        },
+        {
+          "indices": [
+            11,
+            12,
+            13
+          ],
+          "revision_ids": [
+            1194240861,
+            1195227074,
+            1195227124
+          ],
+          "timestamp_gap_seconds": 24,
+          "sha1": "181eb276877b0c1e7496e7b1ba5bd66a7c42b1b0"
+        },
+        {
+          "indices": [
+            13,
+            14,
+            15
+          ],
+          "revision_ids": [
+            1195227124,
+            1195228815,
+            1195228843
+          ],
+          "timestamp_gap_seconds": 13,
+          "sha1": "181eb276877b0c1e7496e7b1ba5bd66a7c42b1b0"
+        },
+        {
+          "indices": [
+            15,
+            16,
+            17
+          ],
+          "revision_ids": [
+            1195228843,
+            1195437444,
+            1195437595
+          ],
+          "timestamp_gap_seconds": 50,
+          "sha1": "181eb276877b0c1e7496e7b1ba5bd66a7c42b1b0"
+        },
+        {
+          "indices": [
+            17,
+            18,
+            19
+          ],
+          "revision_ids": [
+            1195437595,
+            1195484512,
+            1195485243
+          ],
+          "timestamp_gap_seconds": 246,
+          "sha1": "181eb276877b0c1e7496e7b1ba5bd66a7c42b1b0"
+        },
+        {
+          "indices": [
+            23,
+            24,
+            25
+          ],
+          "revision_ids": [
+            1195713611,
+            1196004667,
+            1196007191
+          ],
+          "timestamp_gap_seconds": 570,
+          "sha1": "5a6bf80bca113deba791751b60018f7133288f9c"
+        },
+        {
+          "indices": [
+            27,
+            28,
+            29
+          ],
+          "revision_ids": [
+            1199235365,
+            1200421638,
+            1200421862
+          ],
+          "timestamp_gap_seconds": 51,
+          "sha1": "6629de80d0bb732c3569a57cce20a2d7f1b14fc6"
+        },
+        {
+          "indices": [
+            31,
+            32,
+            33
+          ],
+          "revision_ids": [
+            1207254810,
+            1208555054,
+            1208556137
+          ],
+          "timestamp_gap_seconds": 373,
+          "sha1": "b57924d85f0283cc53af50a8f486311a2eeaa547"
+        },
+        {
+          "indices": [
+            33,
+            34,
+            35
+          ],
+          "revision_ids": [
+            1208556137,
+            1209361446,
+            1209361541
+          ],
+          "timestamp_gap_seconds": 36,
+          "sha1": "b57924d85f0283cc53af50a8f486311a2eeaa547"
+        },
+        {
+          "indices": [
+            37,
+            38,
+            39
+          ],
+          "revision_ids": [
+            1209665280,
+            1209896279,
+            1209902755
+          ],
+          "timestamp_gap_seconds": 2259,
+          "sha1": "98d6b5daf2233a250cafa412cf393aa51485490a"
+        },
+        {
+          "indices": [
+            38,
+            39,
+            40
+          ],
+          "revision_ids": [
+            1209896279,
+            1209902755,
+            1209905129
+          ],
+          "timestamp_gap_seconds": 1020,
+          "sha1": "fbfdfbdff09d4118341562b352b8abafbfe8c475"
+        },
+        {
+          "indices": [
+            44,
+            45,
+            46
+          ],
+          "revision_ids": [
+            1210686756,
+            1212137205,
+            1212137732
+          ],
+          "timestamp_gap_seconds": 205,
+          "sha1": "adc4530803e72049d75444a6618e2545aad403bc"
+        },
+        {
+          "indices": [
+            46,
+            47,
+            48
+          ],
+          "revision_ids": [
+            1212137732,
+            1212814720,
+            1212815021
+          ],
+          "timestamp_gap_seconds": 77,
+          "sha1": "adc4530803e72049d75444a6618e2545aad403bc"
+        },
+        {
+          "indices": [
+            47,
+            48,
+            49
+          ],
+          "revision_ids": [
+            1212814720,
+            1212815021,
+            1212815367
+          ],
+          "timestamp_gap_seconds": 92,
+          "sha1": "1657a970d22084f448aa44a91068e65576d488f2"
+        },
+        {
+          "indices": [
+            48,
+            49,
+            50
+          ],
+          "revision_ids": [
+            1212815021,
+            1212815367,
+            1212815688
+          ],
+          "timestamp_gap_seconds": 84,
+          "sha1": "adc4530803e72049d75444a6618e2545aad403bc"
+        },
+        {
+          "indices": [
+            52,
+            53,
+            54
+          ],
+          "revision_ids": [
+            1216366718,
+            1219955335,
+            1219957732
+          ],
+          "timestamp_gap_seconds": 1372,
+          "sha1": "beb3a1f6ca6469e0c4ca31c0fe0c6dd51aef6739"
+        },
+        {
+          "indices": [
+            54,
+            55,
+            56
+          ],
+          "revision_ids": [
+            1219957732,
+            1220905317,
+            1220905380
+          ],
+          "timestamp_gap_seconds": 38,
+          "sha1": "beb3a1f6ca6469e0c4ca31c0fe0c6dd51aef6739"
+        },
+        {
+          "indices": [
+            60,
+            61,
+            62
+          ],
+          "revision_ids": [
+            1221634025,
+            1221901275,
+            1221904751
+          ],
+          "timestamp_gap_seconds": 1348,
+          "sha1": "b77ca733ce156422399a58e2d1260e1ca8ce79e6"
+        },
+        {
+          "indices": [
+            62,
+            63,
+            64
+          ],
+          "revision_ids": [
+            1221904751,
+            1222845798,
+            1222846092
+          ],
+          "timestamp_gap_seconds": 195,
+          "sha1": "b77ca733ce156422399a58e2d1260e1ca8ce79e6"
+        },
+        {
+          "indices": [
+            65,
+            66,
+            67
+          ],
+          "revision_ids": [
+            1222886265,
+            1223664145,
+            1223664276
+          ],
+          "timestamp_gap_seconds": 53,
+          "sha1": "2b51208fd9d88a307cf1c6b92f610f25b68c1055"
+        },
+        {
+          "indices": [
+            67,
+            68,
+            69
+          ],
+          "revision_ids": [
+            1223664276,
+            1223919200,
+            1223919278
+          ],
+          "timestamp_gap_seconds": 61,
+          "sha1": "2b51208fd9d88a307cf1c6b92f610f25b68c1055"
+        },
+        {
+          "indices": [
+            70,
+            71,
+            72
+          ],
+          "revision_ids": [
+            1225484076,
+            1225959105,
+            1225959703
+          ],
+          "timestamp_gap_seconds": 242,
+          "sha1": "ed6c6af8d0ebad11b8c0db5e202e5c2cc340ac26"
+        },
+        {
+          "indices": [
+            72,
+            73,
+            74
+          ],
+          "revision_ids": [
+            1225959703,
+            1225980411,
+            1225980490
+          ],
+          "timestamp_gap_seconds": 45,
+          "sha1": "ed6c6af8d0ebad11b8c0db5e202e5c2cc340ac26"
+        },
+        {
+          "indices": [
+            74,
+            75,
+            76
+          ],
+          "revision_ids": [
+            1225980490,
+            1226422374,
+            1226422962
+          ],
+          "timestamp_gap_seconds": 247,
+          "sha1": "ed6c6af8d0ebad11b8c0db5e202e5c2cc340ac26"
+        },
+        {
+          "indices": [
+            76,
+            77,
+            78
+          ],
+          "revision_ids": [
+            1226422962,
+            1228964470,
+            1228964589
+          ],
+          "timestamp_gap_seconds": 52,
+          "sha1": "ed6c6af8d0ebad11b8c0db5e202e5c2cc340ac26"
+        },
+        {
+          "indices": [
+            78,
+            79,
+            80
+          ],
+          "revision_ids": [
+            1228964589,
+            1229878893,
+            1229879257
+          ],
+          "timestamp_gap_seconds": 158,
+          "sha1": "ed6c6af8d0ebad11b8c0db5e202e5c2cc340ac26"
+        },
+        {
+          "indices": [
+            80,
+            81,
+            82
+          ],
+          "revision_ids": [
+            1229879257,
+            1230895985,
+            1230896016
+          ],
+          "timestamp_gap_seconds": 11,
+          "sha1": "ed6c6af8d0ebad11b8c0db5e202e5c2cc340ac26"
+        },
+        {
+          "indices": [
+            82,
+            83,
+            84
+          ],
+          "revision_ids": [
+            1230896016,
+            1230902322,
+            1230902535
+          ],
+          "timestamp_gap_seconds": 118,
+          "sha1": "ed6c6af8d0ebad11b8c0db5e202e5c2cc340ac26"
+        },
+        {
+          "indices": [
+            84,
+            85,
+            86
+          ],
+          "revision_ids": [
+            1230902535,
+            1230906564,
+            1230906729
+          ],
+          "timestamp_gap_seconds": 99,
+          "sha1": "ed6c6af8d0ebad11b8c0db5e202e5c2cc340ac26"
+        },
+        {
+          "indices": [
+            88,
+            89,
+            90
+          ],
+          "revision_ids": [
+            1231005162,
+            1231745032,
+            1231745230
+          ],
+          "timestamp_gap_seconds": 105,
+          "sha1": "e41dca38946230d9dda7b4cdf0c8105cc55f27b9"
+        },
+        {
+          "indices": [
+            90,
+            91,
+            92
+          ],
+          "revision_ids": [
+            1231745230,
+            1231745402,
+            1231745609
+          ],
+          "timestamp_gap_seconds": 118,
+          "sha1": "e41dca38946230d9dda7b4cdf0c8105cc55f27b9"
+        },
+        {
+          "indices": [
+            92,
+            93,
+            94
+          ],
+          "revision_ids": [
+            1231745609,
+            1232036382,
+            1232036700
+          ],
+          "timestamp_gap_seconds": 136,
+          "sha1": "e41dca38946230d9dda7b4cdf0c8105cc55f27b9"
+        },
+        {
+          "indices": [
+            95,
+            96,
+            97
+          ],
+          "revision_ids": [
+            1232669627,
+            1232980017,
+            1232980072
+          ],
+          "timestamp_gap_seconds": 17,
+          "sha1": "778b11b38b4fa396bf078f3269d1e15f91d0157f"
+        },
+        {
+          "indices": [
+            97,
+            98,
+            99
+          ],
+          "revision_ids": [
+            1232980072,
+            1233397242,
+            1233397385
+          ],
+          "timestamp_gap_seconds": 52,
+          "sha1": "778b11b38b4fa396bf078f3269d1e15f91d0157f"
+        },
+        {
+          "indices": [
+            99,
+            100,
+            101
+          ],
+          "revision_ids": [
+            1233397385,
+            1233602832,
+            1233602869
+          ],
+          "timestamp_gap_seconds": 18,
+          "sha1": "778b11b38b4fa396bf078f3269d1e15f91d0157f"
+        },
+        {
+          "indices": [
+            101,
+            102,
+            103
+          ],
+          "revision_ids": [
+            1233602869,
+            1234214731,
+            1234214812
+          ],
+          "timestamp_gap_seconds": 42,
+          "sha1": "778b11b38b4fa396bf078f3269d1e15f91d0157f"
+        },
+        {
+          "indices": [
+            104,
+            105,
+            106
+          ],
+          "revision_ids": [
+            1234654455,
+            1235669437,
+            1235670143
+          ],
+          "timestamp_gap_seconds": 317,
+          "sha1": "72e33e4e9d57b944f26b79ea11fd837a4f5f7a04"
+        },
+        {
+          "indices": [
+            106,
+            107,
+            108
+          ],
+          "revision_ids": [
+            1235670143,
+            1237016394,
+            1237016442
+          ],
+          "timestamp_gap_seconds": 28,
+          "sha1": "72e33e4e9d57b944f26b79ea11fd837a4f5f7a04"
+        },
+        {
+          "indices": [
+            109,
+            110,
+            111
+          ],
+          "revision_ids": [
+            1239118979,
+            1239738494,
+            1239738606
+          ],
+          "timestamp_gap_seconds": 94,
+          "sha1": "ad85b891a0472cda0364fa208808af538e2f8e79"
+        },
+        {
+          "indices": [
+            117,
+            118,
+            119
+          ],
+          "revision_ids": [
+            1240271119,
+            1240448576,
+            1240448737
+          ],
+          "timestamp_gap_seconds": 61,
+          "sha1": "42d15c3ffe637fcc742de28e9287723fa9cb206e"
+        },
+        {
+          "indices": [
+            119,
+            120,
+            121
+          ],
+          "revision_ids": [
+            1240448737,
+            1241429880,
+            1241429919
+          ],
+          "timestamp_gap_seconds": 18,
+          "sha1": "42d15c3ffe637fcc742de28e9287723fa9cb206e"
+        },
+        {
+          "indices": [
+            121,
+            122,
+            123
+          ],
+          "revision_ids": [
+            1241429919,
+            1241912374,
+            1241912421
+          ],
+          "timestamp_gap_seconds": 23,
+          "sha1": "42d15c3ffe637fcc742de28e9287723fa9cb206e"
+        },
+        {
+          "indices": [
+            123,
+            124,
+            125
+          ],
+          "revision_ids": [
+            1241912421,
+            1241912623,
+            1241912894
+          ],
+          "timestamp_gap_seconds": 146,
+          "sha1": "42d15c3ffe637fcc742de28e9287723fa9cb206e"
+        },
+        {
+          "indices": [
+            126,
+            127,
+            128
+          ],
+          "revision_ids": [
+            1242663113,
+            1242673455,
+            1242673521
+          ],
+          "timestamp_gap_seconds": 42,
+          "sha1": "be66d0074e13df063d82bec625587ec0f58c9a14"
+        },
+        {
+          "indices": [
+            129,
+            130,
+            131
+          ],
+          "revision_ids": [
+            1242689463,
+            1243278113,
+            1243278174
+          ],
+          "timestamp_gap_seconds": 29,
+          "sha1": "04522c76c9a849aa91ddbb9a3006364095d6f7ed"
+        },
+        {
+          "indices": [
+            131,
+            132,
+            133
+          ],
+          "revision_ids": [
+            1243278174,
+            1244632113,
+            1244632209
+          ],
+          "timestamp_gap_seconds": 79,
+          "sha1": "04522c76c9a849aa91ddbb9a3006364095d6f7ed"
+        },
+        {
+          "indices": [
+            133,
+            134,
+            135
+          ],
+          "revision_ids": [
+            1244632209,
+            1245813765,
+            1245813857
+          ],
+          "timestamp_gap_seconds": 88,
+          "sha1": "04522c76c9a849aa91ddbb9a3006364095d6f7ed"
+        },
+        {
+          "indices": [
+            135,
+            136,
+            137
+          ],
+          "revision_ids": [
+            1245813857,
+            1246147951,
+            1246148039
+          ],
+          "timestamp_gap_seconds": 60,
+          "sha1": "04522c76c9a849aa91ddbb9a3006364095d6f7ed"
+        },
+        {
+          "indices": [
+            137,
+            138,
+            139
+          ],
+          "revision_ids": [
+            1246148039,
+            1246151151,
+            1246151256
+          ],
+          "timestamp_gap_seconds": 112,
+          "sha1": "04522c76c9a849aa91ddbb9a3006364095d6f7ed"
+        },
+        {
+          "indices": [
+            139,
+            140,
+            141
+          ],
+          "revision_ids": [
+            1246151256,
+            1246151345,
+            1246151365
+          ],
+          "timestamp_gap_seconds": 10,
+          "sha1": "04522c76c9a849aa91ddbb9a3006364095d6f7ed"
+        },
+        {
+          "indices": [
+            141,
+            142,
+            143
+          ],
+          "revision_ids": [
+            1246151365,
+            1246171256,
+            1246171556
+          ],
+          "timestamp_gap_seconds": 195,
+          "sha1": "04522c76c9a849aa91ddbb9a3006364095d6f7ed"
+        },
+        {
+          "indices": [
+            143,
+            144,
+            145
+          ],
+          "revision_ids": [
+            1246171556,
+            1246844780,
+            1246845438
+          ],
+          "timestamp_gap_seconds": 304,
+          "sha1": "04522c76c9a849aa91ddbb9a3006364095d6f7ed"
+        },
+        {
+          "indices": [
+            145,
+            146,
+            147
+          ],
+          "revision_ids": [
+            1246845438,
+            1247287996,
+            1247288151
+          ],
+          "timestamp_gap_seconds": 44,
+          "sha1": "04522c76c9a849aa91ddbb9a3006364095d6f7ed"
+        },
+        {
+          "indices": [
+            147,
+            148,
+            149
+          ],
+          "revision_ids": [
+            1247288151,
+            1247395844,
+            1247396342
+          ],
+          "timestamp_gap_seconds": 236,
+          "sha1": "04522c76c9a849aa91ddbb9a3006364095d6f7ed"
+        },
+        {
+          "indices": [
+            149,
+            150,
+            152
+          ],
+          "revision_ids": [
+            1247396342,
+            1247463990,
+            1247464292
+          ],
+          "timestamp_gap_seconds": 153,
+          "sha1": "04522c76c9a849aa91ddbb9a3006364095d6f7ed"
+        },
+        {
+          "indices": [
+            152,
+            153,
+            154
+          ],
+          "revision_ids": [
+            1247464292,
+            1247465129,
+            1247465316
+          ],
+          "timestamp_gap_seconds": 93,
+          "sha1": "04522c76c9a849aa91ddbb9a3006364095d6f7ed"
+        },
+        {
+          "indices": [
+            154,
+            155,
+            156
+          ],
+          "revision_ids": [
+            1247465316,
+            1248164289,
+            1248165002
+          ],
+          "timestamp_gap_seconds": 351,
+          "sha1": "04522c76c9a849aa91ddbb9a3006364095d6f7ed"
+        },
+        {
+          "indices": [
+            156,
+            157,
+            158
+          ],
+          "revision_ids": [
+            1248165002,
+            1249222447,
+            1249222548
+          ],
+          "timestamp_gap_seconds": 34,
+          "sha1": "04522c76c9a849aa91ddbb9a3006364095d6f7ed"
+        },
+        {
+          "indices": [
+            159,
+            160,
+            161
+          ],
+          "revision_ids": [
+            1249363663,
+            1249575434,
+            1249576178
+          ],
+          "timestamp_gap_seconds": 279,
+          "sha1": "754ca0f8ebcfa69621a755b91254865bf37701d5"
+        },
+        {
+          "indices": [
+            161,
+            162,
+            163
+          ],
+          "revision_ids": [
+            1249576178,
+            1249874763,
+            1249876379
+          ],
+          "timestamp_gap_seconds": 772,
+          "sha1": "754ca0f8ebcfa69621a755b91254865bf37701d5"
+        },
+        {
+          "indices": [
+            163,
+            164,
+            165
+          ],
+          "revision_ids": [
+            1249876379,
+            1250292611,
+            1250292713
+          ],
+          "timestamp_gap_seconds": 51,
+          "sha1": "754ca0f8ebcfa69621a755b91254865bf37701d5"
+        },
+        {
+          "indices": [
+            165,
+            166,
+            167
+          ],
+          "revision_ids": [
+            1250292713,
+            1250566212,
+            1250568137
+          ],
+          "timestamp_gap_seconds": 908,
+          "sha1": "754ca0f8ebcfa69621a755b91254865bf37701d5"
+        },
+        {
+          "indices": [
+            167,
+            168,
+            169
+          ],
+          "revision_ids": [
+            1250568137,
+            1254263892,
+            1254264631
+          ],
+          "timestamp_gap_seconds": 417,
+          "sha1": "754ca0f8ebcfa69621a755b91254865bf37701d5"
+        },
+        {
+          "indices": [
+            169,
+            170,
+            171
+          ],
+          "revision_ids": [
+            1254264631,
+            1254724781,
+            1254725178
+          ],
+          "timestamp_gap_seconds": 225,
+          "sha1": "754ca0f8ebcfa69621a755b91254865bf37701d5"
+        },
+        {
+          "indices": [
+            171,
+            172,
+            173
+          ],
+          "revision_ids": [
+            1254725178,
+            1254900426,
+            1254900990
+          ],
+          "timestamp_gap_seconds": 382,
+          "sha1": "754ca0f8ebcfa69621a755b91254865bf37701d5"
+        },
+        {
+          "indices": [
+            173,
+            174,
+            175
+          ],
+          "revision_ids": [
+            1254900990,
+            1255963984,
+            1255964159
+          ],
+          "timestamp_gap_seconds": 86,
+          "sha1": "754ca0f8ebcfa69621a755b91254865bf37701d5"
+        },
+        {
+          "indices": [
+            181,
+            182,
+            183
+          ],
+          "revision_ids": [
+            1259498226,
+            1262575847,
+            1262576866
+          ],
+          "timestamp_gap_seconds": 388,
+          "sha1": "62e4c5bd514333c04b3858064f88c00e3d7750b1"
+        },
+        {
+          "indices": [
+            183,
+            184,
+            185
+          ],
+          "revision_ids": [
+            1262576866,
+            1262579059,
+            1262579277
+          ],
+          "timestamp_gap_seconds": 82,
+          "sha1": "62e4c5bd514333c04b3858064f88c00e3d7750b1"
+        }
+      ]
+    },
+    {
+      "title": "HTML",
+      "pageid": 13191,
+      "revisions": 50,
+      "distinct_content_hashes": 47,
+      "content_runs": 50,
+      "hash_return_count": 3,
+      "consecutive_parent_links": true,
+      "equal_timestamp_pairs": 0,
+      "declared_path_minimum_auxiliary_labels": 2,
+      "declared_path_minimum_strong_labels": 50,
+      "revision_ids_distinct": true,
+      "returns": [
+        {
+          "indices": [
+            12,
+            13,
+            14
+          ],
+          "revision_ids": [
+            1218541683,
+            1218582601,
+            1218841134
+          ],
+          "timestamp_gap_seconds": 133316,
+          "sha1": "88437db220dbd8800ea3f8033acd58a55ef52fbd"
+        },
+        {
+          "indices": [
+            27,
+            28,
+            29
+          ],
+          "revision_ids": [
+            1230462522,
+            1232539103,
+            1232567344
+          ],
+          "timestamp_gap_seconds": 15169,
+          "sha1": "66ae90e615650c449ef5834b8efe179138c88353"
+        },
+        {
+          "indices": [
+            34,
+            35,
+            36
+          ],
+          "revision_ids": [
+            1242366999,
+            1244452972,
+            1244463126
+          ],
+          "timestamp_gap_seconds": 7126,
+          "sha1": "ad732f38c021cf7d080fdfb333964326e996720b"
+        }
+      ]
+    },
+    {
+      "title": "CSS",
+      "pageid": 23290197,
+      "revisions": 127,
+      "distinct_content_hashes": 83,
+      "content_runs": 126,
+      "hash_return_count": 43,
+      "consecutive_parent_links": true,
+      "equal_timestamp_pairs": 0,
+      "declared_path_minimum_auxiliary_labels": 8,
+      "declared_path_minimum_strong_labels": 126,
+      "revision_ids_distinct": true,
+      "returns": [
+        {
+          "indices": [
+            1,
+            2,
+            3
+          ],
+          "revision_ids": [
+            1193372829,
+            1193799066,
+            1193799156
+          ],
+          "timestamp_gap_seconds": 32,
+          "sha1": "1625ef5f0239ec06a7cc680628e5bde20b259323"
+        },
+        {
+          "indices": [
+            3,
+            4,
+            6
+          ],
+          "revision_ids": [
+            1193799156,
+            1194367841,
+            1194371880
+          ],
+          "timestamp_gap_seconds": 1710,
+          "sha1": "1625ef5f0239ec06a7cc680628e5bde20b259323"
+        },
+        {
+          "indices": [
+            9,
+            10,
+            11
+          ],
+          "revision_ids": [
+            1196402498,
+            1197465422,
+            1197465740
+          ],
+          "timestamp_gap_seconds": 106,
+          "sha1": "9437fac06d04913b827bccfcdb15d1056f7d54e2"
+        },
+        {
+          "indices": [
+            11,
+            12,
+            13
+          ],
+          "revision_ids": [
+            1197465740,
+            1197661278,
+            1197755164
+          ],
+          "timestamp_gap_seconds": 28911,
+          "sha1": "9437fac06d04913b827bccfcdb15d1056f7d54e2"
+        },
+        {
+          "indices": [
+            14,
+            15,
+            16
+          ],
+          "revision_ids": [
+            1199710996,
+            1201034467,
+            1201180387
+          ],
+          "timestamp_gap_seconds": 24897,
+          "sha1": "f07515c3d53707252cb8211110b227d48c7e36e7"
+        },
+        {
+          "indices": [
+            18,
+            19,
+            20
+          ],
+          "revision_ids": [
+            1207061972,
+            1209499182,
+            1209547548
+          ],
+          "timestamp_gap_seconds": 24889,
+          "sha1": "c545f4a206bbb41895a53ab2202301bf2fbdf144"
+        },
+        {
+          "indices": [
+            22,
+            23,
+            24
+          ],
+          "revision_ids": [
+            1210658510,
+            1211211718,
+            1211211903
+          ],
+          "timestamp_gap_seconds": 108,
+          "sha1": "20ebb403bf08bb8b059b16d22a4b5c5eb20e036c"
+        },
+        {
+          "indices": [
+            24,
+            25,
+            26
+          ],
+          "revision_ids": [
+            1211211903,
+            1211907765,
+            1211910297
+          ],
+          "timestamp_gap_seconds": 1947,
+          "sha1": "20ebb403bf08bb8b059b16d22a4b5c5eb20e036c"
+        },
+        {
+          "indices": [
+            26,
+            27,
+            28
+          ],
+          "revision_ids": [
+            1211910297,
+            1214506646,
+            1214515347
+          ],
+          "timestamp_gap_seconds": 5143,
+          "sha1": "20ebb403bf08bb8b059b16d22a4b5c5eb20e036c"
+        },
+        {
+          "indices": [
+            28,
+            29,
+            30
+          ],
+          "revision_ids": [
+            1214515347,
+            1214712027,
+            1214712191
+          ],
+          "timestamp_gap_seconds": 72,
+          "sha1": "20ebb403bf08bb8b059b16d22a4b5c5eb20e036c"
+        },
+        {
+          "indices": [
+            32,
+            33,
+            34
+          ],
+          "revision_ids": [
+            1217352415,
+            1217994376,
+            1217994395
+          ],
+          "timestamp_gap_seconds": 13,
+          "sha1": "22744738034422efa442b3cb6507e4a0a9b20690"
+        },
+        {
+          "indices": [
+            34,
+            35,
+            36
+          ],
+          "revision_ids": [
+            1217994395,
+            1217994818,
+            1217996434
+          ],
+          "timestamp_gap_seconds": 1020,
+          "sha1": "22744738034422efa442b3cb6507e4a0a9b20690"
+        },
+        {
+          "indices": [
+            36,
+            37,
+            38
+          ],
+          "revision_ids": [
+            1217996434,
+            1220529291,
+            1220565820
+          ],
+          "timestamp_gap_seconds": 20677,
+          "sha1": "22744738034422efa442b3cb6507e4a0a9b20690"
+        },
+        {
+          "indices": [
+            38,
+            39,
+            40
+          ],
+          "revision_ids": [
+            1220565820,
+            1220851181,
+            1220851476
+          ],
+          "timestamp_gap_seconds": 220,
+          "sha1": "22744738034422efa442b3cb6507e4a0a9b20690"
+        },
+        {
+          "indices": [
+            40,
+            41,
+            42
+          ],
+          "revision_ids": [
+            1220851476,
+            1222031568,
+            1222072766
+          ],
+          "timestamp_gap_seconds": 18055,
+          "sha1": "22744738034422efa442b3cb6507e4a0a9b20690"
+        },
+        {
+          "indices": [
+            43,
+            44,
+            45
+          ],
+          "revision_ids": [
+            1222121677,
+            1222236719,
+            1222240340
+          ],
+          "timestamp_gap_seconds": 1651,
+          "sha1": "fda479b0267afdb1672d31474b5ac4faef890fc7"
+        },
+        {
+          "indices": [
+            44,
+            45,
+            46
+          ],
+          "revision_ids": [
+            1222236719,
+            1222240340,
+            1222242859
+          ],
+          "timestamp_gap_seconds": 1016,
+          "sha1": "51e0742d2163afbba335de0c6f80899a9ed82753"
+        },
+        {
+          "indices": [
+            47,
+            48,
+            50
+          ],
+          "revision_ids": [
+            1222558862,
+            1229709299,
+            1229769733
+          ],
+          "timestamp_gap_seconds": 28156,
+          "sha1": "0054b7069da836b9b8a7fdbca3acbc4b397013f8"
+        },
+        {
+          "indices": [
+            50,
+            51,
+            52
+          ],
+          "revision_ids": [
+            1229769733,
+            1233523728,
+            1233524172
+          ],
+          "timestamp_gap_seconds": 202,
+          "sha1": "0054b7069da836b9b8a7fdbca3acbc4b397013f8"
+        },
+        {
+          "indices": [
+            53,
+            54,
+            55
+          ],
+          "revision_ids": [
+            1233693189,
+            1237778282,
+            1237778595
+          ],
+          "timestamp_gap_seconds": 99,
+          "sha1": "38966e81342dd44235eb46c59d3426e556725cb5"
+        },
+        {
+          "indices": [
+            55,
+            56,
+            57
+          ],
+          "revision_ids": [
+            1237778595,
+            1238062183,
+            1238110296
+          ],
+          "timestamp_gap_seconds": 24088,
+          "sha1": "38966e81342dd44235eb46c59d3426e556725cb5"
+        },
+        {
+          "indices": [
+            57,
+            58,
+            59
+          ],
+          "revision_ids": [
+            1238110296,
+            1238190850,
+            1238191718
+          ],
+          "timestamp_gap_seconds": 393,
+          "sha1": "38966e81342dd44235eb46c59d3426e556725cb5"
+        },
+        {
+          "indices": [
+            56,
+            57,
+            60
+          ],
+          "revision_ids": [
+            1238062183,
+            1238110296,
+            1238264668
+          ],
+          "timestamp_gap_seconds": 69613,
+          "sha1": "b3131de68c0697146dfd95121993af3072524e45"
+        },
+        {
+          "indices": [
+            60,
+            61,
+            62
+          ],
+          "revision_ids": [
+            1238264668,
+            1240269376,
+            1240270877
+          ],
+          "timestamp_gap_seconds": 627,
+          "sha1": "b3131de68c0697146dfd95121993af3072524e45"
+        },
+        {
+          "indices": [
+            62,
+            63,
+            64
+          ],
+          "revision_ids": [
+            1240270877,
+            1240299756,
+            1240301470
+          ],
+          "timestamp_gap_seconds": 740,
+          "sha1": "b3131de68c0697146dfd95121993af3072524e45"
+        },
+        {
+          "indices": [
+            65,
+            66,
+            67
+          ],
+          "revision_ids": [
+            1240944045,
+            1242195837,
+            1242195963
+          ],
+          "timestamp_gap_seconds": 56,
+          "sha1": "f55233d838b15e3bb1e94fc76169424c8dba4e56"
+        },
+        {
+          "indices": [
+            67,
+            68,
+            69
+          ],
+          "revision_ids": [
+            1242195963,
+            1242927148,
+            1242927454
+          ],
+          "timestamp_gap_seconds": 132,
+          "sha1": "f55233d838b15e3bb1e94fc76169424c8dba4e56"
+        },
+        {
+          "indices": [
+            70,
+            71,
+            72
+          ],
+          "revision_ids": [
+            1244356237,
+            1244453241,
+            1244463154
+          ],
+          "timestamp_gap_seconds": 6994,
+          "sha1": "47be404898291d3388e8cb847e4cdbf5af9c52da"
+        },
+        {
+          "indices": [
+            72,
+            73,
+            74
+          ],
+          "revision_ids": [
+            1244463154,
+            1248164204,
+            1248164982
+          ],
+          "timestamp_gap_seconds": 373,
+          "sha1": "47be404898291d3388e8cb847e4cdbf5af9c52da"
+        },
+        {
+          "indices": [
+            74,
+            75,
+            76
+          ],
+          "revision_ids": [
+            1248164982,
+            1249922739,
+            1249922854
+          ],
+          "timestamp_gap_seconds": 47,
+          "sha1": "47be404898291d3388e8cb847e4cdbf5af9c52da"
+        },
+        {
+          "indices": [
+            76,
+            77,
+            78
+          ],
+          "revision_ids": [
+            1249922854,
+            1250251739,
+            1250251820
+          ],
+          "timestamp_gap_seconds": 65,
+          "sha1": "47be404898291d3388e8cb847e4cdbf5af9c52da"
+        },
+        {
+          "indices": [
+            78,
+            79,
+            81
+          ],
+          "revision_ids": [
+            1250251820,
+            1250252472,
+            1250252692
+          ],
+          "timestamp_gap_seconds": 146,
+          "sha1": "47be404898291d3388e8cb847e4cdbf5af9c52da"
+        },
+        {
+          "indices": [
+            81,
+            82,
+            83
+          ],
+          "revision_ids": [
+            1250252692,
+            1250548113,
+            1250548183
+          ],
+          "timestamp_gap_seconds": 34,
+          "sha1": "47be404898291d3388e8cb847e4cdbf5af9c52da"
+        },
+        {
+          "indices": [
+            83,
+            84,
+            85
+          ],
+          "revision_ids": [
+            1250548183,
+            1250550695,
+            1250550724
+          ],
+          "timestamp_gap_seconds": 20,
+          "sha1": "47be404898291d3388e8cb847e4cdbf5af9c52da"
+        },
+        {
+          "indices": [
+            89,
+            90,
+            93
+          ],
+          "revision_ids": [
+            1254545555,
+            1257516197,
+            1257683593
+          ],
+          "timestamp_gap_seconds": 67999,
+          "sha1": "1bfed36d7afceae11f756f23152a79298f1ea46d"
+        },
+        {
+          "indices": [
+            93,
+            94,
+            95
+          ],
+          "revision_ids": [
+            1257683593,
+            1257793022,
+            1257842336
+          ],
+          "timestamp_gap_seconds": 16424,
+          "sha1": "1bfed36d7afceae11f756f23152a79298f1ea46d"
+        },
+        {
+          "indices": [
+            98,
+            99,
+            103
+          ],
+          "revision_ids": [
+            1257992591,
+            1258149341,
+            1258336626
+          ],
+          "timestamp_gap_seconds": 61718,
+          "sha1": "da121d89e2e3a58c63369a2e49d2bf91ef89831c"
+        },
+        {
+          "indices": [
+            111,
+            112,
+            113
+          ],
+          "revision_ids": [
+            1258486556,
+            1260577554,
+            1260583523
+          ],
+          "timestamp_gap_seconds": 2318,
+          "sha1": "359e77eed475dec136d89384f97140938ad5ee8b"
+        },
+        {
+          "indices": [
+            114,
+            115,
+            116
+          ],
+          "revision_ids": [
+            1261049680,
+            1261376397,
+            1261377481
+          ],
+          "timestamp_gap_seconds": 450,
+          "sha1": "02a227388b06b913afd5447576fa8405dbc19782"
+        },
+        {
+          "indices": [
+            115,
+            116,
+            117
+          ],
+          "revision_ids": [
+            1261376397,
+            1261377481,
+            1262094043
+          ],
+          "timestamp_gap_seconds": 330673,
+          "sha1": "c85a3c86110a84615f4808d24504194032f50219"
+        },
+        {
+          "indices": [
+            116,
+            117,
+            120
+          ],
+          "revision_ids": [
+            1261377481,
+            1262094043,
+            1262148106
+          ],
+          "timestamp_gap_seconds": 21062,
+          "sha1": "02a227388b06b913afd5447576fa8405dbc19782"
+        },
+        {
+          "indices": [
+            120,
+            121,
+            123
+          ],
+          "revision_ids": [
+            1262148106,
+            1262614777,
+            1262616018
+          ],
+          "timestamp_gap_seconds": 868,
+          "sha1": "02a227388b06b913afd5447576fa8405dbc19782"
+        },
+        {
+          "indices": [
+            123,
+            124,
+            125
+          ],
+          "revision_ids": [
+            1262616018,
+            1262945455,
+            1262945519
+          ],
+          "timestamp_gap_seconds": 26,
+          "sha1": "02a227388b06b913afd5447576fa8405dbc19782"
+        }
+      ]
+    },
+    {
+      "title": "JavaScript",
+      "pageid": 9845,
+      "revisions": 133,
+      "distinct_content_hashes": 128,
+      "content_runs": 133,
+      "hash_return_count": 5,
+      "consecutive_parent_links": true,
+      "equal_timestamp_pairs": 0,
+      "declared_path_minimum_auxiliary_labels": 2,
+      "declared_path_minimum_strong_labels": 133,
+      "revision_ids_distinct": true,
+      "returns": [
+        {
+          "indices": [
+            85,
+            86,
+            87
+          ],
+          "revision_ids": [
+            1215779516,
+            1216639254,
+            1216676357
+          ],
+          "timestamp_gap_seconds": 20811,
+          "sha1": "0e4454f6ccc39b1f490260c4feb78fa90510c6e1"
+        },
+        {
+          "indices": [
+            89,
+            90,
+            91
+          ],
+          "revision_ids": [
+            1219507869,
+            1229700873,
+            1229788552
+          ],
+          "timestamp_gap_seconds": 40109,
+          "sha1": "40656e769599c7ee90af986855a63c022a4d32ee"
+        },
+        {
+          "indices": [
+            94,
+            95,
+            96
+          ],
+          "revision_ids": [
+            1230176205,
+            1233179050,
+            1233183640
+          ],
+          "timestamp_gap_seconds": 1793,
+          "sha1": "48d6b178886cb6d3752ba0286576d6c64c86f7d9"
+        },
+        {
+          "indices": [
+            108,
+            109,
+            110
+          ],
+          "revision_ids": [
+            1243757512,
+            1244453171,
+            1244463023
+          ],
+          "timestamp_gap_seconds": 6959,
+          "sha1": "7eaebf81353d02b6eb8f412e01f4c1a79bf9a1b4"
+        },
+        {
+          "indices": [
+            111,
+            112,
+            117
+          ],
+          "revision_ids": [
+            1246478206,
+            1248805038,
+            1248831262
+          ],
+          "timestamp_gap_seconds": 9597,
+          "sha1": "79e1cce15318c19fb0926cba81a15b31a4727ad4"
+        }
+      ]
+    },
+    {
+      "title": "Web browser",
+      "pageid": 33173,
+      "revisions": 85,
+      "distinct_content_hashes": 76,
+      "content_runs": 85,
+      "hash_return_count": 9,
+      "consecutive_parent_links": true,
+      "equal_timestamp_pairs": 0,
+      "declared_path_minimum_auxiliary_labels": 3,
+      "declared_path_minimum_strong_labels": 85,
+      "revision_ids_distinct": true,
+      "returns": [
+        {
+          "indices": [
+            33,
+            34,
+            35
+          ],
+          "revision_ids": [
+            1217218341,
+            1217379935,
+            1217492554
+          ],
+          "timestamp_gap_seconds": 49610,
+          "sha1": "117cfec9444da602bb3905e8550a0c7b873c0132"
+        },
+        {
+          "indices": [
+            37,
+            38,
+            39
+          ],
+          "revision_ids": [
+            1217579739,
+            1222377981,
+            1222561076
+          ],
+          "timestamp_gap_seconds": 83474,
+          "sha1": "6615a947a3e73254758b24307f2f00ef6824ed73"
+        },
+        {
+          "indices": [
+            39,
+            40,
+            42
+          ],
+          "revision_ids": [
+            1222561076,
+            1228441411,
+            1228903513
+          ],
+          "timestamp_gap_seconds": 222797,
+          "sha1": "6615a947a3e73254758b24307f2f00ef6824ed73"
+        },
+        {
+          "indices": [
+            52,
+            53,
+            56
+          ],
+          "revision_ids": [
+            1242661350,
+            1243575314,
+            1244209501
+          ],
+          "timestamp_gap_seconds": 298839,
+          "sha1": "3eda7271db16629bdd899d038adf0c61491cab6a"
+        },
+        {
+          "indices": [
+            61,
+            62,
+            63
+          ],
+          "revision_ids": [
+            1249387251,
+            1257414938,
+            1257416025
+          ],
+          "timestamp_gap_seconds": 276,
+          "sha1": "b40afd8d0d50456c21639f7218c41595ea15b953"
+        },
+        {
+          "indices": [
+            68,
+            69,
+            71
+          ],
+          "revision_ids": [
+            1258246763,
+            1258247825,
+            1258248176
+          ],
+          "timestamp_gap_seconds": 183,
+          "sha1": "4e2b525b90926ca84b1e073364ec51a8fbeed40a"
+        },
+        {
+          "indices": [
+            72,
+            73,
+            74
+          ],
+          "revision_ids": [
+            1258310561,
+            1261024972,
+            1263281584
+          ],
+          "timestamp_gap_seconds": 1029556,
+          "sha1": "36a3741e19074395190cf47dd4489637e69ca2f6"
+        },
+        {
+          "indices": [
+            74,
+            75,
+            77
+          ],
+          "revision_ids": [
+            1263281584,
+            1263622714,
+            1263816321
+          ],
+          "timestamp_gap_seconds": 92119,
+          "sha1": "36a3741e19074395190cf47dd4489637e69ca2f6"
+        },
+        {
+          "indices": [
+            79,
+            80,
+            81
+          ],
+          "revision_ids": [
+            1263912946,
+            1264125611,
+            1264868692
+          ],
+          "timestamp_gap_seconds": 284991,
+          "sha1": "088e6a9d07618a8703633b80f445e09de85346a7"
+        }
+      ]
+    }
+  ]
+}

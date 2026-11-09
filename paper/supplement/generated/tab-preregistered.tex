@@ -1,0 +1,17 @@
+\begin{tabular}{@{}lrrrrrrrrr@{}}
+\toprule
+Condition & \multicolumn{3}{c}{Content hash, $2n$, half-open} & \multicolumn{3}{c}{Revision ID, $2n$, half-open} & \multicolumn{3}{c}{Revision ID, exact, $2n{-}1$} \\ \cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(l){8-10}
+ & Certified & G1 & G2 & Certified & G1 & G2 & Certified & G1 & G2 \\
+\midrule
+vital, 1\,s, all $n$ & 0 & 0 & 0 & 0 & 0 & 0 & 11,997 & 0 & 0 \\
+vital, 1\,min, all $n$ & 11,929 & 0 & 5 & 11,924 & 0 & 0 & 11,941 & 0 & 0 \\
+vital, 1\,h, all $n$ & 10,195 & 8 & 241 & 9,954 & 0 & 0 & 10,279 & 0 & 0 \\
+random, 1\,s, all $n$ & 0 & 0 & 0 & 0 & 0 & 0 & 12,000 & 0 & 0 \\
+random, 1\,min, all $n$ & 11,997 & 0 & 0 & 11,997 & 0 & 0 & 11,997 & 0 & 0 \\
+random, 1\,h, all $n$ & 11,852 & 0 & 4 & 11,848 & 0 & 0 & 11,869 & 0 & 0 \\
+\midrule
+vital, 1\,h, $n=2$ & 3,882 & 1 & 14 & 3,868 & 0 & 0 & 3,930 & 0 & 0 \\
+vital, 1\,h, $n=4$ & 3,606 & 0 & 59 & 3,547 & 0 & 0 & 3,659 & 0 & 0 \\
+vital, 1\,h, $n=8$ & 2,707 & 7 & 168 & 2,539 & 0 & 0 & 2,690 & 0 & 0 \\
+\bottomrule
+\end{tabular}

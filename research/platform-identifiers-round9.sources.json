@@ -1,0 +1,3398 @@
+{
+ "title": "Identifier behaviour under rollback, restore and undelete: platform documentation audit",
+ "retrieved": "2026-11-05",
+ "method": "Each source was downloaded on the retrieval date; every quote below was checked verbatim (after whitespace/Unicode NFKC normalisation) against the local copy whose SHA-256 is recorded. 'fetched_url' is the URL actually downloaded (redirect target, raw-source mirror or Markdown variant).",
+ "classification_scheme": {
+  "i": "content-derived: equal content gives an equal identifier; the identifier returns whenever the content returns",
+  "i*": "attribute-derived (extension of i): identifier is a function of file attributes (mtime, size[, inode]) rather than content; it returns whenever those attributes return, and different content can share it",
+  "ii": "allocation-unique but reactivatable: each version gets a unique identifier, but a documented operation makes an older identifier current again",
+  "iii": "publication-fresh: every change of what is served at the name allocates a new identifier; documented restore paths allocate new identifiers; no documented path re-exposes an old identifier as current",
+  "iv": "unclear/undocumented",
+  "n/u": "not unique: the same identifier value is re-used for different content (fails even uniqueness)",
+  "n/a": "feature absent (no versioning / no restore path)"
+ },
+ "summary_counts": {
+  "by_primary_class": {
+   "ii": 13,
+   "n/u": 2,
+   "i": 11,
+   "iii": 6,
+   "n/a": 2,
+   "iv": 2,
+   "i*": 3
+  },
+  "note": "primary_class is the first class code in each entry's classification string; see 'classification' for qualifiers and 'class_codes' for all codes mentioned."
+ },
+ "entries": [
+  {
+   "platform": "Amazon S3",
+   "identifier": "version ID (x-amz-version-id), versioning Enabled",
+   "exposed_on_current_read": "x-amz-version-id on GET/HEAD; also ETag, Last-Modified",
+   "operations": [
+    {
+     "op": "DeleteObject?versionId=<current version>",
+     "effect": "previous version becomes current with its ORIGINAL version ID (doc example: GET then returns 111111)",
+     "identifier_effect": "reactivated"
+    },
+    {
+     "op": "DeleteObject?versionId=<delete marker> (undelete)",
+     "effect": "older version current again; GET returns version ID 121212",
+     "identifier_effect": "reactivated"
+    },
+    {
+     "op": "CopyObject of an older version onto the same key",
+     "effect": "copy gets a new version ID (88778877)",
+     "identifier_effect": "fresh"
+    },
+    {
+     "op": "simple DELETE",
+     "effect": "delete marker with a new ID becomes current",
+     "identifier_effect": "fresh (marker)"
+    },
+    {
+     "op": "Object Lock retention/legal hold",
+     "effect": "locked version cannot be permanently deleted (403), but delete markers and newer versions can be placed over it; delete markers are not WORM-protected, so removing them re-exposes the locked version",
+     "identifier_effect": "reactivation still possible"
+    }
+   ],
+   "classification": "ii",
+   "conditions": "Permanent version deletion needs s3:DeleteObjectVersion; MFA Delete requires x-amz-mfa; Object Lock blocks permanent deletion of protected versions but not delete-marker placement/removal.",
+   "source_ids": [
+    "s3-restoring",
+    "s3-delmarkers",
+    "s3-deleting-versions",
+    "s3-version-ids",
+    "s3-object-lock",
+    "s3-object-lock-managing",
+    "s3-api-getobject",
+    "s3-api-deleteobject"
+   ],
+   "evidence_basis_confidence": "high (explicit vendor statements)",
+   "notes": "",
+   "class_codes": [
+    "ii"
+   ],
+   "primary_class": "ii"
+  },
+  {
+   "platform": "Amazon S3",
+   "identifier": "null version ID (versioning Suspended, or objects stored before versioning; directory buckets)",
+   "exposed_on_current_read": "x-amz-version-id: null",
+   "operations": [
+    {
+     "op": "PUT in a suspended bucket",
+     "effect": "overwrites the existing null version; key and version ID stay 'null' while content is replaced",
+     "identifier_effect": "same ID, different content"
+    },
+    {
+     "op": "DELETE in a suspended bucket",
+     "effect": "removes the null version and inserts a delete marker (itself with a null version ID)",
+     "identifier_effect": "-"
+    }
+   ],
+   "classification": "n/u",
+   "conditions": "Applies to versioning-suspended buckets, pre-versioning objects, and S3 directory buckets (null only).",
+   "source_ids": [
+    "s3-suspended-put",
+    "s3-suspended-delete",
+    "s3-delmarkers",
+    "s3-api-deleteobject"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "n/u"
+   ],
+   "primary_class": "n/u"
+  },
+  {
+   "platform": "Amazon S3",
+   "identifier": "ETag",
+   "exposed_on_current_read": "ETag on GET/HEAD",
+   "operations": [
+    {
+     "op": "any restore that re-creates the same bytes via PUT/POST/Copy (SSE-S3 or plaintext)",
+     "effect": "ETag is the MD5 of the data, so the old ETag returns",
+     "identifier_effect": "returns with content"
+    },
+    {
+     "op": "multipart upload / SSE-KMS / SSE-C",
+     "effect": "ETag 'is not an MD5 digest'; derivation not documented on this page",
+     "identifier_effect": "unclear"
+    }
+   ],
+   "classification": "i (MD5 case); iv (multipart, SSE-KMS, SSE-C)",
+   "conditions": "Inference: a single-operation CopyObject restore of an object first uploaded by multipart gets an MD5 ETag, unlike the original multipart ETag (large copies use Part Copy, which is not MD5).",
+   "source_ids": [
+    "s3-api-object-etag"
+   ],
+   "evidence_basis_confidence": "high for the MD5 case",
+   "notes": "",
+   "class_codes": [
+    "i",
+    "iv"
+   ],
+   "primary_class": "i"
+  },
+  {
+   "platform": "Google Cloud Storage",
+   "identifier": "generation (flat-namespace buckets)",
+   "exposed_on_current_read": "x-goog-generation (XML API); 'generation' field (JSON API)",
+   "operations": [
+    {
+     "op": "replace / copy a noncurrent version over the live version",
+     "effect": "receives a new generation number",
+     "identifier_effect": "fresh"
+    },
+    {
+     "op": "restore noncurrent version (= copy)",
+     "effect": "the copy becomes the live version",
+     "identifier_effect": "fresh"
+    },
+    {
+     "op": "soft-delete restore (objects.restore)",
+     "effect": "a new generation is assigned and metageneration reset to 1",
+     "identifier_effect": "fresh"
+    },
+    {
+     "op": "delete live version (versioning on)",
+     "effect": "becomes noncurrent and keeps its generation; no live version remains (no promotion of an older version)",
+     "identifier_effect": "no reactivation"
+    },
+    {
+     "op": "objects.move",
+     "effect": "destination gets a new generation number",
+     "identifier_effect": "fresh"
+    }
+   ],
+   "classification": "iii",
+   "conditions": "Generation numbers are unique but 'might not increase'. Restoring soft-deleted objects requires roles/storage.admin permissions.",
+   "source_ids": [
+    "gcs-metadata",
+    "gcs-versioning",
+    "gcs-using-versioned",
+    "gcs-soft-delete",
+    "gcs-api-restore",
+    "gcs-api-move",
+    "gcs-xml-headers",
+    "gcs-api-objects"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "iii"
+   ],
+   "primary_class": "iii"
+  },
+  {
+   "platform": "Google Cloud Storage",
+   "identifier": "(name, generation) in hierarchical-namespace (HNS) buckets",
+   "exposed_on_current_read": "same as above",
+   "operations": [
+    {
+     "op": "RenameFolder (HNS)",
+     "effect": "renames paths without rewriting objects; documented example shows a renamed object keeping its generation (999), producing two soft-deleted objects with the same name and generation, hence restoreToken",
+     "identifier_effect": "(name, generation) not unique; rename-away then rename-back would re-expose the same pair at the same name (inference)"
+    }
+   ],
+   "classification": "ii (inferred) / uniqueness of (name, generation) explicitly not guaranteed",
+   "conditions": "HNS buckets only; folder rename is an ordinary write-permission operation.",
+   "source_ids": [
+    "gcs-soft-delete",
+    "gcs-api-objects",
+    "gcs-api-restore",
+    "gcs-hns"
+   ],
+   "evidence_basis_confidence": "medium (generation preservation on folder rename is shown by documented example, not stated as a rule)",
+   "notes": "",
+   "class_codes": [
+    "ii"
+   ],
+   "primary_class": "ii"
+  },
+  {
+   "platform": "Google Cloud Storage",
+   "identifier": "metageneration",
+   "exposed_on_current_read": "x-goog-metageneration / 'metageneration'",
+   "operations": [
+    {
+     "op": "any new generation (including restores)",
+     "effect": "metageneration restarts at 1",
+     "identifier_effect": "value recurs by design"
+    }
+   ],
+   "classification": "n/u (counter scoped to one generation)",
+   "conditions": "Only meaningful together with generation; the pair inherits the generation's class.",
+   "source_ids": [
+    "gcs-metadata",
+    "gcs-api-restore"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "n/u"
+   ],
+   "primary_class": "n/u"
+  },
+  {
+   "platform": "Google Cloud Storage",
+   "identifier": "ETag",
+   "exposed_on_current_read": "ETag",
+   "operations": [
+    {
+     "op": "XML API, Google-managed keys, non-composite, non-multipart object",
+     "effect": "ETag is the object's MD5",
+     "identifier_effect": "returns with content"
+    },
+    {
+     "op": "JSON API",
+     "effect": "'make no assumptions about the value'",
+     "identifier_effect": "unclear"
+    }
+   ],
+   "classification": "i (XML API MD5 case); iv (JSON API)",
+   "conditions": "",
+   "source_ids": [
+    "gcs-metadata"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "i",
+    "iv"
+   ],
+   "primary_class": "i"
+  },
+  {
+   "platform": "Azure Blob Storage",
+   "identifier": "version ID (timestamp)",
+   "exposed_on_current_read": "x-ms-version-id returned on writes; requests without versionid target the current version",
+   "operations": [
+    {
+     "op": "Delete Blob without versionid",
+     "effect": "current version becomes a previous version; there is no longer a current version",
+     "identifier_effect": "no promotion"
+    },
+    {
+     "op": "restore previous version ('Make current version' / Copy Blob)",
+     "effect": "copy a previous version to a NEW current version",
+     "identifier_effect": "fresh"
+    },
+    {
+     "op": "Undelete Blob (versioning + soft delete)",
+     "effect": "restores soft-deleted versions; never promotes a version to current",
+     "identifier_effect": "no reactivation"
+    },
+    {
+     "op": "point-in-time restore",
+     "effect": "reverts write/delete operations for block blobs; whether this writes new versions is not stated",
+     "identifier_effect": "unclear"
+    }
+   ],
+   "classification": "iii (iv for point-in-time restore)",
+   "conditions": "Versioning must be enabled; deleting a previous version needs the deleteBlobVersion action (Storage Blob Data Owner).",
+   "source_ids": [
+    "az-versioning",
+    "az-softdelete-manage",
+    "az-pitr"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "iii",
+    "iv"
+   ],
+   "primary_class": "iii"
+  },
+  {
+   "platform": "Azure Blob Storage",
+   "identifier": "snapshot (DateTime) / base-blob restore from snapshot",
+   "exposed_on_current_read": "snapshot query parameter; base blob ETag",
+   "operations": [
+    {
+     "op": "promote snapshot (Copy Blob over base)",
+     "effect": "base blob is overwritten by a copy (a write)",
+     "identifier_effect": "fresh ETag for base"
+    }
+   ],
+   "classification": "iii",
+   "conditions": "Snapshots are read-only and never themselves become the base blob.",
+   "source_ids": [
+    "az-snapshots",
+    "az-softdelete",
+    "az-concurrency"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "iii"
+   ],
+   "primary_class": "iii"
+  },
+  {
+   "platform": "Azure Blob Storage",
+   "identifier": "ETag",
+   "exposed_on_current_read": "ETag on GET",
+   "operations": [
+    {
+     "op": "any write, including Copy Blob restores",
+     "effect": "identifier is updated every time a write operation is performed",
+     "identifier_effect": "fresh"
+    },
+    {
+     "op": "Undelete Blob (soft delete, versioning off)",
+     "effect": "restores 'contents and metadata' to the state at deletion; ETag behaviour not stated",
+     "identifier_effect": "unclear"
+    }
+   ],
+   "classification": "iii (writes); iv (Undelete Blob)",
+   "conditions": "",
+   "source_ids": [
+    "az-concurrency",
+    "az-undelete",
+    "az-softdelete"
+   ],
+   "evidence_basis_confidence": "high / documented gap",
+   "notes": "",
+   "class_codes": [
+    "iii",
+    "iv"
+   ],
+   "primary_class": "iii"
+  },
+  {
+   "platform": "Backblaze B2 (native API)",
+   "identifier": "fileId (one per file version)",
+   "exposed_on_current_read": "X-Bz-File-Id on b2_download_file_by_name; also X-Bz-Content-Sha1",
+   "operations": [
+    {
+     "op": "b2_delete_file_version on the latest version",
+     "effect": "the most recent older version becomes current and is what download-by-name returns",
+     "identifier_effect": "reactivated (original fileId)"
+    },
+    {
+     "op": "delete the hide marker",
+     "effect": "the file is visible again under its previous version",
+     "identifier_effect": "reactivated"
+    },
+    {
+     "op": "b2_hide_file",
+     "effect": "adds a new 'hide' version as most recent",
+     "identifier_effect": "fresh (marker)"
+    }
+   ],
+   "classification": "ii",
+   "conditions": "Requires deleteFiles capability; Object Lock governance mode needs bypassGovernance.",
+   "source_ids": [
+    "b2-delete-file-version",
+    "b2-file-versions",
+    "b2-hide-file",
+    "b2-download-by-name"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "ii"
+   ],
+   "primary_class": "ii"
+  },
+  {
+   "platform": "Backblaze B2 (native API)",
+   "identifier": "content SHA1 (X-Bz-Content-Sha1)",
+   "exposed_on_current_read": "X-Bz-Content-Sha1",
+   "operations": [
+    {
+     "op": "any",
+     "effect": "SHA1 of content",
+     "identifier_effect": "returns with content"
+    }
+   ],
+   "classification": "i",
+   "conditions": "Large files report 'none'.",
+   "source_ids": [
+    "b2-download-by-name",
+    "b2-hide-file"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "i"
+   ],
+   "primary_class": "i"
+  },
+  {
+   "platform": "Cloudflare R2",
+   "identifier": "object 'version' (Workers API); ETag",
+   "exposed_on_current_read": "R2Object.version; ETag/httpEtag",
+   "operations": [
+    {
+     "op": "bucket versioning",
+     "effect": "Get/PutBucketVersioning unimplemented (GetBucketVersioning is a dummy); no restore operation exists",
+     "identifier_effect": "n/a"
+    },
+    {
+     "op": "re-upload",
+     "effect": "'version' is a random unique string per upload",
+     "identifier_effect": "fresh"
+    }
+   ],
+   "classification": "n/a (versioning); iii vacuously for 'version'; ETag: i for multipart (MD5 of part MD5s + '-N'), iv for single PUT",
+   "conditions": "",
+   "source_ids": [
+    "r2-s3-compat",
+    "r2-release-notes",
+    "r2-workers-api",
+    "r2-upload-objects"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "n/a",
+    "iii",
+    "i",
+    "iv"
+   ],
+   "primary_class": "n/a"
+  },
+  {
+   "platform": "Wasabi",
+   "identifier": "version ID (S3 API)",
+   "exposed_on_current_read": "x-amz-version-id (S3 compatible)",
+   "operations": [
+    {
+     "op": "delete current version / delete marker",
+     "effect": "not described; docs say versions can be 'retrieve[d] and restore[d]' and show delete by --version-id",
+     "identifier_effect": "unclear"
+    },
+    {
+     "op": "MOVE (Wasabi extension)",
+     "effect": "renames 'objects (including all versions)'; whether version IDs are preserved is not stated",
+     "identifier_effect": "unclear"
+    }
+   ],
+   "classification": "iv",
+   "conditions": "Wasabi claims '100% bit-compatible with Amazon S3', which would imply S3 behaviour (ii), but this is not documented specifically.",
+   "source_ids": [
+    "wasabi-versioning",
+    "wasabi-delete-versions",
+    "wasabi-lc-delmarkers",
+    "wasabi-s3-compat",
+    "wasabi-move"
+   ],
+   "evidence_basis_confidence": "documented gap",
+   "notes": "",
+   "class_codes": [
+    "iv"
+   ],
+   "primary_class": "iv"
+  },
+  {
+   "platform": "DigitalOcean Spaces",
+   "identifier": "version ID (S3 API)",
+   "exposed_on_current_read": "x-amz-version-id (S3 compatible)",
+   "operations": [
+    {
+     "op": "remove delete marker (documented restore procedure)",
+     "effect": "'the file is restored' - the previous version (which became 'a previous version' when the marker was added) is current again",
+     "identifier_effect": "reactivated (implied)"
+    },
+    {
+     "op": "delete a specific version",
+     "effect": "permanently removes that version; effect on current not stated",
+     "identifier_effect": "unclear"
+    }
+   ],
+   "classification": "ii (delete-marker path, implied by wording)",
+   "conditions": "Versioning managed only via the S3-compatible API.",
+   "source_ids": [
+    "do-versioning"
+   ],
+   "evidence_basis_confidence": "medium",
+   "notes": "",
+   "class_codes": [
+    "ii"
+   ],
+   "primary_class": "ii"
+  },
+  {
+   "platform": "Ceph RGW",
+   "identifier": "version ID (S3 API)",
+   "exposed_on_current_read": "x-amz-version-id",
+   "operations": [
+    {
+     "op": "DELETE ?versionId=<head>",
+     "effect": "prose docs silent; Ceph's s3-tests conformance suite deletes the head version and asserts a plain GET returns the previous content while remaining versions keep their original IDs",
+     "identifier_effect": "reactivated (per tests)"
+    }
+   ],
+   "classification": "ii per project test suite; iv per prose docs",
+   "conditions": "",
+   "source_ids": [
+    "ceph-s3-features",
+    "ceph-s3-bucketops",
+    "ceph-s3-tests"
+   ],
+   "evidence_basis_confidence": "medium-high (test code, not prose)",
+   "notes": "",
+   "class_codes": [
+    "ii",
+    "iv"
+   ],
+   "primary_class": "ii"
+  },
+  {
+   "platform": "OpenStack Swift",
+   "identifier": "legacy X-Versions-Location ('stack' mode): no version ID; ETag",
+   "exposed_on_current_read": "ETag (MD5 of content); X-Timestamp/Last-Modified",
+   "operations": [
+    {
+     "op": "DELETE",
+     "effect": "removes current version; the most recent archived version is copied back over the current name",
+     "identifier_effect": "ETag returns (content-derived); timestamps regenerated (headers copied 'apart from x-timestamp')"
+    }
+   ],
+   "classification": "i (ETag); timestamps fresh (from source)",
+   "conditions": "Legacy mode; X-Versions-Location and X-History-Location are mutually exclusive per container.",
+   "source_ids": [
+    "swift-middleware",
+    "swift-legacy-src",
+    "swift-api-ref"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "i"
+   ],
+   "primary_class": "i"
+  },
+  {
+   "platform": "OpenStack Swift",
+   "identifier": "legacy X-History-Location ('history' mode); ETag",
+   "exposed_on_current_read": "ETag",
+   "operations": [
+    {
+     "op": "restore = COPY from archive container to original location",
+     "effect": "content (and MD5 ETag) returns",
+     "identifier_effect": "returns with content"
+    }
+   ],
+   "classification": "i (ETag)",
+   "conditions": "",
+   "source_ids": [
+    "swift-middleware",
+    "swift-api-ref"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "i"
+   ],
+   "primary_class": "i"
+  },
+  {
+   "platform": "OpenStack Swift",
+   "identifier": "object versioning (X-Versions-Enabled): X-Object-Version-Id",
+   "exposed_on_current_read": "X-Object-Version-Id on GET/HEAD of the current object",
+   "operations": [
+    {
+     "op": "zero-byte PUT ?version-id=<old id>",
+     "effect": "re-points the is_latest symlink to that existing version (docstring, source, unit test test_PUT_version)",
+     "identifier_effect": "reactivated"
+    },
+    {
+     "op": "COPY ?version-id=<old id> onto the same name",
+     "effect": "functional test: 'should get a new version-id'",
+     "identifier_effect": "fresh"
+    },
+    {
+     "op": "DELETE ?version-id=<current>",
+     "effect": "deletes both symlink and data; no promotion",
+     "identifier_effect": "no reactivation"
+    }
+   ],
+   "classification": "ii (per source and API docstring)",
+   "conditions": "Prose on the same page says PUT with version-id returns 400 - inconsistent with the documented handler and tests.",
+   "source_ids": [
+    "swift-middleware",
+    "swift-object-versioning-src",
+    "swift-unit-test-put-version",
+    "swift-functional-test-copy-restore"
+   ],
+   "evidence_basis_confidence": "medium-high (documentation is self-contradictory; code and tests are unambiguous)",
+   "notes": "",
+   "class_codes": [
+    "ii"
+   ],
+   "primary_class": "ii"
+  },
+  {
+   "platform": "SeaweedFS S3 gateway",
+   "identifier": "version ID (v_<hex>)",
+   "exposed_on_current_read": "x-amz-version-id",
+   "operations": [
+    {
+     "op": "DELETE ?versionId=<latest>",
+     "effect": "wiki: 'Permanently deletes that specific version' (effect on latest not stated); source repoints latest to the next-newest version",
+     "identifier_effect": "reactivated (per source)"
+    }
+   ],
+   "classification": "ii per source; iv per wiki",
+   "conditions": "",
+   "source_ids": [
+    "seaweedfs-wiki-s3api",
+    "seaweedfs-wiki-versioning",
+    "seaweedfs-src"
+   ],
+   "evidence_basis_confidence": "medium-high",
+   "notes": "",
+   "class_codes": [
+    "ii",
+    "iv"
+   ],
+   "primary_class": "ii"
+  },
+  {
+   "platform": "Garage S3 gateway",
+   "identifier": "-",
+   "exposed_on_current_read": "-",
+   "operations": [
+    {
+     "op": "versioning",
+     "effect": "'Garage does not (yet) support object versioning'; GetBucketVersioning is a stub",
+     "identifier_effect": "n/a"
+    }
+   ],
+   "classification": "n/a",
+   "conditions": "",
+   "source_ids": [
+    "garage-s3compat"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "n/a"
+   ],
+   "primary_class": "n/a"
+  },
+  {
+   "platform": "Netlify",
+   "identifier": "deploy ID",
+   "exposed_on_current_read": "site.published_deploy (API); deploy permalink <deployID>--<site>.netlify.app",
+   "operations": [
+    {
+     "op": "Publish deploy / restoreSiteDeploy",
+     "effect": "publishes a previous atomic deploy; does not trigger a new deploy",
+     "identifier_effect": "reactivated"
+    },
+    {
+     "op": "rollbackSiteDeploy",
+     "effect": "rolls back production to the deploy referenced by rollback_id",
+     "identifier_effect": "reactivated"
+    }
+   ],
+   "classification": "ii",
+   "conditions": "Only successful deploys that still exist (not deleted) can be published.",
+   "source_ids": [
+    "netlify-manage-deploys",
+    "netlify-openapi"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "ii"
+   ],
+   "primary_class": "ii"
+  },
+  {
+   "platform": "Vercel",
+   "identifier": "deployment ID",
+   "exposed_on_current_read": "deployment aliased to production domains",
+   "operations": [
+    {
+     "op": "Instant Rollback",
+     "effect": "assigns domains to an existing deployment; no rebuild",
+     "identifier_effect": "reactivated"
+    },
+    {
+     "op": "Promote preview to production",
+     "effect": "complete rebuild",
+     "identifier_effect": "fresh"
+    },
+    {
+     "op": "Promote staged production build",
+     "effect": "no rebuild; a previously promoted deployment cannot be promoted again, only rolled back to",
+     "identifier_effect": "first-time current"
+    }
+   ],
+   "classification": "ii",
+   "conditions": "Hobby plan: rollback only to the immediately previous deployment; 'After a rollback, Vercel turns off auto-assignment of production domains.'",
+   "source_ids": [
+    "vercel-promote",
+    "vercel-instant-rollback"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "ii"
+   ],
+   "primary_class": "ii"
+  },
+  {
+   "platform": "Cloudflare Pages",
+   "identifier": "deployment ID",
+   "exposed_on_current_read": "project canonical deployment (API)",
+   "operations": [
+    {
+     "op": "Rollback to a previous production deployment (UI / POST .../deployments/{id}/rollback)",
+     "effect": "production deployment changes instantly to the target; can later roll forward to newer deployments",
+     "identifier_effect": "reactivated (implied by wording)"
+    }
+   ],
+   "classification": "ii (implied)",
+   "conditions": "Only successfully built production deployments; preview deployments are not valid targets.",
+   "source_ids": [
+    "cfpages-rollbacks",
+    "cfpages-api-rollback",
+    "cfpages-api-project"
+   ],
+   "evidence_basis_confidence": "medium (docs do not literally state that the canonical deployment keeps the old ID)",
+   "notes": "",
+   "class_codes": [
+    "ii"
+   ],
+   "primary_class": "ii"
+  },
+  {
+   "platform": "Firebase Hosting",
+   "identifier": "version ID (sites/SITE/versions/VERSION_ID)",
+   "exposed_on_current_read": "release.version (API); release history",
+   "operations": [
+    {
+     "op": "Roll back",
+     "effect": "new release that serves the same version; both releases list the same version identifier; Release.type ROLLBACK",
+     "identifier_effect": "reactivated"
+    },
+    {
+     "op": "clone version within the same site",
+     "effect": "new release pointing to the exact same version",
+     "identifier_effect": "reactivated"
+    }
+   ],
+   "classification": "ii",
+   "conditions": "",
+   "source_ids": [
+    "firebase-manage",
+    "firebase-release-type"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "ii"
+   ],
+   "primary_class": "ii"
+  },
+  {
+   "platform": "Firebase Hosting",
+   "identifier": "release ID (sites/SITE/releases/RELEASE_ID)",
+   "exposed_on_current_read": "release name (API)",
+   "operations": [
+    {
+     "op": "Roll back / clone / deploy",
+     "effect": "always creates a new release",
+     "identifier_effect": "fresh"
+    }
+   ],
+   "classification": "iii",
+   "conditions": "",
+   "source_ids": [
+    "firebase-manage",
+    "firebase-releases-create"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "iii"
+   ],
+   "primary_class": "iii"
+  },
+  {
+   "platform": "GitHub Pages",
+   "identifier": "commit SHA (Pages build 'commit'; workflow GITHUB_SHA)",
+   "exposed_on_current_read": "Pages builds API; workflow runs",
+   "operations": [
+    {
+     "op": "git revert + push",
+     "effect": "new commit (new SHA); old commit remains in history",
+     "identifier_effect": "fresh commit SHA (tree may equal an earlier tree)"
+    },
+    {
+     "op": "git reset to an old commit + force push to the publishing branch",
+     "effect": "branch head points at the old commit; pushes to the source branch are published",
+     "identifier_effect": "old SHA current again"
+    },
+    {
+     "op": "re-run an old Pages workflow run",
+     "effect": "re-runs use the same GITHUB_SHA as the original event",
+     "identifier_effect": "old SHA redeployed"
+    }
+   ],
+   "classification": "i (commit-object hash); old SHAs reactivatable",
+   "conditions": "Force-push may be blocked by branch protection.",
+   "source_ids": [
+    "gh-pages-source",
+    "gh-rerun",
+    "gh-desktop-revert",
+    "git-reset",
+    "git-push",
+    "git-revert",
+    "gh-protected-branches"
+   ],
+   "evidence_basis_confidence": "high (by composition of documented behaviours)",
+   "notes": "",
+   "class_codes": [
+    "i"
+   ],
+   "primary_class": "i"
+  },
+  {
+   "platform": "GitHub Pages",
+   "identifier": "pages_build_version",
+   "exposed_on_current_read": "Pages deployment API parameter",
+   "operations": [
+    {
+     "op": "deploy/redeploy",
+     "effect": "documented as 'A unique string', but 'Default: GITHUB_SHA', so redeploying an old commit repeats it",
+     "identifier_effect": "repeats"
+    }
+   ],
+   "classification": "i (commit-derived by default; documented 'unique' claim does not survive redeploys)",
+   "conditions": "",
+   "source_ids": [
+    "gh-rest-pages",
+    "gh-rerun"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "i"
+   ],
+   "primary_class": "i"
+  },
+  {
+   "platform": "GitHub Pages",
+   "identifier": "deployment ID (Deployments API)",
+   "exposed_on_current_read": "deployments / environment history",
+   "operations": [
+    {
+     "op": "create deployment for any ref (branch, tag, SHA)",
+     "effect": "new deployment; on success, prior deployments of the same non-production environment become inactive",
+     "identifier_effect": "fresh"
+    },
+    {
+     "op": "re-activating an older deployment",
+     "effect": "not documented",
+     "identifier_effect": "unclear"
+    }
+   ],
+   "classification": "iv",
+   "conditions": "",
+   "source_ids": [
+    "gh-rest-deployments",
+    "gh-rest-pages"
+   ],
+   "evidence_basis_confidence": "documented gap",
+   "notes": "",
+   "class_codes": [
+    "iv"
+   ],
+   "primary_class": "iv"
+  },
+  {
+   "platform": "MediaWiki / Wikipedia",
+   "identifier": "revision ID (rev_id; page_latest; API revid)",
+   "exposed_on_current_read": "page_latest / API prop=revisions ids",
+   "operations": [
+    {
+     "op": "undo / rollback / manual revert",
+     "effect": "a new version (revision) of the page is created",
+     "identifier_effect": "fresh"
+    },
+    {
+     "op": "delete page, then selective undeletion of all but the newest revisions",
+     "effect": "the newest restored revision becomes the page's latest revision, with its original rev_id (rev_ids preserved across deletion/undeletion)",
+     "identifier_effect": "reactivated"
+    }
+   ],
+   "classification": "ii (admin-only path); iii for ordinary reverts",
+   "conditions": "Deletion/undeletion requires administrator (sysop) rights; if a newer page exists, undeleted revisions go into prior history; undeletion refuses to make a revision-deleted revision the top revision.",
+   "source_ids": [
+    "mw-reverts",
+    "mw-revision-table",
+    "mw-archive-table",
+    "mw-page-table",
+    "mw-undeletepage-src",
+    "mw-i18n-undelete",
+    "enwp-selective-deletion",
+    "mw-help-deletion"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "ii",
+    "iii"
+   ],
+   "primary_class": "ii"
+  },
+  {
+   "platform": "MediaWiki / Wikipedia",
+   "identifier": "rev_sha1 (content hash)",
+   "exposed_on_current_read": "API prop=revisions sha1",
+   "operations": [
+    {
+     "op": "any revert to an earlier state",
+     "effect": "new revision with the same SHA-1; manual reverts are detected by SHA-1 comparison",
+     "identifier_effect": "returns with content"
+    }
+   ],
+   "classification": "i",
+   "conditions": "",
+   "source_ids": [
+    "mw-revision-table",
+    "mw-reverts",
+    "mw-revisionstore-src",
+    "mw-api-revisions"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "i"
+   ],
+   "primary_class": "i"
+  },
+  {
+   "platform": "WordPress",
+   "identifier": "revision ID (post ID stays constant)",
+   "exposed_on_current_read": "REST post _links.predecessor-version.id (latest revision); revisions endpoint",
+   "operations": [
+    {
+     "op": "Restore a revision (wp_restore_post_revision)",
+     "effect": "wp_update_post -> post_updated -> wp_save_post_revision creates a new revision when the post differs from the latest revision",
+     "identifier_effect": "fresh"
+    },
+    {
+     "op": "DELETE a revision via REST (force=true)",
+     "effect": "latest_id is recomputed from remaining revisions, so predecessor-version can point to an older revision ID while post content is unchanged (source inference)",
+     "identifier_effect": "older ID re-exposed as 'latest revision' (not a content rollback)"
+    }
+   ],
+   "classification": "iii (content restore); caveat for revision deletion",
+   "conditions": "Revisions must be enabled for the post type.",
+   "source_ids": [
+    "wp-revision-src",
+    "wp-default-filters-src",
+    "wp-ref-restore",
+    "wp-rest-revisions",
+    "wp-rest-posts-controller-src"
+   ],
+   "evidence_basis_confidence": "high (source)",
+   "notes": "",
+   "class_codes": [
+    "iii"
+   ],
+   "primary_class": "iii"
+  },
+  {
+   "platform": "OCI / Docker registries",
+   "identifier": "manifest digest",
+   "exposed_on_current_read": "digest of the manifest resolved for a tag",
+   "operations": [
+    {
+     "op": "re-tag/push an old digest under the same tag",
+     "effect": "the tag (a mutable pointer) points to the old manifest again",
+     "identifier_effect": "old digest current again for that tag"
+    }
+   ],
+   "classification": "i (digest is content-derived); tag binding mutable unless tag immutability is enabled",
+   "conditions": "Immutability: Amazon ECR IMMUTABLE setting; Docker Hub immutable tags (Beta).",
+   "source_ids": [
+    "oci-distribution-spec",
+    "oci-image-descriptor",
+    "docker-image-tag",
+    "docker-hub-immutable-tags",
+    "ecr-tag-mutability"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "i"
+   ],
+   "primary_class": "i"
+  },
+  {
+   "platform": "npm registry",
+   "identifier": "package version (package@version) as the 'current' (latest) version",
+   "exposed_on_current_read": "dist-tags.latest",
+   "operations": [
+    {
+     "op": "npm dist-tag add <pkg>@<older> latest",
+     "effect": "latest points to the older version; latest is used by npm to identify the current version",
+     "identifier_effect": "reactivated"
+    },
+    {
+     "op": "unpublish + republish",
+     "effect": "a name@version can never be reused",
+     "identifier_effect": "version strings never reallocated"
+    }
+   ],
+   "classification": "ii",
+   "conditions": "Requires publish rights; a one-time password (--otp) if two-factor authentication covers writes.",
+   "source_ids": [
+    "npm-dist-tag",
+    "npm-unpublish-policy",
+    "npm-unpublish-cmd"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "ii"
+   ],
+   "primary_class": "ii"
+  },
+  {
+   "platform": "Git refs",
+   "identifier": "commit SHA at a ref",
+   "exposed_on_current_read": "ref value (e.g., refs/heads/main)",
+   "operations": [
+    {
+     "op": "git revert",
+     "effect": "records new commits",
+     "identifier_effect": "fresh commit SHA (tree SHA may repeat)"
+    },
+    {
+     "op": "git reset <old> + git push --force",
+     "effect": "branch head set to an old commit; force push disables the ancestor check",
+     "identifier_effect": "old SHA current again"
+    }
+   ],
+   "classification": "i (content-addressed objects); ref value reactivatable",
+   "conditions": "Server-side branch protection can forbid force pushes.",
+   "source_ids": [
+    "git-revert",
+    "git-reset",
+    "git-push",
+    "git-objects",
+    "gh-protected-branches"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "i"
+   ],
+   "primary_class": "i"
+  },
+  {
+   "platform": "nginx (static files)",
+   "identifier": "ETag",
+   "exposed_on_current_read": "ETag",
+   "operations": [
+    {
+     "op": "serve a file",
+     "effect": "ETag = '\"%xT-%xO\"' of last_modified_time and content_length (hex mtime-hex size)",
+     "identifier_effect": "recurs whenever (mtime, size) recur, e.g., restore with preserved mtime"
+    }
+   ],
+   "classification": "i* (attribute-derived)",
+   "conditions": "Can be disabled with 'etag off'.",
+   "source_ids": [
+    "nginx-etag-directive",
+    "nginx-etag-src"
+   ],
+   "evidence_basis_confidence": "high (source)",
+   "notes": "",
+   "class_codes": [
+    "i*"
+   ],
+   "primary_class": "i*"
+  },
+  {
+   "platform": "Apache httpd (static files)",
+   "identifier": "ETag",
+   "exposed_on_current_read": "ETag",
+   "operations": [
+    {
+     "op": "serve a file",
+     "effect": "default FileETag MTime Size (INode MTime Size in 2.3.14 and earlier); 'Digest' option hashes the file",
+     "identifier_effect": "recurs with (mtime, size); with Digest, with content"
+    }
+   ],
+   "classification": "i* (default); i (FileETag Digest)",
+   "conditions": "",
+   "source_ids": [
+    "apache-fileetag"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "i*",
+    "i"
+   ],
+   "primary_class": "i*"
+  },
+  {
+   "platform": "Express / jshttp etag",
+   "identifier": "ETag (dynamic responses via res.send)",
+   "exposed_on_current_read": "ETag (weak by default)",
+   "operations": [
+    {
+     "op": "send a body",
+     "effect": "SHA-1 (base64, 27 chars) of the body plus its length",
+     "identifier_effect": "returns with content"
+    }
+   ],
+   "classification": "i",
+   "conditions": "App setting 'etag' default is weak; applies only to dynamic responses.",
+   "source_ids": [
+    "express-etag-setting",
+    "express-response-src",
+    "etag-src",
+    "etag-readme"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "i"
+   ],
+   "primary_class": "i"
+  },
+  {
+   "platform": "Express static (serve-static / send)",
+   "identifier": "ETag (static files)",
+   "exposed_on_current_read": "ETag (weak)",
+   "operations": [
+    {
+     "op": "serve a file",
+     "effect": "etag(fs.Stats) = size-mtime (hex)",
+     "identifier_effect": "recurs whenever (size, mtime) recur"
+    }
+   ],
+   "classification": "i* (attribute-derived)",
+   "conditions": "",
+   "source_ids": [
+    "serve-static-etag",
+    "send-src",
+    "etag-src",
+    "etag-readme"
+   ],
+   "evidence_basis_confidence": "high",
+   "notes": "",
+   "class_codes": [
+    "i*"
+   ],
+   "primary_class": "i*"
+  }
+ ],
+ "sources": [
+  {
+   "id": "s3-restoring",
+   "platform": "Amazon S3",
+   "kind": "vendor doc",
+   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/RestoringPreviousVersions.html",
+   "fetched_url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/RestoringPreviousVersions.html",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "90ca231103b68a824eb592d9c1569da117b69eaf4a19208eb02aa75239e033b2",
+   "quotes": [
+    {
+     "quote": "When you delete the current object version, you, in effect, turn the previous version into the current version of that object.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Amazon S3 supplies a new ID (88778877) and it becomes the current version of the object.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "The following figure shows how deleting the current version (121212) of an object leaves the previous version (111111) as the current object.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "A subsequent GET retrieves version 111111.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "After you delete the current version, the previous version becomes the current version.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "s3-delmarkers",
+   "platform": "Amazon S3",
+   "kind": "vendor doc",
+   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingDelMarkers.html",
+   "fetched_url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingDelMarkers.html",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "247c363421ecc42e491457d4d942bbfe9006c2f2185bbc410a35f94b4537c179",
+   "quotes": [
+    {
+     "quote": "To undelete the object, you must delete this delete marker.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "The effect of removing the delete marker is that a simple GET request will now retrieve the current version ID (121212) of the object.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "To delete a delete marker with a NULL version ID, you must pass the NULL as the version ID in the DeleteObject request.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "s3-deleting-versions",
+   "platform": "Amazon S3",
+   "kind": "vendor doc",
+   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeletingObjectVersions.html",
+   "fetched_url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeletingObjectVersions.html",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "18f0e360c755ba2adfa84510673e9a152031fb493c0e813eac71d0140a46d352",
+   "quotes": [
+    {
+     "quote": "Instead, Amazon S3 inserts a delete marker in the bucket, and that marker becomes the current version of the object with a new ID.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "To delete versioned objects permanently, you must use DELETE Object versionId.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "s3-version-ids",
+   "platform": "Amazon S3",
+   "kind": "vendor doc",
+   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html",
+   "fetched_url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/versioning-workflows.html",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "bba1438eb09a895fb3f9f766a9258e54be60f1d9a34aaa4a723cedaf519f4dfb",
+   "quotes": [
+    {
+     "quote": "If you enable versioning for a bucket, Amazon S3 automatically generates a unique version ID for the object that is being stored.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Only Amazon S3 generates version IDs, and they cannot be edited.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "s3-suspended-put",
+   "platform": "Amazon S3",
+   "kind": "vendor doc",
+   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/AddingObjectstoVersionSuspendedBuckets.html",
+   "fetched_url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/AddingObjectstoVersionSuspendedBuckets.html",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "2a896b9e9e6b680ee406068ff0576a39ad220e21286314a4dd7732b18ab889b3",
+   "quotes": [
+    {
+     "quote": "After you suspend versioning on a bucket, Amazon S3 automatically adds a null version ID to every subsequent object stored thereafter (using PUT, POST, or CopyObject) in that bucket.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Although the key and version ID (null) of the null version are the same before and after the PUT, the contents of the null version originally stored in the bucket are replaced by the contents of the object PUT into the bucket.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "s3-suspended-delete",
+   "platform": "Amazon S3",
+   "kind": "vendor doc",
+   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeletingObjectsfromVersioningSuspendedBuckets.html",
+   "fetched_url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/DeletingObjectsfromVersioningSuspendedBuckets.html",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "559a8752fe34712a5d146d836805be3e3f59f9c91e18c9488af892e70d4297ab",
+   "quotes": [
+    {
+     "quote": "If bucket versioning is suspended, the operation removes the object that has a null versionId. If a version ID exists, Amazon S3 inserts a delete marker that becomes the current version of the object.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "s3-object-lock",
+   "platform": "Amazon S3",
+   "kind": "vendor doc",
+   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html",
+   "fetched_url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "1973b7edbd23283658f7b910fff34715a93faf98d39bdc66cdca50e3000d8731",
+   "quotes": [
+    {
+     "quote": "Retention periods and legal holds don't prevent new versions of the object from being created, or delete markers to be added on top of the object.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Permanent DELETE request – If you issued a permanent DELETE request (a request that specifies a version ID), Amazon S3 returns an Access Denied (403 Forbidden) error when you try to delete the object.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "s3-object-lock-managing",
+   "platform": "Amazon S3",
+   "kind": "vendor doc",
+   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-managing.html",
+   "fetched_url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-managing.html",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "55d1ce43fe4e09c1883b4ba45e844fb4a4261310e5f8709f58367bf40ef70d0b",
+   "quotes": [
+    {
+     "quote": "Although you can't delete a protected object version, you can still create a delete marker for that object.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Delete markers are not WORM-protected, regardless of any retention period or legal hold in place on the underlying object.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "s3-api-object-etag",
+   "platform": "Amazon S3",
+   "kind": "API reference",
+   "url": "https://docs.aws.amazon.com/AmazonS3/latest/API/API_Object.html",
+   "fetched_url": "https://docs.aws.amazon.com/AmazonS3/latest/API/API_Object.html",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "98c2a9fc189561187389c87a3251203ec85a0e7f4dbdfec84975455c0f1d6670",
+   "quotes": [
+    {
+     "quote": "The entity tag is a hash of the object. The ETag reflects changes only to the contents of an object, not its metadata. The ETag may or may not be an MD5 digest of the object data.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Objects created by the PUT Object, POST Object, or Copy operation, or through the AWS Management Console, and are encrypted by SSE-S3 or plaintext, have ETags that are an MD5 digest of their object data.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "If an object is created by either the Multipart Upload or Part Copy operation, the ETag is not an MD5 digest, regardless of the method of encryption.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "s3-api-getobject",
+   "platform": "Amazon S3",
+   "kind": "API reference",
+   "url": "https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html",
+   "fetched_url": "https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "a099d0dfcb408f053541f6dd0226af1adc8ff76b053f4f97bd61a1096958a36d",
+   "quotes": [
+    {
+     "quote": "x-amz-version-id",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Version ID of the object.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "s3-api-deleteobject",
+   "platform": "Amazon S3",
+   "kind": "API reference",
+   "url": "https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html",
+   "fetched_url": "https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "b0c442758ef8c9e332a2477e66fbbd40cfa35781217ab8f73d597ff26b561f3f",
+   "quotes": [
+    {
+     "quote": "To remove a specific version, you must use the versionId query parameter. Using this query parameter permanently deletes the version.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "If the object you want to delete is in a bucket where the bucket versioning configuration is MFA Delete enabled, you must include the x-amz-mfa request header in the DELETE versionId request.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Directory buckets - S3 Versioning isn't enabled and supported for directory buckets.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "s3:DeleteObjectVersion - To delete a specific version of an object from a versioning-enabled bucket, you must have the s3:DeleteObjectVersion permission.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "gcs-metadata",
+   "platform": "Google Cloud Storage",
+   "kind": "vendor doc",
+   "url": "https://cloud.google.com/storage/docs/metadata",
+   "fetched_url": "https://docs.cloud.google.com/storage/docs/metadata",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "955a5e4efb0abf78784921f22c25f2c130341b5fcd45feae6c0e611b17990443",
+   "quotes": [
+    {
+     "quote": "An object version's generation value is unique. A new object with the same name can replace an existing object, but the new object has a different generation value.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Generation numbers might not increase for future versions, but each new version has a unique generation number.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "metageneration begins at 1 for each new generation of an object.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "The metageneration property has no meaning without the generation property and should be used only in conjunction with it; it's meaningless to compare metadata generations of two object versions.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "In most cases, users should make no assumptions about the value used in an ETag except that it changes whenever the underlying data or metadata changes, per the specification.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "An object's ETag header returns the object's MD5 value if all the following are true:",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "The request is being made through the XML API",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "gcs-versioning",
+   "platform": "Google Cloud Storage",
+   "kind": "vendor doc",
+   "url": "https://cloud.google.com/storage/docs/object-versioning",
+   "fetched_url": "https://docs.cloud.google.com/storage/docs/object-versioning",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "2e94c5be6d9ddd60f2b5365317b7219676bca9efca53b9d526edd49123a037a7",
+   "quotes": [
+    {
+     "quote": "Noncurrent versions retain the name of the object, but are uniquely identified by their generation number.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Noncurrent versions of objects exist independently of any live version.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Your bucket now contains two noncurrent versions of cat.jpg and no live versions.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "A copy of the noncurrent version replaces the live version and receives a new generation number.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "The live version becomes a noncurrent version and keeps the same generation number.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Delete the live version of dog.png by specifying its generation number.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "The live version is permanently deleted.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "A copy of a soft-deleted version is restored as the live version with new object metadata and a new creation date.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Restoring soft-deleted objects requires specific IAM permissions that are available to the Storage Admin (roles/storage.admin) IAM role.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "gcs-using-versioned",
+   "platform": "Google Cloud Storage",
+   "kind": "vendor doc",
+   "url": "https://cloud.google.com/storage/docs/using-versioned-objects",
+   "fetched_url": "https://docs.cloud.google.com/storage/docs/using-versioned-objects",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "bb79d26553b4a3a26ab997e6d214a5ee8e713cb685b2be3109db2b8baaf28e51",
+   "quotes": [
+    {
+     "quote": "In Cloud Storage, restoring a noncurrent object version means making a copy of it. When you do so, the copy becomes the live version, effectively restoring the version.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "gcs-soft-delete",
+   "platform": "Google Cloud Storage",
+   "kind": "vendor doc",
+   "url": "https://cloud.google.com/storage/docs/soft-delete",
+   "fetched_url": "https://docs.cloud.google.com/storage/docs/soft-delete",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "8495e0237cd69381ff2e10a49b1c82dbb05e7dd19153f783b00436f614fe6b96",
+   "quotes": [
+    {
+     "quote": "When you restore a soft-deleted object, Cloud Storage creates a new, live copy of that object within the same bucket.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "When you restore an object, Cloud Storage generates a new version of the object.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Although rare, duplicate soft-deleted objects with identical names and generation values can occur in buckets with hierarchical namespace enabled. This conflict can happen if you rename folders that contain objects with duplicate names in buckets with hierarchical namespace enabled.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "You rename my-folder-B to my-folder-A. Because of hierarchical namespace, the object's path changes to my-folder-A/cat.png.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Now, there are two soft-deleted objects named cat.png with the generation number 999.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "gcs-api-restore",
+   "platform": "Google Cloud Storage",
+   "kind": "API reference",
+   "url": "https://cloud.google.com/storage/docs/json_api/v1/objects/restore",
+   "fetched_url": "https://docs.cloud.google.com/storage/docs/json_api/v1/objects/restore",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "624eb8a2cdca960b55de5ec8bceaa07e5e90ba245981c0a2e03a0e6dae094dd4",
+   "quotes": [
+    {
+     "quote": "A new generation is assigned and the metageneration is reset to 1.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "When restoring a soft-deleted object, the restoreToken is only required when the name and generation values of the object do not uniquely identify it.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "gcs-api-objects",
+   "platform": "Google Cloud Storage",
+   "kind": "API reference",
+   "url": "https://cloud.google.com/storage/docs/json_api/v1/objects",
+   "fetched_url": "https://docs.cloud.google.com/storage/docs/json_api/v1/objects",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "939b8903bd0219d0712e608ea310759e57cdaabea460e5297ef8e6feab60aa1b",
+   "quotes": [
+    {
+     "quote": "The content generation of this object. Used for object versioning and soft delete.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "The restoreToken is only required when the name and generation values of an object do not uniquely identify it.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "gcs-api-move",
+   "platform": "Google Cloud Storage",
+   "kind": "API reference",
+   "url": "https://cloud.google.com/storage/docs/json_api/v1/objects/move",
+   "fetched_url": "https://docs.cloud.google.com/storage/docs/json_api/v1/objects/move",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "845cbee105685ec8509c10b3d5680bd4a67db2974e5503f719caf10ea488577f",
+   "quotes": [
+    {
+     "quote": "The destination object is created with the same data and metadata as the source object except for the following changes:",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "A new generation number",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "A new metageneration number, set to 1",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "gcs-hns",
+   "platform": "Google Cloud Storage",
+   "kind": "vendor doc",
+   "url": "https://cloud.google.com/storage/docs/hns-overview",
+   "fetched_url": "https://docs.cloud.google.com/storage/docs/hns-overview",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "8328e239ee80ac2e0afbd403b915b18b4659f8af55196aaf62024046768c2b94",
+   "quotes": [
+    {
+     "quote": "Renaming a folder operates at the folder level, without having to rename every single object. As a result, the creation time of the objects is preserved",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "gcs-xml-headers",
+   "platform": "Google Cloud Storage",
+   "kind": "API reference",
+   "url": "https://cloud.google.com/storage/docs/xml-api/reference-headers",
+   "fetched_url": "https://docs.cloud.google.com/storage/docs/xml-api/reference-headers",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "edc0ccb9d718a30ebfc12e858d0283d1b3a975316821dc95b98ce3f8a2ec14cb",
+   "quotes": [
+    {
+     "quote": "x-goog-generation",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "A response header that indicates which version of the object data you are accessing.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "az-versioning",
+   "platform": "Azure Blob Storage",
+   "kind": "vendor doc",
+   "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview",
+   "fetched_url": "https://learn.microsoft.com/en-us/azure/storage/blobs/versioning-overview",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "768815c2ae8d3ab7eeb52940ed327013b9c444c07360529de543bc4091282791",
+   "quotes": [
+    {
+     "quote": "After you enable blob versioning for a storage account, every write operation to a blob in that account results in the creation of a new version.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Each blob version has a unique version ID. The value of the version ID is the timestamp when the blob was updated.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "The version ID stays the same for the lifetime of the version.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "When you perform a write operation to create or modify a blob, Azure Storage returns the x-ms-version-id header in the response.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "When you delete a blob, the current version of the blob becomes a previous version, and there's no longer a current version.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Restoring soft-deleted versions by using the Undelete Blob operation doesn't promote any version to be the current version. To restore the current version, first restore all soft-deleted versions, and then use the Copy Blob operation to copy a previous version to a new current version.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Undelete never promotes a version to current.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Deleting a previous version Delete Blob Microsoft.Storage/storageAccounts/blobServices/containers/blobs/deleteBlobVersion/action Storage Blob Data Owner",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "az-softdelete-manage",
+   "platform": "Azure Blob Storage",
+   "kind": "vendor doc",
+   "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-manage",
+   "fetched_url": "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-manage",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "d1483575dbe704fa3c967582280322258a76dc0d84ea2ba6eb83605760ca92a3",
+   "quotes": [
+    {
+     "quote": "Select the version that you want to promote to be the current version, then select Make current version.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "When versioning is enabled, selecting the Undelete button on a deleted blob restores any soft-deleted versions or snapshots, but does not restore the base blob. To restore the base blob, you must promote a previous version.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "az-softdelete",
+   "platform": "Azure Blob Storage",
+   "kind": "vendor doc",
+   "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview",
+   "fetched_url": "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "f262fe669dcee5d3add559a79f9a21ec77a1074f945bb542ca64454d3e0dec59",
+   "quotes": [
+    {
+     "quote": "During the retention period, you can restore a soft-deleted object to its state at the time it was deleted.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "To promote a soft-deleted snapshot to the base blob, first call Undelete Blob on the base blob to restore the blob and its snapshots. Next, copy the desired snapshot over the base blob.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "az-undelete",
+   "platform": "Azure Blob Storage",
+   "kind": "API reference",
+   "url": "https://learn.microsoft.com/en-us/rest/api/storageservices/undelete-blob",
+   "fetched_url": "https://learn.microsoft.com/en-us/rest/api/storageservices/undelete-blob",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "dd10d9339430714d320bf5b3c3a643f6aea2135c3ef19aa977cb4754ee681e1f",
+   "quotes": [
+    {
+     "quote": "The Undelete Blob operation restores the contents and metadata of a soft-deleted blob, and any associated soft-deleted snapshots.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "az-snapshots",
+   "platform": "Azure Blob Storage",
+   "kind": "vendor doc",
+   "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/snapshots-overview",
+   "fetched_url": "https://learn.microsoft.com/en-us/azure/storage/blobs/snapshots-overview",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "f1ee6c69a4f5b3ce6b1907f0fe52ab3fcedee475e74c80512561e8783ba697e9",
+   "quotes": [
+    {
+     "quote": "When you create a snapshot of a blob, the blob's system properties are copied to the snapshot with the same values.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Because you can't modify a snapshot, you restore a base blob by copying a snapshot over it.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "az-concurrency",
+   "platform": "Azure Blob Storage",
+   "kind": "vendor doc",
+   "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/concurrency-manage",
+   "fetched_url": "https://learn.microsoft.com/en-us/azure/storage/blobs/concurrency-manage",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "2ae98703d460f7363981ad61c17c22d3d6c0079e88114d1fd797c775edc89aae",
+   "quotes": [
+    {
+     "quote": "Azure Storage assigns an identifier to every object stored. This identifier is updated every time a write operation is performed on an object. The identifier is returned to the client as part of an HTTP GET response in the ETag header defined by the HTTP protocol.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "az-pitr",
+   "platform": "Azure Blob Storage",
+   "kind": "vendor doc",
+   "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/point-in-time-restore-overview",
+   "fetched_url": "https://learn.microsoft.com/en-us/azure/storage/blobs/point-in-time-restore-overview",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "9b720d7dc439bf94d86d35b9083b9ac545f78ba82ac9f30068e974729ff3ef19",
+   "quotes": [
+    {
+     "quote": "The effect is to revert write and delete operations that happened during the retention period.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Only the base blob (current version) is restored to its previous state.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "b2-delete-file-version",
+   "platform": "Backblaze B2",
+   "kind": "API reference",
+   "url": "https://www.backblaze.com/apidocs/b2-delete-file-version",
+   "fetched_url": "https://www.backblaze.com/apidocs/b2-delete-file-version",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "35fe8391b661a66d5f27e49a2156cf28bae47fb3e5afda10416c294124792cff",
+   "quotes": [
+    {
+     "quote": "If the version you delete is the latest version, and there are older versions, then the most recent older version will become the current version, and be the one that you'll get when downloading by name.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Must be specified and set to true if deleting a file version protected by Object Lock governance mode retention settings.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "b2-file-versions",
+   "platform": "Backblaze B2",
+   "kind": "vendor doc",
+   "url": "https://www.backblaze.com/docs/cloud-storage-file-versions",
+   "fetched_url": "https://www.backblaze.com/docs/cloud-storage-file-versions",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "220d46dd0139899bb66b468157d804f45d93bd0a0f67550e0205a485da1446d0",
+   "quotes": [
+    {
+     "quote": "When you download a file by name, you always get the most recent version, the first one in the list.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "The b2_hide_file operation makes it look like the file has been deleted, without removing any of the history.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "You can also delete the marker that indicates that a file is hidden.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "b2_delete_file_version This operation permanently deletes the file version and all of its data as if you never uploaded that version.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "b2-hide-file",
+   "platform": "Backblaze B2",
+   "kind": "API reference",
+   "url": "https://www.backblaze.com/apidocs/b2-hide-file",
+   "fetched_url": "https://www.backblaze.com/apidocs/b2-hide-file",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "1e2b731c7f84e8d59dd08360fea100d484d530557c0f13c0b7d63a77180371e8",
+   "quotes": [
+    {
+     "quote": "Previous versions of the file are still stored; see File Versions about what it means to hide a file.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "The unique identifier for this version of this file.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Large files do not have SHA1 checksums, and the value is \"none\".",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "b2-download-by-name",
+   "platform": "Backblaze B2",
+   "kind": "API reference",
+   "url": "https://www.backblaze.com/apidocs/b2-download-file-by-name",
+   "fetched_url": "https://www.backblaze.com/apidocs/b2-download-file-by-name",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "f6c0105edd973781414a115d2f52e7999ff6b797d8fbfb36e2a102a1bf4281a9",
+   "quotes": [
+    {
+     "quote": "X-Bz-File-Id",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "The SHA1 checksum of the content of the file.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "r2-s3-compat",
+   "platform": "Cloudflare R2",
+   "kind": "vendor doc",
+   "url": "https://developers.cloudflare.com/r2/api/s3/api/",
+   "fetched_url": "https://developers.cloudflare.com/r2/api/s3/api/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "461d169186e86190e13f3f30d1815b1961165a1c0add462c3c9acb529e8faefe",
+   "quotes": [
+    {
+     "quote": "❌ GetBucketVersioning ↗︎",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "❌ PutBucketVersioning ↗︎",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "r2-release-notes",
+   "platform": "Cloudflare R2",
+   "kind": "vendor doc",
+   "url": "https://developers.cloudflare.com/r2/platform/release-notes/",
+   "fetched_url": "https://developers.cloudflare.com/r2/platform/release-notes/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "a43d82fa8f7baeb30d1e15b6bbfcc87edd7507c39e41589916f275f40640ef65",
+   "quotes": [
+    {
+     "quote": "Added dummy implementations of the following operations that mimic the response that a basic AWS S3 bucket will return when first created:",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "`GetBucketVersioning`",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "r2-workers-api",
+   "platform": "Cloudflare R2",
+   "kind": "API reference",
+   "url": "https://developers.cloudflare.com/r2/api/workers/workers-api-reference/",
+   "fetched_url": "https://developers.cloudflare.com/r2/api/workers/workers-api-reference/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "124d0e2d9090909830631bee697e373aac58bf3cb7522ed9d1215ef26257d363",
+   "quotes": [
+    {
+     "quote": "Random unique string associated with a specific upload of a key.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "The etag associated with the object upload.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "r2-upload-objects",
+   "platform": "Cloudflare R2",
+   "kind": "vendor doc",
+   "url": "https://developers.cloudflare.com/r2/objects/upload-objects/#etags",
+   "fetched_url": "https://developers.cloudflare.com/r2/objects/upload-objects/#etags",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "7b1d2b59e4f586b0eba495d5015ecf956e91aaf6abaeba4ecdb9216bae666448",
+   "quotes": [
+    {
+     "quote": "ETags for objects uploaded via multipart differ from those uploaded with a single `PUT`. The ETag of each part is the MD5 hash of that part's contents. The ETag of the completed multipart object is the hash of the concatenated binary MD5 sums of all parts, followed by a hyphen and the number of parts.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "wasabi-versioning",
+   "platform": "Wasabi",
+   "kind": "vendor doc",
+   "url": "https://docs.wasabi.com/docs/versioning",
+   "fetched_url": "https://docs.wasabi.com/docs/versioning",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "4ce60c4761d9c21af62f801b1831ea57d35dc81c965eeae9804fc676448b5e39",
+   "quotes": [
+    {
+     "quote": "When bucket versioning is enabled, every version of every object in the bucket will be stored. You can then retrieve and restore any version of an object in the bucket.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Once you enable versioning for a bucket, Wasabi preserves existing objects any time you perform a PUT, POST, COPY, or DELETE operation on them. By default, GET requests will retrieve the most recently written version.",
+     "verified_in_local_copy": true
+    }
+   ],
+   "note": "Fetched as Markdown (docs.wasabi.com/docs/versioning.md)."
+  },
+  {
+   "id": "wasabi-delete-versions",
+   "platform": "Wasabi",
+   "kind": "vendor doc",
+   "url": "https://docs.wasabi.com/docs/how-do-i-delete-old-object-versions",
+   "fetched_url": "https://docs.wasabi.com/docs/how-do-i-delete-old-object-versions",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "eaddc8b3536154f8a3df5b1d16a041ec7ad67b3c877c3b654973c9662977e010",
+   "quotes": [
+    {
+     "quote": "you can delete a specific version of a file by specifying the `--version-id` in the delete message.",
+     "verified_in_local_copy": true
+    }
+   ],
+   "note": "Fetched as Markdown (.md)."
+  },
+  {
+   "id": "wasabi-lc-delmarkers",
+   "platform": "Wasabi",
+   "kind": "vendor doc",
+   "url": "https://docs.wasabi.com/docs/life-cycle-delete-markers",
+   "fetched_url": "https://docs.wasabi.com/docs/life-cycle-delete-markers",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "771d297eb8a8910b98bece6d2788d299f6177ae03c328d287bc068cff5993ed2",
+   "quotes": [
+    {
+     "quote": "If the current version is manually removed, a delete marker becomes the current version, and the previous current version becomes noncurrent, resulting in three noncurrent versions.",
+     "verified_in_local_copy": true
+    }
+   ],
+   "note": "Fetched as Markdown (.md)."
+  },
+  {
+   "id": "wasabi-s3-compat",
+   "platform": "Wasabi",
+   "kind": "vendor doc",
+   "url": "https://docs.wasabi.com/docs/since-wasabi-is-100-bit-compatible-with-amazon-s3-can-i-use-my-existing-s3-compatible-application-without-making-any-changes-to-my-application-with-wasabi",
+   "fetched_url": "https://docs.wasabi.com/docs/since-wasabi-is-100-bit-compatible-with-amazon-s3-can-i-use-my-existing-s3-compatible-application-without-making-any-changes-to-my-application-with-wasabi",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "2a53c75adcf431bbcccbe070e48136ac420b5abfdabc7022e7cec9fe32e349ce",
+   "quotes": [
+    {
+     "quote": "Since Wasabi is 100% bit-compatible with Amazon S3, you can use your existing S3-compatible application (without making any changes to your application) with Wasabi.",
+     "verified_in_local_copy": true
+    }
+   ],
+   "note": "Fetched as Markdown (.md)."
+  },
+  {
+   "id": "wasabi-move",
+   "platform": "Wasabi",
+   "kind": "API reference",
+   "url": "https://docs.wasabi.com/apidocs/operations-on-objects",
+   "fetched_url": "https://docs.wasabi.com/apidocs/operations-on-objects",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "d4ea7501406c24b60db5365d863c6fa40df4fa958c255dd574ef302e9ed64b6d",
+   "quotes": [
+    {
+     "quote": "Otherwise, the objects (including all versions) exactly matching the source key in the URL are renamed to the key given by the destination.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "version ID of the object, and",
+     "verified_in_local_copy": true
+    }
+   ],
+   "note": "Fetched as Markdown (.md)."
+  },
+  {
+   "id": "do-versioning",
+   "platform": "DigitalOcean Spaces",
+   "kind": "vendor doc",
+   "url": "https://docs.digitalocean.com/products/spaces/how-to/enable-versioning/",
+   "fetched_url": "https://docs.digitalocean.com/products/spaces/how-to/enable-versioning/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "93cead2b76eff7dc900328500789801992e4e137133089b4b0354c5225a25bcc",
+   "quotes": [
+    {
+     "quote": "Spaces supports S3 Versioning.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Deleting an object version permanently removes that version of the object.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Spaces creates a delete marker when you delete an object from a version-enabled bucket. The delete marker becomes the current version of the object, and the actual object becomes a previous version.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "If successful, the file is restored, and the response returns stating the object is deleted along with its VersionId:",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "ceph-s3-features",
+   "platform": "Ceph RGW",
+   "kind": "project doc",
+   "url": "https://docs.ceph.com/en/latest/radosgw/s3/",
+   "fetched_url": "https://docs.ceph.com/en/latest/radosgw/s3/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "2f850fb3d0e348841d5a9555a0d44d5497420e6865860ff263dec5e5b977b837",
+   "quotes": [
+    {
+     "quote": "Bucket Object Versions Supported",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "ceph-s3-bucketops",
+   "platform": "Ceph RGW",
+   "kind": "project doc",
+   "url": "https://docs.ceph.com/en/latest/radosgw/s3/bucketops/",
+   "fetched_url": "https://docs.ceph.com/en/latest/radosgw/s3/bucketops/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "e9baa393c13b59c5c1f60e08f61dbf9310486f32a1445d41abb75846d26da680",
+   "quotes": [
+    {
+     "quote": "Enabled : Enables versioning for the objects in the bucket, All objects added to the bucket receive a unique version ID.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Suspended : Disables versioning for the objects in the bucket, All objects added to the bucket receive the version ID null.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "ceph-s3-tests",
+   "platform": "Ceph RGW",
+   "kind": "project source (conformance tests)",
+   "url": "https://github.com/ceph/s3-tests/blob/master/s3tests/functional/test_s3.py",
+   "fetched_url": "https://raw.githubusercontent.com/ceph/s3-tests/master/s3tests/functional/test_s3.py",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "892867000459123b1b83a552d5647c98221eb5eb25658394c75271417295fd12",
+   "quotes": [
+    {
+     "quote": "def test_versioning_obj_create_read_remove_head():",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "# removes old head object, checks new one",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "response = client.delete_object(Bucket=bucket_name, Key=key, VersionId=removed_version_id)",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "assert body == contents[-1]",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "assert version['VersionId'] == version_ids[i]",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "swift-middleware",
+   "platform": "OpenStack Swift",
+   "kind": "project doc",
+   "url": "https://docs.openstack.org/swift/latest/middleware.html",
+   "fetched_url": "https://docs.openstack.org/swift/latest/middleware.html",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "611c68316dc6454714fb635289527052c15da70f1ff4329f00b9b910298e61d9",
+   "quotes": [
+    {
+     "quote": "On DELETE, only remove the current version of the object. If any previous versions exist in the archive container, the most recent one is copied over the current version, and the copy in the archive container is deleted.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "On DELETE, copy the current version of the object to the archive container, write a zero-byte “delete marker” object that notes when the delete took place, and delete the object from the versioned container.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "To restore a previous version of an object, find the desired version in the archive container then issue a COPY with a Destination header indicating the original location.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Every object is assigned a version id. This id can be retrieved from the X-Object-Version-Id header in the PUT response.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "A GET to a versioned object will return the current version of the object. The X-Object-Version-Id header is also returned in the response.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Only COPY, HEAD, GET and DELETE operations can be performed on previous versions. Either a PUT or POST request with a version-id parameter will result in a 400 Bad Request response.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "A DELETE request with a version-id parameter to the current object will result in a both the symlink and the backing data being deleted.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Handle a PUT?version-id request and create/update the is_latest link to point to the specific version. Expects a valid ‘version’ id.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "version_id – version to make the latest.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "swift-object-versioning-src",
+   "platform": "OpenStack Swift",
+   "kind": "project source",
+   "url": "https://github.com/openstack/swift/blob/master/swift/common/middleware/versioned_writes/object_versioning.py",
+   "fetched_url": "https://raw.githubusercontent.com/openstack/swift/master/swift/common/middleware/versioned_writes/object_versioning.py",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "68db2ec936cda3eea583c102169e7ec2ffb17cba23a664c2f44b8440ab383b16",
+   "quotes": [
+    {
+     "quote": "# The intended use case for a PUT?version-id= is to create a symlink to",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "# a version in the versions container.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "body='PUT version-id requests require a zero byte body',",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "resp.headers['X-Object-Version-Id'] = version_id",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "swift-unit-test-put-version",
+   "platform": "OpenStack Swift",
+   "kind": "project source (unit test)",
+   "url": "https://github.com/openstack/swift/blob/master/test/unit/common/middleware/test_object_versioning.py",
+   "fetched_url": "https://raw.githubusercontent.com/openstack/swift/master/test/unit/common/middleware/test_object_versioning.py",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "296edc8e11a5298e7d8fb0a901d1dd2fa51c870e1196df145829d57fe7e74a2c",
+   "quotes": [
+    {
+     "quote": "def test_PUT_version(self):",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "# verify that a PUT request with a version-id results in:",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "#   - a PUT to create a symlink in the user container",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "swift-functional-test-copy-restore",
+   "platform": "OpenStack Swift",
+   "kind": "project source (functional test)",
+   "url": "https://github.com/openstack/swift/blob/master/test/functional/test_object_versioning.py",
+   "fetched_url": "https://raw.githubusercontent.com/openstack/swift/master/test/functional/test_object_versioning.py",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "9714fce92ef0a8683117901c1fa23227d82c6082ca6e1a93133b15a1b6f73382",
+   "quotes": [
+    {
+     "quote": "# restore old version1 back in place with a copy request",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "# should get a new version-id",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "self.assertEqual(v1_etag, normalize_etag(obj_info['etag']))",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "swift-legacy-src",
+   "platform": "OpenStack Swift",
+   "kind": "project source",
+   "url": "https://github.com/openstack/swift/blob/master/swift/common/middleware/versioned_writes/legacy.py",
+   "fetched_url": "https://raw.githubusercontent.com/openstack/swift/master/swift/common/middleware/versioned_writes/legacy.py",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "21d68e4ac33a6db88c1f81f2c9b2fdc7ac5b4e11024b18092d9f59e1e10d605c",
+   "quotes": [
+    {
+     "quote": "# Create a new Request object to PUT to the container, copying",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "# all headers from the source object apart from x-timestamp.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Delete current version of object and pop previous version in its place.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "swift-api-ref",
+   "platform": "OpenStack Swift",
+   "kind": "API reference",
+   "url": "https://docs.openstack.org/api-ref/object-store/",
+   "fetched_url": "https://docs.openstack.org/api-ref/object-store/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "3e3742bfb8c8a788928efc459fe5e048f761755cb461544fef62295f9306b967",
+   "quotes": [
+    {
+     "quote": "For objects smaller than 5 GB, this value is the MD5 checksum of the object content.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "seaweedfs-wiki-s3api",
+   "platform": "SeaweedFS",
+   "kind": "project doc (wiki)",
+   "url": "https://github.com/seaweedfs/seaweedfs/wiki/Amazon-S3-API",
+   "fetched_url": "https://raw.githubusercontent.com/wiki/seaweedfs/seaweedfs/Amazon-S3-API.md",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "cfdb54e824454f07fcdb989571b876bbee2e63154a30f5cc792f972327d0505f",
+   "quotes": [
+    {
+     "quote": "| PutBucketVersioning | Yes | |",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "| DeleteObject | Yes | Supports version ID; also deletes folders |",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "seaweedfs-wiki-versioning",
+   "platform": "SeaweedFS",
+   "kind": "project doc (wiki)",
+   "url": "https://github.com/seaweedfs/seaweedfs/wiki/S3-Object-Versioning",
+   "fetched_url": "https://raw.githubusercontent.com/wiki/seaweedfs/seaweedfs/S3-Object-Versioning.md",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "13d9f6b59b858425fbbe9a1ac4ecdf86caf7c26a56f670a7e83d92e9d91ef41d",
+   "quotes": [
+    {
+     "quote": "**DELETE Object with version ID**: Permanently deletes that specific version",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "**PUT Object**: Overwrites the object with version ID \"null\"",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "seaweedfs-src",
+   "platform": "SeaweedFS",
+   "kind": "project source",
+   "url": "https://github.com/seaweedfs/seaweedfs/blob/master/weed/s3api/s3api_object_versioning.go",
+   "fetched_url": "https://raw.githubusercontent.com/seaweedfs/seaweedfs/master/weed/s3api/s3api_object_versioning.go",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "80f54a3903dedda205cedd9b5724c3f805e9db1e01ee6233a7c96cc182692750",
+   "quotes": [
+    {
+     "quote": "// version that the .versions/ pointer currently names. It scans the",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "// directory to find the next-newest version excluding the one about to",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "// be deleted, and either repoints to it (multi-version case) or clears",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "// updateLatestVersionAfterDeletion finds the new latest version after deleting",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "garage-s3compat",
+   "platform": "Garage",
+   "kind": "project doc",
+   "url": "https://garagehq.deuxfleurs.fr/documentation/reference-manual/s3-compatibility/",
+   "fetched_url": "https://garagehq.deuxfleurs.fr/documentation/reference-manual/s3-compatibility/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "1d43e364c2e82ad4a0270311d2b81ccbc1c3f63ec3a288345057454a3453f730",
+   "quotes": [
+    {
+     "quote": "Garage does not (yet) support object versioning.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "GetBucketVersioning: Stub implementation which always returns \"versioning not enabled\", since Garage does not yet support bucket versioning.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "netlify-manage-deploys",
+   "platform": "Netlify",
+   "kind": "vendor doc",
+   "url": "https://docs.netlify.com/site-deploys/manage-deploys/",
+   "fetched_url": "https://docs.netlify.com/deploy/manage-deploys/manage-deploys-overview/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "77ed4b923d8939a41486d4d8d582acb48388a72a3b87ab8d919b6b7960441c5d",
+   "quotes": [
+    {
+     "quote": "Netlify versions all deploys.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "You can find the deploy ID in the first part of a deploy permalink.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "If you need to roll back, you can publish one of the previous deploys listed in the UI as the live version of your site in production. Use the Publish Deploy button on the detail page of any successful deploy. This doesn’t trigger a new deploy but instead publishes a previous atomic deploy that is still available to you. Rollbacks are instantaneous.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "netlify-openapi",
+   "platform": "Netlify",
+   "kind": "API reference (OpenAPI)",
+   "url": "https://github.com/netlify/open-api/blob/master/swagger.yml",
+   "fetched_url": "https://raw.githubusercontent.com/netlify/open-api/master/swagger.yml",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "3af3c5d0165ae3be63f1c11373ba5f42d0325c1064759e3cd5a3eeaacff77ad7",
+   "quotes": [
+    {
+     "quote": "/sites/{site_id}/deploys/{deploy_id}/restore:",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "operationId: restoreSiteDeploy",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "description: Publishes a previous deploy of the site.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "description: Rolls back the production deploy to the deploy referenced by its `rollback_id`. Does nothing if the current production deploy has no `rollback_id`.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "published_deploy:",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "vercel-promote",
+   "platform": "Vercel",
+   "kind": "vendor doc",
+   "url": "https://vercel.com/docs/deployments/promoting-a-deployment",
+   "fetched_url": "https://vercel.com/docs/deployments/promoting-a-deployment",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "2d022b3288fe117ee016af4523d6fa909aae8ffd95a4b11627509536a88bc848",
+   "quotes": [
+    {
+     "quote": "It works by assigning your domains to an existing deployment, rather than doing a complete rebuild",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "You can use this as a way to promote a preview deployment to production through a complete rebuild",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "If a deployment has already been promoted in the past, you can't promote it again. If you want to use a previously promoted deployment, you must do a rollback to it",
+     "verified_in_local_copy": true
+    }
+   ],
+   "note": "Fetched as Markdown (promoting-a-deployment.md)."
+  },
+  {
+   "id": "vercel-instant-rollback",
+   "platform": "Vercel",
+   "kind": "vendor doc",
+   "url": "https://vercel.com/docs/instant-rollback",
+   "fetched_url": "https://vercel.com/docs/instant-rollback",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "a3abb514ac8cc0ee6c0b98fcf4df471df81a06a0346e585c0fe943d06f32497b",
+   "quotes": [
+    {
+     "quote": "Vercel treats the rolled-back deployment as a restored version of a previous deployment",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Vercel points your domains back to the selected deployment",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Hobby users can roll back to the immediately previous deployment.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "After a rollback, Vercel turns off auto-assignment of production domains.",
+     "verified_in_local_copy": true
+    }
+   ],
+   "note": "Fetched as Markdown (instant-rollback.md)."
+  },
+  {
+   "id": "cfpages-rollbacks",
+   "platform": "Cloudflare Pages",
+   "kind": "vendor doc",
+   "url": "https://developers.cloudflare.com/pages/configuration/rollbacks/",
+   "fetched_url": "https://developers.cloudflare.com/pages/configuration/rollbacks/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "be696614501346d76fd0d242a3bf5a48414d8f2e3050060394b1c7d3038e9c7e",
+   "quotes": [
+    {
+     "quote": "Rollbacks allow you to instantly revert your project to a previous production deployment.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "When your project has rolled back to a previous deployment, you may still rollback to deployments that are newer than your current version.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "When confirmed, your project's production deployment will change instantly.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Any production deployment that has been successfully built is a valid rollback target.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Note that preview deployments are not valid rollback targets.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "cfpages-api-rollback",
+   "platform": "Cloudflare Pages",
+   "kind": "API reference",
+   "url": "https://developers.cloudflare.com/api/resources/pages/subresources/projects/subresources/deployments/methods/rollback/",
+   "fetched_url": "https://developers.cloudflare.com/api/resources/pages/subresources/projects/subresources/deployments/methods/rollback/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "d2fe4c47468ab72850cfe210a101544f3ded58cda5c7d9d6fc2f226d4a54dcb6",
+   "quotes": [
+    {
+     "quote": "Roll back production to a previous successful Cloudflare Pages deployment.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "cfpages-api-project",
+   "platform": "Cloudflare Pages",
+   "kind": "API reference",
+   "url": "https://developers.cloudflare.com/api/resources/pages/subresources/projects/methods/get/",
+   "fetched_url": "https://developers.cloudflare.com/api/resources/pages/subresources/projects/methods/get/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "337a58d091b355df59bc837812ab0bf09d75ad694c4d530a38bafe564aedde70",
+   "quotes": [
+    {
+     "quote": "Most recent production deployment of the project.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "firebase-manage",
+   "platform": "Firebase Hosting",
+   "kind": "vendor doc",
+   "url": "https://firebase.google.com/docs/hosting/manage-hosting-resources",
+   "fetched_url": "https://firebase.google.com/docs/hosting/manage-hosting-resources",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "baca3dec950655f1c018ebc2168dd41a93336675cc92d7eccae85488b427aafe",
+   "quotes": [
+    {
+     "quote": "The content and configuration served by each channel is packaged into a version object that has a unique identifier. When you deploy to your site, Firebase creates a release object that points to a specific version.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "By rolling back, you create a new release that serves the same version of content as a previous release. In your Release history table, both releases will list the same version identifier.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "When you clone a version from one channel to another channel in the same Hosting site, Firebase creates a new release object that points to the exact same version.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "For your live channel, keeping previous releases enables you to roll back to a previous version of your site, if needed.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "firebase-release-type",
+   "platform": "Firebase Hosting",
+   "kind": "API reference",
+   "url": "https://firebase.google.com/docs/reference/hosting/rest/v1beta1/sites.channels.releases",
+   "fetched_url": "https://firebase.google.com/docs/reference/hosting/rest/v1beta1/sites.channels.releases",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "9ca648de72f868eef3e6e0b244f67a4d7049e47884917e6f16bc8ec9c415014b",
+   "quotes": [
+    {
+     "quote": "The release points back to a previously deployed version.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "firebase-releases-create",
+   "platform": "Firebase Hosting",
+   "kind": "API reference",
+   "url": "https://firebase.google.com/docs/reference/hosting/rest/v1beta1/sites.releases",
+   "fetched_url": "https://firebase.google.com/docs/reference/hosting/rest/v1beta1/sites.releases",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "b55f50bfe7f661c2df05182a017ff58e6321da2d64df6548a062dfad4c1a4ed1",
+   "quotes": [
+    {
+     "quote": "Creates a new release, which makes the content of the specified version actively display on the appropriate URL(s).",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Output only. The unique identifier for the release, in either of the following formats:",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "gh-pages-source",
+   "platform": "GitHub Pages",
+   "kind": "vendor doc",
+   "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+   "fetched_url": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "1002713d156c21e86bc74f54ec21a92d10e43c954abb2dfff7a948570a36ad01",
+   "quotes": [
+    {
+     "quote": "Whenever changes are pushed to the source branch, the changes in the source folder will be published to your GitHub Pages site.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "gh-rest-pages",
+   "platform": "GitHub Pages",
+   "kind": "API reference",
+   "url": "https://docs.github.com/en/rest/pages/pages",
+   "fetched_url": "https://docs.github.com/en/rest/pages/pages",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "9fe8b27143c56344e8d0e9f977cf89cb8608492bac224406803cbce2c0d75261",
+   "quotes": [
+    {
+     "quote": "A unique string that represents the version of the build for this deployment.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Default: GITHUB_SHA",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "gh-rerun",
+   "platform": "GitHub Pages",
+   "kind": "vendor doc",
+   "url": "https://docs.github.com/en/actions/how-tos/manage-workflow-runs/re-run-workflows-and-jobs",
+   "fetched_url": "https://docs.github.com/en/actions/how-tos/manage-workflow-runs/re-run-workflows-and-jobs",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "4bcc3392103098dc91eda7e60c76d81a46ca7796850b25fa0d1a373afe1fc508",
+   "quotes": [
+    {
+     "quote": "The workflow will also use the same GITHUB_SHA (commit SHA) and GITHUB_REF (git ref) of the original event that triggered the workflow run.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "gh-rest-deployments",
+   "platform": "GitHub Pages",
+   "kind": "API reference",
+   "url": "https://docs.github.com/en/rest/deployments/deployments",
+   "fetched_url": "https://docs.github.com/en/rest/deployments/deployments",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "9f5c2e829f4da6c8bb9ee07993c12bea106b69f8dc3797f93a54c9cb155e1399",
+   "quotes": [
+    {
+     "quote": "Deployments are requests to deploy a specific ref (branch, SHA, tag).",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "The ref parameter can be any named branch, tag, or SHA.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "When you set the state of a deployment to success, then all prior non-transient, non-production environment deployments in the same repository with the same environment name will become inactive.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "gh-protected-branches",
+   "platform": "GitHub Pages",
+   "kind": "vendor doc",
+   "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches",
+   "fetched_url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "02680c362d678a6d425733452d0bf1726b3213161e4b3266e33af52f28a542e2",
+   "quotes": [
+    {
+     "quote": "By default, each branch protection rule disables force pushes to the matching branches and prevents the matching branches from being deleted.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "gh-desktop-revert",
+   "platform": "GitHub Pages",
+   "kind": "vendor doc",
+   "url": "https://docs.github.com/en/desktop/managing-commits/reverting-a-commit-in-github-desktop",
+   "fetched_url": "https://docs.github.com/en/desktop/managing-commits/reverting-a-commit-in-github-desktop",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "f3e521888be4876a2bf66abd00b0c21ea3d0a41ba234d0a9557bc9aa0985ea8f",
+   "quotes": [
+    {
+     "quote": "When you revert to a previous commit, the revert is also a commit. The original commit also remains in the repository's history.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "mw-revision-table",
+   "platform": "MediaWiki/Wikipedia",
+   "kind": "project doc",
+   "url": "https://www.mediawiki.org/wiki/Manual:Revision_table",
+   "fetched_url": "https://www.mediawiki.org/wiki/Manual:Revision_table",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "089d3fa2d8965ee7a436cbbfa6659189d27cc5542bd2edf87b66ac1fe0c5a863",
+   "quotes": [
+    {
+     "quote": "page_latest is a foreign key to this field. The rev_id numbers have been preserved across deletion/undeletion since the table's inception in MediaWiki 1.5, when rev_id and text_id superseded the old cur_id.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "This field is used to add the SHA-1 text content hash in base-36",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Note that while rev_id almost always increases monotonically for successive revisions of a page, this is not strictly guaranteed as importing from another wiki can cause revisions to be created out of order.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "mw-archive-table",
+   "platform": "MediaWiki/Wikipedia",
+   "kind": "project doc",
+   "url": "https://www.mediawiki.org/wiki/Manual:Archive_table",
+   "fetched_url": "https://www.mediawiki.org/wiki/Manual:Archive_table",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "96c6a2845e820f6097f1f219b78603d12fa91c67055834467c6623197bd4a673",
+   "quotes": [
+    {
+     "quote": "When revisions are deleted, their unique rev_id is stored here so it can be retained after undeletion. This is necessary to retain permalinks to given revisions after accidental delete cycles or messy operations like history merges.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "mw-help-deletion",
+   "platform": "MediaWiki/Wikipedia",
+   "kind": "project doc",
+   "url": "https://www.mediawiki.org/wiki/Help:Deletion_and_undeletion",
+   "fetched_url": "https://www.mediawiki.org/wiki/Help:Deletion_and_undeletion",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "b7d2cbe1aee9d16125e80e468ea635edf922668128a0a4eeecf5c32ce429c09a",
+   "quotes": [
+    {
+     "quote": "Remember that only sysop users can undo a delete action, so to a normal user the information appears to be lost forever.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Tick the box next to the revision you wish to restore.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "mw-page-table",
+   "platform": "MediaWiki/Wikipedia",
+   "kind": "project doc",
+   "url": "https://www.mediawiki.org/wiki/Manual:Page_table",
+   "fetched_url": "https://www.mediawiki.org/wiki/Manual:Page_table",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "5e8e6ab4dfcadfd5887659864f341a16ed3cc090382e4a4e5b154d9b1d4c0c6c",
+   "quotes": [
+    {
+     "quote": "This is a foreign key to rev_id for the current revision.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "mw-reverts",
+   "platform": "MediaWiki/Wikipedia",
+   "kind": "project doc",
+   "url": "https://www.mediawiki.org/wiki/Manual:Reverts",
+   "fetched_url": "https://www.mediawiki.org/wiki/Manual:Reverts",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "1b8a19c9627df02c8cb3a74af32c3f643ab72f382b1ccd3288e6ef74350329f4",
+   "quotes": [
+    {
+     "quote": "A revert is (broadly speaking) an edit that reverses the actions of other editors. In that process a new version of the page is created.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Every time an edit is made, MediaWiki looks at a number of most recent revisions of the page (specified by $wgManualRevertSearchRadius, 15 by default) and looks for the most recent revision with matching content.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "an edit restoring the page to an exact previous state.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "mw-revisionstore-src",
+   "platform": "MediaWiki/Wikipedia",
+   "kind": "project source",
+   "url": "https://github.com/wikimedia/mediawiki/blob/master/includes/Revision/RevisionStore.php",
+   "fetched_url": "https://raw.githubusercontent.com/wikimedia/mediawiki/master/includes/Revision/RevisionStore.php",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "34dc656e368f4b28e667721fe2edcb36ce964ed6a2167cb473e26db0f106c061",
+   "quotes": [
+    {
+     "quote": "* Tries to find a revision identical to $revision in $searchLimit most recent revisions",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "* of this page. The comparison is based on SHA1s of these revisions.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "mw-undeletepage-src",
+   "platform": "MediaWiki/Wikipedia",
+   "kind": "project source",
+   "url": "https://github.com/wikimedia/mediawiki/blob/master/includes/Page/UndeletePage.php",
+   "fetched_url": "https://raw.githubusercontent.com/wikimedia/mediawiki/master/includes/Page/UndeletePage.php",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "0e68ef5e238b427448d0f0dcc71f4c99e95bb9b7b48c98779db0b59493829db9",
+   "quotes": [
+    {
+     "quote": "// Check if a deleted revision will become the latest revision...",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "// Attach the latest revision to the page...",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "mw-i18n-undelete",
+   "platform": "MediaWiki/Wikipedia",
+   "kind": "project source (interface messages)",
+   "url": "https://github.com/wikimedia/mediawiki/blob/master/languages/i18n/en.json",
+   "fetched_url": "https://raw.githubusercontent.com/wikimedia/mediawiki/master/languages/i18n/en.json",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "8033b671cc4ed788370899e567b56e47f54e927af8180c01e1147b9667b61d1b",
+   "quotes": [
+    {
+     "quote": "To perform a selective undeletion, check the boxes corresponding to the revisions to be undeleted",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "If a new page with the same name has been created since the deletion, the undeleted revisions will appear in the prior history.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Undeletion will not be performed if it will result in the top page or file revision being partially deleted.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "enwp-selective-deletion",
+   "platform": "MediaWiki/Wikipedia",
+   "kind": "project doc (Wikipedia)",
+   "url": "https://en.wikipedia.org/wiki/Wikipedia:Selective_deletion",
+   "fetched_url": "https://en.wikipedia.org/wiki/Wikipedia:Selective_deletion",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "73ba7fa5f3601b94e8528ae6f686710688eff77c1acbc54af8170371009a8025",
+   "quotes": [
+    {
+     "quote": "the only way to accomplish this was to first delete the entire article and then to restore the revisions one does not want to see deleted.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "mw-api-revisions",
+   "platform": "MediaWiki/Wikipedia",
+   "kind": "API reference",
+   "url": "https://www.mediawiki.org/wiki/API:Revisions",
+   "fetched_url": "https://www.mediawiki.org/wiki/API:Revisions",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "52cecf8dbdd7ac9b58d9cc9eec87ee49e3ab078ae84b0ccdaca5519935d70c6d",
+   "quotes": [
+    {
+     "quote": "SHA-1 (base 16) of the revision.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "The ID of the revision.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "wp-revision-src",
+   "platform": "WordPress",
+   "kind": "project source",
+   "url": "https://github.com/WordPress/wordpress-develop/blob/trunk/src/wp-includes/revision.php",
+   "fetched_url": "https://raw.githubusercontent.com/WordPress/wordpress-develop/trunk/src/wp-includes/revision.php",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "506d6024f7f7c753b2ba08b377912521f7e81f166658fbaf9e7e8b86c5e06a60",
+   "quotes": [
+    {
+     "quote": "* Creates a revision for the current version of a post.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "* Typically used immediately after a post update, as every update is a revision,",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "* and the most recent revision always matches the current post.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "* @return int|WP_Error|null Null or 0 if error, new revision ID, if success.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "$post_id = wp_update_post( $update );",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "'orderby'             => 'date ID',",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "if ( ! wp_revisions_enabled( $post ) ) {",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "wp-default-filters-src",
+   "platform": "WordPress",
+   "kind": "project source",
+   "url": "https://github.com/WordPress/wordpress-develop/blob/trunk/src/wp-includes/default-filters.php",
+   "fetched_url": "https://raw.githubusercontent.com/WordPress/wordpress-develop/trunk/src/wp-includes/default-filters.php",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "8c8c6c184e5c476b3534d75aa0ab33f7f49c7c1439bc9b169689a1d0cb27b7b6",
+   "quotes": [
+    {
+     "quote": "add_action( 'post_updated', 'wp_save_post_revision', 10, 1 );",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "wp-ref-restore",
+   "platform": "WordPress",
+   "kind": "API reference",
+   "url": "https://developer.wordpress.org/reference/functions/wp_restore_post_revision/",
+   "fetched_url": "https://developer.wordpress.org/reference/functions/wp_restore_post_revision/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "9ae6bbe2ef612442bac1db6bf1a66f615b2f7c803922d6bd12a3c2a0623a29a7",
+   "quotes": [
+    {
+     "quote": "Restores a post to the specified revision.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "wp-rest-revisions",
+   "platform": "WordPress",
+   "kind": "API reference",
+   "url": "https://developer.wordpress.org/rest-api/reference/post-revisions/",
+   "fetched_url": "https://developer.wordpress.org/rest-api/reference/post-revisions/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "3e58b9bfea7f927b9341651839c730467ef5cd9677c9fee4a3f7addc7cd0b234",
+   "quotes": [
+    {
+     "quote": "DELETE /wp/v2/posts/<parent>/revisions/<id>",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Required to be true, as revisions do not support trashing.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "wp-rest-posts-controller-src",
+   "platform": "WordPress",
+   "kind": "project source",
+   "url": "https://github.com/WordPress/wordpress-develop/blob/trunk/src/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php",
+   "fetched_url": "https://raw.githubusercontent.com/WordPress/wordpress-develop/trunk/src/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "f195106c9287b60b749fcfa6aaa11721d959f61155df2b96d6fc6293a47d3aef",
+   "quotes": [
+    {
+     "quote": "$links['predecessor-version'] = array(",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "'id'   => $revisions['latest_id'],",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "oci-distribution-spec",
+   "platform": "OCI/Docker registries",
+   "kind": "specification",
+   "url": "https://github.com/opencontainers/distribution-spec/blob/main/spec.md",
+   "fetched_url": "https://raw.githubusercontent.com/opencontainers/distribution-spec/main/spec.md",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "424901daf1487a0921b3dcb09c1541b2c7dc6109c7782507e3f197a9a40d5d22",
+   "quotes": [
+    {
+     "quote": "**Digest**: a unique identifier created from a cryptographic hash of a Blob's content.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "**Tag**: a custom, human-readable pointer to a manifest. A manifest digest may have zero, one, or many tags referencing it.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "oci-image-descriptor",
+   "platform": "OCI/Docker registries",
+   "kind": "specification",
+   "url": "https://github.com/opencontainers/image-spec/blob/main/descriptor.md",
+   "fetched_url": "https://raw.githubusercontent.com/opencontainers/image-spec/main/descriptor.md",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "90d5fa13d43a8f4ebbf50341d6c131f97e894f36190779f2a05ef2c76b31a041",
+   "quotes": [
+    {
+     "quote": "The _digest_ property of a Descriptor acts as a content identifier, enabling [content addressability]",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "docker-image-tag",
+   "platform": "OCI/Docker registries",
+   "kind": "vendor doc",
+   "url": "https://docs.docker.com/reference/cli/docker/image/tag/",
+   "fetched_url": "https://docs.docker.com/reference/cli/docker/image/tag/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "e30059d53279651e98e3aacc3fbc001f20b87562b9b07fe4244b62c3952063db",
+   "quotes": [
+    {
+     "quote": "Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "docker-hub-immutable-tags",
+   "platform": "OCI/Docker registries",
+   "kind": "vendor doc",
+   "url": "https://docs.docker.com/docker-hub/repos/manage/hub-images/immutable-tags/",
+   "fetched_url": "https://docs.docker.com/docker-hub/repos/manage/hub-images/immutable-tags/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "10d10eaf5bb9c15331696f0190f8340d019bffc5203348a5e3bbb918d3c398e4",
+   "quotes": [
+    {
+     "quote": "Immutable tags are image tags that, once pushed to Docker Hub, cannot be overwritten or deleted.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "ecr-tag-mutability",
+   "platform": "OCI/Docker registries",
+   "kind": "vendor doc",
+   "url": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html",
+   "fetched_url": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "b1400b0db8337144998fa14b28493a66d74903bed4700cfdf86c3988f9ebd4e2",
+   "quotes": [
+    {
+     "quote": "Mutable – Choose this option if you want image tags to be overwritten.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "After tag immutability is turned on, the ImageTagAlreadyExistsException error is returned if you push an image with a tag that is already in the repository.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "npm-dist-tag",
+   "platform": "npm",
+   "kind": "vendor doc",
+   "url": "https://docs.npmjs.com/cli/v11/commands/npm-dist-tag",
+   "fetched_url": "https://docs.npmjs.com/cli/v11/commands/npm-dist-tag/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "e62fdb6a5e85867ced6e1c1df9753ec14a2aba45ce84f2898c56ca5edfae3fde",
+   "quotes": [
+    {
+     "quote": "add: Tags the specified version of the package with the specified tag, or the --tag config if not specified.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "If you have two-factor authentication on auth-and-writes then you’ll need to include a one-time password on the command line with --otp <one-time password>",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Publishing a package sets the latest tag to the published version unless the --tag option is used.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "By default, the latest tag is used by npm to identify the current version of a package",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "npm-unpublish-policy",
+   "platform": "npm",
+   "kind": "vendor policy",
+   "url": "https://docs.npmjs.com/policies/unpublish",
+   "fetched_url": "https://docs.npmjs.com/policies/unpublish",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "ca8e80ba5c1de80f5b4c0dab18eb062af01607bb69c169662bd4b2e4585fb3e3",
+   "quotes": [
+    {
+     "quote": "Once package@version has been used, you can never use it again. You must publish a new version even if you unpublished the old one.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "npm-unpublish-cmd",
+   "platform": "npm",
+   "kind": "vendor doc",
+   "url": "https://docs.npmjs.com/cli/v11/commands/npm-unpublish",
+   "fetched_url": "https://docs.npmjs.com/cli/v11/commands/npm-unpublish",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "558c9a9aa9885c942cbbdbe29879050a7afa38eb6179c6ce67ecf5bc1d9a1022",
+   "quotes": [
+    {
+     "quote": "Even if you unpublish a package version, that specific name and version combination can never be reused.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "git-revert",
+   "platform": "Git",
+   "kind": "project doc",
+   "url": "https://git-scm.com/docs/git-revert",
+   "fetched_url": "https://git-scm.com/docs/git-revert",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "ba574fd9df721510d59dcc8c5d1a331b643c06374218daeeeb667cffe3af4b9f",
+   "quotes": [
+    {
+     "quote": "Given one or more existing commits, revert the changes that the related patches introduce, and record some new commits that record them.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "git-reset",
+   "platform": "Git",
+   "kind": "project doc",
+   "url": "https://git-scm.com/docs/git-reset",
+   "fetched_url": "https://git-scm.com/docs/git-reset",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "77c44c446f35e8b42cd3f9b4022328e1fe9ad77644f7c46c8fcc48e94d71ea53",
+   "quotes": [
+    {
+     "quote": "Set the current branch head (HEAD) to point at <commit>.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "git-push",
+   "platform": "Git",
+   "kind": "project doc",
+   "url": "https://git-scm.com/docs/git-push",
+   "fetched_url": "https://git-scm.com/docs/git-push",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "2e451f3ceb4558bd8e40edafa157a5b7c1fd8b366f22d77340c1767dd44cf5ee",
+   "quotes": [
+    {
+     "quote": "Usually, git push will refuse to update a branch that is not an ancestor of the commit being pushed.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "It can cause the remote repository to lose commits; use it with care.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "git-objects",
+   "platform": "Git",
+   "kind": "project doc (Pro Git)",
+   "url": "https://git-scm.com/book/en/v2/Git-Internals-Git-Objects",
+   "fetched_url": "https://git-scm.com/book/en/v2/Git-Internals-Git-Objects",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "1c22a0868bb71054f8218505a97e2da751b6eed5bf28630cda002005d13a6eeb",
+   "quotes": [
+    {
+     "quote": "Git is a content-addressable filesystem.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "You will get a different hash value because of different creation time and author data.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "nginx-etag-directive",
+   "platform": "HTTP servers (nginx)",
+   "kind": "project doc",
+   "url": "https://nginx.org/en/docs/http/ngx_http_core_module.html#etag",
+   "fetched_url": "https://nginx.org/en/docs/http/ngx_http_core_module.html#etag",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "21fd0c53e526c4d8a7fc10f58cb4dd4f1530d05f826f40145989cbd9d1776298",
+   "quotes": [
+    {
+     "quote": "Enables or disables automatic generation of the “ETag” response header field for static resources.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "nginx-etag-src",
+   "platform": "HTTP servers (nginx)",
+   "kind": "project source",
+   "url": "https://github.com/nginx/nginx/blob/master/src/http/ngx_http_core_module.c",
+   "fetched_url": "https://raw.githubusercontent.com/nginx/nginx/master/src/http/ngx_http_core_module.c",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "5f798985c011445420d905cdfe84acb5ea966dc96e5ec9565d93cd4e39beeef0",
+   "quotes": [
+    {
+     "quote": "etag->value.len = ngx_sprintf(etag->value.data, \"\\\"%xT-%xO\\\"\",",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "r->headers_out.last_modified_time,",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "r->headers_out.content_length_n)",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "apache-fileetag",
+   "platform": "HTTP servers (Apache httpd)",
+   "kind": "project doc",
+   "url": "https://httpd.apache.org/docs/2.4/mod/core.html#fileetag",
+   "fetched_url": "https://httpd.apache.org/docs/2.4/mod/core.html#fileetag",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "ad9d21f5483d45567405632681a6707896c00012a74db2e7e874f1b459fdaf4f",
+   "quotes": [
+    {
+     "quote": "File attributes used to create the ETag HTTP response header for static files",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Default: FileETag MTime Size",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "Compatibility: The default used to be \"INode MTime Size\" in 2.3.14 and earlier.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "If a document is file-based, the ETag field will be calculated by taking the digest over the file.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "express-etag-setting",
+   "platform": "HTTP servers (Express)",
+   "kind": "project doc",
+   "url": "https://expressjs.com/en/5x/api/application/",
+   "fetched_url": "https://expressjs.com/en/5x/api/application/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "1dce33efd94033c43eece0d66cf3d158d25701870be65078d7f4a932564e46ea",
+   "quotes": [
+    {
+     "quote": "These settings apply only to dynamic files, not static files. The express.static middleware ignores these settings.",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "true enables weak ETag. This is the default setting. false disables ETag altogether.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "serve-static-etag",
+   "platform": "HTTP servers (Express)",
+   "kind": "project doc",
+   "url": "https://expressjs.com/en/resources/middleware/serve-static/",
+   "fetched_url": "https://expressjs.com/en/resources/middleware/serve-static/",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "105810576df86c9f5ca619d849d569c93eb93705b65c3e85b36edbe7583b28a4",
+   "quotes": [
+    {
+     "quote": "Enable or disable etag generation, defaults to true.",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "etag-readme",
+   "platform": "HTTP servers (Express)",
+   "kind": "project doc",
+   "url": "https://github.com/jshttp/etag/blob/master/README.md",
+   "fetched_url": "https://raw.githubusercontent.com/jshttp/etag/master/README.md",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "67acc365d3aef374c9fb25c7be84f4fff0f91eda79780813a1484b7386a18b99",
+   "quotes": [
+    {
+     "quote": "Generate a strong ETag for the given entity. This should be the complete body of the entity. Strings, `Buffer`s, and `fs.Stats` are accepted. By default, a strong ETag is generated except for `fs.Stats`, which will generate a weak ETag (this can be overwritten by `options.weak`).",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "etag-src",
+   "platform": "HTTP servers (Express)",
+   "kind": "project source",
+   "url": "https://github.com/jshttp/etag/blob/master/index.js",
+   "fetched_url": "https://raw.githubusercontent.com/jshttp/etag/master/index.js",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "a95a23b9a60726a4522b768c88ad73a7ea2c539d220068227f5510a8ee2008ae",
+   "quotes": [
+    {
+     "quote": ".createHash('sha1')",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "return '\"' + len.toString(16) + '-' + hash + '\"'",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "var mtime = stat.mtime.getTime().toString(16)",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "return '\"' + size + '-' + mtime + '\"'",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "express-response-src",
+   "platform": "HTTP servers (Express)",
+   "kind": "project source",
+   "url": "https://github.com/expressjs/express/blob/master/lib/response.js",
+   "fetched_url": "https://raw.githubusercontent.com/expressjs/express/master/lib/response.js",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "efe24afe2978d0bf2ad52d5b163a7af0d25d965e5dfc75979c4fcc883c60a510",
+   "quotes": [
+    {
+     "quote": "var etagFn = app.get('etag fn')",
+     "verified_in_local_copy": true
+    },
+    {
+     "quote": "if ((etag = etagFn(chunk, encoding))) {",
+     "verified_in_local_copy": true
+    }
+   ]
+  },
+  {
+   "id": "send-src",
+   "platform": "HTTP servers (Express)",
+   "kind": "project source",
+   "url": "https://github.com/pillarjs/send/blob/master/index.js",
+   "fetched_url": "https://raw.githubusercontent.com/pillarjs/send/master/index.js",
+   "retrieved": "2026-11-05",
+   "local_copy_sha256": "17d2352806284e6ff6880542c54e9086cc471ea8b69c4ff44eabe21bce978db7",
+   "quotes": [
+    {
+     "quote": "var val = etag(stat)",
+     "verified_in_local_copy": true
+    }
+   ]
+  }
+ ],
+ "unverified_quotes": []
+}

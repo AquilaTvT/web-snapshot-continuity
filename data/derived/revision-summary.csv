@@ -1,0 +1,7 @@
+title,pageid,revisions,distinct_content_hashes,content_runs,hash_return_count,consecutive_parent_links,equal_timestamp_pairs,declared_path_minimum_auxiliary_labels,declared_path_minimum_strong_labels,revision_ids_distinct
+World Wide Web,33139,53,52,53,1,True,0,2,53,True
+HTTP,13443,186,115,185,70,True,0,15,185,True
+HTML,13191,50,47,50,3,True,0,2,50,True
+CSS,23290197,127,83,126,43,True,0,8,126,True
+JavaScript,9845,133,128,133,5,True,0,2,133,True
+Web browser,33173,85,76,85,9,True,0,3,85,True

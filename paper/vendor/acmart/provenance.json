@@ -1,0 +1,9 @@
+{
+  "version": "2.21",
+  "release_date": "2026-11-01",
+  "source": "https://mirrors.ctan.org/macros/latex/contrib/acmart.zip",
+  "zip_sha256": "81977a834f5cfd5302c37181ede34d2663eeea60604d1d89230e3c5e74b9a4bb",
+  "cls_sha256": "cb641fdfe8a6b9bbe171a0794218657c737c4b622c584dab09115a9e269eb296",
+  "generated_with": "Tectonic 0.17.0: tectonic acmart.ins --pass tex --keep-intermediates",
+  "license": "LPPL 1.3; upstream notices retained; class unmodified"
+}

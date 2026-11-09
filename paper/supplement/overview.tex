@@ -1,0 +1,66 @@
+\section{Overview}\label{sec:map}
+The paper asks when equal server metadata at two captures proves that a
+resource stayed unchanged in between, and when captures of several resources
+prove that their observed contents were current together. This supplement
+gives the proofs in the paper's order (Sections~\ref{sec:continuity}
+to~\ref{sec:instants}), then the evidence: platform semantics, local
+executions and the documentation audit (Section~\ref{sec:platforms}), the
+edit-history replay (Section~\ref{sec:replay}), the controlled HTTP executions
+(Section~\ref{sec:http}) and reproduction (Section~\ref{sec:reproduction}).
+Table~\ref{tab:map} lists where each claim is proved or measured.
+
+Four kinds of evidence are kept apart throughout. A proof holds for the
+stated model. A finite enumeration checks an implementation against an
+independent brute-force oracle; it does not replace a proof. A local execution
+records what one pinned implementation did in one run on loopback; it is not
+a cloud measurement and estimates no prevalence. Vendor documentation states
+intended behavior, and the paper's claims about cloud services rest on it
+alone: no AWS, Google Cloud or Azure service was measured.
+
+\begin{table*}[t]
+\caption{Where each claim of the paper is proved or measured.}
+\label{tab:map}
+\small
+\begin{tabularx}{\textwidth}{@{}lXlX@{}}
+\toprule
+Paper & Claim & Here & Evidence, code and data \\
+\midrule
+Theorem~1 & Continuity criterion and its certificates & \S\ref{sec:continuity} &
+Proof; product search and invariant checker in \code{src/history_contracts.py};
+13 constructed models and 37{,}888 exhaustive contracts against an
+independent oracle \\
+Proposition~2 & Sound fields, no finite path-preserving repair, identity
+non-reactivation &
+\S\ref{sec:fields} & Proof; \code{repair()} and \code{refine()}; \sRepairChecks{}
+contracts against all labelings, \sRefinementChecks{} finite refinements,
+\sEpochChecks{} bounded S3 epochs \\
+\S2, \S4 & Documented operations of Amazon S3 and other platforms; local probes; audit &
+\S\ref{sec:platforms} & Vendor documentation; \nProbeRequests{} loopback
+requests on nine implementations; two MinIO executions (51 and
+\nProfileRequests{} requests); \nAuditIdentifiers{} identifiers from
+\nAuditSources{} sources \\
+Theorem~3, Corollary~4 & Exact test, schedules, fixed instants &
+\S\ref{sec:instants} & Proof; \code{src/certification.py}; schedules and window
+sets against brute force \\
+Proposition~5 & Worst-case sweep, coNP-completeness & \S\ref{sec:instants} &
+Proof; sweep against the reference semantics; \sCnfChecks{} CNF instances
+of the reduction \\
+Figure~1 & Recorded MinIO execution; revisit order & \S\ref{sec:platforms},
+\S\ref{sec:instants} & \code{figure-artifacts/05-certification-rule} \\
+Table~1 & Identifiers across a change and its undo & \S\ref{sec:platforms} &
+\code{table-artifacts/01-identity-probes} \\
+Figure~2, \S4 & Edit-history replay & \S\ref{sec:replay} & Protocol committed
+before collection; two labelled post hoc addenda; \code{experiments/revision_bundles},
+\code{figure-artifacts/06-revision-histories} \\
+\S1, \S2 & Validators from restored modification times repeat (HTTP controls) &
+\S\ref{sec:http} & Six configurations on macOS and on Linux;
+\code{scripts/run_stack_experiments.py} \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+The supplement covers only what the paper uses. Results of earlier rounds that
+the paper no longer prints (finite-capture ambiguity, the unbounded obstruction
+order, label-alphabet synthesis, a six-page source-history study) are kept,
+unchanged, in \code{research/supplement-earlier-rounds.md}; nothing here
+depends on them.

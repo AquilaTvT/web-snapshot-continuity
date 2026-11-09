@@ -1,0 +1,2317 @@
+{
+ "schema": 1,
+ "server": "seaweedfs",
+ "implementation": {
+  "implementation": "SeaweedFS (S3 gateway on filer)",
+  "distribution": "official release linux_amd64.tar.gz 3.97",
+  "version": "version 30GB 3.97 76452ab593995ab52b75e681de5b221de1e3f006 linux amd64",
+  "executable_sha256": "a99945256565dd85f017585dd97776215acb11bb6918e23d7f8343148e5d0452"
+ },
+ "started_utc": "2026-11-05T06:13:06.599557+00:00",
+ "finished_utc": "2026-11-05T06:13:56.639458+00:00",
+ "client": {
+  "python": "3.13.18",
+  "system": "Linux",
+  "machine": "x86_64",
+  "transport": "loopback HTTP, SigV4 path-style"
+ },
+ "cases": [
+  {
+   "name": "setup_versioned_bucket",
+   "created": true,
+   "versioning": true,
+   "setup": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "name": "delete_current",
+   "writes": [
+    3,
+    5
+   ],
+   "mutation": 7,
+   "captures": [
+    {
+     "index": 4,
+     "status": 200,
+     "version_id": "18e51172bc791823cfd71e08d8d4f02c",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 6,
+     "status": 200,
+     "version_id": "18e51172c91a060e386b55d7e32c43da",
+     "etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "body": "B\n"
+    },
+    {
+     "index": 8,
+     "status": 200,
+     "version_id": "18e51172bc791823cfd71e08d8d4f02c",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ],
+   "conditional": {
+    "index": 9,
+    "status": 304,
+    "version_id": "18e51172bc791823cfd71e08d8d4f02c",
+    "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+    "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "body": null
+   }
+  },
+  {
+   "name": "delete_marker",
+   "writes": [
+    10
+   ],
+   "marker": 12,
+   "mutation": 14,
+   "captures": [
+    {
+     "index": 11,
+     "status": 200,
+     "version_id": "18e51172ca06ed2f7ad026eb8f425bc7",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 13,
+     "status": 404,
+     "version_id": null,
+     "etag": null,
+     "last_modified": null,
+     "body_sha256": "fc1fba2a0dc106b2e8eaccf489b09bb709bbfe7a284390f698f6fc2e4af05aa6",
+     "body": null
+    },
+    {
+     "index": 15,
+     "status": 200,
+     "version_id": "18e51172ca06ed2f7ad026eb8f425bc7",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ]
+  },
+  {
+   "name": "copy_restore",
+   "writes": [
+    16,
+    18
+   ],
+   "mutation": 22,
+   "attempts": [
+    20,
+    21,
+    22
+   ],
+   "captures": [
+    {
+     "index": 17,
+     "status": 200,
+     "version_id": "18e51172cb1b008a888859353f5009bc",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 19,
+     "status": 200,
+     "version_id": "18e51172cb8581d4dd55fa30fbf74ff4",
+     "etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "body": "B\n"
+    },
+    {
+     "index": 23,
+     "status": 200,
+     "version_id": "18e51172cb8581d4dd55fa30fbf74ff4",
+     "etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "body": "B\n"
+    }
+   ]
+  },
+  {
+   "name": "reupload",
+   "writes": [
+    24,
+    26,
+    28
+   ],
+   "captures": [
+    {
+     "index": 25,
+     "status": 200,
+     "version_id": "18e51172cc5e9dd92e1de551acedec04",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 27,
+     "status": 200,
+     "version_id": "18e51172ccdd0f5beec12486a00d7e64",
+     "etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "body": "B\n"
+    },
+    {
+     "index": 29,
+     "status": 200,
+     "version_id": "18e51172cd4dcb0542fb094a7f860573",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ],
+   "conditional": {
+    "index": 30,
+    "status": 304,
+    "version_id": "18e51172cd4dcb0542fb094a7f860573",
+    "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+    "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "body": null
+   }
+  },
+  {
+   "name": "suspended_null",
+   "created": true,
+   "versioning": true,
+   "setup": [
+    31,
+    32,
+    33
+   ],
+   "suspend": 34,
+   "suspended": true,
+   "writes": [
+    36,
+    38,
+    40
+   ],
+   "captures": [
+    {
+     "index": 37,
+     "status": 200,
+     "version_id": "null",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 39,
+     "status": 200,
+     "version_id": "null",
+     "etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "body": "B\n"
+    },
+    {
+     "index": 41,
+     "status": 200,
+     "version_id": "null",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ]
+  },
+  {
+   "name": "object_lock_marker",
+   "created": true,
+   "versioning": true,
+   "setup": [
+    42,
+    43,
+    44
+   ],
+   "writes": [
+    45
+   ],
+   "retention": 46,
+   "protected_delete": 48,
+   "marker": 49,
+   "mutation": 51,
+   "captures": [
+    {
+     "index": 47,
+     "status": 404,
+     "version_id": null,
+     "etag": null,
+     "last_modified": null,
+     "body_sha256": "7c1d3276f32bc26163fb0176664c2bef0e880f6f69c8e104eba6909cffc04cf6",
+     "body": null
+    },
+    {
+     "index": 50,
+     "status": 404,
+     "version_id": null,
+     "etag": null,
+     "last_modified": null,
+     "body_sha256": "e3b5b598ff206a22c167f4aee0d35085803763e37c063b53369215def8121f2f",
+     "body": null
+    },
+    {
+     "index": 52,
+     "status": 404,
+     "version_id": null,
+     "etag": null,
+     "last_modified": null,
+     "body_sha256": "601fa5dc726ac793dc2e32a1a0ed0fe3f546018b2539d123931b962b0cb65b8c",
+     "body": null
+    }
+   ]
+  }
+ ],
+ "requests": [
+  {
+   "index": 0,
+   "label": "setup: create probe-versioned",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-versioned",
+    "headers": {
+     "Content-type": "application/x-www-form-urlencoded",
+     "Content-length": "0",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=f15175afcdfd4d836b8bcdf1f9841a0be7cf4138f6a9047ea3eb996c1b8d5035"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "Location": "/probe-versioned",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211057949706",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    592773,
+    5055916
+   ]
+  },
+  {
+   "index": 1,
+   "label": "setup: enable versioning",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-versioned?versioning=",
+    "headers": {
+     "Content-length": "123",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7",
+     "Content-type": "application/xml",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=44e98ff48ec1cfa418e5cefef491bab1d1c6888887375d066efe093218b71d9b"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211060345009",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    5247704,
+    7223408
+   ]
+  },
+  {
+   "index": 2,
+   "label": "setup: read versioning",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-versioned?versioning=",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=2e2f05bcd55a98fd6cdae6519ec07612fc895a29a95065bcebb7c5044dc44f83"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "123",
+     "Content-Type": "application/xml",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211061999770",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+   },
+   "window_ns": [
+    7348612,
+    8817953
+   ]
+  },
+  {
+   "index": 3,
+   "label": "delete_current: put A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-versioned/delete-current",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=60712f4bfd7dc011e5e166b8e2ed8233bc9f9f3d539e35f111f174e835264b2d"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211269262688",
+     "X-Amz-Version-Id": "18e51172bc791823cfd71e08d8d4f02c",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    8948163,
+    216253311
+   ]
+  },
+  {
+   "index": 4,
+   "label": "delete_current: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-versioned/delete-current",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=892b6ba8799eb9e2c2ed520b07c18cd57fbdb24d160ee635e43351947f734494"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Expose-Headers": "Seaweed-X-Amz-Owner,Seaweed-X-Amz-Acl,Seaweed-X-Amz-Version-Id,Seaweed-X-Amz-Etag,Content-Disposition",
+     "Content-Disposition": "inline; filename=\"v_18e51172bc791823cfd71e08d8d4f02c\"",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Seaweed-X-Amz-Acl": "",
+     "Seaweed-X-Amz-Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Seaweed-X-Amz-Owner": "admin",
+     "Seaweed-X-Amz-Version-Id": "18e51172bc791823cfd71e08d8d4f02c",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "f444f4a9-be60-4837-bfc2-fd959099e290",
+     "X-Amz-Version-Id": "18e51172bc791823cfd71e08d8d4f02c",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    216413271,
+    220582811
+   ]
+  },
+  {
+   "index": 5,
+   "label": "delete_current: put B",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-versioned/delete-current",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=20870962019d93fa8bbe26155558a330a5a87eabf395c76cba0a5e7a5580a976"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211278352853",
+     "X-Amz-Version-Id": "18e51172c91a060e386b55d7e32c43da",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    220744644,
+    225136457
+   ]
+  },
+  {
+   "index": 6,
+   "label": "delete_current: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-versioned/delete-current",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=892b6ba8799eb9e2c2ed520b07c18cd57fbdb24d160ee635e43351947f734494"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Expose-Headers": "Seaweed-X-Amz-Acl,Seaweed-X-Amz-Owner,Seaweed-X-Amz-Version-Id,Seaweed-X-Amz-Etag,Content-Disposition",
+     "Content-Disposition": "inline; filename=\"v_18e51172c91a060e386b55d7e32c43da\"",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Seaweed-X-Amz-Acl": "",
+     "Seaweed-X-Amz-Etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Seaweed-X-Amz-Owner": "admin",
+     "Seaweed-X-Amz-Version-Id": "18e51172c91a060e386b55d7e32c43da",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "5ae37ec3-3645-4722-a239-b3b1346e8c28",
+     "X-Amz-Version-Id": "18e51172c91a060e386b55d7e32c43da",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    225250172,
+    228314940
+   ]
+  },
+  {
+   "index": 7,
+   "label": "delete_current: delete B by version ID",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:21028/probe-versioned/delete-current?versionId=18e51172c91a060e386b55d7e32c43da",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=4c9d8ac4891973f0c7b9f39480ae500529a28ec51a36af7e96f01d757cd7f27d"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Version-Id": "18e51172c91a060e386b55d7e32c43da",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    228442263,
+    231030480
+   ]
+  },
+  {
+   "index": 8,
+   "label": "delete_current: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-versioned/delete-current",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=892b6ba8799eb9e2c2ed520b07c18cd57fbdb24d160ee635e43351947f734494"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Expose-Headers": "Seaweed-X-Amz-Version-Id,Seaweed-X-Amz-Owner,Seaweed-X-Amz-Acl,Seaweed-X-Amz-Etag,Content-Disposition",
+     "Content-Disposition": "inline; filename=\"v_18e51172bc791823cfd71e08d8d4f02c\"",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Seaweed-X-Amz-Acl": "",
+     "Seaweed-X-Amz-Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Seaweed-X-Amz-Owner": "admin",
+     "Seaweed-X-Amz-Version-Id": "18e51172bc791823cfd71e08d8d4f02c",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "d3890379-38ce-4721-9e21-275e57ddacb9",
+     "X-Amz-Version-Id": "18e51172bc791823cfd71e08d8d4f02c",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    231180228,
+    233737614
+   ]
+  },
+  {
+   "index": 9,
+   "label": "delete_current: conditional GET with first ETag",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-versioned/delete-current",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "If-none-match": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;if-none-match;x-amz-content-sha256;x-amz-date, Signature=95d4c50548be3159c6c75d9ffab9bd7e9a1a00154093e07bbdf88db28683f1bc"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 304,
+    "headers": {
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "dfde6a46-badf-4640-9e56-5f749895f38b",
+     "X-Amz-Version-Id": "18e51172bc791823cfd71e08d8d4f02c",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    233831580,
+    236260146
+   ]
+  },
+  {
+   "index": 10,
+   "label": "delete_marker: put A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-versioned/delete-marker",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=0fea28073223a07a6015d39e0c5a0b180ea98175aa4010d0f7245c4f56b6c1bc"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211293838119",
+     "X-Amz-Version-Id": "18e51172ca06ed2f7ad026eb8f425bc7",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    236415826,
+    240604732
+   ]
+  },
+  {
+   "index": 11,
+   "label": "delete_marker: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-versioned/delete-marker",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=ff4c752b5c2d43607f5860935aaa8b1db4dcffb4e83fb7d136e1a616c7e3fc32"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Expose-Headers": "Seaweed-X-Amz-Etag,Seaweed-X-Amz-Owner,Seaweed-X-Amz-Version-Id,Seaweed-X-Amz-Acl,Content-Disposition",
+     "Content-Disposition": "inline; filename=\"v_18e51172ca06ed2f7ad026eb8f425bc7\"",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Seaweed-X-Amz-Acl": "",
+     "Seaweed-X-Amz-Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Seaweed-X-Amz-Owner": "admin",
+     "Seaweed-X-Amz-Version-Id": "18e51172ca06ed2f7ad026eb8f425bc7",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "54d6ee6a-47e0-44a6-a564-4eccc56b4922",
+     "X-Amz-Version-Id": "18e51172ca06ed2f7ad026eb8f425bc7",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    240699465,
+    244371283
+   ]
+  },
+  {
+   "index": 12,
+   "label": "delete_marker: create delete marker",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:21028/probe-versioned/delete-marker",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=446f635d8e04acd3dc0258f02fabca6bcfe04c6e2b432ab32ea9d017eba435a8"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Delete-Marker": "true",
+     "X-Amz-Version-Id": "18e51172ca81e7f8bfb1acfadef78ca8",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    244467931,
+    246439739
+   ]
+  },
+  {
+   "index": 13,
+   "label": "delete_marker: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-versioned/delete-marker",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=ff4c752b5c2d43607f5860935aaa8b1db4dcffb4e83fb7d136e1a616c7e3fc32"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 404,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "285",
+     "Content-Type": "application/xml",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211301344983",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPk5vU3VjaEtleTwvQ29kZT48TWVzc2FnZT5UaGUgc3BlY2lmaWVkIGtleSBkb2VzIG5vdCBleGlzdC48L01lc3NhZ2U+PFJlc291cmNlPi9wcm9iZS12ZXJzaW9uZWQvZGVsZXRlLW1hcmtlcjwvUmVzb3VyY2U+PFJlcXVlc3RJZD4xNzkzODU5MjExMzAxMjkxNDI2PC9SZXF1ZXN0SWQ+PEtleT5kZWxldGUtbWFya2VyPC9LZXk+PEJ1Y2tldE5hbWU+cHJvYmUtdmVyc2lvbmVkPC9CdWNrZXROYW1lPjwvRXJyb3I+",
+    "body_sha256": "fc1fba2a0dc106b2e8eaccf489b09bb709bbfe7a284390f698f6fc2e4af05aa6"
+   },
+   "window_ns": [
+    246572702,
+    248152496
+   ]
+  },
+  {
+   "index": 14,
+   "label": "delete_marker: remove marker by version ID",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:21028/probe-versioned/delete-marker?versionId=18e51172ca81e7f8bfb1acfadef78ca8",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=2afb70e7fe5332e5f27ecde670372cde30df7dd34ecd17ffb070777a6bf4316c"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Version-Id": "18e51172ca81e7f8bfb1acfadef78ca8",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    248251329,
+    250880420
+   ]
+  },
+  {
+   "index": 15,
+   "label": "delete_marker: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-versioned/delete-marker",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=ff4c752b5c2d43607f5860935aaa8b1db4dcffb4e83fb7d136e1a616c7e3fc32"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Expose-Headers": "Seaweed-X-Amz-Owner,Seaweed-X-Amz-Acl,Seaweed-X-Amz-Etag,Seaweed-X-Amz-Version-Id,Content-Disposition",
+     "Content-Disposition": "inline; filename=\"v_18e51172ca06ed2f7ad026eb8f425bc7\"",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Seaweed-X-Amz-Acl": "",
+     "Seaweed-X-Amz-Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Seaweed-X-Amz-Owner": "admin",
+     "Seaweed-X-Amz-Version-Id": "18e51172ca06ed2f7ad026eb8f425bc7",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "63a1a02f-a970-4f44-b31b-128c53b2c91a",
+     "X-Amz-Version-Id": "18e51172ca06ed2f7ad026eb8f425bc7",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    250967528,
+    254343247
+   ]
+  },
+  {
+   "index": 16,
+   "label": "copy_restore: put A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-versioned/copy-restore",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=86b355ac9f8e6c9d3ffc11d5d35cf204a0c56d99297aefc3dc2f3a740da8bf2c"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211311576353",
+     "X-Amz-Version-Id": "18e51172cb1b008a888859353f5009bc",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    254473828,
+    258330718
+   ]
+  },
+  {
+   "index": 17,
+   "label": "copy_restore: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-versioned/copy-restore",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=0dc84b6a12d952000ef954a4d0c170656ba6c0ebaf8731af1655eeca0f4aebc0"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Expose-Headers": "Seaweed-X-Amz-Etag,Seaweed-X-Amz-Owner,Seaweed-X-Amz-Version-Id,Seaweed-X-Amz-Acl,Content-Disposition",
+     "Content-Disposition": "inline; filename=\"v_18e51172cb1b008a888859353f5009bc\"",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Seaweed-X-Amz-Acl": "",
+     "Seaweed-X-Amz-Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Seaweed-X-Amz-Owner": "admin",
+     "Seaweed-X-Amz-Version-Id": "18e51172cb1b008a888859353f5009bc",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "49bf2197-a499-4a31-91ca-398d9ddcedf4",
+     "X-Amz-Version-Id": "18e51172cb1b008a888859353f5009bc",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    258428662,
+    261491781
+   ]
+  },
+  {
+   "index": 18,
+   "label": "copy_restore: put B",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-versioned/copy-restore",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=eed50a6c432b7bba868b492582cc43b4bff2fe73151de703c107262df2d998e3"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211318251951",
+     "X-Amz-Version-Id": "18e51172cb8581d4dd55fa30fbf74ff4",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    261613071,
+    265048744
+   ]
+  },
+  {
+   "index": 19,
+   "label": "copy_restore: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-versioned/copy-restore",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=0dc84b6a12d952000ef954a4d0c170656ba6c0ebaf8731af1655eeca0f4aebc0"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Expose-Headers": "Seaweed-X-Amz-Owner,Seaweed-X-Amz-Etag,Seaweed-X-Amz-Acl,Seaweed-X-Amz-Version-Id,Content-Disposition",
+     "Content-Disposition": "inline; filename=\"v_18e51172cb8581d4dd55fa30fbf74ff4\"",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Seaweed-X-Amz-Acl": "",
+     "Seaweed-X-Amz-Etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Seaweed-X-Amz-Owner": "admin",
+     "Seaweed-X-Amz-Version-Id": "18e51172cb8581d4dd55fa30fbf74ff4",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "f5bfee9b-48b9-4e79-9511-b48bc406cc52",
+     "X-Amz-Version-Id": "18e51172cb8581d4dd55fa30fbf74ff4",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    265162202,
+    268195816
+   ]
+  },
+  {
+   "index": 20,
+   "label": "copy_restore: copy old A to current",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-versioned/copy-restore",
+    "headers": {
+     "Content-type": "application/x-www-form-urlencoded",
+     "Content-length": "0",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "X-amz-copy-source": "/probe-versioned/copy-restore?versionId=18e51172cb1b008a888859353f5009bc",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-copy-source;x-amz-date, Signature=8a4070de80a89a0686667d6173eb0473283cb530eb1cda70cceefe2cb1823139"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 400,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "443",
+     "Content-Type": "application/xml",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211322640209",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPkludmFsaWRSZXF1ZXN0PC9Db2RlPjxNZXNzYWdlPlRoaXMgY29weSByZXF1ZXN0IGlzIGlsbGVnYWwgYmVjYXVzZSBpdCBpcyB0cnlpbmcgdG8gY29weSBhbiBvYmplY3QgdG8gaXRzZWxmIHdpdGhvdXQgY2hhbmdpbmcgdGhlIG9iamVjdCYjMzk7cyBtZXRhZGF0YSwgc3RvcmFnZSBjbGFzcywgd2Vic2l0ZSByZWRpcmVjdCBsb2NhdGlvbiBvciBlbmNyeXB0aW9uIGF0dHJpYnV0ZXMuPC9NZXNzYWdlPjxSZXNvdXJjZT4vcHJvYmUtdmVyc2lvbmVkL2NvcHktcmVzdG9yZTwvUmVzb3VyY2U+PFJlcXVlc3RJZD4xNzkzODU5MjExMzIyNjIwMjU0PC9SZXF1ZXN0SWQ+PEtleT5jb3B5LXJlc3RvcmU8L0tleT48QnVja2V0TmFtZT5wcm9iZS12ZXJzaW9uZWQ8L0J1Y2tldE5hbWU+PC9FcnJvcj4=",
+    "body_sha256": "7ddb102ce31eaaa33eab379e839ac1263d03309fd5ca61d922f19f9a1853b8bf"
+   },
+   "window_ns": [
+    268302553,
+    269511334
+   ]
+  },
+  {
+   "index": 21,
+   "label": "copy_restore: copy old A, replacing metadata",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-versioned/copy-restore",
+    "headers": {
+     "Content-length": "0",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "X-amz-copy-source": "/probe-versioned/copy-restore?versionId=18e51172cb1b008a888859353f5009bc",
+     "X-amz-metadata-directive": "REPLACE",
+     "Content-type": "text/plain; charset=utf-8",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-copy-source;x-amz-date;x-amz-metadata-directive, Signature=826138457d21de007c731cddd641cbe3f1010fa1d59829ae68f36ceaec7402ca"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 400,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "331",
+     "Content-Type": "application/xml",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211324160635",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPkludmFsaWRBcmd1bWVudDwvQ29kZT48TWVzc2FnZT5Db3B5IFNvdXJjZSBtdXN0IG1lbnRpb24gdGhlIHNvdXJjZSBidWNrZXQgYW5kIGtleTogc291cmNlYnVja2V0L3NvdXJjZWtleS48L01lc3NhZ2U+PFJlc291cmNlPi9wcm9iZS12ZXJzaW9uZWQvY29weS1yZXN0b3JlPC9SZXNvdXJjZT48UmVxdWVzdElkPjE3OTM4NTkyMTEzMjQxMjc5MzE8L1JlcXVlc3RJZD48S2V5PmNvcHktcmVzdG9yZTwvS2V5PjxCdWNrZXROYW1lPnByb2JlLXZlcnNpb25lZDwvQnVja2V0TmFtZT48L0Vycm9yPg==",
+    "body_sha256": "b138bd9815ee664d9253633f3ba4995c0cce6a85bf24c0d9cd0fd165e24f8153"
+   },
+   "window_ns": [
+    269664669,
+    271043934
+   ]
+  },
+  {
+   "index": 22,
+   "label": "copy_restore: copy old A, replacing metadata, bucket-relative source",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-versioned/copy-restore",
+    "headers": {
+     "Content-length": "0",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "X-amz-copy-source": "probe-versioned/copy-restore?versionId=18e51172cb1b008a888859353f5009bc",
+     "X-amz-metadata-directive": "REPLACE",
+     "Content-type": "text/plain; charset=utf-8",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-copy-source;x-amz-date;x-amz-metadata-directive, Signature=f9dc0d7c65b29f25e0e2de6df9cfd1b6a827b385c72e2c073168e419257b5174"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 400,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "331",
+     "Content-Type": "application/xml",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211325569582",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPkludmFsaWRBcmd1bWVudDwvQ29kZT48TWVzc2FnZT5Db3B5IFNvdXJjZSBtdXN0IG1lbnRpb24gdGhlIHNvdXJjZSBidWNrZXQgYW5kIGtleTogc291cmNlYnVja2V0L3NvdXJjZWtleS48L01lc3NhZ2U+PFJlc291cmNlPi9wcm9iZS12ZXJzaW9uZWQvY29weS1yZXN0b3JlPC9SZXNvdXJjZT48UmVxdWVzdElkPjE3OTM4NTkyMTEzMjU1Mzk2NjQ8L1JlcXVlc3RJZD48S2V5PmNvcHktcmVzdG9yZTwvS2V5PjxCdWNrZXROYW1lPnByb2JlLXZlcnNpb25lZDwvQnVja2V0TmFtZT48L0Vycm9yPg==",
+    "body_sha256": "ab383ed70267f8e4e2e032f31012a428f5893cef44cc6467de85b8a15a87fa73"
+   },
+   "window_ns": [
+    271181214,
+    272370584
+   ]
+  },
+  {
+   "index": 23,
+   "label": "copy_restore: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-versioned/copy-restore",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=0dc84b6a12d952000ef954a4d0c170656ba6c0ebaf8731af1655eeca0f4aebc0"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Expose-Headers": "Seaweed-X-Amz-Version-Id,Seaweed-X-Amz-Owner,Seaweed-X-Amz-Acl,Seaweed-X-Amz-Etag,Content-Disposition",
+     "Content-Disposition": "inline; filename=\"v_18e51172cb8581d4dd55fa30fbf74ff4\"",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Seaweed-X-Amz-Acl": "",
+     "Seaweed-X-Amz-Etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Seaweed-X-Amz-Owner": "admin",
+     "Seaweed-X-Amz-Version-Id": "18e51172cb8581d4dd55fa30fbf74ff4",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "085f796e-9772-49fc-825b-9ca824d1a8ff",
+     "X-Amz-Version-Id": "18e51172cb8581d4dd55fa30fbf74ff4",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    272461140,
+    275493688
+   ]
+  },
+  {
+   "index": 24,
+   "label": "reupload: put A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-versioned/reupload",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=efdc91d00e9622ae11df26d37f015cb0780f653c6cebcdddde193e997eef9545"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211333196104",
+     "X-Amz-Version-Id": "18e51172cc5e9dd92e1de551acedec04",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    275663255,
+    280046759
+   ]
+  },
+  {
+   "index": 25,
+   "label": "reupload: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-versioned/reupload",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=45fb5e08947395ed284fa344f4bed123f628fb6611b103ab121b3bb27fd97b68"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Expose-Headers": "Seaweed-X-Amz-Owner,Seaweed-X-Amz-Acl,Seaweed-X-Amz-Version-Id,Seaweed-X-Amz-Etag,Content-Disposition",
+     "Content-Disposition": "inline; filename=\"v_18e51172cc5e9dd92e1de551acedec04\"",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Seaweed-X-Amz-Acl": "",
+     "Seaweed-X-Amz-Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Seaweed-X-Amz-Owner": "admin",
+     "Seaweed-X-Amz-Version-Id": "18e51172cc5e9dd92e1de551acedec04",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "12d7407c-565e-4b5e-8778-f08fc788b27b",
+     "X-Amz-Version-Id": "18e51172cc5e9dd92e1de551acedec04",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    280153411,
+    283894992
+   ]
+  },
+  {
+   "index": 26,
+   "label": "reupload: put B",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-versioned/reupload",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=48b67eb95570a069fd31d40099648085dd293761239d28b22aad9c64a9e99d68"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211341353216",
+     "X-Amz-Version-Id": "18e51172ccdd0f5beec12486a00d7e64",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    283999968,
+    288129969
+   ]
+  },
+  {
+   "index": 27,
+   "label": "reupload: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-versioned/reupload",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=45fb5e08947395ed284fa344f4bed123f628fb6611b103ab121b3bb27fd97b68"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Expose-Headers": "Seaweed-X-Amz-Acl,Seaweed-X-Amz-Version-Id,Seaweed-X-Amz-Etag,Seaweed-X-Amz-Owner,Content-Disposition",
+     "Content-Disposition": "inline; filename=\"v_18e51172ccdd0f5beec12486a00d7e64\"",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Seaweed-X-Amz-Acl": "",
+     "Seaweed-X-Amz-Etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Seaweed-X-Amz-Owner": "admin",
+     "Seaweed-X-Amz-Version-Id": "18e51172ccdd0f5beec12486a00d7e64",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "fdf3b428-b48e-47be-a095-40b5bacd9cad",
+     "X-Amz-Version-Id": "18e51172ccdd0f5beec12486a00d7e64",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    288219610,
+    291256931
+   ]
+  },
+  {
+   "index": 28,
+   "label": "reupload: put A again",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-versioned/reupload",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=efdc91d00e9622ae11df26d37f015cb0780f653c6cebcdddde193e997eef9545"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211348514047",
+     "X-Amz-Version-Id": "18e51172cd4dcb0542fb094a7f860573",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    291356307,
+    295304757
+   ]
+  },
+  {
+   "index": 29,
+   "label": "reupload: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-versioned/reupload",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=45fb5e08947395ed284fa344f4bed123f628fb6611b103ab121b3bb27fd97b68"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Expose-Headers": "Seaweed-X-Amz-Etag,Seaweed-X-Amz-Owner,Seaweed-X-Amz-Acl,Seaweed-X-Amz-Version-Id,Content-Disposition",
+     "Content-Disposition": "inline; filename=\"v_18e51172cd4dcb0542fb094a7f860573\"",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Seaweed-X-Amz-Acl": "",
+     "Seaweed-X-Amz-Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Seaweed-X-Amz-Owner": "admin",
+     "Seaweed-X-Amz-Version-Id": "18e51172cd4dcb0542fb094a7f860573",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "e8d42fe9-c965-4cf1-8289-e58fed4594c1",
+     "X-Amz-Version-Id": "18e51172cd4dcb0542fb094a7f860573",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    295391464,
+    298709108
+   ]
+  },
+  {
+   "index": 30,
+   "label": "reupload: conditional GET with first ETag",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-versioned/reupload",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "If-none-match": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;if-none-match;x-amz-content-sha256;x-amz-date, Signature=2a13ca123131a84b2d14b1a034d36e6a79539626a3a3ec4623374e2f5412ac0a"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 304,
+    "headers": {
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "ab95394e-cc37-4e67-a02f-ac1e0d398eb7",
+     "X-Amz-Version-Id": "18e51172cd4dcb0542fb094a7f860573",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    298802859,
+    301807677
+   ]
+  },
+  {
+   "index": 31,
+   "label": "setup: create probe-suspended",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-suspended",
+    "headers": {
+     "Content-type": "application/x-www-form-urlencoded",
+     "Content-length": "0",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=36acde10aa165c036349295f3d6a69c262f835b82fdfe23c1463d90ba99df6a0"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "Location": "/probe-suspended",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211357425718",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    301942823,
+    304375040
+   ]
+  },
+  {
+   "index": 32,
+   "label": "setup: enable versioning",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-suspended?versioning=",
+    "headers": {
+     "Content-length": "123",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7",
+     "Content-type": "application/xml",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=5aea9e2784ec2516a0d29e69092c9066ed5b316f6710237afbe3b291a56b2976"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211359778455",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    304503812,
+    306645589
+   ]
+  },
+  {
+   "index": 33,
+   "label": "setup: read versioning",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-suspended?versioning=",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=866c1b0a017ad75d9e69d1176724dde61efda9345e22854cdec7bb96539ce1d8"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "123",
+     "Content-Type": "application/xml",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211361325041",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+   },
+   "window_ns": [
+    306766701,
+    308130086
+   ]
+  },
+  {
+   "index": 34,
+   "label": "suspended_null: suspend versioning",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-suspended?versioning=",
+    "headers": {
+     "Content-length": "125",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "d7f1d7ed35d188f6a89d394cc2055f5910c14a3abccf41e808e7f7327d21e129",
+     "Content-type": "application/xml",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=52af583fa68dcbb344d3ae3e7eea253f80b69395296e986df2abc7c88746bbaa"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+U3VzcGVuZGVkPC9TdGF0dXM+PC9WZXJzaW9uaW5nQ29uZmlndXJhdGlvbj4=",
+    "body_sha256": "d7f1d7ed35d188f6a89d394cc2055f5910c14a3abccf41e808e7f7327d21e129"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211363293102",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    308261353,
+    316920772
+   ]
+  },
+  {
+   "index": 35,
+   "label": "suspended_null: read versioning",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-suspended?versioning=",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=866c1b0a017ad75d9e69d1176724dde61efda9345e22854cdec7bb96539ce1d8"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "125",
+     "Content-Type": "application/xml",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211371588177",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+U3VzcGVuZGVkPC9TdGF0dXM+PC9WZXJzaW9uaW5nQ29uZmlndXJhdGlvbj4=",
+    "body_sha256": "d7f1d7ed35d188f6a89d394cc2055f5910c14a3abccf41e808e7f7327d21e129"
+   },
+   "window_ns": [
+    317043181,
+    318356978
+   ]
+  },
+  {
+   "index": 36,
+   "label": "suspended_null: put A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-suspended/suspended",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=cbc2ae3af4e21fd4246db406eb8dbb5854cf3ce8b0d3d7689ec9492bb572f9b4"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211577298693",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    318459830,
+    524225323
+   ]
+  },
+  {
+   "index": 37,
+   "label": "suspended_null: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-suspended/suspended",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=24389675bd8ced8e5d84d5b842717d05714293d126aeb7933d34dc036e723031"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Expose-Headers": "Seaweed-X-Amz-Version-Id,Seaweed-X-Amz-Owner,Seaweed-X-Amz-Acl,Content-Disposition",
+     "Content-Disposition": "inline; filename=\"suspended\"",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Seaweed-X-Amz-Acl": "",
+     "Seaweed-X-Amz-Owner": "admin",
+     "Seaweed-X-Amz-Version-Id": "null",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "aa04f929-4123-4e21-aa1a-941b5b3016ea",
+     "X-Amz-Version-Id": "null",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    524395960,
+    528357766
+   ]
+  },
+  {
+   "index": 38,
+   "label": "suspended_null: put B",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-suspended/suspended",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=9e74b63f2159d0d357b3ef28f43178db403dd01d6ef02320e31c83bf29f1329b"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211585817338",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    528515380,
+    532651175
+   ]
+  },
+  {
+   "index": 39,
+   "label": "suspended_null: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-suspended/suspended",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=24389675bd8ced8e5d84d5b842717d05714293d126aeb7933d34dc036e723031"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Expose-Headers": "Seaweed-X-Amz-Version-Id,Seaweed-X-Amz-Owner,Seaweed-X-Amz-Acl,Content-Disposition",
+     "Content-Disposition": "inline; filename=\"suspended\"",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Seaweed-X-Amz-Acl": "",
+     "Seaweed-X-Amz-Owner": "admin",
+     "Seaweed-X-Amz-Version-Id": "null",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1d8936a4-26a8-483d-a549-3edb2fb805de",
+     "X-Amz-Version-Id": "null",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    532794297,
+    536796837
+   ]
+  },
+  {
+   "index": 40,
+   "label": "suspended_null: put A again",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-suspended/suspended",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=cbc2ae3af4e21fd4246db406eb8dbb5854cf3ce8b0d3d7689ec9492bb572f9b4"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211593593809",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    536951916,
+    540419629
+   ]
+  },
+  {
+   "index": 41,
+   "label": "suspended_null: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-suspended/suspended",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=24389675bd8ced8e5d84d5b842717d05714293d126aeb7933d34dc036e723031"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Access-Control-Expose-Headers": "Seaweed-X-Amz-Acl,Seaweed-X-Amz-Owner,Seaweed-X-Amz-Version-Id,Content-Disposition",
+     "Content-Disposition": "inline; filename=\"suspended\"",
+     "Content-Length": "2",
+     "Content-Type": "text/plain",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Seaweed-X-Amz-Acl": "",
+     "Seaweed-X-Amz-Owner": "admin",
+     "Seaweed-X-Amz-Version-Id": "null",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "9408f671-e718-45ac-ab83-9831d1ec1ccf",
+     "X-Amz-Version-Id": "null",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    540622650,
+    544230225
+   ]
+  },
+  {
+   "index": 42,
+   "label": "setup: create probe-locked",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-locked",
+    "headers": {
+     "Content-type": "application/x-www-form-urlencoded",
+     "Content-length": "0",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "X-amz-bucket-object-lock-enabled": "true",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-bucket-object-lock-enabled;x-amz-content-sha256;x-amz-date, Signature=3339bcb3a74674fed1aef51c2bd788e27798e6a41e220cbb24ac36591d4dec37"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "Location": "/probe-locked",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211600933672",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    544425069,
+    547838357
+   ]
+  },
+  {
+   "index": 43,
+   "label": "setup: enable versioning",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-locked?versioning=",
+    "headers": {
+     "Content-length": "123",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7",
+     "Content-type": "application/xml",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=1e61ad114335f45cc104cc7d67e91d543ccd29d97be89e663ae770f1b8cd6e3c"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "0",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211602942587",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    547984542,
+    549827434
+   ]
+  },
+  {
+   "index": 44,
+   "label": "setup: read versioning",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-locked?versioning=",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=3eaa0d535ebbe7ffa970bf0692c15ced913a3876f61b958f4f1d26abdb474eaf"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "123",
+     "Content-Type": "application/xml",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859211604552754",
+     "Date": "Thu, 05 Nov 2026 06:13:31 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+   },
+   "window_ns": [
+    549950283,
+    551353073
+   ]
+  },
+  {
+   "index": 45,
+   "label": "object_lock: put retained A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:21028/probe-locked/locked",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061331Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "X-amz-object-lock-mode": "COMPLIANCE",
+     "X-amz-object-lock-retain-until-date": "2026-11-06T06:13:31Z",
+     "Content-md5": "vwcukRkHe052Q3qTmGeH7w==",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-md5;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-object-lock-mode;x-amz-object-lock-retain-until-date, Signature=8229831468f1a15e77ee73974ee044d2e2a140303a3f3eab6bee06d9968ecbb3"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 500,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "287",
+     "Content-Type": "application/xml",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859221608311051",
+     "Date": "Thu, 05 Nov 2026 06:13:41 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPkludGVybmFsRXJyb3I8L0NvZGU+PE1lc3NhZ2U+V2UgZW5jb3VudGVyZWQgYW4gaW50ZXJuYWwgZXJyb3IsIHBsZWFzZSB0cnkgYWdhaW4uPC9NZXNzYWdlPjxSZXNvdXJjZT4vcHJvYmUtbG9ja2VkL2xvY2tlZDwvUmVzb3VyY2U+PFJlcXVlc3RJZD4xNzkzODU5MjIxNjA4Mjc2NDkzPC9SZXF1ZXN0SWQ+PEtleT5sb2NrZWQ8L0tleT48QnVja2V0TmFtZT5wcm9iZS1sb2NrZWQ8L0J1Y2tldE5hbWU+PC9FcnJvcj4=",
+    "body_sha256": "6de2a80ad4246200a86bac925cd06e3bf4e5657547c01e21d18969103beca6a4"
+   },
+   "window_ns": [
+    551500639,
+    10555413922
+   ]
+  },
+  {
+   "index": 46,
+   "label": "object_lock: read retention",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-locked/locked?retention=",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061341Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=cda261b6fbde2f8ba474c9bb7d6794c8f2ee18af44ca25a442b303eff82c7052"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 404,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "265",
+     "Content-Type": "application/xml",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859221610682442",
+     "Date": "Thu, 05 Nov 2026 06:13:41 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPk5vU3VjaEtleTwvQ29kZT48TWVzc2FnZT5UaGUgc3BlY2lmaWVkIGtleSBkb2VzIG5vdCBleGlzdC48L01lc3NhZ2U+PFJlc291cmNlPi9wcm9iZS1sb2NrZWQvbG9ja2VkPC9SZXNvdXJjZT48UmVxdWVzdElkPjE3OTM4NTkyMjE2MTA2NTgyNjI8L1JlcXVlc3RJZD48S2V5PmxvY2tlZDwvS2V5PjxCdWNrZXROYW1lPnByb2JlLWxvY2tlZDwvQnVja2V0TmFtZT48L0Vycm9yPg==",
+    "body_sha256": "a5f4776558b570a15c64dbd2c077778ec83b245b27da4311999f5d6e9787b918"
+   },
+   "window_ns": [
+    10555639690,
+    10557616743
+   ]
+  },
+  {
+   "index": 47,
+   "label": "object_lock: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-locked/locked",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061341Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=9b61433f273133953c7c3ec5b94bf018a96b7655a89d8c52cd583c453d4cacf9"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 404,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "265",
+     "Content-Type": "application/xml",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859221612643248",
+     "Date": "Thu, 05 Nov 2026 06:13:41 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPk5vU3VjaEtleTwvQ29kZT48TWVzc2FnZT5UaGUgc3BlY2lmaWVkIGtleSBkb2VzIG5vdCBleGlzdC48L01lc3NhZ2U+PFJlc291cmNlPi9wcm9iZS1sb2NrZWQvbG9ja2VkPC9SZXNvdXJjZT48UmVxdWVzdElkPjE3OTM4NTkyMjE2MTI2MDk0MDQ8L1JlcXVlc3RJZD48S2V5PmxvY2tlZDwvS2V5PjxCdWNrZXROYW1lPnByb2JlLWxvY2tlZDwvQnVja2V0TmFtZT48L0Vycm9yPg==",
+    "body_sha256": "7c1d3276f32bc26163fb0176664c2bef0e880f6f69c8e104eba6909cffc04cf6"
+   },
+   "window_ns": [
+    10557733592,
+    10559461544
+   ]
+  },
+  {
+   "index": 48,
+   "label": "object_lock: delete retained data version",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:21028/probe-locked/locked",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061341Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=9bca052df32c376f24e4843dbef4f6aa6c029c640e73f23b968070e00979ebbf"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Delete-Marker": "true",
+     "X-Amz-Version-Id": "18e51175315733438e32315fc1da5857",
+     "Date": "Thu, 05 Nov 2026 06:13:41 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    10559611480,
+    10561475424
+   ]
+  },
+  {
+   "index": 49,
+   "label": "object_lock: create delete marker",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:21028/probe-locked/locked",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061341Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=9bca052df32c376f24e4843dbef4f6aa6c029c640e73f23b968070e00979ebbf"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Delete-Marker": "true",
+     "X-Amz-Version-Id": "18e511753174efb97edea78dd354fddb",
+     "Date": "Thu, 05 Nov 2026 06:13:41 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    10561616795,
+    10563555680
+   ]
+  },
+  {
+   "index": 50,
+   "label": "object_lock: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-locked/locked",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061341Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=9b61433f273133953c7c3ec5b94bf018a96b7655a89d8c52cd583c453d4cacf9"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 404,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "265",
+     "Content-Type": "application/xml",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859221618262212",
+     "Date": "Thu, 05 Nov 2026 06:13:41 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPk5vU3VjaEtleTwvQ29kZT48TWVzc2FnZT5UaGUgc3BlY2lmaWVkIGtleSBkb2VzIG5vdCBleGlzdC48L01lc3NhZ2U+PFJlc291cmNlPi9wcm9iZS1sb2NrZWQvbG9ja2VkPC9SZXNvdXJjZT48UmVxdWVzdElkPjE3OTM4NTkyMjE2MTgyNDQxNzA8L1JlcXVlc3RJZD48S2V5PmxvY2tlZDwvS2V5PjxCdWNrZXROYW1lPnByb2JlLWxvY2tlZDwvQnVja2V0TmFtZT48L0Vycm9yPg==",
+    "body_sha256": "e3b5b598ff206a22c167f4aee0d35085803763e37c063b53369215def8121f2f"
+   },
+   "window_ns": [
+    10563655914,
+    10565069157
+   ]
+  },
+  {
+   "index": 51,
+   "label": "object_lock: remove delete marker",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:21028/probe-locked/locked?versionId=18e511753174efb97edea78dd354fddb",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061341Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=b3921cf1e1aa6b94f6d6a3230ddbc4461994ff5d8f84a8f1f9d2bb170a74e3aa"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Version-Id": "18e511753174efb97edea78dd354fddb",
+     "Date": "Thu, 05 Nov 2026 06:13:41 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    10565191246,
+    10567799294
+   ]
+  },
+  {
+   "index": 52,
+   "label": "object_lock: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:21028/probe-locked/locked",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:21028",
+     "X-amz-date": "20261105T061341Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=9b61433f273133953c7c3ec5b94bf018a96b7655a89d8c52cd583c453d4cacf9"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 404,
+    "headers": {
+     "Accept-Ranges": "bytes",
+     "Content-Length": "265",
+     "Content-Type": "application/xml",
+     "Server": "SeaweedFS 30GB 3.97",
+     "X-Amz-Request-Id": "1793859221622479333",
+     "Date": "Thu, 05 Nov 2026 06:13:41 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPk5vU3VjaEtleTwvQ29kZT48TWVzc2FnZT5UaGUgc3BlY2lmaWVkIGtleSBkb2VzIG5vdCBleGlzdC48L01lc3NhZ2U+PFJlc291cmNlPi9wcm9iZS1sb2NrZWQvbG9ja2VkPC9SZXNvdXJjZT48UmVxdWVzdElkPjE3OTM4NTkyMjE2MjI0NDg2MTM8L1JlcXVlc3RJZD48S2V5PmxvY2tlZDwvS2V5PjxCdWNrZXROYW1lPnByb2JlLWxvY2tlZDwvQnVja2V0TmFtZT48L0Vycm9yPg==",
+    "body_sha256": "601fa5dc726ac793dc2e32a1a0ed0fe3f546018b2539d123931b962b0cb65b8c"
+   },
+   "window_ns": [
+    10567886715,
+    10569359576
+   ]
+  }
+ ]
+}

@@ -1,0 +1,2256 @@
+{
+ "schema": 1,
+ "server": "versitygw",
+ "implementation": {
+  "implementation": "Versity S3 Gateway (posix backend)",
+  "distribution": "go install github.com/versity/versitygw/cmd/versitygw@v1.10.0",
+  "version": "v1.10.0",
+  "executable_sha256": "4e3f8c35751e12537879182dba689093a8409bec5deee524b1a11ef27b86cb87"
+ },
+ "started_utc": "2026-11-05T06:13:56.729639+00:00",
+ "finished_utc": "2026-11-05T06:13:57.235433+00:00",
+ "client": {
+  "python": "3.13.18",
+  "system": "Linux",
+  "machine": "x86_64",
+  "transport": "loopback HTTP, SigV4 path-style"
+ },
+ "cases": [
+  {
+   "name": "setup_versioned_bucket",
+   "created": true,
+   "versioning": true,
+   "setup": [
+    0,
+    1,
+    2
+   ]
+  },
+  {
+   "name": "delete_current",
+   "writes": [
+    3,
+    5
+   ],
+   "mutation": 7,
+   "captures": [
+    {
+     "index": 4,
+     "status": 200,
+     "version_id": "01M6N5FD9A4AXAHB7WSZARNEX8",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 6,
+     "status": 200,
+     "version_id": "01M6N5FD9D2C83ZJ97HV7N5ZNZ",
+     "etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "body": "B\n"
+    },
+    {
+     "index": 8,
+     "status": 200,
+     "version_id": "01M6N5FD9A4AXAHB7WSZARNEX8",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ],
+   "conditional": {
+    "index": 9,
+    "status": 304,
+    "version_id": null,
+    "etag": null,
+    "last_modified": null,
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "body": null
+   }
+  },
+  {
+   "name": "delete_marker",
+   "writes": [
+    10
+   ],
+   "marker": 12,
+   "mutation": 14,
+   "captures": [
+    {
+     "index": 11,
+     "status": 200,
+     "version_id": "01M6N5FD9QFZ0G1163D3WGZ04E",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 13,
+     "status": 404,
+     "version_id": null,
+     "etag": null,
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "a0c2471c82ba81941d72acbed0e8c11810a945e312db145904e19056517be45d",
+     "body": null
+    },
+    {
+     "index": 15,
+     "status": 200,
+     "version_id": "01M6N5FD9QFZ0G1163D3WGZ04E",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ]
+  },
+  {
+   "name": "copy_restore",
+   "writes": [
+    16,
+    18
+   ],
+   "mutation": 20,
+   "attempts": [
+    20
+   ],
+   "captures": [
+    {
+     "index": 17,
+     "status": 200,
+     "version_id": "01M6N5FDA0HRDV320PV314EQD4",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 19,
+     "status": 200,
+     "version_id": "01M6N5FDA2YRDCFN549HVQ4JC3",
+     "etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "body": "B\n"
+    },
+    {
+     "index": 21,
+     "status": 200,
+     "version_id": "01M6N5FDA5BFNVX1DNC3M5P7JS",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ]
+  },
+  {
+   "name": "reupload",
+   "writes": [
+    22,
+    24,
+    26
+   ],
+   "captures": [
+    {
+     "index": 23,
+     "status": 200,
+     "version_id": "01M6N5FDA8T0W4YX3D4QCTGAM0",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 25,
+     "status": 200,
+     "version_id": "01M6N5FDAAV92HV94Y5WRZYC01",
+     "etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "body": "B\n"
+    },
+    {
+     "index": 27,
+     "status": 200,
+     "version_id": "01M6N5FDADK6NFYJM2WX2ATK1N",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ],
+   "conditional": {
+    "index": 28,
+    "status": 304,
+    "version_id": null,
+    "etag": null,
+    "last_modified": null,
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "body": null
+   }
+  },
+  {
+   "name": "suspended_null",
+   "created": true,
+   "versioning": true,
+   "setup": [
+    29,
+    30,
+    31
+   ],
+   "suspend": 32,
+   "suspended": true,
+   "writes": [
+    34,
+    36,
+    38
+   ],
+   "captures": [
+    {
+     "index": 35,
+     "status": 200,
+     "version_id": "null",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 37,
+     "status": 200,
+     "version_id": "null",
+     "etag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "body": "B\n"
+    },
+    {
+     "index": 39,
+     "status": 200,
+     "version_id": "null",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ]
+  },
+  {
+   "name": "object_lock_marker",
+   "created": true,
+   "versioning": true,
+   "setup": [
+    40,
+    41,
+    42
+   ],
+   "writes": [
+    43
+   ],
+   "retention": 44,
+   "protected_delete": 46,
+   "marker": 47,
+   "mutation": 49,
+   "captures": [
+    {
+     "index": 45,
+     "status": 200,
+     "version_id": "01M6N5FDB009DG02JPRFKNJK4T",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    },
+    {
+     "index": 48,
+     "status": 404,
+     "version_id": null,
+     "etag": null,
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "768b8a53d72a68157466fcaaf45705755572b1f2d362cc6b447f4eebea9e8939",
+     "body": null
+    },
+    {
+     "index": 50,
+     "status": 200,
+     "version_id": "01M6N5FDB009DG02JPRFKNJK4T",
+     "etag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "last_modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "body": "A\n"
+    }
+   ]
+  }
+ ],
+ "requests": [
+  {
+   "index": 0,
+   "label": "setup: create probe-versioned",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-versioned",
+    "headers": {
+     "Content-type": "application/x-www-form-urlencoded",
+     "Content-length": "0",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=8e357481e0254d79b87947d816fd46d4423e315493ae943514d96c85e7e24435"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "ZZN0BNOPQA4KODLZ",
+     "x-amz-id-2": "EMl4NHNwNUmT5c8UZWXBriHeYhVHNzjF6dG0GH7oz0YRkdmP033H/eRa4YPnLIWlvua3sJqjLddOr5eXCcfQAmI=",
+     "Location": "/probe-versioned",
+     "x-amz-bucket-arn": "arn:aws:s3:::probe-versioned",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    539231,
+    3215797
+   ]
+  },
+  {
+   "index": 1,
+   "label": "setup: enable versioning",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-versioned?versioning=",
+    "headers": {
+     "Content-length": "123",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7",
+     "Content-type": "application/xml",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=30395e6e3679f35dcaa3ba74ee03964ab8e4de376cf0310b05776e6e385ea5ab"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "7A69JDTH7I8WIHRI",
+     "x-amz-id-2": "KeUFSQ84tiRYYgUa/7Q2SrM+PSi9MJSHr+jK05ypt5s5lmMGXgBNdEhwCEFjkM0TRJ7wYsWrhBIeWp17g0tyEhg=",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    3473877,
+    4744246
+   ]
+  },
+  {
+   "index": 2,
+   "label": "setup: read versioning",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-versioned?versioning=",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=46ef98c4d503d19b6ba63c9a35d1643526df37da4e0c508b3fbefc3921d80165"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "application/xml",
+     "Content-Length": "162",
+     "x-amz-request-id": "X51Z7II3L1CRYS9W",
+     "x-amz-id-2": "fM9GRpHxTa+fA56Phgl9+8sQ9w6EM84uCAzfycZ9A/a8IFGWB4IgS5wU1GS6jvlwPNqV6nd5nE+sYjh6gYQsZcg=",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "90634491fa6ec3ce8ddf98a372130aa9bbe70ae94ae623d631a833db5f704c8a"
+   },
+   "window_ns": [
+    4883635,
+    5868701
+   ]
+  },
+  {
+   "index": 3,
+   "label": "delete_current: put A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-versioned/delete-current",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=1974c58f3de28113e4958bde535c684d6d651fb99d78e457f7747751b74a830f"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "HVDLVH40GLHW2OII",
+     "x-amz-id-2": "LBNVdVyIsquYi8rBmo0dGODez2uCru0ab73hLUFVRBZTdgV5Ivipze+QpsKagt1ieiPszY0/b5nkOumtkryapaU=",
+     "x-amz-checksum-crc64nvme": "leRaAtzKNgc=",
+     "x-amz-version-id": "01M6N5FD9A4AXAHB7WSZARNEX8",
+     "x-amz-checksum-type": "FULL_OBJECT",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-object-size": "2",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    6007408,
+    7526637
+   ]
+  },
+  {
+   "index": 4,
+   "label": "delete_current: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-versioned/delete-current",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=982d3522ede2bdfc9ce92f9b4012e7ad90f2b1f250105367ceaf74175c9e78e3"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "KN76OVD75X4F7O0J",
+     "x-amz-id-2": "zFV6jQ5X5i0YM/qRUSKv/9ljAuwZhqbUY/RQeq60jJfdQYVPUrkSXGmN4leCoG1T/wN1L33DvATTYw5K67gYiqg=",
+     "x-amz-storage-class": "STANDARD",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-version-id": "01M6N5FD9A4AXAHB7WSZARNEX8",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "accept-ranges": "bytes",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    7643049,
+    8615550
+   ]
+  },
+  {
+   "index": 5,
+   "label": "delete_current: put B",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-versioned/delete-current",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=b1da66a38353cd98219f1c0ad92bf8fab1795b3a8ed99c4715f692e7cf757dad"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "9GG1B03A0KL5AV3J",
+     "x-amz-id-2": "5rHpR0n7KL+q/VzzRJ7mrlT/b7s/9IjMWON2UhMcNsGD8R7/9zJEC8y3wx6PucFiReGu5SDGx2UFBybr5P67MkA=",
+     "x-amz-checksum-crc64nvme": "KKaH1hCbxNc=",
+     "x-amz-version-id": "01M6N5FD9D2C83ZJ97HV7N5ZNZ",
+     "x-amz-checksum-type": "FULL_OBJECT",
+     "x-amz-object-size": "2",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    8722823,
+    11293567
+   ]
+  },
+  {
+   "index": 6,
+   "label": "delete_current: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-versioned/delete-current",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=982d3522ede2bdfc9ce92f9b4012e7ad90f2b1f250105367ceaf74175c9e78e3"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "FSANUZNMIHVVA1KN",
+     "x-amz-id-2": "XsnIobYs6KjhhA8Dfynl9625/RPA8hSVAb1nMPUAaykzjIMG+K06XunT5TrdWwGG7Y8WPOwMzGfqWT6PJ/o2QGI=",
+     "accept-ranges": "bytes",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "x-amz-version-id": "01M6N5FD9D2C83ZJ97HV7N5ZNZ",
+     "x-amz-storage-class": "STANDARD",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    11427367,
+    13259733
+   ]
+  },
+  {
+   "index": 7,
+   "label": "delete_current: delete B by version ID",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:48581/probe-versioned/delete-current?versionId=01M6N5FD9D2C83ZJ97HV7N5ZNZ",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=5eb8e80a128048e004378c6ed8b6632fbb502f6d14b0fbefa9b65bbd2aa87fba"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "x-amz-request-id": "H0VXGSF5GX9YG9ZI",
+     "x-amz-id-2": "XedSXVD/wJFsXDU5tKZlrkL0A00VgTZErmfkBOUSdJMB6ljX03SpxaSkRQDLxNJx3rcs+ZdlXKWiffuFiFYm8rc=",
+     "x-amz-version-id": "01M6N5FD9D2C83ZJ97HV7N5ZNZ",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    13433605,
+    16495410
+   ]
+  },
+  {
+   "index": 8,
+   "label": "delete_current: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-versioned/delete-current",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=982d3522ede2bdfc9ce92f9b4012e7ad90f2b1f250105367ceaf74175c9e78e3"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "61MDBEPMHTQ0EJV7",
+     "x-amz-id-2": "qET8R2uxS8UoNX5NEVRyOh0bIIPMuOIULLNpoA4mKC23rA1d+X3bYzpxEnde0jfi8MU35sXWovtHJZVLDWHEwgs=",
+     "x-amz-storage-class": "STANDARD",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-version-id": "01M6N5FD9A4AXAHB7WSZARNEX8",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "accept-ranges": "bytes",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    16600011,
+    17664218
+   ]
+  },
+  {
+   "index": 9,
+   "label": "delete_current: conditional GET with first ETag",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-versioned/delete-current",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "If-none-match": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;if-none-match;x-amz-content-sha256;x-amz-date, Signature=cb1791f43e64050a820ab2b95227671dd843ee9af6e6346b10ab5c87890ac065"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 304,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "application/xml",
+     "x-amz-request-id": "M0LAC6LOJEI6220K",
+     "x-amz-id-2": "VXLMVRnrAe10CFn1F+YyLBkDniwXtfRNTMkuNGbVsQnKkoWR4xcUcFpjJacR9KYDXXF/6re1YZeixmAuntZshXA=",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    17764732,
+    18652051
+   ]
+  },
+  {
+   "index": 10,
+   "label": "delete_marker: put A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-versioned/delete-marker",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=8de156837990dc9daa7ba83dc50b6f57839fbde15f77be47ab12eaf92da9fbe8"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "3LJK328GTYAYCRLH",
+     "x-amz-id-2": "xlJV7eGF2vMCswFHFU3QgvkpkOrWLQdLVpguGj2yYRAGoWClKJUzhWSpCKZVXo2H98dRyo4tL7lM2I2Q/qIchlg=",
+     "x-amz-checksum-type": "FULL_OBJECT",
+     "x-amz-object-size": "2",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-checksum-crc64nvme": "leRaAtzKNgc=",
+     "x-amz-version-id": "01M6N5FD9QFZ0G1163D3WGZ04E",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    18769989,
+    19962966
+   ]
+  },
+  {
+   "index": 11,
+   "label": "delete_marker: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-versioned/delete-marker",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=27f7876d6e332031db75311ab9e8372c26e34ada5381cd6d3ce3c57796aee62e"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "J7OGCMKU7A98ISC5",
+     "x-amz-id-2": "11bPDw1z5pEu6x/yIGKsjYH1glP84F9Oi6qCS3xNpLxMLyc4zifOEB5VKL/t4tyz4pQfvs3I6etK5VSUzbxbL4k=",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "accept-ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "x-amz-version-id": "01M6N5FD9QFZ0G1163D3WGZ04E",
+     "x-amz-storage-class": "STANDARD",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    20057623,
+    21057438
+   ]
+  },
+  {
+   "index": 12,
+   "label": "delete_marker: create delete marker",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:48581/probe-versioned/delete-marker",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=44b1af70be2b7da032a68d48559aecde86a147384dae73282362543f404ce896"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "x-amz-request-id": "EFTY6QFOEDNJERQ6",
+     "x-amz-id-2": "nv5u0BNSRAskk8NAYeBUWaCcNwAnXl8Oyf9pFssekF+QTJP80pSF8Sb3PABdKxqd14ApbmXnbphJyd2KASD7+6o=",
+     "x-amz-version-id": "01M6N5FD9SGSE144JSSEZYHCE9",
+     "x-amz-delete-marker": "true",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    21146983,
+    22751907
+   ]
+  },
+  {
+   "index": 13,
+   "label": "delete_marker: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-versioned/delete-marker",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=27f7876d6e332031db75311ab9e8372c26e34ada5381cd6d3ce3c57796aee62e"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 404,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "application/xml",
+     "Content-Length": "272",
+     "x-amz-request-id": "TWOKYLTR0QLQH881",
+     "x-amz-id-2": "wh69ENGO6aIC93+b2EcoINUXS2JRhNqEe261jBRUt0O1SKaMAZyrIMEriGmUUm2wMRTb/8bYInNe00Dloy21flI=",
+     "x-amz-delete-marker": "true",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPk5vU3VjaEtleTwvQ29kZT48TWVzc2FnZT5UaGUgc3BlY2lmaWVkIGtleSBkb2VzIG5vdCBleGlzdC48L01lc3NhZ2U+PFJlcXVlc3RJZD5UV09LWUxUUjBRTFFIODgxPC9SZXF1ZXN0SWQ+PEhvc3RJZD53aDY5RU5HTzZhSUM5MytiMkVjb0lOVVhTMkpSaE5xRWUyNjFqQlJVdDBPMVNLYU1BWnlySU1FcmlHbVVVbTJ3TVJUYi84YllJbk5lMDBEbG95MjFmbEk9PC9Ib3N0SWQ+PC9FcnJvcj4=",
+    "body_sha256": "a0c2471c82ba81941d72acbed0e8c11810a945e312db145904e19056517be45d"
+   },
+   "window_ns": [
+    22845186,
+    23746092
+   ]
+  },
+  {
+   "index": 14,
+   "label": "delete_marker: remove marker by version ID",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:48581/probe-versioned/delete-marker?versionId=01M6N5FD9SGSE144JSSEZYHCE9",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=9eb1079351246c91a08b6836b247fda4c8b61623b687969486e1fc79fff2e927"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "x-amz-request-id": "1G15H4E33P1KG321",
+     "x-amz-id-2": "bB2+OtVuysA9Egy0ILDnL/EE78yaN00XDqf+9yROv4vn7Zjf0F3sGWxbokNsuCKyaYuSHmj1pJ43h8uZGFwEFls=",
+     "x-amz-version-id": "01M6N5FD9SGSE144JSSEZYHCE9",
+     "x-amz-delete-marker": "true",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    23852602,
+    26946511
+   ]
+  },
+  {
+   "index": 15,
+   "label": "delete_marker: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-versioned/delete-marker",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=27f7876d6e332031db75311ab9e8372c26e34ada5381cd6d3ce3c57796aee62e"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "IB2SO6229F5J9JIY",
+     "x-amz-id-2": "EDKbPhSUxIZuaPeQNTB7fSPgn6c+/YZEKrIksSBrRKyESm05Tw8Js2pNh3AoxSF9QHy5JoAy6X/suNlKAS3mOO0=",
+     "x-amz-version-id": "01M6N5FD9QFZ0G1163D3WGZ04E",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-storage-class": "STANDARD",
+     "accept-ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    27031352,
+    27862695
+   ]
+  },
+  {
+   "index": 16,
+   "label": "copy_restore: put A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-versioned/copy-restore",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=1e77bfb00516d54854b7b33ebe843fc92c2539d9eac057839d84ac916d9f4a2d"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "71W92LJYG9XFVCCB",
+     "x-amz-id-2": "rtmSyZLwHgALMt4TwI0IOVepBqMNRJP1/Yyw3TT5gHQM+I35iBcIEvUrEwpvetvoAHE6Z/xTPPE3CcaWticK5kE=",
+     "x-amz-version-id": "01M6N5FDA0HRDV320PV314EQD4",
+     "x-amz-checksum-type": "FULL_OBJECT",
+     "x-amz-checksum-crc64nvme": "leRaAtzKNgc=",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-object-size": "2",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    27973703,
+    28996195
+   ]
+  },
+  {
+   "index": 17,
+   "label": "copy_restore: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-versioned/copy-restore",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=028b22e93c7e9d7a40e37659a740907706f4ab14c2d62ddf3ee8e77e83598cc1"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "Q4E970W6N2SOIU2W",
+     "x-amz-id-2": "2tlbXdCq5wl04UF9UCOMQgFskPjxhy7vgcdRzV+/S/5LTYCJb8ntJvjM0G3POpSAbqnyhrb8RHIHfTTpjkKAXR4=",
+     "x-amz-version-id": "01M6N5FDA0HRDV320PV314EQD4",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "accept-ranges": "bytes",
+     "x-amz-storage-class": "STANDARD",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    29197767,
+    30171724
+   ]
+  },
+  {
+   "index": 18,
+   "label": "copy_restore: put B",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-versioned/copy-restore",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=d5d2fbe16f912e5239f1f36b188ef0f18e31baaf199a2f2415d4730d11810b66"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "OFEZ58VA1WVF3GZ2",
+     "x-amz-id-2": "tfNN8Ht7YqI3ym84qANK915O+SBQP9W5nxKnq7tW31HykDrM+2FST2SHHhkvTk9/41/dsbXN7y9ppbaJkLsW3AY=",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "x-amz-checksum-crc64nvme": "KKaH1hCbxNc=",
+     "x-amz-checksum-type": "FULL_OBJECT",
+     "x-amz-version-id": "01M6N5FDA2YRDCFN549HVQ4JC3",
+     "x-amz-object-size": "2",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    30252357,
+    31922064
+   ]
+  },
+  {
+   "index": 19,
+   "label": "copy_restore: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-versioned/copy-restore",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=028b22e93c7e9d7a40e37659a740907706f4ab14c2d62ddf3ee8e77e83598cc1"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "N4VH8ZFBZOD54ALH",
+     "x-amz-id-2": "KyOyGfP2uchoFJSbxqQqAhrce87NqJhtk6X5uC4OTLQUblRWgDrVVDZ/NVJMkPHhJnF65m7OexcBGERFWTmiRyA=",
+     "accept-ranges": "bytes",
+     "x-amz-version-id": "01M6N5FDA2YRDCFN549HVQ4JC3",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "x-amz-storage-class": "STANDARD",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    32002526,
+    32780380
+   ]
+  },
+  {
+   "index": 20,
+   "label": "copy_restore: copy old A to current",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-versioned/copy-restore",
+    "headers": {
+     "Content-type": "application/x-www-form-urlencoded",
+     "Content-length": "0",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "X-amz-copy-source": "/probe-versioned/copy-restore?versionId=01M6N5FDA0HRDV320PV314EQD4",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-copy-source;x-amz-date, Signature=8a1c7bb0c3ac7ba46139a43e2408d0d728a23616def72a7ac26d9e3cd0667b84"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "application/xml",
+     "Content-Length": "271",
+     "x-amz-request-id": "659DJ2M38NP04EC7",
+     "x-amz-id-2": "dh6LsRVPnoCQpYngyoiJpQeuCwHSQRNFeUmi/bHgQa9W3vuSPoCRHdBTsbIFaW0x2RJ/JSdotrIMbdU4wJ9/7W4=",
+     "x-amz-version-id": "01M6N5FDA5BFNVX1DNC3M5P7JS",
+     "x-amz-copy-source-version-id": "01M6N5FDA0HRDV320PV314EQD4",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPENvcHlPYmplY3RSZXN1bHQ+PExhc3RNb2RpZmllZD4yMDI2LTExLTA1VDA2OjEzOjU3WjwvTGFzdE1vZGlmaWVkPjxDaGVja3N1bUNSQzY0TlZNRT5sZVJhQXR6S05nYz08L0NoZWNrc3VtQ1JDNjROVk1FPjxDaGVja3N1bVR5cGU+RlVMTF9PQkpFQ1Q8L0NoZWNrc3VtVHlwZT48RVRhZz4mIzM0O2JmMDcyZTkxMTkwNzdiNGU3NjQzN2E5Mzk4Njc4N2VmJiMzNDs8L0VUYWc+PC9Db3B5T2JqZWN0UmVzdWx0Pg==",
+    "body_sha256": "450140b69b3f5744657cb52eceba8ff3ba82d2a6c4e821707cd228b69e51408b"
+   },
+   "window_ns": [
+    32862448,
+    34773247
+   ]
+  },
+  {
+   "index": 21,
+   "label": "copy_restore: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-versioned/copy-restore",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=028b22e93c7e9d7a40e37659a740907706f4ab14c2d62ddf3ee8e77e83598cc1"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "9T1GACA3I2HMJYYB",
+     "x-amz-id-2": "agmlT1W0MkESp42+szmhsADuupBx+Nwg0i3x3lhfE5nIDwnuN7QMY/NCnJSYDO1+OTFeNUIkTeUPyi8EZGt6+Ws=",
+     "x-amz-version-id": "01M6N5FDA5BFNVX1DNC3M5P7JS",
+     "accept-ranges": "bytes",
+     "x-amz-storage-class": "STANDARD",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    34861124,
+    35801242
+   ]
+  },
+  {
+   "index": 22,
+   "label": "reupload: put A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-versioned/reupload",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=b63076ac6741ccb9c86d2a33aa8a24ce3fdbd3b7ac828ccbdc0521adce182ef7"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "MZMTWSHSHYFJYX3J",
+     "x-amz-id-2": "JHXzMuPvUnLHMS/Gsi3iNhBWmwzDLztNzD4TGQA4MwDjEl8i9HTSxuGSeGLtfKgB6QEJS+T+yZuYhBA+zjWAOuA=",
+     "x-amz-checksum-type": "FULL_OBJECT",
+     "x-amz-object-size": "2",
+     "x-amz-checksum-crc64nvme": "leRaAtzKNgc=",
+     "x-amz-version-id": "01M6N5FDA8T0W4YX3D4QCTGAM0",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    35931560,
+    37125144
+   ]
+  },
+  {
+   "index": 23,
+   "label": "reupload: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-versioned/reupload",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=fb621cbb6989b36bc2214a1028ca20e1d04d904d876020cc3e44ebe2ab25fd2f"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "95PH7KVMWQ3D047M",
+     "x-amz-id-2": "Dc/BRQFyFTXMTSenHGwla8/OCgQQYM9ycJalwzHtGbsO8XgWocbvlupw/I5QFGa6tb5JJT7PoC5x64r/q6W6mCY=",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "x-amz-storage-class": "STANDARD",
+     "accept-ranges": "bytes",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-version-id": "01M6N5FDA8T0W4YX3D4QCTGAM0",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    37210206,
+    38214070
+   ]
+  },
+  {
+   "index": 24,
+   "label": "reupload: put B",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-versioned/reupload",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=993bf22ed4a1cd5ba977c78914c0b8d6fbb08ec224c3548d3b936a9f3c0f1fb6"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "Y6O1IS1V1ZA27HGU",
+     "x-amz-id-2": "rz7lqLNwsp9/UFuquxn3AI3oEq9sUhhLaBI7yds+drE+cTtKcPzIp83aoBan9zc4NAbD749egD09DfqNw6yNEos=",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "x-amz-checksum-crc64nvme": "KKaH1hCbxNc=",
+     "x-amz-checksum-type": "FULL_OBJECT",
+     "x-amz-version-id": "01M6N5FDAAV92HV94Y5WRZYC01",
+     "x-amz-object-size": "2",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    38318049,
+    40153447
+   ]
+  },
+  {
+   "index": 25,
+   "label": "reupload: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-versioned/reupload",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=fb621cbb6989b36bc2214a1028ca20e1d04d904d876020cc3e44ebe2ab25fd2f"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "MTCLPBB7X9S64D04",
+     "x-amz-id-2": "8LnpE5Zt82wIXqxlxS8RbTWjT5PAECOWJvEh1PuWz/PF4r/OQJgcXu2Zp7grO2EgLLiWs7JjT5T05FDe8uxxFYw=",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "accept-ranges": "bytes",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "x-amz-storage-class": "STANDARD",
+     "x-amz-version-id": "01M6N5FDAAV92HV94Y5WRZYC01",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    40234222,
+    41200859
+   ]
+  },
+  {
+   "index": 26,
+   "label": "reupload: put A again",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-versioned/reupload",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=b63076ac6741ccb9c86d2a33aa8a24ce3fdbd3b7ac828ccbdc0521adce182ef7"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "0E4MYF8UPQNR2IVE",
+     "x-amz-id-2": "32znQzztVWd/Wv3ZUt+u9nBxDkmeAyn3ck/9VV4J0XnHo1g5VxoUl/Iozm3baTIzHiPSJMj7lpCE2lTgkNyCU8o=",
+     "x-amz-object-size": "2",
+     "x-amz-checksum-type": "FULL_OBJECT",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-version-id": "01M6N5FDADK6NFYJM2WX2ATK1N",
+     "x-amz-checksum-crc64nvme": "leRaAtzKNgc=",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    41295715,
+    43225508
+   ]
+  },
+  {
+   "index": 27,
+   "label": "reupload: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-versioned/reupload",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=fb621cbb6989b36bc2214a1028ca20e1d04d904d876020cc3e44ebe2ab25fd2f"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "T5S1OMQGRRW9X1TQ",
+     "x-amz-id-2": "BPQpj4axq5bAoPtp8Pmh2G7MWN0K8iBrSWk18fupKnPc79ukDRnofFMJODjWCXlpoHObkGvlrw9FkPI4yL2OQFA=",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "accept-ranges": "bytes",
+     "x-amz-version-id": "01M6N5FDADK6NFYJM2WX2ATK1N",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "x-amz-storage-class": "STANDARD",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    43311457,
+    44229556
+   ]
+  },
+  {
+   "index": 28,
+   "label": "reupload: conditional GET with first ETag",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-versioned/reupload",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "If-none-match": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;if-none-match;x-amz-content-sha256;x-amz-date, Signature=e7efe2a2def297b425305c34b28cf0c228e7f3885b9bd5bf534a6ddbe9495ac4"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 304,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "application/xml",
+     "x-amz-request-id": "HMNLT98AKWW5ZHVI",
+     "x-amz-id-2": "Lkk7z7jinFdUnZa2D4KQMKEwKVSXlS6yUv9hBz8hKWsqAwk1fTXRU2Y0Z3qYss5RVAnXmt75EQPUM7mZpqlmzvU=",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    44314517,
+    45088106
+   ]
+  },
+  {
+   "index": 29,
+   "label": "setup: create probe-suspended",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-suspended",
+    "headers": {
+     "Content-type": "application/x-www-form-urlencoded",
+     "Content-length": "0",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=ba22feda329c79c822d66e37569f7e69239a837c8813d188c97ee2a865a60cf4"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "RRNZIP5WTKGA1K9B",
+     "x-amz-id-2": "Z4DTHqQMdaTLg2MMXwwj0Vw8EzxQuo3TufeGcEZv+ZnCim2v7Ib1Dlepli1Yhsg8fprw87r5COJOGxhqbpxPI7k=",
+     "x-amz-bucket-arn": "arn:aws:s3:::probe-suspended",
+     "Location": "/probe-suspended",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    45207959,
+    46007892
+   ]
+  },
+  {
+   "index": 30,
+   "label": "setup: enable versioning",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-suspended?versioning=",
+    "headers": {
+     "Content-length": "123",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7",
+     "Content-type": "application/xml",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=326cd5f5911067dba343099be653b8e46df41601048d0ddb4a60aeab311d6d49"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "D0LDHTWRKAZVRANY",
+     "x-amz-id-2": "l0WvhUOCMzYqL7qWqYLBVEY5KBnqpPL8IsxcBSbHJ8C/1LPf6/J1f8uvCqml9bVyM64X70mE5qKcxhrJ8KCls6I=",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    46105386,
+    46723974
+   ]
+  },
+  {
+   "index": 31,
+   "label": "setup: read versioning",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-suspended?versioning=",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=61b8638852bbf8fd14dae80e675b6e1ce1e2dd152d668fbc87e5c6bbc45e8c51"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "application/xml",
+     "Content-Length": "162",
+     "x-amz-request-id": "FYWLKSJG229ZH13Z",
+     "x-amz-id-2": "LEAVZhYLrXOz8paZKCqU80RT1Zi/hHltIo0NwEp/kjFMUO+Kqdgp0F2l5TtvfPciVOt9nRhO7JwUN800o+qKrSY=",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "90634491fa6ec3ce8ddf98a372130aa9bbe70ae94ae623d631a833db5f704c8a"
+   },
+   "window_ns": [
+    46800086,
+    47470979
+   ]
+  },
+  {
+   "index": 32,
+   "label": "suspended_null: suspend versioning",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-suspended?versioning=",
+    "headers": {
+     "Content-length": "125",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "d7f1d7ed35d188f6a89d394cc2055f5910c14a3abccf41e808e7f7327d21e129",
+     "Content-type": "application/xml",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=571d25bd691d2e7c25d4ada466c03725b9f95dcc3846e181cb582eb45b8e6896"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+U3VzcGVuZGVkPC9TdGF0dXM+PC9WZXJzaW9uaW5nQ29uZmlndXJhdGlvbj4=",
+    "body_sha256": "d7f1d7ed35d188f6a89d394cc2055f5910c14a3abccf41e808e7f7327d21e129"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "Y9ZTRFTL3DMSSJO9",
+     "x-amz-id-2": "CIbS+HFTOzocX2RU1tRcnu/dx7mlK3+EZoxPeQygucuHQ2poOiWoSoBeBHHChDZF1RekBC9/EYD24f3WTjYi+0I=",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    47565764,
+    48271730
+   ]
+  },
+  {
+   "index": 33,
+   "label": "suspended_null: read versioning",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-suspended?versioning=",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=61b8638852bbf8fd14dae80e675b6e1ce1e2dd152d668fbc87e5c6bbc45e8c51"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "application/xml",
+     "Content-Length": "164",
+     "x-amz-request-id": "JMI8ZJYTWQS4I7JQ",
+     "x-amz-id-2": "71mYE+e4xvtxn8MI+xpWT8Pe18451QI/UGwZsg61ppno3QK62somDI1rJWLWX7xWzXFPKPs6qstlComj24wXiAY=",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+U3VzcGVuZGVkPC9TdGF0dXM+PC9WZXJzaW9uaW5nQ29uZmlndXJhdGlvbj4=",
+    "body_sha256": "32917ee5ab228d3827349b904da3b658b035f6ae46df35e2255c8ad391f71855"
+   },
+   "window_ns": [
+    48340339,
+    49201338
+   ]
+  },
+  {
+   "index": 34,
+   "label": "suspended_null: put A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-suspended/suspended",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=9c24ee9d0dc72adadfd46171141593e2e72fa806c5488d6fb32ff47f5f16c526"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "49KW0PXC67Z2LT4R",
+     "x-amz-id-2": "22Ph2lyZ6+QEDrw/a7mWyOhRoD01LQDgx7fT5PmCZAciOZF5GAY0pLd/1q+hV86mTIEiw55emThxevvwFkVZE0w=",
+     "x-amz-object-size": "2",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-checksum-crc64nvme": "leRaAtzKNgc=",
+     "x-amz-checksum-type": "FULL_OBJECT",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    49321406,
+    50524469
+   ]
+  },
+  {
+   "index": 35,
+   "label": "suspended_null: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-suspended/suspended",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=ce2118623023bee00bdc53dd5d7e5d471ab127451a127e6796eda04a6c138e83"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "W260LDWWQRRS39HQ",
+     "x-amz-id-2": "dBeNYbBpti4z36yGX+S/c9G5fH1h14xm+LqdXPE32DWGFZYE3o/hNoI2Iacpgj5LKdaK+idnno72XxyytFi43VE=",
+     "x-amz-storage-class": "STANDARD",
+     "x-amz-version-id": "null",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "accept-ranges": "bytes",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    50613839,
+    51598253
+   ]
+  },
+  {
+   "index": 36,
+   "label": "suspended_null: put B",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-suspended/suspended",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=0b9f733ad7e55d10a11a51d7db899762f90a146068851ecccb9e9f07590a23e4"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "3RZK5TBDC5V7U3L7",
+     "x-amz-id-2": "7YnW8BQlc5pzVRzzLd/RqQZ/ovCZtx8YRhrBUwXs8y8RnFRN4jMZh0QbxuDCeB36i/PYgqXidVLWlsJxZOmiRoc=",
+     "x-amz-checksum-type": "FULL_OBJECT",
+     "x-amz-object-size": "2",
+     "x-amz-checksum-crc64nvme": "KKaH1hCbxNc=",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    51692237,
+    53601189
+   ]
+  },
+  {
+   "index": 37,
+   "label": "suspended_null: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-suspended/suspended",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=ce2118623023bee00bdc53dd5d7e5d471ab127451a127e6796eda04a6c138e83"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "JYAC92TOY79MUZUG",
+     "x-amz-id-2": "bJFA9mO91Z2+8OskkDuhxhljB+vzni3esujK8KBW5+ZVJwFVQNXa8nhFzeBP01RpvcKzpU5IIEEqa+lLvUIp+8M=",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "ETag": "\"30cf3d7d133b08543cb6c8933c29dfd7\"",
+     "accept-ranges": "bytes",
+     "x-amz-version-id": "null",
+     "x-amz-storage-class": "STANDARD",
+     "Connection": "close"
+    },
+    "body_base64": "Qgo=",
+    "body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6"
+   },
+   "window_ns": [
+    53685909,
+    54467752
+   ]
+  },
+  {
+   "index": 38,
+   "label": "suspended_null: put A again",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-suspended/suspended",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=9c24ee9d0dc72adadfd46171141593e2e72fa806c5488d6fb32ff47f5f16c526"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "CGK07SI893DWWMOX",
+     "x-amz-id-2": "x8lgmegOhnl9ta7GE+n6K/HbTQTkc7uWdWfVNEbZHVu1LEjzuFzLg/2ceteS7u6nnWWN1tUwj/sEeYm0kOoQGn8=",
+     "x-amz-checksum-crc64nvme": "leRaAtzKNgc=",
+     "x-amz-object-size": "2",
+     "x-amz-checksum-type": "FULL_OBJECT",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    54546557,
+    56025970
+   ]
+  },
+  {
+   "index": 39,
+   "label": "suspended_null: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-suspended/suspended",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=ce2118623023bee00bdc53dd5d7e5d471ab127451a127e6796eda04a6c138e83"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "9EG2IRH73PUN0C7B",
+     "x-amz-id-2": "AK9eLDaK3lg6+oN8E20Rw533zqW6nu0I8JF5/orEOroLvtE8Le4IhXkPhE9V6W4em0TSajroZn9Bhkl/eamWMDM=",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "x-amz-storage-class": "STANDARD",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "accept-ranges": "bytes",
+     "x-amz-version-id": "null",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    56116442,
+    56945012
+   ]
+  },
+  {
+   "index": 40,
+   "label": "setup: create probe-locked",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-locked",
+    "headers": {
+     "Content-type": "application/x-www-form-urlencoded",
+     "Content-length": "0",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "X-amz-bucket-object-lock-enabled": "true",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-bucket-object-lock-enabled;x-amz-content-sha256;x-amz-date, Signature=93bc4f482924ce9045311e5f8b48eab93d1cf7f02c41e4af7fd46ba1fc612865"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "5GEDUKDOCU67HRVV",
+     "x-amz-id-2": "9kl+0WVQlhV/Tayp5KoTl/f0rW1cqqyaW2NUw4x2FDQAKnH1C22DFm1kZ34Rku3rhDAa4DSsXdwPPp9RfDHAN7Q=",
+     "Location": "/probe-locked",
+     "x-amz-bucket-arn": "arn:aws:s3:::probe-locked",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    57060587,
+    57981290
+   ]
+  },
+  {
+   "index": 41,
+   "label": "setup: enable versioning",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-locked?versioning=",
+    "headers": {
+     "Content-length": "123",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7",
+     "Content-type": "application/xml",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=0c297128f8708942b66a0d993d606b068f9c33545eb3653a79aaf730a324c58b"
+    },
+    "body_base64": "PFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "482d4e510b5cdcf0bbf3a044e82832dc711f4f28757a6c06eb21758282a73ef7"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "FXN2KRJQR0MQCO03",
+     "x-amz-id-2": "b+Wq/GKrNe/ygjaJEHNr/ugRLPvRgSGsvLgTSLA4P9+MAqFklpeS7tgqw7YAH8MLs5uvMISSKY39AGsUVHoCZUQ=",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    58076009,
+    58955963
+   ]
+  },
+  {
+   "index": 42,
+   "label": "setup: read versioning",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-locked?versioning=",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=72a20886748b41fd1a6dfedf0ef0b8865050cdbcf276d899e20a24f97470c16c"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "application/xml",
+     "Content-Length": "162",
+     "x-amz-request-id": "734QOKAZOI0TC5UF",
+     "x-amz-id-2": "UgCqxgZU8LIuZe5JbgjqKGbj8n/xx2BqJT3VyNsovK9PTf2VlhmU7LKOpKMOjjqQ7uJSQUJh/eAcUcOfc6M8sNE=",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPFZlcnNpb25pbmdDb25maWd1cmF0aW9uIHhtbG5zPSJodHRwOi8vczMuYW1hem9uYXdzLmNvbS9kb2MvMjAwNi0wMy0wMS8iPjxTdGF0dXM+RW5hYmxlZDwvU3RhdHVzPjwvVmVyc2lvbmluZ0NvbmZpZ3VyYXRpb24+",
+    "body_sha256": "90634491fa6ec3ce8ddf98a372130aa9bbe70ae94ae623d631a833db5f704c8a"
+   },
+   "window_ns": [
+    59064818,
+    59797856
+   ]
+  },
+  {
+   "index": 43,
+   "label": "object_lock: put retained A",
+   "request": {
+    "method": "PUT",
+    "url": "http://127.0.0.1:48581/probe-locked/locked",
+    "headers": {
+     "Content-length": "2",
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+     "Content-type": "text/plain",
+     "X-amz-object-lock-mode": "COMPLIANCE",
+     "X-amz-object-lock-retain-until-date": "2026-11-06T06:13:57Z",
+     "Content-md5": "vwcukRkHe052Q3qTmGeH7w==",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=content-md5;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-object-lock-mode;x-amz-object-lock-retain-until-date, Signature=95270892668156bf154e462281e36f6c82f0a40ecd65fa260edbc331ac43257d"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Length": "0",
+     "x-amz-request-id": "6ZV684SIMEYQO5H2",
+     "x-amz-id-2": "A3Bu2JT5H9iPEq/2tlJw1cBDH7IVS81KfVk+XOJCiWoOUNGdJWHANeG1Fyx7HPoF8ikPOAOpYGNU9b/qfOt9JdY=",
+     "x-amz-checksum-crc64nvme": "leRaAtzKNgc=",
+     "x-amz-checksum-type": "FULL_OBJECT",
+     "x-amz-version-id": "01M6N5FDB009DG02JPRFKNJK4T",
+     "x-amz-object-size": "2",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    59919958,
+    61696798
+   ]
+  },
+  {
+   "index": 44,
+   "label": "object_lock: read retention",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-locked/locked?retention=",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=235ffaeaecf8015527a37df6996f83db396580065403edf9ef2c5637e3502a7e"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "application/xml",
+     "Content-Length": "192",
+     "x-amz-request-id": "V5GRA3BQIALYLIRW",
+     "x-amz-id-2": "wvsmd7vLsdXCTkMikawYhsmhMda8I2xXfSW5UAxqdaHNgW9ikRCi79InDPBsbjL6hMPklp87Zvb5u7PPGiUOM/I=",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPFJldGVudGlvbiB4bWxucz0iaHR0cDovL3MzLmFtYXpvbmF3cy5jb20vZG9jLzIwMDYtMDMtMDEvIj48TW9kZT5DT01QTElBTkNFPC9Nb2RlPjxSZXRhaW5VbnRpbERhdGU+MjAyNi0xMS0wNlQwNjoxMzo1Ny4wMDBaPC9SZXRhaW5VbnRpbERhdGU+PC9SZXRlbnRpb24+",
+    "body_sha256": "24ff91a02737d75909ed8dde0bf73d4e03968d78b20ec6eb2903f938b0bb0948"
+   },
+   "window_ns": [
+    61809192,
+    62579937
+   ]
+  },
+  {
+   "index": 45,
+   "label": "object_lock: first capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-locked/locked",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=a24a74d668f50a491d59f4c4343507106fc53e8f09fe5d164f175f49e7b024bc"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "2AU0GUV2EDBZ0RUU",
+     "x-amz-id-2": "UEjMqIqGFzG2XfuPnS0XiRArDIAtvO1uH8yR85tj021dQQB/wycO02Zk9cGZL49AleOjeJBOoR2cNSXRZ7zxXws=",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "x-amz-object-lock-retain-until-date": "2026-11-06T06:13:57Z",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "accept-ranges": "bytes",
+     "x-amz-version-id": "01M6N5FDB009DG02JPRFKNJK4T",
+     "x-amz-object-lock-mode": "COMPLIANCE",
+     "x-amz-storage-class": "STANDARD",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    62660506,
+    63432374
+   ]
+  },
+  {
+   "index": 46,
+   "label": "object_lock: delete retained data version",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:48581/probe-locked/locked?versionId=01M6N5FDB009DG02JPRFKNJK4T",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=06b99ae438d88215e2ae05b2ef29ddfcdbbb6fde67ab6c5c490f717aa875d1ce"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 403,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "application/xml",
+     "Content-Length": "296",
+     "x-amz-request-id": "L6IFPXAFLFO88W1K",
+     "x-amz-id-2": "8xB1BVsU8yUiz0rylx5Iw501/mCOM+1jMtnTetz4OFV1kghE66UBE6NgcmIgym7TL3g/PtYvMOSaRqjA3Q5FKV8=",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPkFjY2Vzc0RlbmllZDwvQ29kZT48TWVzc2FnZT5BY2Nlc3MgRGVuaWVkIGJlY2F1c2Ugb2JqZWN0IHByb3RlY3RlZCBieSBvYmplY3QgbG9jay48L01lc3NhZ2U+PFJlcXVlc3RJZD5MNklGUFhBRkxGTzg4VzFLPC9SZXF1ZXN0SWQ+PEhvc3RJZD44eEIxQlZzVTh5VWl6MHJ5bHg1SXc1MDEvbUNPTSsxak10blRldHo0T0ZWMWtnaEU2NlVCRTZOZ2NtSWd5bTdUTDNnL1B0WXZNT1NhUnFqQTNRNUZLVjg9PC9Ib3N0SWQ+PC9FcnJvcj4=",
+    "body_sha256": "d85ab8e5b2e1e6079967709574c6e9ea3b51dad3bb5e17002463d9e3e637f364"
+   },
+   "window_ns": [
+    63533987,
+    64211417
+   ]
+  },
+  {
+   "index": 47,
+   "label": "object_lock: create delete marker",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:48581/probe-locked/locked",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=14ff124c3aaf2ed8d09411213eeb03cb88d14d977dbb96b03086b21bc6032a89"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "x-amz-request-id": "84400VKQ2W1PUNL4",
+     "x-amz-id-2": "28+ZdNpZf6Yfnokqga9pYY+pGAJUn3G3LLRXNsraoCdFfsUZj+G5sX2h2tO7CQfIuAHap/DwDqIJHUSg8q3Y1GU=",
+     "x-amz-version-id": "01M6N5FDB5VZFCHG98CFFVZK3N",
+     "x-amz-delete-marker": "true",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    64302562,
+    70291118
+   ]
+  },
+  {
+   "index": 48,
+   "label": "object_lock: intermediate capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-locked/locked",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=a24a74d668f50a491d59f4c4343507106fc53e8f09fe5d164f175f49e7b024bc"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 404,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "application/xml",
+     "Content-Length": "272",
+     "x-amz-request-id": "9JHTOJHI28YRXYW9",
+     "x-amz-id-2": "UoOCJjBd6lCQ9A5BG8PSqwnf3ddA4cWjrBwaKs2xvZqxY8huAj86ORjtIY/b95rRaRZ9SrDIZnrChv1Q7C7Rbk4=",
+     "x-amz-delete-marker": "true",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPEVycm9yPjxDb2RlPk5vU3VjaEtleTwvQ29kZT48TWVzc2FnZT5UaGUgc3BlY2lmaWVkIGtleSBkb2VzIG5vdCBleGlzdC48L01lc3NhZ2U+PFJlcXVlc3RJZD45SkhUT0pISTI4WVJYWVc5PC9SZXF1ZXN0SWQ+PEhvc3RJZD5Vb09DSmpCZDZsQ1E5QTVCRzhQU3F3bmYzZGRBNGNXanJCd2FLczJ4dlpxeFk4aHVBajg2T1JqdElZL2I5NXJSYVJaOVNyRElabnJDaHYxUTdDN1JiazQ9PC9Ib3N0SWQ+PC9FcnJvcj4=",
+    "body_sha256": "768b8a53d72a68157466fcaaf45705755572b1f2d362cc6b447f4eebea9e8939"
+   },
+   "window_ns": [
+    70372474,
+    71279537
+   ]
+  },
+  {
+   "index": 49,
+   "label": "object_lock: remove delete marker",
+   "request": {
+    "method": "DELETE",
+    "url": "http://127.0.0.1:48581/probe-locked/locked?versionId=01M6N5FDB5VZFCHG98CFFVZK3N",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=7666ecd354cd52026c3b91d5046aae1a3ef342b91793078edc7729df4e22faa1"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 204,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "x-amz-request-id": "9V8YYNRR3S4H6W00",
+     "x-amz-id-2": "WoADA1zeDHPdgUULeDc0K1p/nckCgR0fK5NINxUySpMq2XmYpp35sOtdZwb4s9keLRFGKXqtQQ3SjXtde4kT09M=",
+     "x-amz-version-id": "01M6N5FDB5VZFCHG98CFFVZK3N",
+     "x-amz-delete-marker": "true",
+     "Connection": "close"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "window_ns": [
+    71373322,
+    75127498
+   ]
+  },
+  {
+   "index": 50,
+   "label": "object_lock: last capture",
+   "request": {
+    "method": "GET",
+    "url": "http://127.0.0.1:48581/probe-locked/locked",
+    "headers": {
+     "User-agent": "Python-urllib/3.13",
+     "Host": "127.0.0.1:48581",
+     "X-amz-date": "20261105T061357Z",
+     "X-amz-content-sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "Authorization": "AWS4-HMAC-SHA256 Credential=continuityprobefixture/20261105/us-east-1/s3/aws4_request, SignedHeaders=host;x-amz-content-sha256;x-amz-date, Signature=a24a74d668f50a491d59f4c4343507106fc53e8f09fe5d164f175f49e7b024bc"
+    },
+    "body_base64": "",
+    "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   "response": {
+    "status": 200,
+    "headers": {
+     "Server": "VERSITYGW",
+     "Date": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Content-Type": "text/plain",
+     "Content-Length": "2",
+     "x-amz-request-id": "VXA4ET8PDC5QYBPB",
+     "x-amz-id-2": "ncffarL8VUmSluChjgQDgFaszmsBWw8keOup4HKPTLoc1LoUNYbJSRErbSp54r5Nz7h1E8MRtQltmXThPsgZVV0=",
+     "accept-ranges": "bytes",
+     "x-amz-object-lock-mode": "COMPLIANCE",
+     "x-amz-storage-class": "STANDARD",
+     "x-amz-version-id": "01M6N5FDB009DG02JPRFKNJK4T",
+     "ETag": "\"bf072e9119077b4e76437a93986787ef\"",
+     "x-amz-object-lock-retain-until-date": "2026-11-06T06:13:57Z",
+     "Last-Modified": "Thu, 05 Nov 2026 06:13:57 GMT",
+     "Connection": "close"
+    },
+    "body_base64": "QQo=",
+    "body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0"
+   },
+   "window_ns": [
+    75216614,
+    76263961
+   ]
+  }
+ ]
+}

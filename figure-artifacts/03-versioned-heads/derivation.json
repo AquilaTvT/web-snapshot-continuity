@@ -1,0 +1,59 @@
+{
+  "evidence_class": "native_minio_loopback_http",
+  "trace_sha256": "5f3536c69d2b9171986042547126409286535a04bd2d02c05f871d70dc023537",
+  "server": "minio version RELEASE.2025-09-07T16-13-09Z (commit-id=07c3a429bfed433e49018cb0f78a52145d4bedeb)\nRuntime: go1.24.6 darwin/arm64\nLicense: GNU AGPLv3 - https://www.gnu.org/licenses/agpl-3.0.html\nCopyright: 2015-2025 MinIO, Inc.",
+  "server_sha256": "7c3b3039b76e55a1b80935848ed83998d5e8d317374f87851f46a019ff5c0aa4",
+  "source_requests": 51,
+  "plotted_current_gets": 12,
+  "plotted_cases": [
+    "delete_current",
+    "copy_restore",
+    "reupload_restore",
+    "delete_marker"
+  ],
+  "pinned_control": {
+    "plotted": false,
+    "different_request_context": true,
+    "observations": [
+      {
+        "request_index": 27,
+        "status": 200,
+        "request_url": "http://127.0.0.1:50198/continuity-history/pinned_selector?versionId=a908bd77-b557-427a-b8d7-2f6016636511",
+        "native_version_id": "a908bd77-b557-427a-b8d7-2f6016636511",
+        "response_body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+        "selector": [
+          [
+            "versionId",
+            "a908bd77-b557-427a-b8d7-2f6016636511"
+          ]
+        ]
+      },
+      {
+        "request_index": 29,
+        "status": 200,
+        "request_url": "http://127.0.0.1:50198/continuity-history/pinned_selector",
+        "native_version_id": "e380d3d4-abd5-470a-beda-7b053ee1407c",
+        "response_body_sha256": "c0cde77fa8fef97d476c10aad3d2d54fcc2f336140d073651c2dcccf1e379fd6",
+        "selector": []
+      },
+      {
+        "request_index": 30,
+        "status": 200,
+        "request_url": "http://127.0.0.1:50198/continuity-history/pinned_selector?versionId=a908bd77-b557-427a-b8d7-2f6016636511",
+        "native_version_id": "a908bd77-b557-427a-b8d7-2f6016636511",
+        "response_body_sha256": "06f961b802bc46ee168555f066d28f4f0e9afdf3f88174c1ee6f9de004fc30a0",
+        "selector": [
+          [
+            "versionId",
+            "a908bd77-b557-427a-b8d7-2f6016636511"
+          ]
+        ]
+      }
+    ]
+  },
+  "two_object_bundle": {
+    "plotted": false,
+    "preserved_in_raw_trace": true
+  },
+  "scope": "Observed controlled current-key trajectories; no cloud-service measurement or API-wide positive guarantee."
+}

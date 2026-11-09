@@ -1,0 +1,1 @@
+Identical captures do not identify historical coexistence. White markers are the same four observations in both constructed histories. Intervals are left-closed and right-open. Blue segments contain the target representation. A change epoch distinguishes these histories only under a non-reuse and atomic-read contract.

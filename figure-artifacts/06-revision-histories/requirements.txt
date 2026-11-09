@@ -1,0 +1,4 @@
+# No Python packages: derive.py and plot.py use only the standard library.
+# plot.py needs TeX Live (2023 tested) with XeLaTeX, fontspec, unicode-math,
+# PGF/TikZ and PGFPlots 1.18, and poppler-utils (pdftocairo, pdftoppm,
+# pdfinfo, pdffonts, pdftotext).

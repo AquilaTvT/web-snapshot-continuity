@@ -1,0 +1,486 @@
+{
+  "trace_sha256": "5f3536c69d2b9171986042547126409286535a04bd2d02c05f871d70dc023537",
+  "results": [
+    {
+      "name": "delete_current:recorded",
+      "evidence_class": "finite_recorded_path",
+      "audit": {
+        "safe": false,
+        "failure": "return",
+        "body": "object-bytes-base64:QQo=",
+        "validator": "c850623e-665f-4347-a85a-0309fd8248d3",
+        "witness": [
+          "request_3",
+          "request_5",
+          "request_7"
+        ],
+        "certificate": []
+      },
+      "independent_verification": {
+        "kind": "concrete_path_edges_and_body_departure",
+        "passed": true,
+        "shortestness_independently_checked": false
+      },
+      "witness_states": [
+        {
+          "name": "request_3",
+          "body": "object-bytes-base64:QQo=",
+          "validator": "c850623e-665f-4347-a85a-0309fd8248d3",
+          "actual": "object-bytes-base64:QQo="
+        },
+        {
+          "name": "request_5",
+          "body": "object-bytes-base64:Qgo=",
+          "validator": "2f473209-76e1-479f-b7fc-e2a778725828",
+          "actual": "object-bytes-base64:Qgo="
+        },
+        {
+          "name": "request_7",
+          "body": "object-bytes-base64:QQo=",
+          "validator": "c850623e-665f-4347-a85a-0309fd8248d3",
+          "actual": "object-bytes-base64:QQo="
+        }
+      ]
+    },
+    {
+      "name": "copy_restore:recorded",
+      "evidence_class": "finite_recorded_path",
+      "audit": {
+        "safe": true,
+        "failure": null,
+        "body": null,
+        "validator": null,
+        "witness": [],
+        "certificate": [
+          {
+            "body": "object-bytes-base64:QQo=",
+            "validator": "8560d074-d9dd-41da-994d-6dd7aaa0b0ce",
+            "before_departure": [
+              "request_9"
+            ],
+            "after_departure": [
+              "request_11",
+              "request_13"
+            ]
+          },
+          {
+            "body": "object-bytes-base64:Qgo=",
+            "validator": "5b22a7be-86d7-49e0-b549-ed93d5f8e67f",
+            "before_departure": [
+              "request_11"
+            ],
+            "after_departure": [
+              "request_13"
+            ]
+          },
+          {
+            "body": "object-bytes-base64:QQo=",
+            "validator": "b38c6e96-ff9b-46e1-ae39-823fd3cb929c",
+            "before_departure": [
+              "request_13"
+            ],
+            "after_departure": []
+          }
+        ]
+      },
+      "independent_verification": {
+        "kind": "invariant_closure",
+        "passed": true,
+        "shortestness_independently_checked": false
+      },
+      "witness_states": []
+    },
+    {
+      "name": "reupload_restore:recorded",
+      "evidence_class": "finite_recorded_path",
+      "audit": {
+        "safe": true,
+        "failure": null,
+        "body": null,
+        "validator": null,
+        "witness": [],
+        "certificate": [
+          {
+            "body": "object-bytes-base64:QQo=",
+            "validator": "497b0ce5-0e5f-4315-bbf5-3d9ef97d4f14",
+            "before_departure": [
+              "request_15"
+            ],
+            "after_departure": [
+              "request_17",
+              "request_19"
+            ]
+          },
+          {
+            "body": "object-bytes-base64:Qgo=",
+            "validator": "e64803eb-5b06-4182-a5e6-5a5e604b5f29",
+            "before_departure": [
+              "request_17"
+            ],
+            "after_departure": [
+              "request_19"
+            ]
+          },
+          {
+            "body": "object-bytes-base64:QQo=",
+            "validator": "f8da23cd-ef9e-442d-8373-c9ffbada1fa3",
+            "before_departure": [
+              "request_19"
+            ],
+            "after_departure": []
+          }
+        ]
+      },
+      "independent_verification": {
+        "kind": "invariant_closure",
+        "passed": true,
+        "shortestness_independently_checked": false
+      },
+      "witness_states": []
+    },
+    {
+      "name": "delete_marker:recorded",
+      "evidence_class": "finite_recorded_path",
+      "audit": {
+        "safe": false,
+        "failure": "return",
+        "body": "object-bytes-base64:QQo=",
+        "validator": "f1c428ad-d9c0-4e84-910f-d213218bc206",
+        "witness": [
+          "request_21",
+          "request_23",
+          "request_25"
+        ],
+        "certificate": []
+      },
+      "independent_verification": {
+        "kind": "concrete_path_edges_and_body_departure",
+        "passed": true,
+        "shortestness_independently_checked": false
+      },
+      "witness_states": [
+        {
+          "name": "request_21",
+          "body": "object-bytes-base64:QQo=",
+          "validator": "f1c428ad-d9c0-4e84-910f-d213218bc206",
+          "actual": "object-bytes-base64:QQo="
+        },
+        {
+          "name": "request_23",
+          "body": "model-meaning: no current representation (HTTP 404 delete marker)",
+          "validator": "dbbe5007-e6e7-4c4e-8229-2e197aac0815",
+          "actual": "model-meaning: no current representation (HTTP 404 delete marker)"
+        },
+        {
+          "name": "request_25",
+          "body": "object-bytes-base64:QQo=",
+          "validator": "f1c428ad-d9c0-4e84-910f-d213218bc206",
+          "actual": "object-bytes-base64:QQo="
+        }
+      ]
+    },
+    {
+      "name": "pinned_selector:recorded",
+      "evidence_class": "finite_recorded_path",
+      "audit": {
+        "safe": true,
+        "failure": null,
+        "body": null,
+        "validator": null,
+        "witness": [],
+        "certificate": [
+          {
+            "body": "object-bytes-base64:QQo=",
+            "validator": "a908bd77-b557-427a-b8d7-2f6016636511",
+            "before_departure": [
+              "request_27",
+              "request_30"
+            ],
+            "after_departure": []
+          }
+        ]
+      },
+      "independent_verification": {
+        "kind": "invariant_closure",
+        "passed": true,
+        "shortestness_independently_checked": false
+      },
+      "witness_states": []
+    },
+    {
+      "name": "bundle:admission:recorded",
+      "evidence_class": "finite_recorded_path",
+      "audit": {
+        "safe": false,
+        "failure": "return",
+        "body": "object-bytes-base64:ZWxpZ2libGUK",
+        "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+        "witness": [
+          "request_35",
+          "request_37",
+          "request_40",
+          "request_45",
+          "request_48"
+        ],
+        "certificate": []
+      },
+      "independent_verification": {
+        "kind": "concrete_path_edges_and_body_departure",
+        "passed": true,
+        "shortestness_independently_checked": false
+      },
+      "witness_states": [
+        {
+          "name": "request_35",
+          "body": "object-bytes-base64:ZWxpZ2libGUK",
+          "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+          "actual": "object-bytes-base64:ZWxpZ2libGUK"
+        },
+        {
+          "name": "request_37",
+          "body": "object-bytes-base64:aW5lbGlnaWJsZQo=",
+          "validator": "51756ee3-72bc-4275-8d19-d74314cfe7d9",
+          "actual": "object-bytes-base64:aW5lbGlnaWJsZQo="
+        },
+        {
+          "name": "request_40",
+          "body": "object-bytes-base64:aW5lbGlnaWJsZQo=",
+          "validator": "51756ee3-72bc-4275-8d19-d74314cfe7d9",
+          "actual": "object-bytes-base64:aW5lbGlnaWJsZQo="
+        },
+        {
+          "name": "request_45",
+          "body": "object-bytes-base64:aW5lbGlnaWJsZQo=",
+          "validator": "51756ee3-72bc-4275-8d19-d74314cfe7d9",
+          "actual": "object-bytes-base64:aW5lbGlnaWJsZQo="
+        },
+        {
+          "name": "request_48",
+          "body": "object-bytes-base64:ZWxpZ2libGUK",
+          "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+          "actual": "object-bytes-base64:ZWxpZ2libGUK"
+        }
+      ]
+    },
+    {
+      "name": "bundle:admission:capture_window",
+      "evidence_class": "finite_recorded_path",
+      "audit": {
+        "safe": false,
+        "failure": "return",
+        "body": "object-bytes-base64:ZWxpZ2libGUK",
+        "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+        "witness": [
+          "request_35",
+          "request_37",
+          "request_40",
+          "request_45",
+          "request_48"
+        ],
+        "certificate": []
+      },
+      "independent_verification": {
+        "kind": "concrete_path_edges_and_body_departure",
+        "passed": true,
+        "shortestness_independently_checked": false
+      },
+      "witness_states": [
+        {
+          "name": "request_35",
+          "body": "object-bytes-base64:ZWxpZ2libGUK",
+          "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+          "actual": "object-bytes-base64:ZWxpZ2libGUK"
+        },
+        {
+          "name": "request_37",
+          "body": "object-bytes-base64:aW5lbGlnaWJsZQo=",
+          "validator": "51756ee3-72bc-4275-8d19-d74314cfe7d9",
+          "actual": "object-bytes-base64:aW5lbGlnaWJsZQo="
+        },
+        {
+          "name": "request_40",
+          "body": "object-bytes-base64:aW5lbGlnaWJsZQo=",
+          "validator": "51756ee3-72bc-4275-8d19-d74314cfe7d9",
+          "actual": "object-bytes-base64:aW5lbGlnaWJsZQo="
+        },
+        {
+          "name": "request_45",
+          "body": "object-bytes-base64:aW5lbGlnaWJsZQo=",
+          "validator": "51756ee3-72bc-4275-8d19-d74314cfe7d9",
+          "actual": "object-bytes-base64:aW5lbGlnaWJsZQo="
+        },
+        {
+          "name": "request_48",
+          "body": "object-bytes-base64:ZWxpZ2libGUK",
+          "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+          "actual": "object-bytes-base64:ZWxpZ2libGUK"
+        }
+      ]
+    },
+    {
+      "name": "bundle:admission:api_obstruction",
+      "evidence_class": "declared_api_reactivation_obstruction",
+      "audit": {
+        "safe": false,
+        "failure": "return",
+        "body": "object-bytes-base64:ZWxpZ2libGUK",
+        "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+        "witness": [
+          "selected_before",
+          "different_current",
+          "selected_again"
+        ],
+        "certificate": []
+      },
+      "independent_verification": {
+        "kind": "concrete_path_edges_and_body_departure",
+        "passed": true,
+        "shortestness_independently_checked": false
+      },
+      "witness_states": [
+        {
+          "name": "selected_before",
+          "body": "object-bytes-base64:ZWxpZ2libGUK",
+          "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+          "actual": "object-bytes-base64:ZWxpZ2libGUK"
+        },
+        {
+          "name": "different_current",
+          "body": "object-bytes-base64:aW5lbGlnaWJsZQo=",
+          "validator": "model-only: internal state has no observed/used version token",
+          "actual": "object-bytes-base64:aW5lbGlnaWJsZQo="
+        },
+        {
+          "name": "selected_again",
+          "body": "object-bytes-base64:ZWxpZ2libGUK",
+          "validator": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+          "actual": "object-bytes-base64:ZWxpZ2libGUK"
+        }
+      ]
+    },
+    {
+      "name": "bundle:fee:recorded",
+      "evidence_class": "finite_recorded_path",
+      "audit": {
+        "safe": false,
+        "failure": "return",
+        "body": "object-bytes-base64:MTAwCg==",
+        "validator": "a2e1dcf6-d1ea-4946-87e9-eddaa7fcc001",
+        "witness": [
+          "request_38",
+          "request_41",
+          "request_42",
+          "request_43",
+          "request_46"
+        ],
+        "certificate": []
+      },
+      "independent_verification": {
+        "kind": "concrete_path_edges_and_body_departure",
+        "passed": true,
+        "shortestness_independently_checked": false
+      },
+      "witness_states": [
+        {
+          "name": "request_38",
+          "body": "object-bytes-base64:MTAwCg==",
+          "validator": "a2e1dcf6-d1ea-4946-87e9-eddaa7fcc001",
+          "actual": "object-bytes-base64:MTAwCg=="
+        },
+        {
+          "name": "request_41",
+          "body": "object-bytes-base64:MTAK",
+          "validator": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+          "actual": "object-bytes-base64:MTAK"
+        },
+        {
+          "name": "request_42",
+          "body": "object-bytes-base64:MTAK",
+          "validator": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+          "actual": "object-bytes-base64:MTAK"
+        },
+        {
+          "name": "request_43",
+          "body": "object-bytes-base64:MTAK",
+          "validator": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+          "actual": "object-bytes-base64:MTAK"
+        },
+        {
+          "name": "request_46",
+          "body": "object-bytes-base64:MTAwCg==",
+          "validator": "a2e1dcf6-d1ea-4946-87e9-eddaa7fcc001",
+          "actual": "object-bytes-base64:MTAwCg=="
+        }
+      ]
+    },
+    {
+      "name": "bundle:fee:capture_window",
+      "evidence_class": "finite_recorded_path",
+      "audit": {
+        "safe": true,
+        "failure": null,
+        "body": null,
+        "validator": null,
+        "witness": [],
+        "certificate": [
+          {
+            "body": "object-bytes-base64:MTAK",
+            "validator": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+            "before_departure": [
+              "request_42",
+              "request_43"
+            ],
+            "after_departure": []
+          }
+        ]
+      },
+      "independent_verification": {
+        "kind": "invariant_closure",
+        "passed": true,
+        "shortestness_independently_checked": false
+      },
+      "witness_states": []
+    },
+    {
+      "name": "bundle:fee:api_obstruction",
+      "evidence_class": "declared_api_reactivation_obstruction",
+      "audit": {
+        "safe": false,
+        "failure": "return",
+        "body": "object-bytes-base64:MTAK",
+        "validator": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+        "witness": [
+          "selected_before",
+          "different_current",
+          "selected_again"
+        ],
+        "certificate": []
+      },
+      "independent_verification": {
+        "kind": "concrete_path_edges_and_body_departure",
+        "passed": true,
+        "shortestness_independently_checked": false
+      },
+      "witness_states": [
+        {
+          "name": "selected_before",
+          "body": "object-bytes-base64:MTAK",
+          "validator": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+          "actual": "object-bytes-base64:MTAK"
+        },
+        {
+          "name": "different_current",
+          "body": "object-bytes-base64:MTAwCg==",
+          "validator": "model-only: internal state has no observed/used version token",
+          "actual": "object-bytes-base64:MTAwCg=="
+        },
+        {
+          "name": "selected_again",
+          "body": "object-bytes-base64:MTAK",
+          "validator": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+          "actual": "object-bytes-base64:MTAK"
+        }
+      ]
+    }
+  ]
+}

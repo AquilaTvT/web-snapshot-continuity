@@ -1,0 +1,336 @@
+{
+  "format_version": 1,
+  "status": "passed",
+  "trace_sha256": "5f3536c69d2b9171986042547126409286535a04bd2d02c05f871d70dc023537",
+  "server": "minio version RELEASE.2025-09-07T16-13-09Z (commit-id=07c3a429bfed433e49018cb0f78a52145d4bedeb)\nRuntime: go1.24.6 darwin/arm64\nLicense: GNU AGPLv3 - https://www.gnu.org/licenses/agpl-3.0.html\nCopyright: 2015-2025 MinIO, Inc.",
+  "server_sha256": "7c3b3039b76e55a1b80935848ed83998d5e8d317374f87851f46a019ff5c0aa4",
+  "transport": "actual loopback HTTP and native persistent MinIO server; no cloud service measured",
+  "provenance": {
+    "derive_sha256": "1f7cfaae228285833e805902d7a61dc8c0d4fde02d1f7f86fdedb0bfb7d6788e",
+    "contract_source_sha256": "0fda9bde21a6c3069aeec5f4d6275fcdcfaf1bc6d8ea6e0987895bbce5410083"
+  },
+  "interpretation": "Recorded-path checks and declared API obstructions are separate; no production frequency or AWS/GCS execution is claimed.",
+  "cases": [
+    {
+      "name": "delete_current",
+      "comparison": {
+        "first_record": 3,
+        "last_record": 7,
+        "resource": {
+          "url": "http://127.0.0.1:50198/continuity-history/delete_current",
+          "query": [],
+          "request_fields": {
+            "accept": null,
+            "accept-encoding": null,
+            "range": null
+          },
+          "principal_scope": "one run_minio fixture principal"
+        },
+        "same_resource": true,
+        "eligible_200_endpoints": true,
+        "exact_endpoint_bytes_equal": true,
+        "first_version_id": "c850623e-665f-4347-a85a-0309fd8248d3",
+        "last_version_id": "c850623e-665f-4347-a85a-0309fd8248d3",
+        "native_version_ids_equal": true,
+        "raw_equality_baseline_accepts": true,
+        "baseline_bridge_ns": [
+          9361041,
+          12674708
+        ],
+        "baseline_status": "Research baseline only: it assumes equality implies continuity; this is not an identified archive implementation."
+      },
+      "checked_mutation_records": [
+        4,
+        6
+      ],
+      "recorded_model": "delete_current:recorded",
+      "recorded_path_safe": false,
+      "excluded_other_resource_records": [],
+      "checked_decision": "abstain: concrete reactivation refutes current-key equality contract",
+      "checked_bridge_ns": null,
+      "checked_bridge_scope": null,
+      "observed_departure_in_compared_resource_context": true,
+      "other_current_resource_control_record": null,
+      "observed_current_control_differs_from_pinned_body": null,
+      "api_wide_safety_established": false
+    },
+    {
+      "name": "copy_restore",
+      "comparison": {
+        "first_record": 9,
+        "last_record": 13,
+        "resource": {
+          "url": "http://127.0.0.1:50198/continuity-history/copy_restore",
+          "query": [],
+          "request_fields": {
+            "accept": null,
+            "accept-encoding": null,
+            "range": null
+          },
+          "principal_scope": "one run_minio fixture principal"
+        },
+        "same_resource": true,
+        "eligible_200_endpoints": true,
+        "exact_endpoint_bytes_equal": true,
+        "first_version_id": "8560d074-d9dd-41da-994d-6dd7aaa0b0ce",
+        "last_version_id": "b38c6e96-ff9b-46e1-ae39-823fd3cb929c",
+        "native_version_ids_equal": false,
+        "raw_equality_baseline_accepts": false,
+        "baseline_bridge_ns": null,
+        "baseline_status": "Research baseline only: it assumes equality implies continuity; this is not an identified archive implementation."
+      },
+      "checked_mutation_records": [
+        10,
+        12
+      ],
+      "recorded_model": "copy_restore:recorded",
+      "recorded_path_safe": true,
+      "excluded_other_resource_records": [],
+      "checked_decision": "no bridge: native endpoint IDs differ; no global API conclusion",
+      "checked_bridge_ns": null,
+      "checked_bridge_scope": null,
+      "observed_departure_in_compared_resource_context": true,
+      "other_current_resource_control_record": null,
+      "observed_current_control_differs_from_pinned_body": null,
+      "api_wide_safety_established": false
+    },
+    {
+      "name": "reupload_restore",
+      "comparison": {
+        "first_record": 15,
+        "last_record": 19,
+        "resource": {
+          "url": "http://127.0.0.1:50198/continuity-history/reupload_restore",
+          "query": [],
+          "request_fields": {
+            "accept": null,
+            "accept-encoding": null,
+            "range": null
+          },
+          "principal_scope": "one run_minio fixture principal"
+        },
+        "same_resource": true,
+        "eligible_200_endpoints": true,
+        "exact_endpoint_bytes_equal": true,
+        "first_version_id": "497b0ce5-0e5f-4315-bbf5-3d9ef97d4f14",
+        "last_version_id": "f8da23cd-ef9e-442d-8373-c9ffbada1fa3",
+        "native_version_ids_equal": false,
+        "raw_equality_baseline_accepts": false,
+        "baseline_bridge_ns": null,
+        "baseline_status": "Research baseline only: it assumes equality implies continuity; this is not an identified archive implementation."
+      },
+      "checked_mutation_records": [
+        16,
+        18
+      ],
+      "recorded_model": "reupload_restore:recorded",
+      "recorded_path_safe": true,
+      "excluded_other_resource_records": [],
+      "checked_decision": "no bridge: native endpoint IDs differ; no global API conclusion",
+      "checked_bridge_ns": null,
+      "checked_bridge_scope": null,
+      "observed_departure_in_compared_resource_context": true,
+      "other_current_resource_control_record": null,
+      "observed_current_control_differs_from_pinned_body": null,
+      "api_wide_safety_established": false
+    },
+    {
+      "name": "delete_marker",
+      "comparison": {
+        "first_record": 21,
+        "last_record": 25,
+        "resource": {
+          "url": "http://127.0.0.1:50198/continuity-history/delete_marker",
+          "query": [],
+          "request_fields": {
+            "accept": null,
+            "accept-encoding": null,
+            "range": null
+          },
+          "principal_scope": "one run_minio fixture principal"
+        },
+        "same_resource": true,
+        "eligible_200_endpoints": true,
+        "exact_endpoint_bytes_equal": true,
+        "first_version_id": "f1c428ad-d9c0-4e84-910f-d213218bc206",
+        "last_version_id": "f1c428ad-d9c0-4e84-910f-d213218bc206",
+        "native_version_ids_equal": true,
+        "raw_equality_baseline_accepts": true,
+        "baseline_bridge_ns": [
+          22732208,
+          24458833
+        ],
+        "baseline_status": "Research baseline only: it assumes equality implies continuity; this is not an identified archive implementation."
+      },
+      "checked_mutation_records": [
+        22,
+        24
+      ],
+      "recorded_model": "delete_marker:recorded",
+      "recorded_path_safe": false,
+      "excluded_other_resource_records": [],
+      "checked_decision": "abstain: concrete reactivation refutes current-key equality contract",
+      "checked_bridge_ns": null,
+      "checked_bridge_scope": null,
+      "observed_departure_in_compared_resource_context": true,
+      "other_current_resource_control_record": null,
+      "observed_current_control_differs_from_pinned_body": null,
+      "api_wide_safety_established": false
+    },
+    {
+      "name": "pinned_selector",
+      "comparison": {
+        "first_record": 27,
+        "last_record": 30,
+        "resource": {
+          "url": "http://127.0.0.1:50198/continuity-history/pinned_selector?versionId=a908bd77-b557-427a-b8d7-2f6016636511",
+          "query": [
+            [
+              "versionId",
+              "a908bd77-b557-427a-b8d7-2f6016636511"
+            ]
+          ],
+          "request_fields": {
+            "accept": null,
+            "accept-encoding": null,
+            "range": null
+          },
+          "principal_scope": "one run_minio fixture principal"
+        },
+        "same_resource": true,
+        "eligible_200_endpoints": true,
+        "exact_endpoint_bytes_equal": true,
+        "first_version_id": "a908bd77-b557-427a-b8d7-2f6016636511",
+        "last_version_id": "a908bd77-b557-427a-b8d7-2f6016636511",
+        "native_version_ids_equal": true,
+        "raw_equality_baseline_accepts": true,
+        "baseline_bridge_ns": [
+          25901583,
+          27010333
+        ],
+        "baseline_status": "Research baseline only: it assumes equality implies continuity; this is not an identified archive implementation."
+      },
+      "checked_mutation_records": [
+        28
+      ],
+      "recorded_model": "pinned_selector:recorded",
+      "recorded_path_safe": true,
+      "excluded_other_resource_records": [
+        29
+      ],
+      "checked_decision": "scope-limited bridge for retained pinned resource; no current-key claim",
+      "checked_bridge_ns": [
+        25901583,
+        27010333
+      ],
+      "checked_bridge_scope": "Declared retained-version fixture path, not a conclusion from two point reads or a complete provider API proof",
+      "observed_departure_in_compared_resource_context": false,
+      "other_current_resource_control_record": 29,
+      "observed_current_control_differs_from_pinned_body": true,
+      "api_wide_safety_established": false
+    },
+    {
+      "name": "two_object_bundle",
+      "target_body_base64": [
+        "ZWxpZ2libGUK",
+        "MTAK"
+      ],
+      "captures": [
+        35,
+        42,
+        43,
+        50
+      ],
+      "components": [
+        {
+          "resource_role": "admission",
+          "comparison": {
+            "first_record": 35,
+            "last_record": 50,
+            "resource": {
+              "url": "http://127.0.0.1:50198/continuity-history/bundle-admission",
+              "query": [],
+              "request_fields": {
+                "accept": null,
+                "accept-encoding": null,
+                "range": null
+              },
+              "principal_scope": "one run_minio fixture principal"
+            },
+            "same_resource": true,
+            "eligible_200_endpoints": true,
+            "exact_endpoint_bytes_equal": true,
+            "first_version_id": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+            "last_version_id": "85007c92-e081-4b16-aa99-3e6bc548cdb9",
+            "native_version_ids_equal": true,
+            "raw_equality_baseline_accepts": true,
+            "baseline_bridge_ns": [
+              29904875,
+              36247041
+            ],
+            "baseline_status": "Research baseline only: it assumes equality implies continuity; this is not an identified archive implementation."
+          },
+          "full_recorded_model": "bundle:admission:recorded",
+          "capture_window_model": "bundle:admission:capture_window",
+          "recorded_capture_window_safe": false,
+          "api_obstruction_model": "bundle:admission:api_obstruction",
+          "checked_bridge_ns": null,
+          "checked_decision": "abstain under unrestricted current-key mutation scope",
+          "actual_interruption_between_captures": true
+        },
+        {
+          "resource_role": "fee",
+          "comparison": {
+            "first_record": 42,
+            "last_record": 43,
+            "resource": {
+              "url": "http://127.0.0.1:50198/continuity-history/bundle-fee",
+              "query": [],
+              "request_fields": {
+                "accept": null,
+                "accept-encoding": null,
+                "range": null
+              },
+              "principal_scope": "one run_minio fixture principal"
+            },
+            "same_resource": true,
+            "eligible_200_endpoints": true,
+            "exact_endpoint_bytes_equal": true,
+            "first_version_id": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+            "last_version_id": "2585e457-698e-4acd-84fc-27b6ed1f5096",
+            "native_version_ids_equal": true,
+            "raw_equality_baseline_accepts": true,
+            "baseline_bridge_ns": [
+              33206125,
+              33224291
+            ],
+            "baseline_status": "Research baseline only: it assumes equality implies continuity; this is not an identified archive implementation."
+          },
+          "full_recorded_model": "bundle:fee:recorded",
+          "capture_window_model": "bundle:fee:capture_window",
+          "recorded_capture_window_safe": true,
+          "api_obstruction_model": "bundle:fee:api_obstruction",
+          "checked_bridge_ns": null,
+          "checked_decision": "abstain under unrestricted current-key mutation scope",
+          "actual_interruption_between_captures": false
+        }
+      ],
+      "baseline_common_time_interval_ns": [
+        33206125,
+        33224291
+      ],
+      "baseline_claims_common_time": true,
+      "target_present_in_any_of_five_stable_phases": false,
+      "checked_common_time_claim": false,
+      "checked_decision": "abstain: native current-key ID does not supply the required contract",
+      "ground_truth_scope": "Actual controlled runner: one writer, acknowledged one-key mutations in A,B,B,A order, no concurrent writers, and readback of every stable phase. Pair reads themselves are not atomic.",
+      "api_model_scope": "Declared reactivation submodels refute equality contracts. No complete API-positive proof is inferred.",
+      "mutations": [
+        36,
+        39,
+        44,
+        47
+      ]
+    }
+  ]
+}

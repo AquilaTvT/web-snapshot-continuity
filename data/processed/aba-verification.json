@@ -1,0 +1,29 @@
+{
+  "status": "verified",
+  "scope": "repository source-file bytes at commits; not deployed Web responses",
+  "states": [
+    {
+      "label": "A",
+      "bytes": 2874,
+      "git_blob_sha1": "300cb052298f9b3c2c7f58b6ca82c1325bb7c311",
+      "sha256": "40f9775c740d9345a7b16ec01dcb5dd1228eda6e4c1120bd5ea10072b281201d"
+    },
+    {
+      "label": "B",
+      "bytes": 2826,
+      "git_blob_sha1": "708410fafc3e1308f48e2bf103e2c7afbfc3959b",
+      "sha256": "78f9d059fa64e65dcbc188d410d68c4cdb636688635dc6bd8f29be3a7f1b079d"
+    },
+    {
+      "label": "A2",
+      "bytes": 2874,
+      "git_blob_sha1": "300cb052298f9b3c2c7f58b6ca82c1325bb7c311",
+      "sha256": "40f9775c740d9345a7b16ec01dcb5dd1228eda6e4c1120bd5ea10072b281201d"
+    }
+  ],
+  "A_equals_A2_bytes": true,
+  "A_differs_from_B_bytes": true,
+  "consecutive_in_recorded_path_history": true,
+  "deployment_observed": false,
+  "semantic_change_established": false
+}

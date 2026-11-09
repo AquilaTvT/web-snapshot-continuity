@@ -1,0 +1,294 @@
+{
+  "captured_at_utc": "2026-11-04T14:13:18.103251+00:00",
+  "python": "3.12.10",
+  "platform": "macOS-27.2-arm64-arm-64bit",
+  "endpoint": "http://127.0.0.1:64407",
+  "dependencies": {
+    "certifi": "2026.10.23",
+    "cffi": "2.1.1",
+    "charset-normalizer": "3.5.2",
+    "cryptography": "50.0.2",
+    "google-api-core": "2.43.2",
+    "google-auth": "2.62.1",
+    "google-cloud-core": "2.8.0",
+    "google-cloud-storage": "3.17.1",
+    "google-crc32c": "1.9.0",
+    "google-resumable-media": "2.11.0",
+    "googleapis-common-protos": "1.76.0",
+    "idna": "3.20",
+    "opentelemetry-api": "1.45.2",
+    "proto-plus": "1.29.0",
+    "protobuf": "7.36.2",
+    "pyasn1": "0.6.5",
+    "pyasn1_modules": "0.4.2",
+    "pycparser": "3.12",
+    "requests": "2.34.2",
+    "typing_extensions": "4.16.0",
+    "urllib3": "2.8.0"
+  },
+  "requests": [
+    {
+      "case": "reuse_blob",
+      "step": 1,
+      "current_generation": "101",
+      "method": "GET",
+      "url": "http://127.0.0.1:64407/download/storage/v1/b/fixture-bucket/o/config.json?alt=media",
+      "raw_request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media",
+      "request_headers": {
+        "Host": "127.0.0.1:64407",
+        "User-Agent": "gcloud-python/3.17.1  gl-python/3.12.10 gax/2.43.2 gccl/3.17.1",
+        "accept-encoding": "gzip",
+        "Accept": "application/json",
+        "Connection": "keep-alive",
+        "x-goog-api-client": "gcloud-python/3.17.1  gl-python/3.12.10 gax/2.43.2 gccl/3.17.1 gccl-invocation-id/e8cbf579-c442-400a-902c-0a7d179dea9a",
+        "content-type": "application/json; charset=UTF-8",
+        "x-upload-content-type": "application/json; charset=UTF-8"
+      },
+      "response_status": 200,
+      "response_headers": {
+        "Content-Type": "application/octet-stream",
+        "Content-Length": "7",
+        "Cache-Control": "no-store",
+        "X-Goog-Generation": "101",
+        "X-Goog-Metageneration": "1"
+      },
+      "response_body_utf8": "body A\n",
+      "response_body_sha256": "d86aaff82b7b2bfe661aba6685019892b8f521d7fe767660cf91bdd75abb4810"
+    },
+    {
+      "case": "reuse_blob",
+      "step": 2,
+      "current_generation": "202",
+      "method": "GET",
+      "url": "http://127.0.0.1:64407/download/storage/v1/b/fixture-bucket/o/config.json?alt=media&generation=101",
+      "raw_request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media&generation=101",
+      "request_headers": {
+        "Host": "127.0.0.1:64407",
+        "User-Agent": "gcloud-python/3.17.1  gl-python/3.12.10 gax/2.43.2 gccl/3.17.1",
+        "accept-encoding": "gzip",
+        "Accept": "application/json",
+        "Connection": "keep-alive",
+        "x-goog-api-client": "gcloud-python/3.17.1  gl-python/3.12.10 gax/2.43.2 gccl/3.17.1 gccl-invocation-id/0230b762-cc2b-4c8b-a3e1-ea950cd544a9",
+        "content-type": "application/json; charset=UTF-8",
+        "x-upload-content-type": "application/json; charset=UTF-8"
+      },
+      "response_status": 200,
+      "response_headers": {
+        "Content-Type": "application/octet-stream",
+        "Content-Length": "7",
+        "Cache-Control": "no-store",
+        "X-Goog-Generation": "101",
+        "X-Goog-Metageneration": "1"
+      },
+      "response_body_utf8": "body A\n",
+      "response_body_sha256": "d86aaff82b7b2bfe661aba6685019892b8f521d7fe767660cf91bdd75abb4810"
+    },
+    {
+      "case": "fresh_blob",
+      "step": 1,
+      "current_generation": "101",
+      "method": "GET",
+      "url": "http://127.0.0.1:64407/download/storage/v1/b/fixture-bucket/o/config.json?alt=media",
+      "raw_request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media",
+      "request_headers": {
+        "Host": "127.0.0.1:64407",
+        "User-Agent": "gcloud-python/3.17.1  gl-python/3.12.10 gax/2.43.2 gccl/3.17.1",
+        "accept-encoding": "gzip",
+        "Accept": "application/json",
+        "Connection": "keep-alive",
+        "x-goog-api-client": "gcloud-python/3.17.1  gl-python/3.12.10 gax/2.43.2 gccl/3.17.1 gccl-invocation-id/6705e7a2-2298-44c2-8bdd-43f5d96ff0f1",
+        "content-type": "application/json; charset=UTF-8",
+        "x-upload-content-type": "application/json; charset=UTF-8"
+      },
+      "response_status": 200,
+      "response_headers": {
+        "Content-Type": "application/octet-stream",
+        "Content-Length": "7",
+        "Cache-Control": "no-store",
+        "X-Goog-Generation": "101",
+        "X-Goog-Metageneration": "1"
+      },
+      "response_body_utf8": "body A\n",
+      "response_body_sha256": "d86aaff82b7b2bfe661aba6685019892b8f521d7fe767660cf91bdd75abb4810"
+    },
+    {
+      "case": "fresh_blob",
+      "step": 2,
+      "current_generation": "202",
+      "method": "GET",
+      "url": "http://127.0.0.1:64407/download/storage/v1/b/fixture-bucket/o/config.json?alt=media",
+      "raw_request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media",
+      "request_headers": {
+        "Host": "127.0.0.1:64407",
+        "User-Agent": "gcloud-python/3.17.1  gl-python/3.12.10 gax/2.43.2 gccl/3.17.1",
+        "accept-encoding": "gzip",
+        "Accept": "application/json",
+        "Connection": "keep-alive",
+        "x-goog-api-client": "gcloud-python/3.17.1  gl-python/3.12.10 gax/2.43.2 gccl/3.17.1 gccl-invocation-id/85a258ca-c00c-43f9-ac9b-a09e09c43525",
+        "content-type": "application/json; charset=UTF-8",
+        "x-upload-content-type": "application/json; charset=UTF-8"
+      },
+      "response_status": 200,
+      "response_headers": {
+        "Content-Type": "application/octet-stream",
+        "Content-Length": "7",
+        "Cache-Control": "no-store",
+        "X-Goog-Generation": "202",
+        "X-Goog-Metageneration": "1"
+      },
+      "response_body_utf8": "body B\n",
+      "response_body_sha256": "fae332b94e4780366418150eb92880a91208581db0922254e8472283b4c74efd"
+    },
+    {
+      "case": "explicit_generation_control",
+      "step": 1,
+      "current_generation": "101",
+      "method": "GET",
+      "url": "http://127.0.0.1:64407/download/storage/v1/b/fixture-bucket/o/config.json?alt=media&generation=101",
+      "raw_request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media&generation=101",
+      "request_headers": {
+        "Host": "127.0.0.1:64407",
+        "User-Agent": "gcloud-python/3.17.1  gl-python/3.12.10 gax/2.43.2 gccl/3.17.1",
+        "accept-encoding": "gzip",
+        "Accept": "application/json",
+        "Connection": "keep-alive",
+        "x-goog-api-client": "gcloud-python/3.17.1  gl-python/3.12.10 gax/2.43.2 gccl/3.17.1 gccl-invocation-id/e72e2610-ee54-4ff5-b566-9e3e9b4a1a52",
+        "content-type": "application/json; charset=UTF-8",
+        "x-upload-content-type": "application/json; charset=UTF-8"
+      },
+      "response_status": 200,
+      "response_headers": {
+        "Content-Type": "application/octet-stream",
+        "Content-Length": "7",
+        "Cache-Control": "no-store",
+        "X-Goog-Generation": "101",
+        "X-Goog-Metageneration": "1"
+      },
+      "response_body_utf8": "body A\n",
+      "response_body_sha256": "d86aaff82b7b2bfe661aba6685019892b8f521d7fe767660cf91bdd75abb4810"
+    },
+    {
+      "case": "explicit_generation_control",
+      "step": 2,
+      "current_generation": "202",
+      "method": "GET",
+      "url": "http://127.0.0.1:64407/download/storage/v1/b/fixture-bucket/o/config.json?alt=media&generation=101",
+      "raw_request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media&generation=101",
+      "request_headers": {
+        "Host": "127.0.0.1:64407",
+        "User-Agent": "gcloud-python/3.17.1  gl-python/3.12.10 gax/2.43.2 gccl/3.17.1",
+        "accept-encoding": "gzip",
+        "Accept": "application/json",
+        "Connection": "keep-alive",
+        "x-goog-api-client": "gcloud-python/3.17.1  gl-python/3.12.10 gax/2.43.2 gccl/3.17.1 gccl-invocation-id/7b628606-8ed0-45df-b2fc-acf99a4defed",
+        "content-type": "application/json; charset=UTF-8",
+        "x-upload-content-type": "application/json; charset=UTF-8"
+      },
+      "response_status": 200,
+      "response_headers": {
+        "Content-Type": "application/octet-stream",
+        "Content-Length": "7",
+        "Cache-Control": "no-store",
+        "X-Goog-Generation": "101",
+        "X-Goog-Metageneration": "1"
+      },
+      "response_body_utf8": "body A\n",
+      "response_body_sha256": "d86aaff82b7b2bfe661aba6685019892b8f521d7fe767660cf91bdd75abb4810"
+    }
+  ],
+  "summary": {
+    "schema": "gcs-sdk-selector-fixture-v1",
+    "scope": "Official Python SDK request construction against a simulated loopback origin; no GCS service test.",
+    "sdk_version": "3.17.1",
+    "blob_py_sha256": "2681642cdf135f1f709f4a2757dc4f99621de5385a172ada21aa6374a732b9d7",
+    "cases": [
+      {
+        "case": "reuse_blob",
+        "observations": [
+          {
+            "step": 1,
+            "current_generation": "101",
+            "blob_generation_before": null,
+            "blob_generation_after": 101,
+            "request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media",
+            "request_generation_selector": null,
+            "response_generation": "101",
+            "body_utf8": "body A\n",
+            "body_sha256": "d86aaff82b7b2bfe661aba6685019892b8f521d7fe767660cf91bdd75abb4810"
+          },
+          {
+            "step": 2,
+            "current_generation": "202",
+            "blob_generation_before": 101,
+            "blob_generation_after": 101,
+            "request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media&generation=101",
+            "request_generation_selector": [
+              "101"
+            ],
+            "response_generation": "101",
+            "body_utf8": "body A\n",
+            "body_sha256": "d86aaff82b7b2bfe661aba6685019892b8f521d7fe767660cf91bdd75abb4810"
+          }
+        ]
+      },
+      {
+        "case": "fresh_blob",
+        "observations": [
+          {
+            "step": 1,
+            "current_generation": "101",
+            "blob_generation_before": null,
+            "blob_generation_after": 101,
+            "request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media",
+            "request_generation_selector": null,
+            "response_generation": "101",
+            "body_utf8": "body A\n",
+            "body_sha256": "d86aaff82b7b2bfe661aba6685019892b8f521d7fe767660cf91bdd75abb4810"
+          },
+          {
+            "step": 2,
+            "current_generation": "202",
+            "blob_generation_before": null,
+            "blob_generation_after": 202,
+            "request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media",
+            "request_generation_selector": null,
+            "response_generation": "202",
+            "body_utf8": "body B\n",
+            "body_sha256": "fae332b94e4780366418150eb92880a91208581db0922254e8472283b4c74efd"
+          }
+        ]
+      },
+      {
+        "case": "explicit_generation_control",
+        "observations": [
+          {
+            "step": 1,
+            "current_generation": "101",
+            "blob_generation_before": 101,
+            "blob_generation_after": 101,
+            "request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media&generation=101",
+            "request_generation_selector": [
+              "101"
+            ],
+            "response_generation": "101",
+            "body_utf8": "body A\n",
+            "body_sha256": "d86aaff82b7b2bfe661aba6685019892b8f521d7fe767660cf91bdd75abb4810"
+          },
+          {
+            "step": 2,
+            "current_generation": "202",
+            "blob_generation_before": 101,
+            "blob_generation_after": 101,
+            "request_target": "/download/storage/v1/b/fixture-bucket/o/config.json?alt=media&generation=101",
+            "request_generation_selector": [
+              "101"
+            ],
+            "response_generation": "101",
+            "body_utf8": "body A\n",
+            "body_sha256": "d86aaff82b7b2bfe661aba6685019892b8f521d7fe767660cf91bdd75abb4810"
+          }
+        ]
+      }
+    ]
+  }
+}

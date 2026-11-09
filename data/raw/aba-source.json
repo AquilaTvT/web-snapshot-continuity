@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "collected_on": "2026-11-04",
+  "repository": "mdn/content",
+  "path": "files/en-us/web/css/reference/selectors/_colon_fullscreen/index.md",
+  "measurement_unit": "repository source-file bytes at commits; not deployed Web responses",
+  "selection": "purposive search for revert commits; not a random sample",
+  "api_requests_attempted": 17,
+  "source_history_api": "https://api.github.com/repos/mdn/content/commits?path=files%2Fen-us%2Fweb%2Fcss%2Freference%2Fselectors%2F_colon_fullscreen%2Findex.md&sha=21da3683d67c91c9a75a1c3fe98d406c82d8bf8b&per_page=3",
+  "history_newest_first": [
+    {
+      "sha": "21da3683d67c91c9a75a1c3fe98d406c82d8bf8b",
+      "parents": [
+        "7b291dab974ec1ceb97c83f45ce76c3afada2e63"
+      ],
+      "date": "2025-11-18T10:27:46Z",
+      "subject": "Revert \"CSS selectors pages: convert links to macros\" (#41995)",
+      "url": "https://github.com/mdn/content/commit/21da3683d67c91c9a75a1c3fe98d406c82d8bf8b"
+    },
+    {
+      "sha": "a87a4b68c623831278275f17c2c4cde185c09241",
+      "parents": [
+        "fd6595b667e89cee9f54e7d956a05e1fab175b33"
+      ],
+      "date": "2025-11-17T08:26:40Z",
+      "subject": "CSS selectors pages: convert links to macros (#41968)",
+      "url": "https://github.com/mdn/content/commit/a87a4b68c623831278275f17c2c4cde185c09241"
+    },
+    {
+      "sha": "c52ed787442db9d65b21f5c2874fa6bfd08a253a",
+      "parents": [
+        "56dbdc046976470e430c3dc0ef4c88ae4ac3c69f"
+      ],
+      "date": "2025-11-03T17:48:17Z",
+      "subject": "chore(ia): Reorganize CSS pages - part 4 (moving selector files under reference/selectors) (#41792)",
+      "url": "https://github.com/mdn/content/commit/c52ed787442db9d65b21f5c2874fa6bfd08a253a"
+    }
+  ],
+  "states": [
+    {
+      "label": "A",
+      "commit_sha": "c52ed787442db9d65b21f5c2874fa6bfd08a253a",
+      "commit_date": "2025-11-03T17:48:17Z",
+      "blob_sha1": "300cb052298f9b3c2c7f58b6ca82c1325bb7c311",
+      "encoding": "utf-8",
+      "source_url": "https://github.com/mdn/content/blob/c52ed787442db9d65b21f5c2874fa6bfd08a253a/files/en-us/web/css/reference/selectors/_colon_fullscreen/index.md",
+      "api_url": "https://api.github.com/repos/mdn/content/contents/files/en-us/web/css/reference/selectors/_colon_fullscreen/index.md?ref=c52ed787442db9d65b21f5c2874fa6bfd08a253a",
+      "content_utf8": "---\ntitle: :fullscreen\nslug: Web/CSS/Reference/Selectors/:fullscreen\npage-type: css-pseudo-class\nbrowser-compat: css.selectors.fullscreen\nsidebar: cssref\n---\n\nThe **`:fullscreen`** [CSS](/en-US/docs/Web/CSS) [pseudo-class](/en-US/docs/Web/CSS/Reference/Selectors/Pseudo-classes) matches every element that is currently in fullscreen mode. If multiple elements have been put into fullscreen mode, this selects them all.\n\n## Syntax\n\n```css\n:fullscreen {\n  /* ... */\n}\n```\n\n## Usage notes\n\nThe `:fullscreen` pseudo-class lets you configure your stylesheets to automatically adjust the size, style, or layout of content when elements switch back and forth between fullscreen and traditional presentations.\n\n## Examples\n\n### Styling a fullscreen element\n\nThis example applies a different background color to a {{htmlelement(\"div\")}} element, depending on whether or not it is in fullscreen mode. It includes a {{htmlelement(\"button\")}} to toggle fullscreen on and off.\n\n```html\n<div class=\"element\">\n  <h1><code>:fullscreen</code> pseudo-class demo</h1>\n\n  <p>\n    This demo uses the <code>:fullscreen</code> pseudo-class to automatically\n    change the background color of the <code>.element</code> div.\n  </p>\n\n  <p>\n    Normally, the background is light yellow. In fullscreen mode, the background\n    is light pink.\n  </p>\n\n  <button class=\"toggle\">Toggle Fullscreen</button>\n</div>\n```\n\nThe `:fullscreen` pseudo-class is used to override the [`background-color`](/en-US/docs/Web/CSS/Reference/Properties/background-color) of the `<div>` when it is in fullscreen mode.\n\n```css\n.element {\n  background-color: lightyellow;\n}\n\n.element:fullscreen {\n  background-color: lightpink;\n}\n```\n\nThe following JavaScript provides an event handler function that toggles fullscreen when the `<button>` is clicked.\n\n```js\ndocument.querySelector(\".toggle\").addEventListener(\"click\", (event) => {\n  if (document.fullscreenElement) {\n    // If there is a fullscreen element, exit full screen.\n    document.exitFullscreen();\n    return;\n  }\n  // Make the .element div fullscreen.\n  document.querySelector(\".element\").requestFullscreen();\n});\n```\n\n```css hidden\n.element {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-family: sans-serif;\n  padding: 1.2em;\n}\n```\n\n{{EmbedLiveSample(\"Styling a fullscreen element\", \"\", \"300\", \"\", \"\", \"\", \"fullscreen\")}}\n\n## Specifications\n\n{{Specifications}}\n\n## Browser compatibility\n\n{{Compat}}\n\n## See also\n\n- [Fullscreen API](/en-US/docs/Web/API/Fullscreen_API)\n- [Guide to the Fullscreen API](/en-US/docs/Web/API/Fullscreen_API/Guide)\n- {{cssxref(\"::backdrop\")}}\n- DOM API: {{ domxref(\"Element.requestFullscreen()\") }}, {{ domxref(\"Document.exitFullscreen()\") }}, {{ domxref(\"Document.fullscreenElement\") }}\n- [`allowfullscreen`](/en-US/docs/Web/HTML/Reference/Elements/iframe#allowfullscreen) attribute\n"
+    },
+    {
+      "label": "B",
+      "commit_sha": "a87a4b68c623831278275f17c2c4cde185c09241",
+      "commit_date": "2025-11-17T08:26:40Z",
+      "blob_sha1": "708410fafc3e1308f48e2bf103e2c7afbfc3959b",
+      "encoding": "utf-8",
+      "source_url": "https://github.com/mdn/content/blob/a87a4b68c623831278275f17c2c4cde185c09241/files/en-us/web/css/reference/selectors/_colon_fullscreen/index.md",
+      "api_url": "https://api.github.com/repos/mdn/content/contents/files/en-us/web/css/reference/selectors/_colon_fullscreen/index.md?ref=a87a4b68c623831278275f17c2c4cde185c09241",
+      "content_utf8": "---\ntitle: :fullscreen\nslug: Web/CSS/Reference/Selectors/:fullscreen\npage-type: css-pseudo-class\nbrowser-compat: css.selectors.fullscreen\nsidebar: cssref\n---\n\nThe **`:fullscreen`** [CSS](/en-US/docs/Web/CSS) [pseudo-class](/en-US/docs/Web/CSS/Reference/Selectors/Pseudo-classes) matches every element that is currently in fullscreen mode. If multiple elements have been put into fullscreen mode, this selects them all.\n\n## Syntax\n\n```css\n:fullscreen {\n  /* ... */\n}\n```\n\n## Usage notes\n\nThe `:fullscreen` pseudo-class lets you configure your stylesheets to automatically adjust the size, style, or layout of content when elements switch back and forth between fullscreen and traditional presentations.\n\n## Examples\n\n### Styling a fullscreen element\n\nThis example applies a different background color to a {{htmlelement(\"div\")}} element, depending on whether or not it is in fullscreen mode. It includes a {{htmlelement(\"button\")}} to toggle fullscreen on and off.\n\n```html\n<div class=\"element\">\n  <h1><code>:fullscreen</code> pseudo-class demo</h1>\n\n  <p>\n    This demo uses the <code>:fullscreen</code> pseudo-class to automatically\n    change the background color of the <code>.element</code> div.\n  </p>\n\n  <p>\n    Normally, the background is light yellow. In fullscreen mode, the background\n    is light pink.\n  </p>\n\n  <button class=\"toggle\">Toggle Fullscreen</button>\n</div>\n```\n\nThe `:fullscreen` pseudo-class is used to override the {{cssxref(\"background-color\")}} of the `<div>` when it is in fullscreen mode.\n\n```css\n.element {\n  background-color: lightyellow;\n}\n\n.element:fullscreen {\n  background-color: lightpink;\n}\n```\n\nThe following JavaScript provides an event handler function that toggles fullscreen when the `<button>` is clicked.\n\n```js\ndocument.querySelector(\".toggle\").addEventListener(\"click\", (event) => {\n  if (document.fullscreenElement) {\n    // If there is a fullscreen element, exit full screen.\n    document.exitFullscreen();\n    return;\n  }\n  // Make the .element div fullscreen.\n  document.querySelector(\".element\").requestFullscreen();\n});\n```\n\n```css hidden\n.element {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-family: sans-serif;\n  padding: 1.2em;\n}\n```\n\n{{EmbedLiveSample(\"Styling a fullscreen element\", \"\", \"300\", \"\", \"\", \"\", \"fullscreen\")}}\n\n## Specifications\n\n{{Specifications}}\n\n## Browser compatibility\n\n{{Compat}}\n\n## See also\n\n- [Fullscreen API](/en-US/docs/Web/API/Fullscreen_API)\n- [Guide to the Fullscreen API](/en-US/docs/Web/API/Fullscreen_API/Guide)\n- {{cssxref(\"::backdrop\")}}\n- DOM API: {{ domxref(\"Element.requestFullscreen()\") }}, {{ domxref(\"Document.exitFullscreen()\") }}, {{ domxref(\"Document.fullscreenElement\") }}\n- [`allowfullscreen`](/en-US/docs/Web/HTML/Reference/Elements/iframe#allowfullscreen) attribute\n"
+    },
+    {
+      "label": "A2",
+      "commit_sha": "21da3683d67c91c9a75a1c3fe98d406c82d8bf8b",
+      "commit_date": "2025-11-18T10:27:46Z",
+      "blob_sha1": "300cb052298f9b3c2c7f58b6ca82c1325bb7c311",
+      "encoding": "utf-8",
+      "source_url": "https://github.com/mdn/content/blob/21da3683d67c91c9a75a1c3fe98d406c82d8bf8b/files/en-us/web/css/reference/selectors/_colon_fullscreen/index.md",
+      "api_url": "https://api.github.com/repos/mdn/content/contents/files/en-us/web/css/reference/selectors/_colon_fullscreen/index.md?ref=21da3683d67c91c9a75a1c3fe98d406c82d8bf8b",
+      "content_utf8": "---\ntitle: :fullscreen\nslug: Web/CSS/Reference/Selectors/:fullscreen\npage-type: css-pseudo-class\nbrowser-compat: css.selectors.fullscreen\nsidebar: cssref\n---\n\nThe **`:fullscreen`** [CSS](/en-US/docs/Web/CSS) [pseudo-class](/en-US/docs/Web/CSS/Reference/Selectors/Pseudo-classes) matches every element that is currently in fullscreen mode. If multiple elements have been put into fullscreen mode, this selects them all.\n\n## Syntax\n\n```css\n:fullscreen {\n  /* ... */\n}\n```\n\n## Usage notes\n\nThe `:fullscreen` pseudo-class lets you configure your stylesheets to automatically adjust the size, style, or layout of content when elements switch back and forth between fullscreen and traditional presentations.\n\n## Examples\n\n### Styling a fullscreen element\n\nThis example applies a different background color to a {{htmlelement(\"div\")}} element, depending on whether or not it is in fullscreen mode. It includes a {{htmlelement(\"button\")}} to toggle fullscreen on and off.\n\n```html\n<div class=\"element\">\n  <h1><code>:fullscreen</code> pseudo-class demo</h1>\n\n  <p>\n    This demo uses the <code>:fullscreen</code> pseudo-class to automatically\n    change the background color of the <code>.element</code> div.\n  </p>\n\n  <p>\n    Normally, the background is light yellow. In fullscreen mode, the background\n    is light pink.\n  </p>\n\n  <button class=\"toggle\">Toggle Fullscreen</button>\n</div>\n```\n\nThe `:fullscreen` pseudo-class is used to override the [`background-color`](/en-US/docs/Web/CSS/Reference/Properties/background-color) of the `<div>` when it is in fullscreen mode.\n\n```css\n.element {\n  background-color: lightyellow;\n}\n\n.element:fullscreen {\n  background-color: lightpink;\n}\n```\n\nThe following JavaScript provides an event handler function that toggles fullscreen when the `<button>` is clicked.\n\n```js\ndocument.querySelector(\".toggle\").addEventListener(\"click\", (event) => {\n  if (document.fullscreenElement) {\n    // If there is a fullscreen element, exit full screen.\n    document.exitFullscreen();\n    return;\n  }\n  // Make the .element div fullscreen.\n  document.querySelector(\".element\").requestFullscreen();\n});\n```\n\n```css hidden\n.element {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-family: sans-serif;\n  padding: 1.2em;\n}\n```\n\n{{EmbedLiveSample(\"Styling a fullscreen element\", \"\", \"300\", \"\", \"\", \"\", \"fullscreen\")}}\n\n## Specifications\n\n{{Specifications}}\n\n## Browser compatibility\n\n{{Compat}}\n\n## See also\n\n- [Fullscreen API](/en-US/docs/Web/API/Fullscreen_API)\n- [Guide to the Fullscreen API](/en-US/docs/Web/API/Fullscreen_API/Guide)\n- {{cssxref(\"::backdrop\")}}\n- DOM API: {{ domxref(\"Element.requestFullscreen()\") }}, {{ domxref(\"Document.exitFullscreen()\") }}, {{ domxref(\"Document.fullscreenElement\") }}\n- [`allowfullscreen`](/en-US/docs/Web/HTML/Reference/Elements/iframe#allowfullscreen) attribute\n"
+    }
+  ],
+  "revert": {
+    "sha": "21da3683d67c91c9a75a1c3fe98d406c82d8bf8b",
+    "reverts": "a87a4b68c623831278275f17c2c4cde185c09241",
+    "original_commit_parent": "fd6595b667e89cee9f54e7d956a05e1fab175b33",
+    "revert_commit_parent": "7b291dab974ec1ceb97c83f45ce76c3afada2e63"
+  },
+  "attribution": {
+    "title": ":fullscreen",
+    "authors": "MDN contributors",
+    "source_history": "https://github.com/mdn/content/commits/21da3683d67c91c9a75a1c3fe98d406c82d8bf8b/files/en-us/web/css/reference/selectors/_colon_fullscreen/index.md",
+    "license_source": "https://github.com/mdn/content/blob/21da3683d67c91c9a75a1c3fe98d406c82d8bf8b/LICENSE.md",
+    "prose_license": "CC-BY-SA-2.5",
+    "prose_license_url": "https://creativecommons.org/licenses/by-sa/2.5/",
+    "license_file": "mdn-LICENSE.md",
+    "modifications": "Source text snapshots are unmodified. Commit metadata is projected to omit personal names, usernames, email addresses and signatures."
+  },
+  "limitations": [
+    "One selected file; no occurrence-rate estimate.",
+    "A source link-to-macro rewrite can preserve rendered meaning; no semantic contradiction is claimed.",
+    "Commit dates are not deployment timestamps or validity guarantees.",
+    "The three commits are consecutive for the selected path in the returned history, not consecutive commits of the entire repository."
+  ]
+}

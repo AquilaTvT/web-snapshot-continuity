@@ -1,0 +1,7 @@
+case,validator,endpoint_validator_equal,conditional_status,target_bundle_ever_present,consumer_endpoint_rule_would_accept
+express-weak,etag,True,304,False,True
+express-strong,etag,True,304,False,True
+python-fresh,last_modified,False,200,False,False
+python-restored,last_modified,True,304,False,True
+apache-fresh,etag,False,200,False,False
+apache-restored,etag,True,304,False,True

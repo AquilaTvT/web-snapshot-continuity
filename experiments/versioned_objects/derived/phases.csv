@@ -1,0 +1,6 @@
+phase,label,admission_record,fee_record,admission_body_base64,fee_body_base64,admission_version_id,fee_version_id,target_present
+0,initial,33,34,ZWxpZ2libGUK,MTAwCg==,85007c92-e081-4b16-aa99-3e6bc548cdb9,a2e1dcf6-d1ea-4946-87e9-eddaa7fcc001,False
+1,admission changed,37,38,aW5lbGlnaWJsZQo=,MTAwCg==,51756ee3-72bc-4275-8d19-d74314cfe7d9,a2e1dcf6-d1ea-4946-87e9-eddaa7fcc001,False
+2,both changed,40,41,aW5lbGlnaWJsZQo=,MTAK,51756ee3-72bc-4275-8d19-d74314cfe7d9,2585e457-698e-4acd-84fc-27b6ed1f5096,False
+3,fee restored,45,46,aW5lbGlnaWJsZQo=,MTAwCg==,51756ee3-72bc-4275-8d19-d74314cfe7d9,a2e1dcf6-d1ea-4946-87e9-eddaa7fcc001,False
+4,both restored,48,49,ZWxpZ2libGUK,MTAwCg==,85007c92-e081-4b16-aa99-3e6bc548cdb9,a2e1dcf6-d1ea-4946-87e9-eddaa7fcc001,False

@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "implementation_sha256": {
+    "src/certification.py": "3f10180b4aa959086b94fdb6746862fb47a02547e69b45be4c44d51cf5426c6c",
+    "src/history_contracts.py": "0fda9bde21a6c3069aeec5f4d6275fcdcfaf1bc6d8ea6e0987895bbce5410083",
+    "tests/test_certification.py": "9be6eea1681680de6e91c26288d5c87de950e540decef99370816168f9354c70",
+    "tests/test_history_contracts.py": "881eb3f7b20b661505f3cbdebfa4522d6262fe5a286b4d18f79cca41d31ca40c"
+  },
+  "sequential_schedules_vs_brute_force": 5944,
+  "sequential_schedules_certified": 286,
+  "random_overlapping_windows_vs_brute_force": 4000,
+  "explicit_state_machines_vs_rule": 361,
+  "cnf_instances_for_hardness_construction": 144,
+  "worst_case_sweep_vs_brute_force": 591,
+  "worst_case_sweep_observation_deterministic": 294,
+  "random_contracts_without_worst_case": 9,
+  "polynomial_worst_case_vs_enumeration": 3000,
+  "one_return_contract_ababa": "certified by the reference semantics; no worst case, so outside the sweep",
+  "minimum_sequential_captures": {
+    "1": 1,
+    "2": 3,
+    "3": 5,
+    "4": 7
+  },
+  "fixed_instant_schedules_vs_brute_force": 5948,
+  "fixed_instant_schedules_fixing_an_instant": 41,
+  "minimum_sequential_captures_fixed_instant": {
+    "1": 2,
+    "2": 4,
+    "3": 6
+  },
+  "repair_contracts_vs_all_labelings": 28864,
+  "repair_contracts_with_a_sound_field": 18760,
+  "counterexample_reusable_reads_in_one_window": [
+    2,
+    6,
+    9,
+    12
+  ],
+  "touching_window_schedules_vs_brute_force": 5944,
+  "touching_window_schedules_certified": 286,
+  "random_touching_windows_vs_brute_force": 2000,
+  "finite_refinements_vs_component_criterion": 2000,
+  "finite_refinements_of_contracts_without_a_sound_field": 657,
+  "s3_finite_epochs_checked": 32,
+  "scope": "Finite enumerations that check the implementation and the stated proofs; they are not a proof by themselves."
+}

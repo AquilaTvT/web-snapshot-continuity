@@ -1,0 +1,21 @@
+{
+ "schema": 1,
+ "title": "Addendum to the trace-driven certification protocol: closed-interval baselines, schedule ablation and one off-center content hash",
+ "status": "Post hoc. Written after the preregistered results in derived/ were known, following a review that the preregistered double-collect rules use half-open bridges (max first-window end < min last-window start), which reject touching windows although a single common instant suffices. These analyses do not replace the preregistered ones; both are reported and labelled.",
+ "base_protocol": "protocol.json (unchanged; its sha256 is checked by derive.py and by addendum.py)",
+ "draws": "Identical to protocol.json M2: for each stratum and n the generator random.Random(1000*n + stratum_index) draws bundle membership, read order, start times and the 2n read-instant offsets in the same order, so every method below is evaluated on exactly the same runs, pages, start times and read instants as the preregistered methods.",
+ "methods": {
+  "hash_double_closed": "Reads 1..n, n..1 at the preregistered request starts (2n requests). Certify if each page's two reads return equal sha1 and max first-window end <= min last-window start.",
+  "id_double_closed": "As hash_double_closed, comparing revision IDs.",
+  "id_drop_center": "The 2n-request schedule with the center page's second request removed; all other requests keep their preregistered starts and read instants (2n-1 requests). Certify with the exact pairwise test on revision IDs (the singly read center uses its one window for both ends).",
+  "id_exact": "Preregistered: 1..n-1, n, n-1..1 at consecutive request starts (2n-1 requests), exact pairwise test on revision IDs.",
+  "hash_exact": "The id_exact schedule and test, but comparing sha1 values: the exact test applied to a field that is not sound.",
+  "mixed_offcenter_trusting": "The id_exact schedule; the first page in read order (read first and last) offers only sha1, every other page its revision ID. Certify with the exact pairwise test, treating the sha1 page as if its field were sound.",
+  "mixed_offcenter_theorem": "The same schedule and fields, certified by Theorem 2(ii): the sha1 page is reusable, so some window of it must lie inside the other pages' common interval; otherwise the result is unknown."
+ },
+ "ground_truth": {
+  "G1_existential": "Bridge methods: some instant in the closed claimed interval [max first-window end, min last-window start] at which every page has its observed sha1. Exact-test methods: every page has its observed sha1 at the true instant of the single read.",
+  "G2_continuity": "Every twice-read page has its observed sha1 throughout [first true read instant, last true read instant]."
+ },
+ "report": "Per stratum, n, request spacing and method: runs, certified runs, certified runs violating G1, certified runs violating G2. The schedule ablation (id_double_closed -> id_drop_center -> id_exact) is paired by construction."
+}

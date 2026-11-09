@@ -1,0 +1,306 @@
+0 vital Cairo 183
+1 vital Shia Islam 208
+2 vital Photon 72
+3 vital Semiconductor 50
+4 vital Cell (biology) 53
+5 vital Spanish language 282
+6 vital Mughal Empire 544
+7 vital Belief 21
+8 vital Human history 809
+9 vital Myth 46
+10 vital New York City 685
+11 vital Cicero 89
+12 vital Immanuel Kant 200
+13 vital Sumer 63
+14 vital Famine 68
+15 vital Circle 47
+16 vital Virgil 64
+17 vital Pacific Ocean 184
+18 vital Reproduction 7
+19 vital Renewable energy 441
+20 vital Rock (geology) 8
+21 vital Islam 505
+22 vital World War II 382
+23 vital Sense 30
+24 vital Flower 54
+25 vital Coal 119
+26 vital William Shakespeare 150
+27 vital Albert Einstein 296
+28 vital Fire 20
+29 vital Electricity 40
+30 vital Thermodynamics 31
+31 vital Gas 75
+32 vital Supernova 125
+33 vital Andean civilizations 15
+34 vital Lake 32
+35 vital Social equality 18
+36 vital Area 20
+37 vital Julius Caesar 132
+38 vital Mental disorder 42
+39 vital Tanzania 250
+40 vital Cognition 58
+41 vital Justice 73
+42 vital Chicken 178
+43 vital South Asia 238
+44 vital Medicine 94
+45 vital Hindustani language 96
+46 vital Black hole 101
+47 vital Lever 28
+48 vital Volcano 107
+49 vital Mary Wollstonecraft 49
+50 vital Swimming 89
+51 vital Indus Valley Civilisation 328
+52 vital Ancient Rome 233
+53 vital Yangtze 74
+54 vital Politics 108
+55 vital Logogram 53
+56 vital Radar 73
+57 vital Religion 85
+58 vital Robot 72
+59 vital Thomas Edison 76
+60 vital Metabolism 47
+61 vital Jerusalem 182
+62 vital Outer space 314
+63 vital Animal husbandry 47
+64 vital Johannes Gutenberg 47
+65 vital Internal structure of Earth 48
+66 vital Influenza 91
+67 vital Natural rubber 66
+68 vital George Washington 655
+69 vital South Africa 407
+70 vital Mongol Empire 191
+71 vital Byzantine Empire 939
+72 vital Democratic Republic of the Congo 290
+73 vital Birth control 54
+74 vital Sport of athletics 33
+75 vital Drawing 97
+76 vital Algae 62
+77 vital Post-classical history 101
+78 vital Music 104
+79 vital Lipid 14
+80 vital Short story 62
+81 vital Skeleton 43
+82 vital Animation 170
+83 vital Prime number 55
+84 vital Protein 124
+85 vital Rumi 96
+86 vital Confucius 174
+87 vital Light 29
+88 vital Arithmetic 203
+89 vital Timur 98
+90 vital Homer 108
+91 vital Family 110
+92 vital Research 58
+93 vital History of philosophy 64
+94 vital Analytical chemistry 23
+95 vital Charlie Chaplin 76
+96 vital Intelligence 101
+97 vital Man 84
+98 vital Plasma (physics) 21
+99 vital Early modern period 105
+100 vital Louis Armstrong 90
+101 vital Singing 67
+102 vital Personal name 89
+103 vital Elizabeth I 83
+104 vital Fruit 24
+105 vital Nation 57
+106 vital Photosynthesis 46
+107 vital State of matter 13
+108 vital Smallpox 69
+109 vital East Asia 199
+110 vital Terrorism 167
+111 vital Vacuum 47
+112 vital North America 138
+113 vital Protestantism 178
+114 vital Augustus 128
+115 vital Nicolaus Copernicus 84
+116 vital South America 304
+117 vital Natural number 147
+118 vital Moscow 107
+119 vital Pop music 146
+120 vital Confucianism 81
+121 vital Art 42
+122 vital Aztecs 139
+123 vital Infant 22
+124 vital Ancient Egypt 194
+125 vital Disease 59
+126 vital Carl Friedrich Gauss 729
+127 vital Aristotle 113
+128 vital Miguel de Cervantes 99
+129 vital Sun 335
+130 vital Java 170
+131 vital France 427
+132 vital Business 30
+133 vital Industrial Revolution 95
+134 vital Exponentiation 71
+135 vital University 70
+136 vital Soul 155
+137 vital Artificial intelligence 598
+138 vital Card game 38
+139 vital Wood 24
+140 vital Genghis Khan 310
+141 vital Addiction 102
+142 vital Ancient Greece 67
+143 vital History of mathematics 103
+144 vital Afterlife 156
+145 vital Health 21
+146 vital Learning 55
+147 vital Infinity 111
+148 vital Printing 56
+149 vital Tourism 124
+150 random Frederick Goldie 0
+151 random Al Peterson 4
+152 random Killeen Air Force Station 3
+153 random Tokyoten 3
+154 random BAFTA Award for Best Documentary 6
+155 random Narona exopleura 1
+156 random Kid Rock 180
+157 random Nanlia 0
+158 random Willie Henderson 4
+159 random Jacquie Pierri 0
+160 random London Churchill College 19
+161 random International Law Commission 19
+162 random Greater Ft. Myers Classic 2
+163 random Asian Players Tour Championship 2012/2013 – Event 3 0
+164 random I Like Girls (song) 1
+165 random Corey Bisson 4
+166 random Celebrity Autobiography: In Their Own Words (play) 1
+167 random Amoako 0
+168 random Hans Kalan 4
+169 random Hewitt-Trussville Middle School 1
+170 random Ținutul Mureș 4
+171 random List of Ukrainian bandy champions 3
+172 random Royal Yachting Association 1
+173 random British Rail Classes 316 and 457 0
+174 random Nisli 0
+175 random Florence Carpenter Ives 1
+176 random 2011 IPC Biathlon and Cross-Country Skiing World Championships – Women's relay 0
+177 random Dowker space 3
+178 random Bob Vagg (athlete) 2
+179 random Kristine French 0
+180 random Hyundai Accent WRC 1
+181 random 1981 Sydney Olympic FC season 2
+182 random UWIRE 3
+183 random Cricket in Indonesia 1
+184 random Fundania gens 0
+185 random SFF 10
+186 random Stopping at Slowyear 3
+187 random Radu Poklitaru 2
+188 random The Hand of Nergal 2
+189 random Farnesyl pyrophosphate 10
+190 random Anthrenus loebli 6
+191 random You (Jacquees song) 6
+192 random Carpha 0
+193 random Jim Clark (offensive lineman) 10
+194 random 1912 Paris–Roubaix 2
+195 random Hambly Parker 0
+196 random Attila Ambrus 4
+197 random Italian Journal of Anatomy and Embryology 1
+198 random Tauquir Ahmed 3
+199 random Members of the 4th Riigikogu 0
+200 random List of Argentine sweets and desserts 2
+201 random Matt Shipman 16
+202 random Sthenoteuthis oualaniensis 5
+203 random Bianco (footballer) 3
+204 random 1986 Ilopango Douglas DC-6 crash 0
+205 random Africa Action 1
+206 random Tomás Guido 1
+207 random Lucaina 0
+208 random Prince of Denmark's March 4
+209 random Paula Casal 2
+210 random Luzhu railway station 2
+211 random Christopher Mayo 3
+212 random Privy Seal of Japan 1
+213 random Miami Marine Stadium 6
+214 random Jack Welsh (footballer, born 1906) 1
+215 random Alexandre Licata 2
+216 random Buddy Schwimmer 5
+217 random Dave Arnold (politician) 8
+218 random Rede Massa 5
+219 random Knaptoft 3
+220 random Dutty Love (song) 1
+221 random Walter Wood (Scouting) 3
+222 random Conestoga Valley School District 5
+223 random Hossack 0
+224 random 2008–09 New York Rangers season 8
+225 random Lagerstrom 0
+226 random Hoppel poppel (drink) 0
+227 random São Pedro (Funchal) 1
+228 random Bader Munshi 6
+229 random Rhinoceros poaching in Southern Africa 6
+230 random Masoud Dara 28
+231 random Roderich Kreile 7
+232 random Bigg Boss OTT (Hindi season 3) 2686
+233 random Jerdon's bush chat 0
+234 random Scott Tolzien 23
+235 random 2004 Maldives FA Cup 1
+236 random Yonny Chirinos 31
+237 random 2010 Nordic Junior World Ski Championships 0
+238 random Office of the National Economic and Social Development Council 3
+239 random Pam Casale 2
+240 random Jacques Stroweis 0
+241 random Giuseppe Ferrari 0
+242 random Electoral district of King 0
+243 random Peregrine Osborne 0
+244 random Tenure of Office 0
+245 random Septimus James Edgar Closey 2
+246 random 1968 Arkansas gubernatorial election 4
+247 random Felix Karrer 2
+248 random Alan Marriott 0
+249 random SMRT 2
+250 random Erv Lange 2
+251 random Mimata, Miyazaki 5
+252 random Pacientka Dr. Hegla 1
+253 random Shelter (2012 film) 6
+254 random Robert Christopher Tytler 2
+255 random India–North Macedonia relations 2
+256 random On Tour (EP) 4
+257 random William Cliffton 0
+258 random Douglas County Courthouse (Nevada) 3
+259 random Who We Are and How We Got Here 15
+260 random Hadhah 0
+261 random Catholic Charities USA 10
+262 random William Phipps (governor of Bombay) 0
+263 random Takamisugi Takakatsu 3
+264 random Shinbashi Enbujō 0
+265 random Cliffortia ruscifolia 0
+266 random Archie o Cawfield 1
+267 random Meshech Weare 4
+268 random Samsung Notebook 28
+HTTP 429 retry in 13
+269 random Stanisławka, Zamość County 1
+270 random Thomas Griffith (Australian politician) 0
+271 random List of Leica cameras 7
+272 random Calum MacLeod 1
+273 random Eliot Curty 7
+274 random 1999 Grand Prix of Las Vegas 1
+275 random Bibliometrician 3
+276 random John Doogan 4
+HTTP 429 retry in 44
+277 random SS Fatshan (1933) 3
+278 random Saskia Stuiveling 0
+279 random Marshall Clagett 18
+280 random Contract farming 3
+281 random Paul Younane 3
+282 random Amanda Cohen 3
+283 random Donald W. Evans Jr. 0
+284 random Beyoğlu Anatolian High School 3
+HTTP 429 retry in 44
+285 random SMT 0
+286 random Elinor Wylie 5
+287 random Pedro Álvares Cabral 54
+288 random Microbiology Society Prize Medal 0
+289 random Suparna Anand 8
+HTTP 429 retry in 50
+290 random Jonathan Haidt 170
+291 random Formula Renault 2.0 West European Cup 4
+292 random The Bigamist (1953 film) 7
+293 random Assurance Companies Act 1909 1
+294 random Kaholo 0
+295 random St John's Church, Wapping 3
+HTTP 429 retry in 48
+296 random A Modern English Grammar on Historical Principles 7
+297 random Taneli Kuusisto 0
+298 random Rustam V 1
+299 random Sancta Sophia College, University of Sydney 8
+HTTP 429 retry in 52

@@ -1,0 +1,207 @@
+\section{Edit-history replay}\label{sec:replay}
+
+\subsection{Protocol and collection}
+\code{experiments/revision_bundles/protocol.json} fixed the sampling frames,
+the 2024 window, the capture schedules, the methods and the ground-truth
+definitions, and was committed to the repository before any revision metadata
+was requested; the collection manifest records its SHA-256
+(\code{79c8be55...}), which \code{derive.py} checks. \code{collect.py} then queried the
+English Wikipedia Action API serially, at least 2\,s apart, with
+\code{maxlag=5}, retries after HTTP 429 and a descriptive User-Agent. It was
+interrupted three times when its worker restarted (after 287, 318 and 359
+saved responses); each time \code{--resume} replayed the saved responses
+through the same request code to rebuild URLs and continuation tokens, failed
+on any divergence, and sent only missing requests. The collection holds
+\nRevisionRequests{} responses, retrieved between 05:55 and 10:48 UTC on
+2026-11-05. The vital frame is the link table of \emph{Wikipedia:Vital
+articles/Level~3} at revision 1382205991 (999 titles); the random frame is
+MediaWiki's \code{page_random}. Only revision metadata (IDs, parents,
+timestamps, SHA-1 values, sizes) was requested.
+
+Of 300 sampled pages, 16 are excluded as the protocol requires: \nExcludedHidden{}
+vital pages contain revisions whose SHA-1 is hidden, and \nExcludedAbsent{}
+random pages have no visible revision by the end of the window. The
+\nPages{} remaining pages (\nVitalPages{} vital, \nRandomPages{} random) give
+\nStates{} states of positive duration (\sStatesVital{} vital,
+\sStatesRandom{} random). \sPagesReturnVital{} vital and \sPagesReturnRandom{}
+random pages return to an earlier SHA-1 at least once, in \sReturnEvents{}
+return events, with median departures of \sMedianVital{}\,s (vital) and
+\sMedianRandom{}\,s (random). The direction of selection bias from the
+exclusions is unknown; the shares and page-bootstrap intervals below describe
+the retained histories and do not correct for it.
+
+The replay reconstructs an edit-only timeline from the visible revision
+metadata, completely paginated, with revisions that share a timestamp
+collapsed by the preregistered one-second convention. Administrative deletion,
+undeletion and other availability events were not collected, so the replay
+evaluates certification against the reconstructed edit history, not against
+what an unqualified current endpoint served over time. Captures are replayed
+against the frozen histories; no request was sent to Wikipedia at the
+simulated instants.
+
+\subsection{Equal hashes that hide a change}
+Capture instants are hourly over the window; a pair counts when the page
+exists at both instants. A pair \emph{hides a change} when its endpoint hashes
+are equal but a state with another SHA-1 was current for positive time in
+between. Table~\ref{tab:hidden} gives the preregistered measurement behind
+Figure~2a. Equal revision IDs hid no change at any gap.
+
+\begin{table*}[t]
+\caption{Equal-hash revisit pairs that hid a change, with 95\% bootstrap intervals over pages (2{,}000 resamples, seed 7).}
+\label{tab:hidden}
+\small
+\input{supplement/generated/tab-hidden-change}
+\end{table*}
+
+\subsection{Bundle certification}
+The request gap is the time between consecutive request starts; every request
+window lasts 1\,s, so at a 1\,s gap consecutive windows touch. Each stratum, bundle size ($n=2,4,8$) and gap uses 400 bundles drawn from the
+pages that exist throughout the window (\sPoolVital{} vital and \sPoolRandom{}
+random; the other \sPoolRandomLate{} random pages first appear during 2024) and
+10 seeded start times: 4{,}000 runs per method and
+condition, 12{,}000 per stratum and gap. The preregistered checks are G1, that
+every page had its observed content at the claimed common time (for the exact
+test, at the single read's instant), and G2, that no twice-read page changed
+between its reads. Methods marked $^{\ast}$ are preregistered.
+
+\begin{table*}[t]
+\caption{Preregistered methods: certified runs and runs violating G1 and G2. Rows ``all $n$'' total 12{,}000 runs over $n=2,4,8$; the last three rows split vital pages at 1\,h by bundle size (4{,}000 runs each).}
+\label{tab:prereg}
+\small
+\input{supplement/generated/tab-preregistered}
+\end{table*}
+
+Two observations follow from the preregistered counts
+(Table~\ref{tab:prereg}). In every condition the surplus of the hash double collect over the
+revision-ID double collect, in certified runs, equals its number of G2
+violations; it is positive in \sPreregMore{} of the \sPreregConditions{}
+conditions and zero in the other \sPreregEqual{}. What content hashes add
+consists only of certificates that bridge a hidden change. And no
+revision-ID certificate violates G1 or G2, as Theorem~3 predicts.
+
+\subsection{First addendum: closed bridges and the schedule}
+\code{protocol-addendum.json} was written after the preregistered results were
+known and is labelled post hoc. \code{addendum.py} evaluates every method on
+exactly the preregistered draws (bundles, read orders, start times and read
+instants), so all comparisons are paired, and it first reproduces the
+preregistered methods count for count. The added methods are closed-bridge
+double collects with hashes and with revision IDs; the double-collect schedule
+with the center page's second read removed (same instants, certified by the
+exact test); the exact revisit order with content hashes; and the revisit
+order in which the page read first and last offers only a content hash,
+certified either by trusting the hash or by Theorem~3(ii). (The frozen addendum
+protocols were written when the paper numbered this result Theorem~2 and call
+it Theorem~2(ii).)
+
+\begin{table*}[t]
+\caption{Certified runs per stratum and request gap (of 12{,}000), first addendum. Revision-ID double collect $\to$ center read once $\to$ revisit order is the schedule ablation behind the $+29$ and $+122$ of Figure~2b.}
+\label{tab:addendum}
+\small
+\input{supplement/generated/tab-addendum}
+\end{table*}
+
+Closed bridges add exactly the runs with touching windows: at 1\,s the closed
+double collect certifies the same runs as the exact test, and the added
+certificates bring no violation. Over all conditions content hashes then
+issue \closedHashCertificates{} certificates and revision IDs
+\closedIdCertificates{}, and under both schedules the hash surplus equals the
+hash certificates that break continuity: \closedHashFalseGTwo{} with the double
+collect and \sHashExactContinuity{} with the revisit order. The exact
+revision-ID rule never certifies fewer runs than the closed double collect,
+more in \exactMoreConditions{} of \nConditions{} conditions, mostly where pages
+change at the gap. For eight vital pages an hour apart the gain from
+\vitalEightIdBridge{} to \vitalEightExact{} splits into
+\vitalEightCenterGain{} runs from no longer requiring the center page to stay
+unchanged between two reads (same instants) and \vitalEightShorterGain{} from
+the shorter schedule, whose second half starts one slot earlier. One hash page
+at the ends, trusted as if sound, breaks continuity \sTrustedContinuity{}
+times; Theorem~3(ii) certifies none of these runs, because neither of its
+windows lies inside the other pages' common interval.
+
+\subsection{Second addendum: what a certificate asserts}
+\code{protocol-addendum-2.json} was written after the first addendum and
+before \code{addendum2.py} ran; the script first reproduces all 162 rows of the
+first addendum. Because the preregistered G1 is existential over the claimed
+interval for double collects but evaluates the single read for the exact test,
+it does not measure one assertion across methods. For every certified run the
+second addendum checks three nested assertions:
+\begin{itemize}
+\item \emph{continuity}: every twice-read page keeps its observed content
+between its first and last true reads (G2);
+\item \emph{claim}: what the certificate's proof asserts on the true history,
+namely that every page has its observed content throughout the closed claimed
+interval $[\max e^-,\min s^+]$ of a double collect, or at the true read
+instant of an exact test's single read;
+\item \emph{existence}: the combination held at some instant between the first
+request's start and the last request's end; a certificate that fails it is
+\emph{fictitious}.
+\end{itemize}
+The script asserts on every run that a fictitious certificate breaks its claim
+and that a broken claim implies a continuity violation. It also adds the
+field-aware schedule of Corollary~4: the hash-only page of the off-center
+method moves to the center, the order becomes
+$\mathit{order}[1{:}]+[\mathit{order}[0]]$, and the revisit order is read at the
+preregistered slots. Pages then occupy different slots than in the
+all-revision-ID revisit order, so this method is paired with the others by
+bundle, start time and slot instants, not by page-to-slot assignment.
+
+\begin{table*}[t]
+\caption{The three nested assertions per method: certified runs and runs that break continuity, their claim, the preregistered G1, and existence (fictitious). Left: totals over both strata, $n=2,4,8$ and the three gaps. Right: eight vital pages with request starts 1\,h apart, the condition of Figure~2b. $^{\ast}$Preregistered.}
+\label{tab:assertions}
+\small
+\setlength{\tabcolsep}{4.5pt}
+\input{supplement/generated/tab-assertions}
+\end{table*}
+
+\begin{table}[t]
+\caption{The hash-only page read once at the center, against the all-revision-ID revisit order on the same bundles and start times (certified of 4{,}000; the first method breaks no assertion anywhere).}
+\label{tab:center}
+\small
+\input{supplement/generated/tab-hash-center}
+\end{table}
+
+No certificate of any method is fictitious within the sampled runs and the
+reconstructed histories (Table~\ref{tab:assertions}); the captured combination
+occurs somewhere in the capture period. The median departures quoted above do
+not by themselves explain this zero, nor do they imply that fictitious
+certificates cannot occur: the MinIO execution of Figure~1a is one, since its
+combination held at no instant. Of the \closedHashFalseGTwo{} hash
+certificates that broke continuity in the closed double collect,
+\closedHashClaim{} asserted an interval in which some page had other content
+and \closedHashFalseGOne{} an interval in which the combination never held,
+although it held elsewhere in the capture. Revision IDs break no assertion
+under any schedule, and moving the hash-only page to the center restores
+\mixedCenterCertificates{} of \nBundleRuns{} runs to certification, against 0
+when the same page is read first and last (Table~\ref{tab:center}).
+
+\subsection{Raw-response binding}
+\code{derive.py} checks the SHA-256 of every raw API response, rebuilds every
+history from the raw history responses and compares page identities and
+revisions with the manifest, and checks the predecessor revisions. The request
+and continuation chains are checked at collection time instead:
+\code{collect.py --resume} replays the saved responses through the same request
+code and stops at any divergence. For a page without a revision inside
+the window, the initial state comes from a separate raw response (38 such
+responses). An earlier loader checked that response's hash but took the
+initial state from the manifest's copy without comparing the two, so editing
+the manifest alone could change a page's initial state while every raw file
+stayed intact; with the old loader such an edit to the record of
+\emph{Frederick Goldie} (\code{raw/00324-before-150.json}) was accepted. The
+loader now binds that state to its raw response, checking page identity,
+response index, cardinality and coverage, and rejects any difference;
+\code{tests/test_revision_bundle_before_window.py} keeps a valid fixture and
+rejects a manifest-only edit. After the fix all eight revision-analysis outputs
+are byte-identical to the archived ones, and the analysis copy in
+\code{figure-artifacts/06-revision-histories/} is the same file. No reported
+count changed.
+
+\subsection{Scope}
+The frozen responses give visible revision metadata and SHA-1 values, not
+rendered HTML, templates, caches, serving times or administrative logs, and
+timestamps have one-second resolution. The vital frame is curated and the
+random frame follows \code{page_random}; neither samples the Web, and the shares
+describe the retained histories of these frames. Revision IDs advance along
+the reconstructed timeline; administrative deletion and undeletion, which can
+re-expose a preserved revision ID after absence or after another revision
+(Section~\ref{sec:platforms}), are outside the replay. Their absence from the
+reconstruction is a limit of scope, not evidence that they did not occur.

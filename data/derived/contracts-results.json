@@ -1,0 +1,519 @@
+{
+  "schema": 1,
+  "input": "data/constructed/contracts.json",
+  "input_sha256": "d198cdfe29d6018b018145e20087e66a790399cd065e5856aa24409145da7b4e",
+  "interpretation": "Exact verdicts for declared finite transition models; not measurements of deployed systems.",
+  "results": [
+    {
+      "name": "content_hash_return",
+      "evidence_kind": "constructed_finite_contract",
+      "scope": "Unbounded alternation of two byte representations; hash equality is collision-free in this model.",
+      "explanation": "Returning to exactly the old bytes also returns to the old content hash.",
+      "audit": {
+        "safe": false,
+        "failure": "return",
+        "body": "A",
+        "validator": "hash-A",
+        "witness": [
+          "a",
+          "b",
+          "a"
+        ],
+        "certificate": []
+      },
+      "independently_verified": true,
+      "witness_states": [
+        {
+          "name": "a",
+          "body": "A",
+          "validator": "hash-A",
+          "actual": "A"
+        },
+        {
+          "name": "b",
+          "body": "B",
+          "validator": "hash-B",
+          "actual": "B"
+        },
+        {
+          "name": "a",
+          "body": "A",
+          "validator": "hash-A",
+          "actual": "A"
+        }
+      ]
+    },
+    {
+      "name": "modulo_4_counter",
+      "evidence_kind": "constructed_finite_contract",
+      "scope": "Binary content changes increment a counter modulo four; arbitrary finite numbers of changes allowed.",
+      "explanation": "Four changes restore both the content and the counter. A bound below four would remove this path.",
+      "audit": {
+        "safe": false,
+        "failure": "return",
+        "body": "A",
+        "validator": "0",
+        "witness": [
+          "a0",
+          "b1",
+          "a2",
+          "b3",
+          "a0"
+        ],
+        "certificate": []
+      },
+      "independently_verified": true,
+      "witness_states": [
+        {
+          "name": "a0",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        },
+        {
+          "name": "b1",
+          "body": "B",
+          "validator": "1",
+          "actual": "B"
+        },
+        {
+          "name": "a2",
+          "body": "A",
+          "validator": "2",
+          "actual": "A"
+        },
+        {
+          "name": "b3",
+          "body": "B",
+          "validator": "3",
+          "actual": "B"
+        },
+        {
+          "name": "a0",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        }
+      ]
+    },
+    {
+      "name": "epoch_reset_on_restart",
+      "evidence_kind": "constructed_finite_contract",
+      "scope": "One process starts at zero, changes once, then a restart restores A and resets the process-local counter.",
+      "explanation": "Increasing counters within each process do not distinguish two process incarnations.",
+      "audit": {
+        "safe": false,
+        "failure": "return",
+        "body": "A",
+        "validator": "0",
+        "witness": [
+          "a0",
+          "b1",
+          "restart_a0"
+        ],
+        "certificate": []
+      },
+      "independently_verified": true,
+      "witness_states": [
+        {
+          "name": "a0",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        },
+        {
+          "name": "b1",
+          "body": "B",
+          "validator": "1",
+          "actual": "B"
+        },
+        {
+          "name": "restart_a0",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        }
+      ]
+    },
+    {
+      "name": "boot_nonce_reused",
+      "evidence_kind": "constructed_finite_contract",
+      "scope": "A boot identifier is reused after a restart, with an unchanged resource namespace.",
+      "explanation": "Adding a boot field helps only when the reuse it was intended to distinguish is excluded.",
+      "audit": {
+        "safe": false,
+        "failure": "return",
+        "body": "A",
+        "validator": "boot-x:0",
+        "witness": [
+          "boot_a0",
+          "boot_b1",
+          "reboot_a0"
+        ],
+        "certificate": []
+      },
+      "independently_verified": true,
+      "witness_states": [
+        {
+          "name": "boot_a0",
+          "body": "A",
+          "validator": "boot-x:0",
+          "actual": "A"
+        },
+        {
+          "name": "boot_b1",
+          "body": "B",
+          "validator": "boot-x:1",
+          "actual": "B"
+        },
+        {
+          "name": "reboot_a0",
+          "body": "A",
+          "validator": "boot-x:0",
+          "actual": "A"
+        }
+      ]
+    },
+    {
+      "name": "unique_boot_nonce",
+      "evidence_kind": "constructed_finite_contract",
+      "scope": "Finite horizon: one update and one restart with distinct boot IDs; no further changes after final state.",
+      "explanation": "The restarted observation differs from the initial observation. The invariant covers exactly this declared graph.",
+      "audit": {
+        "safe": true,
+        "failure": null,
+        "body": null,
+        "validator": null,
+        "witness": [],
+        "certificate": [
+          {
+            "body": "A",
+            "validator": "boot-x:0",
+            "before_departure": [
+              "boot_a0"
+            ],
+            "after_departure": [
+              "boot_b1",
+              "reboot_a0"
+            ]
+          },
+          {
+            "body": "B",
+            "validator": "boot-x:1",
+            "before_departure": [
+              "boot_b1"
+            ],
+            "after_departure": [
+              "reboot_a0"
+            ]
+          },
+          {
+            "body": "A",
+            "validator": "boot-y:0",
+            "before_departure": [
+              "reboot_a0"
+            ],
+            "after_departure": []
+          }
+        ]
+      },
+      "independently_verified": true,
+      "witness_states": []
+    },
+    {
+      "name": "durable_epoch",
+      "evidence_kind": "constructed_finite_contract",
+      "scope": "Finite horizon: two updates with persistent distinct epochs; no subsequent updates in this graph.",
+      "explanation": "Return bytes carry a new episode identity. An unbounded production counter needs its own persistence and nonreuse contract.",
+      "audit": {
+        "safe": true,
+        "failure": null,
+        "body": null,
+        "validator": null,
+        "witness": [],
+        "certificate": [
+          {
+            "body": "A",
+            "validator": "0",
+            "before_departure": [
+              "a0"
+            ],
+            "after_departure": [
+              "b1",
+              "a2"
+            ]
+          },
+          {
+            "body": "B",
+            "validator": "1",
+            "before_departure": [
+              "b1"
+            ],
+            "after_departure": [
+              "a2"
+            ]
+          },
+          {
+            "body": "A",
+            "validator": "2",
+            "before_departure": [
+              "a2"
+            ],
+            "after_departure": []
+          }
+        ]
+      },
+      "independently_verified": true,
+      "witness_states": []
+    },
+    {
+      "name": "hash_with_no_return_policy",
+      "evidence_kind": "constructed_finite_contract",
+      "scope": "Policy permits A to change to B, but never permits B to return to A.",
+      "explanation": "A nonreturning deployment policy can make content hashes sufficient without a separate epoch.",
+      "audit": {
+        "safe": true,
+        "failure": null,
+        "body": null,
+        "validator": null,
+        "witness": [],
+        "certificate": [
+          {
+            "body": "A",
+            "validator": "hash-A",
+            "before_departure": [
+              "a"
+            ],
+            "after_departure": [
+              "b"
+            ]
+          },
+          {
+            "body": "B",
+            "validator": "hash-B",
+            "before_departure": [
+              "b"
+            ],
+            "after_departure": []
+          }
+        ]
+      },
+      "independently_verified": true,
+      "witness_states": []
+    },
+    {
+      "name": "cached_old_response",
+      "evidence_kind": "constructed_finite_contract",
+      "scope": "The distinguished state is the origin, not the cache; responses may reuse a formerly valid body and epoch.",
+      "explanation": "A stale response is already incompatible with the origin at its read point. The failure is read fidelity, not token continuity.",
+      "audit": {
+        "safe": false,
+        "failure": "read_fidelity",
+        "body": "A",
+        "validator": "0",
+        "witness": [
+          "stale_a"
+        ],
+        "certificate": []
+      },
+      "independently_verified": true,
+      "witness_states": [
+        {
+          "name": "stale_a",
+          "body": "A",
+          "validator": "0",
+          "actual": "B"
+        }
+      ]
+    },
+    {
+      "name": "lagging_replica",
+      "evidence_kind": "constructed_finite_contract",
+      "scope": "The distinguished state is the primary and a GET can read a lagging replica.",
+      "explanation": "Origin-relative history cannot use a replica read as an instantaneous primary read without a stronger consistency contract.",
+      "audit": {
+        "safe": false,
+        "failure": "read_fidelity",
+        "body": "A",
+        "validator": "0",
+        "witness": [
+          "replica_a"
+        ],
+        "certificate": []
+      },
+      "independently_verified": true,
+      "witness_states": [
+        {
+          "name": "replica_a",
+          "body": "A",
+          "validator": "0",
+          "actual": "B"
+        }
+      ]
+    },
+    {
+      "name": "non_atomic_body_token",
+      "evidence_kind": "constructed_finite_contract",
+      "scope": "The body is sampled before an update and token after it; the claimed read point is the latter.",
+      "explanation": "Atomic coupling of body, epoch and the distinguished authoritative state is a separate input obligation.",
+      "audit": {
+        "safe": false,
+        "failure": "read_fidelity",
+        "body": "A",
+        "validator": "1",
+        "witness": [
+          "torn"
+        ],
+        "certificate": []
+      },
+      "independently_verified": true,
+      "witness_states": [
+        {
+          "name": "torn",
+          "body": "A",
+          "validator": "1",
+          "actual": "B"
+        }
+      ]
+    },
+    {
+      "name": "irrelevant_internal_transition",
+      "evidence_kind": "constructed_finite_contract",
+      "scope": "Internal server states may change while the selected representation remains A.",
+      "explanation": "A representation-continuity guarantee does not require every internal transition to receive a fresh token.",
+      "audit": {
+        "safe": true,
+        "failure": null,
+        "body": null,
+        "validator": null,
+        "witness": [],
+        "certificate": [
+          {
+            "body": "A",
+            "validator": "hash-A",
+            "before_departure": [
+              "a_left",
+              "a_right"
+            ],
+            "after_departure": []
+          }
+        ]
+      },
+      "independently_verified": true,
+      "witness_states": []
+    },
+    {
+      "name": "modulo_3_binary",
+      "evidence_kind": "constructed_finite_contract",
+      "scope": "Every change selects a different body from AB and increments a counter modulo three; no other transitions.",
+      "explanation": "Binary content must change an even number of times to return; the first undetectable return is six updates.",
+      "audit": {
+        "safe": false,
+        "failure": "return",
+        "body": "A",
+        "validator": "0",
+        "witness": [
+          "a0",
+          "b1",
+          "a2",
+          "b0",
+          "a1",
+          "b2",
+          "a0"
+        ],
+        "certificate": []
+      },
+      "independently_verified": true,
+      "witness_states": [
+        {
+          "name": "a0",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        },
+        {
+          "name": "b1",
+          "body": "B",
+          "validator": "1",
+          "actual": "B"
+        },
+        {
+          "name": "a2",
+          "body": "A",
+          "validator": "2",
+          "actual": "A"
+        },
+        {
+          "name": "b0",
+          "body": "B",
+          "validator": "0",
+          "actual": "B"
+        },
+        {
+          "name": "a1",
+          "body": "A",
+          "validator": "1",
+          "actual": "A"
+        },
+        {
+          "name": "b2",
+          "body": "B",
+          "validator": "2",
+          "actual": "B"
+        },
+        {
+          "name": "a0",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        }
+      ]
+    },
+    {
+      "name": "modulo_3_ternary",
+      "evidence_kind": "constructed_finite_contract",
+      "scope": "Every change selects a different body from ABC and increments a counter modulo three; no other transitions.",
+      "explanation": "A third body permits A-B-C-A in three updates. A reuse threshold depends on allowed transitions, not just token range.",
+      "audit": {
+        "safe": false,
+        "failure": "return",
+        "body": "A",
+        "validator": "0",
+        "witness": [
+          "a0",
+          "b1",
+          "c2",
+          "a0"
+        ],
+        "certificate": []
+      },
+      "independently_verified": true,
+      "witness_states": [
+        {
+          "name": "a0",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        },
+        {
+          "name": "b1",
+          "body": "B",
+          "validator": "1",
+          "actual": "B"
+        },
+        {
+          "name": "c2",
+          "body": "C",
+          "validator": "2",
+          "actual": "C"
+        },
+        {
+          "name": "a0",
+          "body": "A",
+          "validator": "0",
+          "actual": "A"
+        }
+      ]
+    }
+  ]
+}

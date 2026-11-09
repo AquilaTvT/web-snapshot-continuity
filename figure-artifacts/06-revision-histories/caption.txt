@@ -1,0 +1,1 @@
+Replay of frozen 2024 edit histories. (a) 95% bootstrap intervals over pages; an arrow marks one that reaches zero. (b) Requests per schedule in parentheses; the last row moves the hash-only page from the ends to the center. Every red increment crossed a hidden change.

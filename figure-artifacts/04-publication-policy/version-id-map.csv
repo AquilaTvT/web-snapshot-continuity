@@ -1,0 +1,10 @@
+case,alias,version_id
+owner_deny,α,5974b9ff-c938-44a4-8610-e469f271563f
+owner_deny,β,24f632a0-0082-4d79-b415-e039964a6a59
+object_lock,α,2a8405eb-75b7-4f7d-922d-60a28c4518d2
+object_lock,β,2e9d2b95-88c6-4582-8837-357d6d4d7f74
+restricted_delete,α,eb23714c-e4a9-4f04-a80f-36eb5844e79e
+restricted_delete,β,91222af4-4af0-49fd-a6be-6f58a96d0f8f
+restricted_copy,α,eb23714c-e4a9-4f04-a80f-36eb5844e79e
+restricted_copy,β,91222af4-4af0-49fd-a6be-6f58a96d0f8f
+restricted_copy,γ,b2456071-9589-4310-8a4f-988f87c9ce9d

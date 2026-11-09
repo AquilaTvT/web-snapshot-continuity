@@ -1,0 +1,26 @@
+% Shared figure style: the paper's typefaces, sizes and the two-colour encoding.
+% Identical copies live in every figure directory so that each builds on its own.
+\usepackage{fontspec}
+\setmainfont{LinLibertine}[Extension=.otf,UprightFont=*_R,ItalicFont=*_RI,BoldFont=*_RB]
+\setsansfont{LinBiolinum}[Extension=.otf,UprightFont=*_R,ItalicFont=*_RI,BoldFont=*_RB]
+\usepackage{unicode-math}
+\setmathfont{LibertinusMath-Regular.otf}
+\setmathfont{LinLibertine_R.otf}[range=up/num]
+% Sub- and superscripts (R_1, t^*, 10^{-4}) at 6 pt, so no glyph is below 6 pt.
+\DeclareMathSizes{7}{7}{6}{6}
+\DeclareMathSizes{7.5}{7.5}{6}{6}
+\DeclareMathSizes{8}{8}{6}{6}
+\usepackage{tikz}
+\usetikzlibrary{patterns.meta,calc,arrows.meta}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+% Blue: what a sound field proves (certain presence, revision IDs).
+% Red: the inference that fails (equal reusable fields, content hashes).
+\definecolor{sound}{HTML}{2166AC}
+\definecolor{fails}{HTML}{B2182B}
+\definecolor{ink}{HTML}{1A1A1A}
+\definecolor{muted}{HTML}{5C5C5C}
+\definecolor{rule}{HTML}{8A8A8A}
+\newcommand{\figtitle}{\fontsize{8}{9.6}\selectfont}
+\newcommand{\figlabel}{\fontsize{7.5}{9}\selectfont}
+\newcommand{\figsmall}{\fontsize{7}{8.4}\selectfont}

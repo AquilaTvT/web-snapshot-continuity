@@ -1,0 +1,174 @@
+{
+  "checked_date": "2026-11-04",
+  "scope": "Primary-document and SDK-source audit plus local SDK request fixture; not a GCS service experiment.",
+  "sdk": {
+    "distribution": "google-cloud-storage",
+    "version": "3.17.1",
+    "python": "3.12.10",
+    "pypi_url": "https://pypi.org/project/google-cloud-storage/3.17.1/",
+    "official_commit": "b106af457fda1a5dadd10d5a8a52d77bf987f2ff",
+    "source_path": "packages/google-cloud-storage/google/cloud/storage/blob.py",
+    "source_url": "https://github.com/googleapis/google-cloud-python/blob/b106af457fda1a5dadd10d5a8a52d77bf987f2ff/packages/google-cloud-storage/google/cloud/storage/blob.py",
+    "installed_source_sha256": "2681642cdf135f1f709f4a2757dc4f99621de5385a172ada21aa6374a732b9d7",
+    "fetched_source_matches_installed": "Yes, byte-for-byte after removing the single final newline added by the local apply_patch transfer.",
+    "source_license": "Apache-2.0",
+    "source_sections": [
+      {
+        "method": "_get_download_url",
+        "lines": [
+          879,
+          936
+        ],
+        "critical_lines": [
+          921,
+          922
+        ],
+        "finding": "A populated Blob generation is appended as a generation selector when constructing its download URL."
+      },
+      {
+        "method": "_extract_headers_from_download",
+        "lines": [
+          938,
+          978
+        ],
+        "critical_lines": [
+          962,
+          965
+        ],
+        "finding": "The same download response supplies generation and metageneration saved in Blob properties."
+      },
+      {
+        "method": "_do_download",
+        "lines": [
+          980,
+          1146
+        ],
+        "critical_lines": [
+          1068,
+          1095
+        ],
+        "finding": "The non-chunked raw download consumes a transport response and passes that response to header extraction."
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "gcs-metadata",
+      "url": "https://docs.cloud.google.com/storage/docs/metadata",
+      "section": "Generation and metageneration numbers",
+      "finding": "Successive object versions have unique generation values, which need not increase. Metageneration starts at 1 within each generation and advances for metadata changes.",
+      "role": "Fresh allocation; do not substitute monotonic order or metageneration alone."
+    },
+    {
+      "id": "gcs-objects",
+      "url": "https://docs.cloud.google.com/storage/docs/objects",
+      "section": "Object immutability",
+      "finding": "Ordinary uploaded objects are immutable; replacement is atomic and changes generation.",
+      "role": "Stored bytes remain fixed for one finalized ordinary generation."
+    },
+    {
+      "id": "gcs-versioning",
+      "url": "https://docs.cloud.google.com/storage/docs/object-versioning",
+      "section": "Object Versioning example; Object Versioning reference; Restoration behavior",
+      "finding": "Deleting the live version leaves no live version, even when older versions remain. Copying a noncurrent version to the live name allocates a new generation. Metadata-only example keeps generation.",
+      "role": "No historical head reactivation by ordinary delete/restore operations."
+    },
+    {
+      "id": "gcs-restore",
+      "url": "https://docs.cloud.google.com/storage/docs/json_api/v1/objects/restore",
+      "section": "Introductory restoration rules",
+      "finding": "Soft-delete restoration creates a copy with a new generation and metageneration 1.",
+      "role": "Object-level soft-delete recovery respects no-return."
+    },
+    {
+      "id": "gcs-bulk-restore",
+      "url": "https://docs.cloud.google.com/storage/docs/json_api/v1/objects/bulkRestore",
+      "section": "Introductory restoration rules",
+      "finding": "Restored copies receive new generation values.",
+      "role": "Additional document check; not an executed service test."
+    },
+    {
+      "id": "gcs-move",
+      "url": "https://docs.cloud.google.com/storage/docs/json_api/v1/objects/move",
+      "section": "Introductory move rules",
+      "finding": "A moved object receives a new generation and metageneration 1.",
+      "role": "Additional document check; distinguished from HNS folder rename. The main proof lists its smaller surveyed operation set."
+    },
+    {
+      "id": "gcs-consistency",
+      "url": "https://docs.cloud.google.com/storage/docs/consistency",
+      "section": "Strongly consistent operations; Cache control and consistency; Atomic operations",
+      "finding": "Object read-after-write/delete is strong, but cached public reads can be stale. Request cache bypass is ignored. Individual-object operations are atomic; batches are not.",
+      "role": "Point-read contract and cache exclusion; no multi-object transaction claim."
+    },
+    {
+      "id": "gcs-caching",
+      "url": "https://docs.cloud.google.com/storage/docs/caching",
+      "section": "Built-in caching for Cloud Storage",
+      "finding": "Built-in caching requires public accessibility. Proxies and clients can cache independently. Private and no-store have different cache scopes.",
+      "role": "Sufficient direct-private/no-client-cache read profile."
+    },
+    {
+      "id": "gcs-transcoding",
+      "url": "https://docs.cloud.google.com/storage/docs/transcoding",
+      "section": "Decompressive transcoding",
+      "finding": "Eligible gzip objects can be decompressed according to metadata; Accept-Encoding:gzip requests stored compressed data instead.",
+      "role": "Stored-byte observation requires a fixed raw representation and disabled client decompression."
+    },
+    {
+      "id": "gcs-get",
+      "url": "https://docs.cloud.google.com/storage/docs/json_api/v1/objects/get",
+      "section": "Parameters generation / ifGenerationMatch / alt; Response",
+      "finding": "alt=media returns object data. generation chooses a particular revision instead of the default latest object. A precondition is distinct from that selector.",
+      "role": "Current-name observations must not silently select historical revisions."
+    },
+    {
+      "id": "gcs-xml-get",
+      "url": "https://docs.cloud.google.com/storage/docs/xml-api/get-object-download",
+      "section": "Query parameters; Response",
+      "finding": "GET returns object data and can select a generation explicitly.",
+      "role": "Alternative documented whole-object HTTP interface."
+    },
+    {
+      "id": "gcs-headers",
+      "url": "https://docs.cloud.google.com/storage/docs/xml-api/reference-headers",
+      "section": "x-goog-generation; x-goog-metageneration",
+      "finding": "The response generation identifies the accessed data version; metageneration identifies its metadata version.",
+      "role": "Field/bytes binding in one response."
+    },
+    {
+      "id": "gcs-bucket-metadata",
+      "url": "https://docs.cloud.google.com/storage/docs/bucket-metadata",
+      "section": "Generation and metageneration numbers",
+      "finding": "Bucket generation identifies an incarnation of the bucket independently of its reused name.",
+      "role": "Motivates fixed bucket lifetime; no claim that a separate bucket GET is atomically bound to object GET."
+    },
+    {
+      "id": "gcs-soft-delete",
+      "url": "https://docs.cloud.google.com/storage/docs/soft-delete",
+      "section": "Restoring objects with duplicate paths; project restoration discussion",
+      "finding": "HNS folder renames can produce same-name/same-generation collisions. Project restoration can restore previously live buckets.",
+      "role": "Explicitly exclude HNS namespace moves and authority-level restoration."
+    },
+    {
+      "id": "gcs-hns",
+      "url": "https://docs.cloud.google.com/storage/docs/folders-overview",
+      "section": "Renaming folders",
+      "finding": "Hierarchical folder renames move paths without copying underlying objects.",
+      "role": "Do not extend the fixed flat-namespace proof to HNS."
+    },
+    {
+      "id": "gcs-rapid",
+      "url": "https://docs.cloud.google.com/storage/docs/rapid/rapid-bucket",
+      "section": "Capabilities and benefits; object terms",
+      "finding": "Rapid Bucket supports appending without full rewrites and requires hierarchical namespace.",
+      "role": "Exclude appendable objects; restrict to ordinary finalized immutable objects."
+    }
+  ],
+  "limitations": [
+    "Documentation was read at the listed date; no immutable server-document snapshots are claimed.",
+    "Official SDK source is commit-pinned; dependency versions and local results are archived.",
+    "No Google Cloud account, endpoint, service write, or service read was used.",
+    "The operation-level no-return proof is conditional on the documented contract and scope; a finite model is not an implementation verification."
+  ]
+}

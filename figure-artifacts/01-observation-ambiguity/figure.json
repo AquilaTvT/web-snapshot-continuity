@@ -1,0 +1,14 @@
+{
+  "name": "01-observation-ambiguity",
+  "size_inches": [
+    3.35,
+    3.1
+  ],
+  "caption": "Identical captures do not identify historical coexistence. White markers are the same four observations in both constructed histories. Intervals are left-closed and right-open. Blue segments contain the target representation. A change epoch distinguishes these histories only under a non-reuse and atomic-read contract.",
+  "method": "Mathematical construction. No observed incidence, sampling, or aggregation.",
+  "data_sources": {
+    "construction.json": "59b26ef456bf81950a043fa87d4c1853f1ebce9bfe03b4a0950fce22e4d43f9f"
+  },
+  "layout": "two vertically stacked history panels",
+  "minimum_font_size_points": 8.0
+}

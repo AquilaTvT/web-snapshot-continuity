@@ -64,8 +64,9 @@ def number(x, y, text):
     emit(rf"\node[font=\figsmall, text=muted, anchor=base, inner sep=0pt] at ({f(x)},{f(y)}) {{{text}}};")
 
 
-def title(y, label, text):
-    emit(rf"\node[font=\figtitle, anchor=base west, inner sep=0pt] at (0.8,{f(y)}) {{\textbf{{{label}}}\enspace {text}}};")
+def subcaption(y, label, text):
+    """Panel caption, centred below its panel."""
+    emit(rf"\node[font=\figtitle, anchor=base, inner sep=0pt] at ({f(WIDTH / 2)},{f(y)}) {{{label} {text}}};")
 
 
 def rowlabel(y, text):
@@ -78,8 +79,8 @@ xa = lambda t: X0 + (t - t0) * (X1 - X0) / (t1 - t0)
 claim = get("a", "claimed")[0]
 c_lo, c_hi = float(claim["start"]), float(claim["end"])
 c_mid = (c_lo + c_hi) / 2
-y_title_a = -7.6                       # coordinates run downward from the top edge (y = 0)
-lanes = {"admission": -25.5, "fee": -50.5}
+# Coordinates run downward from the top edge (y = 0); each panel caption sits below its panel.
+lanes = {"admission": -18.4, "fee": -43.4}
 BAR = 8.6
 for r in get("a", "segment"):
     s, e, page = float(r["start"]), float(r["end"]), r["resource"]
@@ -148,12 +149,12 @@ emit(rf"\draw[rule, line width=0.4pt] ({f(X0)},{f(y_zaxis)}) -- ({f(X1)},{f(y_za
 for t, text in ((33.16, "33.16"), (33.20, "33.20"), (33.24, "33.24\\,ms")):
     emit(rf"\draw[rule, line width=0.4pt] ({f(xz(t))},{f(y_zaxis)}) -- ({f(xz(t))},{f(y_zaxis - 1.8)});")
     emit(rf"\node[font=\figsmall, anchor=base, inner sep=0pt] at ({f(xz(t))},{f(y_zaxis - 8.6)}) {{{text}}};")
-title(y_title_a, "(a)", "MinIO: same ID, broken continuity")
+y_caption_a = y_zaxis - 8.6 - 9.0
+subcaption(y_caption_a, "(a)", "MinIO: same ID, broken continuity")
 
 # ---------------------------------------------------------------- panel (b)
-y_title_b = y_zaxis - 19.5
 xb = lambda t: X0 + 3.0 + (t - 0.0) * (X1 - X0 - 6.0) / 10.0
-lane_b = {"R1": y_title_b - 12.5, "R2": y_title_b - 24.0, "R3": y_title_b - 35.5}
+lane_b = {"R1": y_caption_a - 16.6, "R2": y_caption_a - 28.1, "R3": y_caption_a - 39.6}
 common = get("b", "revisited_common")[0]
 lo, hi = float(common["start"]), float(common["end"])
 emit(rf"\fill[sound!9] ({f(xb(lo))},{f(lane_b['R2'] - 5.0)}) rectangle ({f(xb(hi))},{f(lane_b['R1'] + 5.0)});")
@@ -176,8 +177,9 @@ emit(rf"\filldraw[fill=white, draw=ink, line width=0.6pt] ({f(xb(star))},{f(y3)}
 emit(rf"\node[font=\figlabel, anchor=north, inner sep=0pt] at ({f(xb(star))},{f(y3 - 3.0)}) {{$t^{{*}}$}};")
 for res, y in lane_b.items():
     rowlabel(y, f"$R_{res[1]}$")
-title(y_title_b, "(b)", "Sound outer reads cover the center read")
-bottom = y3 - 11.5                      # below the t* label
+y_caption_b = y3 - 18.0                 # below the t* label
+subcaption(y_caption_b, "(b)", "Sound outer reads cover the center read")
+bottom = y_caption_b - 3.2
 H = -bottom
 
 body = "\n".join(out)

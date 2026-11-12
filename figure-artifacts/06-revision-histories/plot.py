@@ -40,9 +40,8 @@ emit = out.append
 
 # ---------------------------------------------------------------- panel (a)
 YMIN, YMAX = 2.5e-5, 60.0
-emit(r"\node[font=\figtitle, anchor=base west, inner sep=0pt] at (0.8,-7.6) "
-     r"{\textbf{(a)}\enspace Equal-hash revisits that hid a change, by revisit gap};")
-emit(r"""\begin{axis}[name=a, at={(36pt,-74pt)}, anchor=south west, scale only axis,
+# Coordinates run downward from the top edge (y = 0); each panel caption sits below its panel.
+emit(r"""\begin{axis}[name=a, at={(36pt,-60pt)}, anchor=south west, scale only axis,
   width=172pt, height=55pt, xmode=log, ymode=log,
   xmin=40, xmax=1.0e6, ymin=%s, ymax=%s,
   xtick={60,3600,86400,604800}, xticklabels={1\,min,1\,h,1\,d,7\,d},
@@ -79,7 +78,7 @@ for stratum, (dash, mark, fill, name) in styles.items():
 emit(r"\end{axis}")
 # Legend in the upper left of panel (a), drawn by hand for exact spacing.
 for k, (dash, mark, fill, name) in enumerate(legend):
-    y = -23.0 - 8.6 * k
+    y = -9.0 - 8.6 * k
     emit(rf"\draw[fails, line width=0.75pt, {dash}] (44,{p(y)}) -- (58,{p(y)});")
     shape = r"circle (1.7pt)" if mark == "*" else r"+(-1.6pt,-1.6pt) rectangle +(1.6pt,1.6pt)"
     emit(rf"\filldraw[fill={fill}, draw=fails, line width=0.6pt] (51,{p(y)}) {shape};")
@@ -92,12 +91,13 @@ order = (("id_double_closed", "hash_double_closed", "double collect (16)"),
          ("id_exact", "hash_exact", "revisit order (15)"),
          ("mixed_center_theorem", None, "hash page at center (15)"))
 XL, XR = 2500, 2880
-top_b = -93.0
-emit(rf"\node[font=\figtitle, anchor=base west, inner sep=0pt] at (0.8,{p(top_b)}) "
-     r"{\textbf{(b)}\enspace Eight vital pages, request starts 1\,h apart};")
+y_caption_a = -79.0
+emit(rf"\node[font=\figtitle, anchor=base, inner sep=0pt] at ({p(WIDTH / 2)},{p(y_caption_a)}) "
+     r"{(a) Equal-hash revisits that hid a change, by revisit gap};")
+y_leg = y_caption_a - 13.0
 ax0, ax1 = 98.0, WIDTH - 10.0
 xb = lambda v: ax0 + (v - XL) * (ax1 - ax0) / (XR - XL)
-row_y = {0: top_b - 23.0, 1: top_b - 32.0, 2: top_b - 41.0, 3: top_b - 50.0}
+row_y = {0: y_leg - 12.0, 1: y_leg - 21.0, 2: y_leg - 30.0, 3: y_leg - 39.0}
 y_axis = row_y[3] - 7.5
 for v in (2500, 2600, 2700, 2800):
     emit(rf"\draw[black!9, line width=0.4pt] ({p(xb(v))},{p(y_axis)}) -- ({p(xb(v))},{p(row_y[0] + 6.0)});")
@@ -135,7 +135,6 @@ for k, (ids, hashed, label) in enumerate(order):
              rf"{{\strut $+${base - previous}}};")
     previous = base
 # Legend of panel (b).
-y_leg = top_b - 11.0
 items = [(r"\fill[sound] (X,Y) circle (1.9pt);", "revision IDs"),
          (r"\filldraw[fill=white, draw=fails, line width=0.7pt] (X,Y) circle (1.9pt);", "content hashes"),
          (r"\fill[sound] (X,Y2) -- (X2,Y) -- (X,Y3) -- (X1,Y) -- cycle;", "one hash-only page")]
@@ -147,7 +146,10 @@ for shape, name in items:
     emit(shape)
     emit(rf"\node[font=\figsmall, anchor=west, inner sep=0pt] at ({p(x + 4.0)},{p(y_leg)}) {{\strut {name}}};")
     x += {"revision IDs": 56.0, "content hashes": 64.0}.get(name, 0.0)
-bottom = y_axis - 21.5
+y_caption_b = y_axis - 18.5 - 11.0
+emit(rf"\node[font=\figtitle, anchor=base, inner sep=0pt] at ({p(WIDTH / 2)},{p(y_caption_b)}) "
+     r"{(b) Eight vital pages, request starts 1\,h apart};")
+bottom = y_caption_b - 3.2
 
 body = "\n".join(out)
 tex = rf"""\documentclass{{standalone}}

@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PAPER = ROOT / "paper"
 NAME = "Uniqueness Is Not Continuity - Supplementary Material.pdf"
 OUTPUT = ROOT / "output" / "pdf" / NAME
-EPOCH = "1794096000"            # 2026-11-08T00:00:00Z, the date of this build
+EPOCH = "1794096000"            # fixed at 2026-11-08T00:00:00Z so that rebuilds are byte-identical
 
 
 def main() -> None:

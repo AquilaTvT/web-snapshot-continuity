@@ -78,3 +78,8 @@ not a rendered-page, cache, or deployment-history guarantee.
 
 - No new data were requested and no derived file changed. The author copy of Ainsworth et al., HT 2015 (https://www.cs.odu.edu/~mln/pubs/ht-2015/hypertext-2015-temporal-violations.pdf) was downloaded again on 2026-11-09 to check the measurement now quoted in the introduction: its abstract says that "at most only 17.9% (roughly 1 in 5)" of composite mementos "are temporally coherent and 100% complete", and its body gives 12.4%–17.9% across selection heuristics and single or multiple archives. The paper is not redistributed.
 - `research/round16-review-response.md` records the checks and the wording changes of this round.
+
+## Records and corrections added 2026-11-12 (round 17)
+
+- No new data were requested and no derived file changed. The official call (https://www2027.thewebconf.org/ and https://www2027.thewebconf.org/research-track-papers/) was read again on 2026-11-12 for the preprint, page-limit and artifact rules; the quoted rule is in `research/venue.md`.
+- `research/round17-review-response.md` records the checks and changes of this round.

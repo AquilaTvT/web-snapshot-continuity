@@ -31,8 +31,8 @@ shared by all histories (Corollary 4).
 
 Visual encoding, shared with Figure 2: blue for what a sound field proves,
 red for the inference that fails, grey for states the captures do not show,
-hatching for write windows. Each panel has a one-line title; explanations are
-in the caption.
+hatching for write windows. Each panel has a one-line caption centred below
+it; explanations are in the figure caption.
 
 Copy this directory anywhere and run:
 
@@ -46,7 +46,7 @@ the TeX and poppler tools instead). `plot.py` reads only `plot-data.csv` and
 writes the figure as TikZ code (`figure.tex`; `figstyle.tex` holds the colours
 and type sizes shared with Figure 2). XeLaTeX sets it in the acmart typefaces
 shipped in `fonts/` (Linux Libertine O, Libertinus Math) at the column width of
-the acmart sigconf layout, 241.15 pt (3.34 x 2.20 in), so the paper includes it
+the acmart sigconf layout, 241.15 pt (3.34 x 2.28 in), so the paper includes it
 unscaled and its text matches the body: 7–8 pt, with sub- and superscripts at
 6 pt. `pdftocairo` and `pdftoppm` then write `figure.svg` and `preview.png`.
 Before finishing, `plot.py` checks that the page has the column width, that

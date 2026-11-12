@@ -16,8 +16,11 @@ condition on the current target~\cite{opendal} nor the ABA phenomenon is
 claimed as new.
 
 \subsection{Identity probes on nine implementations}
+The probes ask whether reactivation is specific to one server.
 \code{experiments/reactivation_probes/} ran one fixed probe sequence on eight
-S3-compatible implementations and a GCS emulator (Table~\ref{tab:probe-versions}):
+implementations of the S3 API and, for contrast, on a GCS emulator, since GCS
+documents that deleting the live version promotes no older generation
+(Table~\ref{tab:probe-versions}):
 \nProbeRequests{} loopback requests, every byte recorded, on Linux x86\_64 on
 2026-11-05. Each server used a fresh temporary store and public fixture
 credentials. The MinIO binary matches the release pinned for the earlier macOS
@@ -43,7 +46,9 @@ and repeated $A$'s ETag, and a conditional GET with $A$'s first ETag returned
 304. No conditional GET was sent after a copy. The GCS emulator promoted
 nothing when the live generation was deleted (404), and copy and upload
 allocated new generations; this agrees with the GCS documentation but is not a
-GCS measurement. \code{derive.py} reclassifies every cell from the raw records,
+GCS measurement. The eight S3 servers are a fixed set, not a sample: they show
+that reactivation holds across implementations of one API, and their number
+says nothing about how often any of them is deployed. \code{derive.py} reclassifies every cell from the raw records,
 and Table~1 of the paper is generated in \code{table-artifacts/01-identity-probes/}
 from a full copy of the traces.
 
@@ -134,11 +139,14 @@ unbound object.
 
 \subsection{Documented identifier semantics}
 \code{research/platform-identifiers-round9.md} and its ledger record
-\nAuditIdentifiers{} identifiers on \nAuditPlatforms{} storage, hosting, wiki,
-package and HTTP-server platforms, with 257 quotations from \nAuditSources{}
+\nAuditIdentifiers{} identifiers on \nAuditPlatforms{} storage, hosting,
+content-management, registry, Git and Web-server platforms, with 257 quotations
+from \nAuditSources{}
 official sources checked verbatim against copies retrieved on 2026-11-05. Each
 entry records what a read or management interface exposes and what specific
-restore, rollback or undelete operations do to it.
+restore, rollback or undelete operations do to it. The audit groups the
+identifiers by what a change and its undo do to them; its counts describe the
+inspected interfaces and operations, not how widely each is deployed.
 \nAuditReactivating{} identifiers are unique but can be made current again (S3
 version IDs; B2 file IDs; DigitalOcean Spaces; Ceph RGW, from its tests; Swift
 object versioning; SeaweedFS, from source; GCS hierarchical-namespace rename,

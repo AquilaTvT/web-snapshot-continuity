@@ -45,7 +45,7 @@ reads only `plot-data.csv` and writes the figure as PGFPlots and TikZ code
 (`figure.tex`; `figstyle.tex` holds the colours and type sizes shared with
 Figure 1). XeLaTeX sets it in the acmart typefaces shipped in `fonts/` (Linux
 Libertine O, Libertinus Math) at the column width of the acmart sigconf layout,
-241.15 pt (3.34 x 2.42 in), so the paper includes it unscaled and its text
+241.15 pt (3.34 x 2.37 in), so the paper includes it unscaled and its text
 matches the body: 7–8 pt, with exponents at 6 pt. `pdftocairo` and `pdftoppm`
 then write `figure.svg` and `preview.png`. Before finishing, `plot.py` checks
 the page width, font embedding and type sizes, and, from a 600 dpi rendering,

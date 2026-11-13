@@ -56,8 +56,8 @@ Figure~2a. Equal revision IDs hid no change at any gap.
 \subsection{Bundle certification}
 The request gap is the time between consecutive request starts; every request
 window lasts 1\,s, so at a 1\,s gap consecutive windows touch, and the minute
-and hour gaps separate them further. Two pages is the smallest bundle, and four
-and eight double it. The grid varies bundle size and timing under control; it
+and hour gaps separate them further. Two pages form the smallest bundle, and the
+size doubles to four and then to eight. The grid varies bundle size and timing under control; it
 does not model the size or pacing of real crawls. Each stratum, bundle size ($n=2,4,8$) and gap uses 400 bundles drawn from the
 pages that exist throughout the window (\sPoolVital{} vital and \sPoolRandom{}
 random; the other \sPoolRandomLate{} random pages first appear during 2024) and

@@ -83,3 +83,8 @@ not a rendered-page, cache, or deployment-history guarantee.
 
 - No new data were requested and no derived file changed. The official call (https://www2027.thewebconf.org/ and https://www2027.thewebconf.org/research-track-papers/) was read again on 2026-11-12 for the preprint, page-limit and artifact rules; the quoted rule is in `research/venue.md`.
 - `research/round17-review-response.md` records the checks and changes of this round.
+
+## Records and corrections added 2026-11-16 (round 18)
+
+- No new data were requested and no derived file changed. The schedule rule now stated in the paper and the supplement was checked against `experiments/revision_bundles/protocol.json` (M2 schedule) and the `offsets` and `plan_drop_center` code of `derive.py` and `addendum.py`.
+- `research/round18-review-response.md` records the checks and changes of this round.

@@ -54,7 +54,12 @@ Figure~2a. Equal revision IDs hid no change at any gap.
 \end{table*}
 
 \subsection{Bundle certification}
-The request gap is the time between consecutive request starts; every request
+The request gap is the time between consecutive request starts: request $j$ of
+a run starts $j$ gaps after the run's start time, and its true read instant is
+drawn uniformly within its window. The double collect reads the bundle as
+$1,\ldots,n,n,\ldots,1$ ($2n$ requests) and the revisit order as
+$1,\ldots,n-1,n,n-1,\ldots,1$ ($2n-1$); each method compares either revision
+IDs or the SHA-1 content hashes that the API reports. Every request
 window lasts 1\,s, so at a 1\,s gap consecutive windows touch, and the minute
 and hour gaps separate them further. Two pages form the smallest bundle, and the
 size doubles to four and then to eight. The grid varies bundle size and timing under control; it
